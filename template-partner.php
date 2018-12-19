@@ -2,7 +2,6 @@
 /*
 * Template Name: Partner Template
 */
-
 get_header();
 
 /*QUERY*/
@@ -91,6 +90,7 @@ $terms = get_terms($taxonomy); // Get all terms of a taxonomy
 
 <script type="text/javascript">
 jQuery(document).ready(function($){
+  var seMC = $('header').attr('semc');
 
   var partnerLogo = $('.se-partner-logo');
   var partnercontent = $('.se-partner-content');
@@ -103,7 +103,7 @@ jQuery(document).ready(function($){
 
     console.log('trigger');
     $('.se-partner-logo-inner').css({'border':'0px red solid'})
-    $(this).find('.se-partner-logo-inner').css({'border':'1px red solid'})
+    $(this).find('.se-partner-logo-inner').css({'border':'1px '+seMC+' solid'})
     partnercontent.empty();
     SELoader.css({'margin-top': '0'}).fadeIn();
 
@@ -188,4 +188,4 @@ jQuery(document).ready(function($){
 
 
 <?php
-get_footer(); ?>
+get_footer();

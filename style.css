@@ -1,11 +1,9 @@
 /*
- *Theme Name: SimplEvent - U
-*Author: Aaron Giaimo
+ *Theme Name: SimplEvent - RAW
+ *Author: Aaron Giaimo
  *Author URI: http://aagi.ch/
  *Description: This Theme is specified for simple userfriendly Event-Communication. Its based for the Events, which organized by the Swiss Economic Forum AG.
- *Version: 0.1.0
- *GitHub Theme URI: https://github.com/Dantolos/SimplEvent
- *GitHub Branch: master
+ *Version: 0.1.2
  */
 
 /*--------------------------Allgemein--------------------------*/
@@ -46,14 +44,34 @@ table, caption, tbody, tfoot, thead, tr, th, td,  {
 }
 body {overflow-x: hidden;}
 
+/*--EMBED--*/
+.embed-container {
+	position: relative;
+	padding-bottom: 56.25%;
+	overflow: hidden;
+	max-width: 100%;
+	height: auto;
+}
+
+.embed-container iframe,
+.embed-container object,
+.embed-container embed {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+
 /*--FONTS--*/
 body { font-family: 'Open Sans', sans-serif; }
 p {	font-size: 16px; line-height: 1.4em; }
 a { text-decoration:none; color:inherit; }
 h1 { font-size: 64px; font-weight: 700; margin-bottom:20px; text-transform: uppercase; }
-h2 { font-size: 58px; }
+h2 { font-size: 52px; }
 h3 { font-size: 36px; text-transform: uppercase; }
-h4 { font-size: 20px; font-weight: 400;}
+h4 { font-size: 20px; font-weight: 300;}
 /*--LAYOUT--*/
 .se-strip { padding-top:150px; padding-bottom:150px; }
 .se-content { width:75vw; min-height:250px; overflow:auto; overflow-y:hidden; margin-left: auto;margin-right: auto;}
@@ -75,13 +93,12 @@ h4 { font-size: 20px; font-weight: 400;}
 }
 .se-content p, .se-content h1 { margin-right:40px;}
 
-
-
 /*--FOOTER--*/
 .se-footer-container { z-index: 5000; height:20px;width:100vw; bottom:0; padding: 10px 12px; font-size:12px; border-top:solid 2px #000;}
 .se-footer-container div { float:left;}
 .se-footer-copyright { width:20%;}
 .se-footer-nav { text-align: center; width:60%;}
+
 /*--BUTTONS--*/
 /*button in maincolor – Vollflächig*/
 .mc-button { padding: 10px 20px; width:auto; display: inline-block; border-radius: 2px; margin: 40px 0 0 0;}
@@ -94,6 +111,19 @@ h4 { font-size: 20px; font-weight: 400;}
 
 .se-sm-icon { opacity: 0.8; }
 .se-sm-icon:hover { opacity: 1; }
+
+/*--Links--*/
+.se-link {cursor:pointer; margin:4px 0;}
+.se-link svg { width:16px; margin-right:8px; margin-top:3px;}
+.se-link-text { margin-top:0px ! important; font-weight: 400;}
+.se-link svg, .se-link-text { float:left; cursor:pointer;}
+
+/*--Downloads--*/
+.se-dnl {cursor:pointer; margin:4px 0;}
+.se-dnl svg { width:16px; margin-right:8px;}
+.se-dnl-text { margin-top:1px; font-weight: 400;}
+.se-dnl svg, .se-dnl-text { float:left; cursor:pointer;}
+
 /*--MODULES--*/
 .se-infobox { display: table-cell; padding-left:10%; padding-right:10%;
 	vertical-align: middle;  }

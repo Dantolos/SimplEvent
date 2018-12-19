@@ -91,7 +91,7 @@ if ( $sessions->have_posts() ) : while ( $sessions->have_posts() ) : $sessions->
       <div class="se-picture-session image-settings" style="background-image:url('<?php echo get_field('session_bild');?>')">
       </div>
     </div>
-  <?php
+<?php
   }
 $sessionCount++;
 endwhile; endif;

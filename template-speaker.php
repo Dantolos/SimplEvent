@@ -5,7 +5,7 @@
 
 get_header();
 
-
+$Clink = new LinkIcon;
 
 /*QUERY*/
 $speaker_args = array(
@@ -103,15 +103,14 @@ endwhile; endif;
         <h1><?php echo $speakerArr[1]['name'] ?></h1>
         <p><?php echo $speakerArr[1]['funktion'] ?></p>
         <p><?php echo $speakerArr[1]['cv'] ?></p>
+        <?php echo $Clink->getLinkIcon('google.ch', 'Link Text', '_blank'); ?>
       </div>
       <div class="se-col-4 se-sc-bg se-wc-txt" style="display:table; min-height:300px;">
         <div class="se-infobox se-speaker-content-container-infobox">
           <p style="margin-top:-40px;"><?php echo $speakerArr[1]['kategorie'] ?></p>
           <h2><?php echo $speakerArr[1]['zeit'] ?></h2>
-          <a href="<?php echo $speakerArr[1]['webseite'] ?>" style="margin-bottom:40px;">
-            <img src="<?php echo get_template_directory_uri(); ?>/img/link-arrow.svg" height="16px"/>
-            <span class="se-mc-txt">Programm</span>
-          </a>
+          <?php echo $Clink->getLinkIcon($speakerArr[1]['webseite']['url'], 'PROGRAMM'); ?>
+
         <div class="se_speaker_social-media">
           <?php
           $i = 0;

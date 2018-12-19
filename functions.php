@@ -73,3 +73,18 @@ function wp_bibel_de_custom_jpeg_quality($quality) {
 	$quality = 100;
 	return $quality;
 }
+
+/*ACF*/
+function my_acf_admin_head() {
+    ?>
+    <style type="text/css">
+
+    .se_ACF_modular { color: #dedede !important; background-color: #23282d; }
+    .acf-field {border-left: 0px !important;}
+
+
+    </style>
+    <?php
+}
+
+add_action('acf/input/admin_head', 'my_acf_admin_head');

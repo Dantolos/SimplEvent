@@ -1,5 +1,66 @@
 jQuery(document).ready(function($){
 
+  //allgemein
+  //farben
+  var seMC = $('header').attr('semc');
+  var seSC = $('header').attr('sesc');
+  var seWC = $('header').attr('sewc');
+
+
+  //--linkicon
+  let LinkIcon = $('.se-link');
+  let LinkIconArrow = LinkIcon.find('.se-arrow');
+  let LinkIconArrowNE = LinkIcon.find('.se-arrow-n');
+  LinkIcon.find('path').css({'fill': seMC});
+  TweenMax.set(LinkIconArrowNE, { x: -40 });
+
+  LinkIcon.on('mouseover', function(){
+    let ThisLinkIconArrow = $(this).find('.se-arrow');
+    let ThisLinkIconArrowNE = $(this).find('.se-arrow-n');
+    TweenMax.to(ThisLinkIconArrow, 0.3, {x: 40});
+    TweenMax.to(ThisLinkIconArrowNE, 0.3, {x: 0});
+  });
+  LinkIcon.on('mouseout', function(){
+    let ThisLinkIconArrow = $(this).find('.se-arrow');
+    let ThisLinkIconArrowNE = $(this).find('.se-arrow-n');
+    TweenMax.to(ThisLinkIconArrow, 0.3, {x: 0});
+    TweenMax.to(ThisLinkIconArrowNE, 0.3, {x: -40});
+  });
+
+  //--downloadicon
+  let DLicon = $('.se-dnl');
+  let DLiconBar = DLicon.find('.load');
+  let DLiconTL;
+  TweenMax.set(DLiconBar, {autoAlpha: 1});
+
+  function DLtimeline(e) {
+    e = e.find('.load');
+    DLiconTL = new TimelineMax({paused:true, onComplete:function() {
+      this.restart()}
+    });
+    DLiconTL.staggerTo(e, 0.05, {autoAlpha: 0, ease:Power1.easeOut}, 0.05)
+            .staggerTo(e, 0.05, {autoAlpha: 1, ease:Power1.easeOut}, 0.05);
+  }
+
+
+  DLicon.on('mouseover', function(){
+    DLtimeline($(this));
+    DLiconTL.play();
+    $(this).find('path').css({'fill': seMC});
+    $(this).find('polygon').css({'fill': seMC});
+    $(this).find('.se-dnl-text').removeClass('se-wc-txt');
+    $(this).find('.se-dnl-text').addClass('se-mc-txt');
+  });
+  DLicon.on('mouseout', function(){
+
+    DLiconTL.stop();
+    TweenMax.set(DLiconBar, {autoAlpha: 1});
+    $(this).find('path').css({'fill': 'dedede'});
+    $(this).find('polygon').css({'fill': 'dedede'});
+    $(this).find('.se-dnl-text').removeClass('se-mc-txt');
+    $(this).find('.se-dnl-text').addClass('se-wc-txt');
+  });
+
   //header
   var headerElement = $('.se-navbar-container');
   var headerPH = $('.header-placeholder');
@@ -22,7 +83,7 @@ jQuery(document).ready(function($){
       HeaderMax();
       HeaderBig = true;
     } else {
-      
+
     }
     console.log(scrollPos);
   });
@@ -48,7 +109,7 @@ jQuery(document).ready(function($){
   var arrP =[];
   var checkArr = [];
   allColumns.each(function(){
-    cP = jQuery(this).parent();
+    cP = $(this).parent();
     if ( checkArr.indexOf(cP[0]) == -1 ) {
       arrP.push(cP);
       checkArr.push(cP[0]);
@@ -85,7 +146,7 @@ jQuery(document).ready(function($){
 
     cE.each(function(){
       tI = jQuery(this).attr('tempID');
-      jQuery(this).css({'height': heightarr[tI] });
+      $(this).css({'height': heightarr[tI] });
     });
 
     tempID++;
@@ -93,7 +154,7 @@ jQuery(document).ready(function($){
 
   $(window).on('resize', function(){
     allColumns.each(function(){
-      cP = jQuery(this).parent();
+      cP = $(this).parent();
       if ( checkArr.indexOf(cP[0]) == -1 ) {
         arrP.push(cP);
         checkArr.push(cP[0]);

@@ -13,6 +13,7 @@ function se_load_admin_scripts( $hook ){
   }
 
   wp_register_style('se_admin', get_template_directory_uri() . '/css/simplevent.admin.css', array(), '1.0.0', 'all' );
+  wp_register_style('se_acf_admin', get_template_directory_uri() . '/css/acf.admin.css', array(), '1.0.0', 'all' );
   wp_enqueue_style('se_admin');
 
 

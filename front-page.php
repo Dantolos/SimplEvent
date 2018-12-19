@@ -1,6 +1,6 @@
 <?php
 get_header();
-
+$dlicon = new DownloadIcon;
 //QUERY der Slides
 $slider = array( 'post_type' => 'slider' );
 $sliderQuery = new WP_Query( $slider );
@@ -75,10 +75,16 @@ if ( $sif13 -> have_posts() ) :
           <img src="<?php echo the_post_thumbnail_url(); ?>" alt="SIF Broschuere" width="80%" style="margin:auto;">
         </div>
         <div class="se-col-8" >
-          <?php echo the_content(); ?>
+          <?php echo the_content();
+          $dlfileLink = 'http://wpsif.e-towers.ch/wp-content/uploads/2018/11/SIF_18_Ticket-undHotelkontingent.pdf';
+          echo $dlicon->DownloadLink('Beispiel-File', $dlfileLink);
+          echo $dlicon->DownloadLink('Beispxfgsdfgsfg', $dlfileLink);
+          ?>
+
         </div>
       </div>
     </div>
+
   <?php
   endwhile;
 endif;

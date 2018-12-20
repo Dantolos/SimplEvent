@@ -227,9 +227,10 @@ jQuery(document).ready(function($){
 
 
   //Layout Sessions
-  jQuery('.se-picture-session').each(function() {
-    var sessionHeight = jQuery(this).parent().height();
-    jQuery(this).css({'height': sessionHeight })
+  $('.se-strip-session').each(function(){
+    let Sheight = $(this).find('.se-session-txt').innerHeight() + 50;
+    $(this).css({'height': Sheight + 'px'});
+    $(this).find('.se-picture-session').css({'height': Sheight + 'px'});
   });
 
   //NAVBAR MENU

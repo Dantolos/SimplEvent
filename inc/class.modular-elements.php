@@ -6,7 +6,7 @@ $Clink = new LinkIcon;
 class ModularElements {
 
 
-  public $Element = 'none';
+  public $Element;
 
   //create Elements
   protected function titelElement($data) {
@@ -52,6 +52,8 @@ class ModularElements {
   public function getModularElement( $Type ) {
 
     switch ($Type["acf_fc_layout"]) {
+      case 'css':
+        break;
       case 'titel':
         $this->titelElement($Type);
         break;

@@ -23,6 +23,7 @@
 }
 
 * { margin: 0; padding: 0; }
+*, *:before, *:after { box-sizing: border-box; }
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -94,7 +95,7 @@ h4 { font-size: 20px; font-weight: 300;}
 .se-content p, .se-content h1 { margin-right:40px;}
 
 /*--FOOTER--*/
-.se-footer-container { z-index: 5000; height:20px;width:100vw; bottom:0; padding: 10px 12px; font-size:12px; border-top:solid 2px #000;}
+.se-footer-container { z-index: 5000; height:40px;width:100vw; bottom:0; padding: 10px 12px; font-size:12px; border-top:solid 2px #000;}
 .se-footer-container div { float:left;}
 .se-footer-copyright { width:20%;}
 .se-footer-nav { text-align: center; width:60%;}
@@ -157,13 +158,13 @@ h4 { font-size: 20px; font-weight: 300;}
   background-color:#fff;
 }
 .se-header-logo {
-  padding: 20px 0 10px 40px;
+  margin: 20px 0 10px 40px;
   height: 80px;
   float:left;
 } .se-header-logo img { height:100%; }
 
 .se-header-icon {
-  padding: 8px 0 8px 40px;
+  margin: 8px 0 8px 40px;
   height: 24px;
   float:left;
 } .se-header-icon img { height:100%; }
@@ -276,7 +277,7 @@ h4 { font-size: 20px; font-weight: 300;}
 /*-----------------------------------------------------------------------*/
 /*---SESSION Strips--*/
 .se-strip-session { width:100vw; min-height:500px; }
-.se-picture-session { float:left; width:39vw; height:auto; }
+.se-picture-session { float:left; width:55vw; height:auto; }
 .se-content-session-l { height:auto; width:45vw; float:left; padding-left:3.5vw; padding-right:12.5vw;}
 .se-content-session-r { height:auto; width:45vw; float:left; padding-left:12.5vw; padding-right:3.5vw;}
 .se-content-session-l p:first-of-type, .se-content-session-r p:first-of-type { padding-left:10px; padding-top:40px; }
@@ -305,7 +306,7 @@ h4 { font-size: 20px; font-weight: 300;}
 }
 .se-programm-zeit, .se-programm-titel { float:left; height:100%; padding: 2%;  }
 .se-programm-zeit { border-right: 2px solid #fff;}
-.se-programm-titelzeile { text-transform: uppercase; width:96%; padding: 2%; }
+.se-programm-titelzeile { text-transform: uppercase; width:99.8%; padding: 2%; }
 .se-programm-programmpunkt { width:99.8%; position: relative; }
 .se-programm-programmpunkt img { position: absolute; right:2%; top:0; bottom: 0;margin: auto 0;}
 
@@ -313,7 +314,7 @@ h4 { font-size: 20px; font-weight: 300;}
 /*---------------------------------AWARD---------------------------------*/
 /*-----------------------------------------------------------------------*/
 .se-award-jahr-container { width:100%; margin-bottom:100px;}
-.se-award-box-container { float:left; width:32%; height:150px; margin-right: 2%; position: relative; overflow: hidden; }
+.se-award-box-container { float:left; width:33.1%; height:150px; margin-right: 0.3%; position: relative; overflow: hidden; }
 .se-award-box-container:last-of-type { margin-right: 0; }
 
 .se-award-bar{ position: absolute; bottom:0; width:100%; height:40px;}

@@ -5,6 +5,8 @@
 
 get_header();
 
+$Clink = new LinkIcon;
+
 //Query
 $sessions_args = array(
   'post_type' => 'sessions',
@@ -32,10 +34,9 @@ $sessions = new WP_Query( $sessions_args );
       <div class="se-infobox">
         <p><?php echo __( 'Parallelprogramm', 'SimplEvent' ); ?></p>
         <h2><?php the_field('session_zeit'); ?></h2>
-        <a href="<?php $link = get_field('session_linkurl'); echo $link['url'] ?>" target="<?php echo $link['target']; ?>">
-          <img src="<?php echo get_template_directory_uri(); ?>/img/link-arrow.svg" height="16px"/>
-          <span class="se-mc-txt"><?php the_field('session_linktext'); ?></span>
-        </a>
+        <?php
+          $link = get_field('session_linkurl');
+          echo $Clink->getLinkIcon($link, 'PROGRAMM'); ?>
       </div>
     </div>
   </div>
@@ -51,7 +52,7 @@ if ( $sessions->have_posts() ) : while ( $sessions->have_posts() ) : $sessions->
     <div class="se-strip-session se-sc-bg">
       <div class="se-picture-session image-settings" style="background-image:url('<?php echo get_field('session_bild');?>')">
       </div>
-      <div class="se-content-session-l se-wc-txt">
+      <div class="se-content-session-l se-wc-txt se-session-txt">
         <p style="border-left: solid 1px <?php echo esc_attr( get_option( 'main_color_picker' ) ) ; ?>;">BS <?php echo $sessionCount + 1; ?></p>
         <h3><?php echo the_title(); ?></h3>
         <p><?php echo get_field('session_text'); ?></p>
@@ -72,7 +73,7 @@ if ( $sessions->have_posts() ) : while ( $sessions->have_posts() ) : $sessions->
   } else { //light strips
   ?>
     <div class="se-strip-session clearfix ">
-      <div class="se-content-session-r se-sc-txt">
+      <div class="se-content-session-r se-sc-txt se-session-txt">
         <p style="border-left: solid 1px <?php echo esc_attr( get_option( 'main_color_picker' ) ) ; ?>;">BS <?php echo $sessionCount + 1; ?></p>
         <h3><?php echo the_title(); ?></h3>
         <p><?php echo get_field('session_text'); ?></p>

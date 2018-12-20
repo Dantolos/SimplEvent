@@ -43,9 +43,18 @@ class Modular extends ModularElements {
           foreach($Row as $Col) {
             array_push($ColEle, $Col);
           }
+
           $colCount = 0;
+          $colPadding = '8px';
           foreach($layoutName as $col){
-            $OutPut .= '<div class="se-col-' . $col . '">';
+
+            //CSS
+            foreach ((array)$ColEle[$colCount] as $Ele) {
+              if($Ele["acf_fc_layout"] == 'css') {
+                $colPadding = $Ele["padding"];
+              }
+            }
+            $OutPut .= '<div class="se-col-' . $col . '" style="padding:'. $colPadding .';">';
 
             //Create Element -> class.modular-elements.php
             foreach ((array)$ColEle[$colCount] as $Ele) {

@@ -1,5 +1,6 @@
 jQuery(document).ready(function($){
 
+  
   //allgemein
   //farben
   var seMC = $('header').attr('semc');
@@ -93,6 +94,7 @@ jQuery(document).ready(function($){
     headerPH.animate({'height': '40px'});
     $('.se-more-events-button').animate({'margin-top': '8px'});
     $('.se-subnav-container').animate({'top': '40px'});
+    $('.se-more-events-container').animate({'top': '40px'});
     HeaderTL.play();
   }
 
@@ -101,8 +103,10 @@ jQuery(document).ready(function($){
     headerPH.animate({'height': '120px'});
     $('.se-more-events-button').animate({'margin-top': '50px'});
     $('.se-subnav-container').animate({'top': '120px'});
+    $('.se-more-events-container').animate({'top': '120px'});
     HeaderTL.reverse();
   }
+
 
   //LAYOUT Column-Height
   var allColumns = jQuery('.se-col-1, .se-col-2, .se-col-3, .se-col-4, .se-col-5, .se-col-6, .se-col-7, .se-col-8, .se-col-9, .se-col-10, .se-col-11, .se-col-12' );
@@ -211,7 +215,7 @@ jQuery(document).ready(function($){
   //Negative Logos
   var negBtn = $('.mc-button-neg, .mc-button-neg-icon');
   $( document ).ajaxComplete(function(){
-    console.log('sdfsa');
+    console.log('ajax complete: button');
     var negBtn = $('.mc-button-neg, .mc-button-neg-icon');
     negBtn.hover(function(){
       TweenMax.to($(this), 0.2, {'border-radius': '10px', y: '-2px', ease:Power1.easeInOut});
@@ -227,8 +231,22 @@ jQuery(document).ready(function($){
 
 
   //Layout Sessions
+  $(window).on('resize', function(){
+    $('.se-strip-session').each(function(){
+      let Sheight = $(this).find('.se-session-txt').innerHeight() + 50;
+      if(Sheight < 500){
+        Sheight = 500;
+      }
+      $(this).css({'height': Sheight + 'px'});
+      $(this).find('.se-picture-session').css({'height': Sheight + 'px'});
+    });
+    console.log('b');
+  });
   $('.se-strip-session').each(function(){
     let Sheight = $(this).find('.se-session-txt').innerHeight() + 50;
+    if(Sheight < 500){
+      Sheight = 500;
+    }
     $(this).css({'height': Sheight + 'px'});
     $(this).find('.se-picture-session').css({'height': Sheight + 'px'});
   });
@@ -271,28 +289,7 @@ jQuery(document).ready(function($){
   });
 
 
-  //more Event -BAR
-  var moEvImg = $('.se-more-events-button');
-  moEvImg.hover(function(){
-    moEvImg.find('span').fadeIn();
-  }, function(){
-    moEvImg.find('span').fadeOut();
-  });
 
-  var moEvO = 1;
-  jQuery('.se-more-events-section').on('click', function(){
-    moEvO++;
-    var degrees = 0;
-    jQuery('.se-more-events-container').slideToggle();
-    if ( (moEvO % 2) == 0) {
-      degrees = 135;
-    } else {
-      degrees = 0;
-    }
-    moEvButton = $('.se-more-events-button').find('img');
-    TweenMax.to(moEvButton, 0.5, {rotation: degrees});
-
-  });
 
 
   //info Sidebar
@@ -478,6 +475,8 @@ jQuery(document).ready(function($){
     console.log('trigggerleave');
     TweenMax.to($(this).find('.se-award-info-container'), 0.5, {y: '500px', autoAlpha: '0'});
   });
+
+
 
 
 });

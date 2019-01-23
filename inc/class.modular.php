@@ -50,7 +50,8 @@ class Modular extends ModularElements {
 
             //CSS
             foreach ((array)$ColEle[$colCount] as $Ele) {
-              if($Ele["acf_fc_layout"] == 'css') {
+              //if($Ele[0]) { $Ele = $Ele[0]; }
+              if($Ele[0]["acf_fc_layout"] == 'css') {
                 $colPadding = $Ele["padding"];
               }
             }

@@ -6,6 +6,7 @@
 get_header();
 
 $Clink = new LinkIcon;
+$Loader = new loadingAnimation;
 
 /*QUERY*/
 $speaker_args = array(
@@ -88,17 +89,8 @@ endwhile; endif;
 
 
 <div class="se-strip">
-    <div class="se-loader">
-      <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-         width="125.812px" height="125.812px" viewBox="0 0 125.812 125.812" enable-background="new 0 0 125.812 125.812"
-         xml:space="preserve">
-        <circle class="load-d1" fill="#FFFFFF" stroke="#dedede" stroke-width="1" stroke-miterlimit="10" cx="13.666" cy="63.24" r="8.282"/>
-        <circle class="load-d2" fill="#FFFFFF" stroke="#dedede" stroke-width="1" stroke-miterlimit="10" cx="46.42" cy="63.24" r="8.282"/>
-        <circle class="load-d3" fill="#FFFFFF" stroke="#dedede" stroke-width="1" stroke-miterlimit="10" cx="79.173" cy="63.24" r="8.282"/>
-        <circle class="load-d4" fill="#FFFFFF" stroke="#dedede" stroke-width="1" stroke-miterlimit="10" cx="111.928" cy="63.24" r="8.282"/>
-      </svg>
-    </div>
-    <div class="se-speaker-content-container se-content" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
+    <?php echo $Loader->getLoader(); ?>
+    <div class="se-speaker-content-container se-content">
       <div class="se-col-8">
         <h1><?php echo $speakerArr[1]['name'] ?></h1>
         <p><?php echo $speakerArr[1]['funktion'] ?></p>
@@ -225,7 +217,7 @@ jQuery(document).ready(function($){
   speakerBild.on('click', function(){
 
     var page = $(this).data('id');
-    var ajaxurl = $('.se-speaker-content-container').data('url');
+    var ajaxurl = $('header').data('url');
     $('.se-speaker-content-container').empty();
     SELoader.css({'display': 'block'});
     $('#speakerName').html(page);

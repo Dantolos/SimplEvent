@@ -140,7 +140,7 @@ function se_partner_cat_load() {
   die();
 }
 
-/*-------------Award Kategorie---------------*/
+/*-------------Award Video---------------*/
 add_action('wp_ajax_nopriv_se_award_video_load', 'se_award_video_load');
 add_action('wp_ajax_se_award_video_load', 'se_award_video_load'); //nur für angemeldete (admins)
 
@@ -150,12 +150,30 @@ function se_award_video_load() {
 
   $response = '<img src="' . get_template_directory_uri() . '/img/close.svg" alt="" class="closer">';
   $response .= '<iframe  src="https://www.youtube.com/embed/' . get_post_meta($postID, 'award_video', true  ) . '?rel=0&amp;controls=0;autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
-  $response .= '<script type="text/javascript">';
-  $response .= "var lightboxContainer = jQuery('.se-award-lightbox-container'); var lightboxCloser = jQuery('.se-award-lightbox-container'); lightboxContainer.on('click', function(){ console.log('hallasdfsa'); jQuery('body').find('.se-award-lightbox-container').remove();});";
-  $response .= '</script>';
 
 
+  echo $response;
+  die();
+}
 
+/*-------------Sessions Referenten---------------*/
+add_action('wp_ajax_nopriv_se_session_load', 'se_session_load');
+add_action('wp_ajax_se_session_load', 'se_session_load'); //nur für angemeldete (admins)
+
+function se_session_load() {
+
+  $postID = $_POST['sid'];
+  $rIndex = $_POST['rc'];
+
+  $sessionRefs = get_field('referenten', $postID );
+
+  $response = '<div class="clearfix" style="height:100%; width:100%;">';
+  $response .= '<div class="se-sessions-img image-settings" style="background-image:url('. $sessionRefs[$rIndex]['bild'] .');">';
+  $response .= '</div><div class="se-sessions-content">';
+  $response .= '<h2>' . $sessionRefs[$rIndex]['session_referent_name'] . '</h2>';
+  $response .= '<p class="se-mc-txt"style="margin-bottom:20px;">' . $sessionRefs[$rIndex]['session_referent_funktion'] . '</p>';
+  $response .= '<p>' . $sessionRefs[$rIndex]['cv'] . '</p>';
+  $response .= '</div></div>';
 
   echo $response;
   die();

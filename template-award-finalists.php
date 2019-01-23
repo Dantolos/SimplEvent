@@ -174,6 +174,15 @@ jQuery(document).ready(function($){
     .staggerTo(dots, 0.3, {y: '0px', fill: '#fff', stroke: '#dedede',   scale: 1, ease:Power1.easeOut}, 0.2, "-=0.5");
   }
 
+
+  $( document ).ajaxComplete(function(){
+    var lightboxCloser = jQuery('.se-award-lightbox-container');
+
+  });
+  $('.se-award-lightbox-container').on('click', function(){
+    //console.log('hallasdfsa');
+    jQuery('body').find('.se-award-lightbox-container').remove();
+  });
 });
 </script>
 

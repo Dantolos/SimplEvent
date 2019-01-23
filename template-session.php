@@ -56,14 +56,17 @@ if ( $sessions->have_posts() ) : while ( $sessions->have_posts() ) : $sessions->
         <p style="border-left: solid 1px <?php echo esc_attr( get_option( 'main_color_picker' ) ) ; ?>;">BS <?php echo $sessionCount + 1; ?></p>
         <h3><?php echo the_title(); ?></h3>
         <p><?php echo get_field('session_text'); ?></p>
+
         <?php
+        $rCount = 0;
         if( have_rows('referenten') ):
           while ( have_rows('referenten') ) : the_row(); ?>
-            <div class="se-session-referent">
+            <div class="se-session-referent" pid="<?php echo get_the_ID(); ?>" rcount="<?php echo $rCount; ?>">
               <span class="se-mc-txt"><?php echo the_sub_field('session_referent_name'); ?></span><br />
               <span><?php echo the_sub_field('session_referent_funktion'); ?></span>
             </div>
             <?php
+            $rCount++;
           endwhile;
         endif;
         ?>
@@ -78,13 +81,16 @@ if ( $sessions->have_posts() ) : while ( $sessions->have_posts() ) : $sessions->
         <h3><?php echo the_title(); ?></h3>
         <p><?php echo get_field('session_text'); ?></p>
         <?php
+
+        $rCount = 0;
         if( have_rows('referenten') ):
           while ( have_rows('referenten') ) : the_row(); ?>
-            <div class="se-session-referent">
+            <div class="se-session-referent" pid="<?php echo get_the_ID(); ?>" rcount="<?php echo $rCount; ?>">
               <span class="se-mc-txt"><?php echo the_sub_field('session_referent_name'); ?></span><br />
               <span><?php echo the_sub_field('session_referent_funktion'); ?></span>
             </div>
             <?php
+            $rCount++;
           endwhile;
         endif;
         ?>
@@ -96,6 +102,55 @@ if ( $sessions->have_posts() ) : while ( $sessions->have_posts() ) : $sessions->
   }
 $sessionCount++;
 endwhile; endif;
+?>
 
+<script type="text/javascript">
+  jQuery(document).ready(function($){
+    var LBclass = new LightBox;
+    var LBtrigger = $('.se-session-referent');
+
+    var FrameLB = $('#se-lb-con');
+
+    $('.se-session-referent').on('click', function(){
+
+
+      LBclass.seOpenLB();
+
+      var page = $(this).attr('pid');
+      var rcount = $(this).attr('rcount');
+      var ajaxurl = $('header').data('url');
+
+      $.ajax({
+        url : ajaxurl,
+        type : 'post',
+        data : {
+          sid : page,
+          rc : rcount,
+          action : 'se_session_load'
+        },
+
+        error : function( response ){
+          console.log('ajax error');
+        },
+        success : function( response ){
+
+          LBclass.seLoadLB(response);
+          console.log(response);
+        }
+      });
+
+    });
+
+    $( document ).ajaxComplete(function(){
+      $('.closer').on('click', function(){
+        //console.log('hallasdfsa');
+        $('body').find('#se-lb-con').remove();
+
+      });
+    });
+
+  });
+</script>
+<?php
 
 get_footer(); ?>

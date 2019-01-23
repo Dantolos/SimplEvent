@@ -4,6 +4,9 @@
 */
 get_header();
 
+$Loader = new loadingAnimation;
+
+
 /*QUERY*/
 $main_partner_args = array(
   'post_type' => 'partner', 'orderby' => 'menu_order', 'order' => 'ASC', 'tax_query' => array(
@@ -23,7 +26,7 @@ $terms = get_terms($taxonomy); // Get all terms of a taxonomy
 <div class="se-strip">
   <div class="se-content">
     <div class="se-col-12">
-      <h1><?php echo the_title(); ?></h1>
+      <h1 id="test"><?php echo the_title(); ?></h1>
       <p><?php echo the_content(); ?></p>
     </div>
   </div>
@@ -55,16 +58,7 @@ $terms = get_terms($taxonomy); // Get all terms of a taxonomy
 
     </div>
 
-    <div class="se-loader">
-      <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-         width="125.812px" height="125.812px" viewBox="0 0 125.812 125.812" enable-background="new 0 0 125.812 125.812"
-         xml:space="preserve">
-        <circle class="load-d1" fill="#FFFFFF" stroke="#dedede" stroke-width="1" stroke-miterlimit="10" cx="13.666" cy="63.24" r="8.282"/>
-        <circle class="load-d2" fill="#FFFFFF" stroke="#dedede" stroke-width="1" stroke-miterlimit="10" cx="46.42" cy="63.24" r="8.282"/>
-        <circle class="load-d3" fill="#FFFFFF" stroke="#dedede" stroke-width="1" stroke-miterlimit="10" cx="79.173" cy="63.24" r="8.282"/>
-        <circle class="load-d4" fill="#FFFFFF" stroke="#dedede" stroke-width="1" stroke-miterlimit="10" cx="111.928" cy="63.24" r="8.282"/>
-      </svg>
-    </div>
+    <?php echo $Loader->getLoader(); ?>
 
     <div class="se-partner-logo-containter">
       <?php  if ( $main_partner->have_posts() ) : while ( $main_partner->have_posts() ) : $main_partner->the_post();
@@ -90,6 +84,8 @@ $terms = get_terms($taxonomy); // Get all terms of a taxonomy
 
 <script type="text/javascript">
 jQuery(document).ready(function($){
+  
+
   var seMC = $('header').attr('semc');
 
   var partnerLogo = $('.se-partner-logo');

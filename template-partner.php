@@ -84,7 +84,8 @@ $terms = get_terms($taxonomy); // Get all terms of a taxonomy
 
 <script type="text/javascript">
 jQuery(document).ready(function($){
-  
+
+  var LBclass = new LightBox;
 
   var seMC = $('header').attr('semc');
 
@@ -93,35 +94,49 @@ jQuery(document).ready(function($){
   var ajaxurl = $('.se-partner-strip').data('url');
   var SELoader = $('.se-loader');
 
-  $(document).on('click', '.se-partner-logo', function() {
-    var pID = $(this).data('id');
-    var contentHeight = partnercontent.height();
+  function partnerFrame(sp) {
+      console.log('jOne');
+      $('body').find('.se-lb-wrapper').remove();
+      var pID = sp.data('id');
 
-    console.log('trigger');
-    $('.se-partner-logo-inner').css({'border':'0px red solid'})
-    $(this).find('.se-partner-logo-inner').css({'border':'1px '+seMC+' solid'})
-    partnercontent.empty();
-    SELoader.css({'margin-top': '0'}).fadeIn();
+      LBclass.seOpenLB();
 
-    $.ajax({
-      url : ajaxurl,
-      type : 'post',
-      data : {
-        id : pID,
-        action : 'se_partner_load'
-      },
+      $.ajax({
+        url : ajaxurl,
+        type : 'post',
+        data : {
+          id : pID,
+          action : 'se_partner_load'
+        },
 
-      error : function( response ){
-        console.log(response);
-      },
-      success : function( response ){
-        partnercontent.empty();
-        SELoader.animate({ 'margin-top': '-200px'}, 200).fadeOut();
-        partnercontent.append(response).show('slow').css({'opacity': '0'}).animate({'margin-top': '0', 'opacity': '1', 'height': 'auto'});
+        error : function( response ){
+          console.log(response);
+        },
+        success : function( response ){
+          LBclass.seLoadLB(response);
+          $('.se-loader').css({'display': 'none'});
 
-      }
+        }
+      });
+
+  }
+
+
+  $( document ).ajaxComplete(function(){
+    $('.closer').on('click', function(){
+      $('body').find('.se-lb-wrapper').remove();
     });
+
+
+
+
   });
+
+    partnerLogo.on('click', function(){
+      partnerFrame($(this));
+    });
+
+
 
 
   //kategorie dropdown
@@ -174,7 +189,12 @@ jQuery(document).ready(function($){
         SELoader.animate({ 'margin-top': '-200px'}, 200).fadeOut();
         TweenMax.staggerFrom(pLogo, 0.5, {y: '30px', autoAlpha: '0', ease:Power1.easeOut}, 0.1);
         kategorieTitel.empty().append('<h3>' + kName + '</h3>');
+
+
       }
+    }).done(function(){
+      partnerLogo = $('.se-partner-logo');
+      partnerLogo.on('click', function(){ partnerFrame($(this));});
     });
   });
 

@@ -82,9 +82,25 @@ function my_acf_admin_head() {
     .se_ACF_modular { color: #dedede !important; background-color: #23282d; }
     .acf-field {border-left: 0px !important;}
 
-
     </style>
     <?php
 }
 
 add_action('acf/input/admin_head', 'my_acf_admin_head');
+
+
+
+
+function array_insert(&$array, $position, $insert)
+{
+    if (is_int($position)) {
+        array_splice($array, $position, 0, $insert);
+    } else {
+        $pos   = array_search($position, array_keys($array));
+        $array = array_merge(
+            array_slice($array, 0, $pos),
+            $insert,
+            array_slice($array, $pos)
+        );
+    }
+}

@@ -6,34 +6,43 @@
 get_header();
 
 $Clink = new LinkIcon;
+$Csession = new SessionsClass;
+$Loader = new loadingAnimation;
 
-//Query
-$sessions_args = array(
-  'post_type' => 'sessions',
-  'orderby' => 'menu_order',
-  'order'     => 'ASC',
-  'tax_query' => array(
-    array(
-      'taxonomy' => 'Jahr',
-      'field'    => 'term_id',
-      'terms'    => array(4),
-    ),
-  ),
-);
-$sessions = new WP_Query( $sessions_args );
+$slotarray = get_field('slots');
+$firstSlot = array_shift($slotarray);
+
 ?>
 
 <!--Session Main Content-->
-<div class="se-strip">
+<div class="se-strip" id="touch-test">
   <div class="se-content">
     <div class="se-col-8">
       <h1><?php echo the_title(); ?></h1>
       <p><?php echo the_content(); ?></p>
     </div>
     <div class="se-col-4 se-sc-bg se-wc-txt" style="display: table;">
-      <div class="se-infobox">
+      <div class="se-infobox" style="position:relative;">
         <p><?php echo __( 'Parallelprogramm', 'SimplEvent' ); ?></p>
-        <h2><?php the_field('session_zeit'); ?></h2>
+        <div class="se-infobox-session-dropdown-menu">
+          <h2><?php the_field('session_zeit'); ?></h2>
+          <div class="se-infobox-session-selector">
+            <p id="selected-slot-item" slot="<?php echo $slot; ?>"><?php echo $firstSlot; ?></p>
+            <svg version="1.1" id="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            	 width="50px" height="16px" viewBox="0 0 40 39" enable-background="new 0 0 40 39" xml:space="preserve">
+              <g>
+              	<path class="se-arrow" fill="#fff" d="M30.105,18.204L11.357,7.249c-0.764-0.448-1.743-0.19-2.188,0.574C8.724,8.585,8.98,9.565,9.744,10.01
+              		l16.333,9.545L9.819,29.446c-0.755,0.459-0.995,1.443-0.536,2.197c0.302,0.496,0.829,0.769,1.369,0.769
+              		c0.284,0,0.57-0.074,0.83-0.232l18.146-11.039c0.426-0.09,0.815-0.345,1.053-0.749C31.125,19.628,30.868,18.649,30.105,18.204z"/>
+              </g>
+            </svg>
+          </div>
+          <div class="se-infobox-session-dropdown" style="position:absolute;">
+            <?php foreach ($slotarray as $slot): ?>
+                <div class="se-infobox-session-dropdown-item" slot="<?php echo $slot; ?>"> <p><?php echo $slot; ?></p></div>
+            <?php endforeach; ?>
+          </div>
+        </div>
         <?php
           $link = get_field('session_linkurl');
           echo $Clink->getLinkIcon($link, 'PROGRAMM'); ?>
@@ -43,82 +52,79 @@ $sessions = new WP_Query( $sessions_args );
 </div>
 
 <!--Separate Sessions-->
-<?php
-$sessionCount = 0;
-if ( $sessions->have_posts() ) : while ( $sessions->have_posts() ) : $sessions->the_post();
+<?php echo $Loader->getLoader(); ?>
+<div id="se-session-wrapper" jahr="<?php echo get_field('jahr'); ?>">
+  <?php echo $Csession->getSlot(get_field('jahr'), $firstSlot ); ?>
+</div>
 
-  if (($sessionCount%2) == 0 ) { //dark strips
-  ?>
-    <div class="se-strip-session se-sc-bg">
-      <div class="se-picture-session image-settings" style="background-image:url('<?php echo get_field('session_bild');?>')">
-      </div>
-      <div class="se-content-session-l se-wc-txt se-session-txt">
-        <p style="border-left: solid 1px <?php echo esc_attr( get_option( 'main_color_picker' ) ) ; ?>;">BS <?php echo $sessionCount + 1; ?></p>
-        <h3><?php echo the_title(); ?></h3>
-        <p><?php echo get_field('session_text'); ?></p>
-
-        <?php
-        $rCount = 0;
-        if( have_rows('referenten') ):
-          while ( have_rows('referenten') ) : the_row(); ?>
-            <div class="se-session-referent" pid="<?php echo get_the_ID(); ?>" rcount="<?php echo $rCount; ?>">
-              <span class="se-mc-txt"><?php echo the_sub_field('session_referent_name'); ?></span><br />
-              <span><?php echo the_sub_field('session_referent_funktion'); ?></span>
-            </div>
-            <?php
-            $rCount++;
-          endwhile;
-        endif;
-        ?>
-      </div>
-    </div>
-  <?php
-  } else { //light strips
-  ?>
-    <div class="se-strip-session clearfix ">
-      <div class="se-content-session-r se-sc-txt se-session-txt">
-        <p style="border-left: solid 1px <?php echo esc_attr( get_option( 'main_color_picker' ) ) ; ?>;">BS <?php echo $sessionCount + 1; ?></p>
-        <h3><?php echo the_title(); ?></h3>
-        <p><?php echo get_field('session_text'); ?></p>
-        <?php
-
-        $rCount = 0;
-        if( have_rows('referenten') ):
-          while ( have_rows('referenten') ) : the_row(); ?>
-            <div class="se-session-referent" pid="<?php echo get_the_ID(); ?>" rcount="<?php echo $rCount; ?>">
-              <span class="se-mc-txt"><?php echo the_sub_field('session_referent_name'); ?></span><br />
-              <span><?php echo the_sub_field('session_referent_funktion'); ?></span>
-            </div>
-            <?php
-            $rCount++;
-          endwhile;
-        endif;
-        ?>
-      </div>
-      <div class="se-picture-session image-settings" style="background-image:url('<?php echo get_field('session_bild');?>')">
-      </div>
-    </div>
-<?php
-  }
-$sessionCount++;
-endwhile; endif;
-?>
 
 <script type="text/javascript">
   jQuery(document).ready(function($){
+    var ajaxurl = $('header').data('url');
+    //dropdown
+    TweenMax.set($('#dropdown-arrow'), {rotation:90, scaleY:1.3});
+    $('.se-infobox-session-dropdown').css({'width': $('.se-infobox-session-selector').innerWidth()});
+
+    let DDtrigger = $('.se-infobox-session-selector');
+    let DDitems = $('.se-infobox-session-dropdown-item');
+
+    function slotItemToggle() {
+      DDitems.slideToggle();
+    }
+
+    DDtrigger.on('click', function(){
+      slotItemToggle();
+    });
+
+    DDitems.on('click', function(){
+      var page = $(this).attr('slot');
+      var jahr = $('#se-session-wrapper').attr('jahr');
+      var xTxt = $(this).find('p').text();
+      var yTxt = $('#selected-slot-item').text();
+      $(this).find('p').html(yTxt);
+      $(this).attr('slot', yTxt);
+      $('#selected-slot-item').html(xTxt);
+
+      $('#se-session-wrapper').empty();
+      $('.se-loader').css({'display': 'block', 'height': '800px'});
+
+      slotItemToggle();
+
+      $.ajax({
+        url : ajaxurl,
+        type : 'post',
+        data : {
+          slot : page,
+          year : jahr,
+          action : 'se_session_slots'
+        },
+
+        error : function( response ){
+          console.log('ajax error');
+        },
+        success : function( response ){
+          $('.se-loader').css({'display': 'none'});
+          $('#se-session-wrapper').append(response)
+          refEle = $('.se-session-referent');
+          console.log(refEle);
+        }
+      });
+    });
+
+
+    //SPEAKER Sessions
     var LBclass = new LightBox;
     var LBtrigger = $('.se-session-referent');
 
     var FrameLB = $('#se-lb-con');
+    let refEle = $('.se-session-referent');
 
-    $('.se-session-referent').on('click', function(){
-
+    function seSessionSpeaker(sp) {
+      $('body').find('#se-lb-con').parent().remove();
+      let page = sp.attr('pid');
+      let rcount = sp.attr('rcount');
 
       LBclass.seOpenLB();
-
-      var page = $(this).attr('pid');
-      var rcount = $(this).attr('rcount');
-      var ajaxurl = $('header').data('url');
 
       $.ajax({
         url : ajaxurl,
@@ -133,20 +139,27 @@ endwhile; endif;
           console.log('ajax error');
         },
         success : function( response ){
-
           LBclass.seLoadLB(response);
-          console.log(response);
+          $('.se-loader').css({'display': 'none'});
         }
+      });
+    }
+
+    $( document ).ajaxStop(function(){
+      $('.closer').on('click', function(){
+        console.log('TTTTTT');
+        $('body').find('#se-lb-con').parent().remove();
+      });
+      refEle.on('click', function(){
+        seSessionSpeaker($(this));
+        console.log('asdf');
       });
 
     });
 
-    $( document ).ajaxComplete(function(){
-      $('.closer').on('click', function(){
-        //console.log('hallasdfsa');
-        $('body').find('#se-lb-con').remove();
-
-      });
+    refEle.on('click', function(){
+      seSessionSpeaker($(this));
+      console.log('asdf');
     });
 
   });

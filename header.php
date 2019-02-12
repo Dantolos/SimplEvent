@@ -15,7 +15,15 @@
     wp_enqueue_script( 'gsap-js', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js' );
 
   	wp_enqueue_style( 'style-css', get_template_directory_uri() . '/style.css' );
+    wp_enqueue_style( 'print-style-css', get_template_directory_uri() . '/css/print.css' );
   	wp_enqueue_script( 'script-js', get_template_directory_uri() . '/js/script.js', array('jquery'), true );
+
+    wp_enqueue_script( 'mobile-script-js', get_template_directory_uri() . '/js/mobile.script.js', array('jquery'), true );
+
+    wp_enqueue_script( 'particles', 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js', true );
+    wp_enqueue_script( 'hammer-js', 'https://hammerjs.github.io/dist/hammer.js', true );
+
+
 
     wp_enqueue_script( 'lightbox-js', get_template_directory_uri() . '/js/class.lightbox.js', array('jquery'), true );
 
@@ -36,6 +44,9 @@
   require_once('inc/class.link.php');
   require_once('inc/class.loading.php');
   require_once('inc/class.lightbox.php');
+  require_once('inc/class.speaker.php');
+  require_once('inc/class.sessions.php');
+  require_once('inc/class.socialmedia.php');
 
   //modular classes
   require_once('inc/class.modular-elements.php');
@@ -62,7 +73,7 @@
   .se-weiss { background-color: #fff; }
   .se-mc-bg { background-color: <?php echo $seMC; ?>; } /*maincolor*/
   .se-mc-txt { color: <?php echo $seMC; ?>; }
-  .se-sc-bg { background-color: <?php echo $seSC; ?>; } /*dark*/
+  .se-sc-bg { background-color: <?php echo $seSC; ?>;  } /*dark*/
   .se-sc-txt { color: <?php echo $seSC; ?>; }
   .se-wc-bg { background-color: <?php echo $seWC; ?>; } /*light*/
   .se-wc-txt { color: <?php echo $seWC; ?>; }
@@ -76,12 +87,12 @@
   <div class="se-navbar-container clearfix">
     <div class="se-header-logo">
       <a href="<?php $url = home_url(); echo esc_url( $url ); ?>">
-        <img src="<?php echo esc_attr( get_option( 'event_logo' ) ); ?>" alt="home-logo" title="<?php bloginfo('name'); ?>" />
+        <img src="<?php echo esc_attr( get_option( 'event_logo' ) ); ?>" alt="Home" title="<?php bloginfo('name'); ?>" />
       </a>
     </div>
     <div class="se-header-icon" style="display:none;">
       <a href="<?php $url = home_url(); echo esc_url( $url ); ?>">
-        <img src="<?php echo get_template_directory_uri(); ?>/img/sif-icon-pos.svg" />
+        <img src="<?php echo esc_attr( get_option( 'event_icon' ) ); ?>" alt="Home" title="<?php bloginfo('name'); ?>" />
       </a>
     </div>
     <div class="se-more-events-section">
@@ -132,14 +143,50 @@
 
       </div>
 
-      <div class="se_navbar_anmeldebutton se-mc-bg se-wc-txt">
-        Jetzt anmelden
-      </div>
+      <?php
+      $seanmeldung = esc_attr( get_option( 'se_anmeldung' ) );
+      if( $seanmeldung == 'on') { ?>
+        <a href="<?php echo esc_attr( get_option( 'se_anmeldelink' ) ) ; ?>" target="_blank" style="padding:0;">
+          <div class="se_navbar_anmeldebutton se-mc-bg se-wc-txt">
+            Jetzt anmelden
+          </div>
+        </a>
+      <?php } ?>
+
       <div class="se_navbar_infobutton">
         <img src="<?php echo get_template_directory_uri(); ?>/img/icon-info.svg" alt="more" title="show more Events" height="100%"/>
       </div>
 
     </div>
+
+    <div class="se-navbar-language clearfix">
+
+      <?php
+      $SMicon = new SocialMedia();
+      $MainSocial = array(
+        'twitter' => esc_attr( get_option( 'twitter_link' ) ),
+        'in' => esc_attr( get_option( 'linkedin_link' ) ),
+        'fb' => esc_attr( get_option( 'facebook_link' ) ),
+        'yt' => esc_attr( get_option( 'youtube_link' ) ),
+        'insta' => esc_attr( get_option( 'insta_link' ) )
+      );
+      if($MainSocial){
+        foreach ($MainSocial as $SMName => $SMLink) {
+          if($SMLink) {
+            $icon = $SMicon->getSMicon($SMName, '#404040', '15px');
+            echo '<a href="'.$SMLink.'" class="" target="_blank" style="padding:0 3px; float:right; ">';
+            echo '<div class="se-sm-icon-anim" style=" margin:3px 1px 0 0;"/>'.$icon;
+            echo '</div></a>';
+          }
+        }
+      }
+      echo '<div style="float:right;">';
+      do_action('wpml_add_language_selector');
+      echo '</div>';
+      ?>
+
+    </div>
+
 
     <!--Submenu-->
     <?php
@@ -159,7 +206,7 @@
 
 
 
-    <div class="se-more-events-container se-sc-bg se-wc-txt clearfix">
+    <div class="se-more-events-container se-sc-bg se-wc-txt clearfix" id="se-more-events">
       <div class="se-arrow-pre-event se-arrow-event">
         <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
         	 width="60px" height="60px" viewBox="0 0 40 39" enable-background="new 0 0 40 39" xml:space="preserve">
@@ -192,8 +239,66 @@
 
 </div>
 
-<div class="se-info-sidebar se-sc-bg">
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.2673328665496!2d7.596948616013694!3d47.56258679900988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4791b9b9f44ce80f%3A0x549e8c49a2c2cdc1!2sCongress+Center+Basel!5e0!3m2!1sde!2sch!4v1530023396628" width="100%" height="300" frameborder="0" style="border:0;margin-top:80px;" allowfullscreen></iframe>
+<div class="se-info-sidebar se-sc-bg se-wc-txt" style="display:none;">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.2673328665496!2d7.596948616013694!3d47.56258679900988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4791b9b9f44ce80f%3A0x549e8c49a2c2cdc1!2sCongress+Center+Basel!5e0!3m2!1sde!2sch!4v1530023396628" width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen></iframe>
+  <div class="se-info-sidebar-content clearfix" >
+    <div class="se-info-sidebar-icon" style="border-top: 2px solid <?php echo $seWC; ?>;">
+      <img src="<?php echo get_template_directory_uri(); ?>/img/icon-ort.svg" alt="">
+    </div>
+    <div class="se-info-sidebar-text">
+      <p><strong><?php echo esc_attr( get_option( 'location' ) ) ; ?></strong></p>
+      <pre><?php echo esc_attr(get_option( 'address' )) ; ?></pre>
+    </div>
+
+    <div class="se-info-sidebar-icon" style="border-top: 2px solid <?php echo $seWC; ?>;">
+      <img src="<?php echo get_template_directory_uri(); ?>/img/icon-datum.svg" alt="">
+    </div>
+    <div class="se-info-sidebar-text">
+      <p><strong><?php echo esc_attr( get_option( 'date' ) ) ; ?></strong></p>
+      <pre><?php echo esc_attr(get_option( 'time' )); ?></pre>
+    </div>
+
+    <div class="se-info-sidebar-icon" style="border-top: 2px solid <?php echo $seWC; ?>;">
+      <img src="<?php echo get_template_directory_uri(); ?>/img/icon-participation.svg" alt="">
+    </div>
+    <div class="se-info-sidebar-text">
+      <p><strong><?php echo __( 'Teilnehmende', 'SimplEvent' ); ?></strong></p>
+      <p><?php echo esc_attr(get_option( 'participants' )) ; ?></p>
+    </div>
+
+    <div class="se-info-sidebar-icon" style="border-top: 2px solid <?php echo $seWC; ?>;">
+      <img src="<?php echo get_template_directory_uri(); ?>/img/icon_language.svg" alt="">
+    </div>
+    <div class="se-info-sidebar-text">
+      <p><strong><?php echo esc_attr( get_option( 'language' ) ) ; ?></strong></p>
+      <p><?php echo esc_attr(get_option( 'translation' ) ); ?></p>
+    </div>
+
+    <div class="se-info-sidebar-icon" style="border-top: 2px solid <?php echo $seWC; ?>;">
+      <img src="<?php echo get_template_directory_uri(); ?>/img/icon_language.svg" alt="">
+    </div>
+    <div class="se-info-sidebar-text">
+      <p><strong><?php echo __( 'Preis', 'SimplEvent' ); ?></strong></p>
+      <p><?php echo esc_attr( get_option( 'price' ) ) ; ?></p>
+    </div>
+
+    <?php
+    $seanmeldung = esc_attr( get_option( 'se_anmeldung' ) );
+    if( $seanmeldung == 'on') { ?>
+      <a href="<?php echo esc_attr( get_option( 'se_anmeldelink' ) ) ; ?>" target="_blank">
+        <div class="se_navbar_anmeldebutton se-mc-bg se-wc-txt" style="position: relative; left: 20%;">
+          Jetzt anmelden
+        </div>
+      </a>
+    <?php } ?>
+
+  </div>
 </div>
 
 <body>                                                                                                                                                                                                
+
+  <?php
+
+
+
+  ?>

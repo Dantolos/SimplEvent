@@ -157,10 +157,22 @@ jQuery(document).ready(function($){
     let nEv = $('.se-more-event-content-inner[countevent="'+c+'"]');
     console.log(c);
     TweenMax.set($('.se-more-event-content-inner'), {x: 0});
-    moreEventTL.from(nEv, 0.5, {autoAlpha: 0, x: tr})
-      .to(cEv, 0.5, {autoAlpha: 1, x: tl});
+    moreEventTL.to(nEv, 0.5, {autoAlpha: 1, x: tr}, 0.1)
+      .from(cEv, 0.5, {autoAlpha: 1, x: tl});
     moreEventTL.play();
 
   }
 
+  var seMoreEventsContainer = document.getElementById('se-more-events');
+
+  console.log(seMoreEventsContainer);
+  var seMoreEventsSwipe = new Hammer(seMoreEventsContainer);
+
+  seMoreEventsSwipe.on('swipeleft', function(e) {
+    getNextPrev('next');
+  });
+  seMoreEventsSwipe.on('swiperight', function(e) {
+    getNextPrev('prev');
+    console.log('swioeright');
+  });
 });

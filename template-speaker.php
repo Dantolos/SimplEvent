@@ -4,11 +4,23 @@
 */
 
 get_header();
+$Speaker = new SpeakerClass;
 
 $Clink = new LinkIcon;
 $Loader = new loadingAnimation;
 
+
 /*QUERY*/
+$JahrID;
+if (! isset($_GET['j'])) {
+  $JahrID = get_field('jahr');
+} else {
+  $JahrID = get_term_by('name', $_GET['j'], 'Jahre');
+  $JahrID = $JahrID->term_id;
+
+}
+
+
 $speaker_args = array(
   'post_type' => 'speakers',
   'orderby' => 'menu_order',
@@ -17,7 +29,7 @@ $speaker_args = array(
     array(
       'taxonomy' => 'Jahre',
       'field'    => 'term_id',
-      'terms'    => array(5),
+      'terms'    => $JahrID,
     ),
   ),
 );
@@ -27,164 +39,81 @@ $speakerArr = array();
 
 if ( $speaker->have_posts() ) : while ( $speaker->have_posts() ) : $speaker->the_post();
   $postID = get_the_ID();
-  $name = get_the_title();
-  $funktion = get_post_meta($postID, 'speaker_funktion', true );
-  $firma = get_post_meta($postID, 'speaker_firma', true );
-  $zeit = get_post_meta($postID, 'speaker_zeit', true );
-  $kategorie = get_post_meta($postID, 'speaker_kategorie', true );
-  $webseite = get_post_meta($postID, 'speaker_webseite', true );
-
-  $sprache = get_post_meta($postID, 'speaker_sprache', true );
-  $social = array();
-  if( have_rows('speaker_social_media') ) :
-    while ( have_rows('speaker_social_media') ) : the_row();
-
-      $typ = get_sub_field('speaker_social_media_typ');
-      $link = get_sub_field('speaker_social_media_link');
-      $social[$typ] = $link;
-    endwhile;
-  endif;
-  $socialArr = get_field('speaker_social_media');
   $bild = get_field('speaker_bild');
-  $cv = get_post_meta($postID, 'speaker_cv', true );
 
   $newArray = array(
     'ID' => $postID,
-    'name' => $name,
-    'funktion' => $funktion,
-    'firma' => $firma,
-    'zeit' => $zeit,
-    'kategorie' => $kategorie,
-    'webseite' => $webseite,
-    'sprache' => $sprache,
-    'social' => $social,
-    'socialArr' => $socialArr,
+    'name' => get_post($postID)->post_name,
     'bild' => $bild,
-    'cv' => $cv
   );
 
   $speakerArr[] = $newArray;
 
-
 endwhile; endif;
 
-// echo '<pre style="margin: 150px 0 0 20px;"';
-// echo var_dump($speakerArr);
-// echo '</pre>';
+$startID;
+$startBild;
+
+//GEt DIREKT SPECIFITC SPEAKER
+if (! isset($_GET['r'])) {
+  $startID = $speakerArr[1]['ID'];
+  $startBild = 1;
+} else {
+  $direktSpeaker = $_GET["r"];
+  $bSCount = 0;
+  foreach ($speakerArr as $singleSpeaker) {
+    if ($direktSpeaker === $singleSpeaker['name']) {
+      $startID = $singleSpeaker['ID'];
+
+      unset($speakerArr[$bSCount]);
+      $singleSpeaker = [$singleSpeaker];
+      array_insert($speakerArr, 1, $singleSpeaker);
+      $startBild = $bSCount;
+
+    }
+    $bSCount++;
+  }
+}
+
+
+
+if(count($speakerArr) > 1){
 ?>
 
 
-<div class="se-speaker-slider-container">
-<?php
-  $speakerCount = count($speakerArr);
-  for ($i=0; $i < $speakerCount; $i++) { ?>
-    <div data-id="<?php echo $speakerArr[$i]['ID']; ?>" class="se-speaker-bild image-settings" nr="<?php echo $i; ?>" style="background-image:url('<?php echo $speakerArr[$i]['bild'] ?>');">
-      <div class="se-sc-bg se se-speaker-bild-overlay">
+  <div class="se-speaker-slider-container">
+  <?php
+    $speakerCount = count($speakerArr);
+    for ($i=0; $i < $speakerCount; $i++) { ?>
+      <div data-id="<?php echo $speakerArr[$i]['ID']; ?>" class="se-speaker-bild image-settings" nr="<?php echo $i; ?>" style="background-image:url('<?php echo $speakerArr[$i]['bild'] ?>');">
+        <div class="se-sc-bg se se-speaker-bild-overlay">
 
-      </div>
-    </div>
-  <?php } ?>
-</div>
-
-
-
-<div class="se-strip">
-    <?php echo $Loader->getLoader(); ?>
-    <div class="se-speaker-content-container se-content">
-      <div class="se-col-8">
-        <h1><?php echo $speakerArr[1]['name'] ?></h1>
-        <p><?php echo $speakerArr[1]['funktion'] ?></p>
-        <p><?php echo $speakerArr[1]['cv'] ?></p>
-        <?php echo $Clink->getLinkIcon('google.ch', 'Link Text', '_blank'); ?>
-      </div>
-      <div class="se-col-4 se-sc-bg se-wc-txt" style="display:table; min-height:300px;">
-        <div class="se-infobox se-speaker-content-container-infobox">
-          <p style="margin-top:-40px;"><?php echo $speakerArr[1]['kategorie'] ?></p>
-          <h2><?php echo $speakerArr[1]['zeit'] ?></h2>
-          <?php echo $Clink->getLinkIcon($speakerArr[1]['webseite']['url'], 'PROGRAMM'); ?>
-
-        <div class="se_speaker_social-media">
-          <?php
-          $i = 0;
-          while( $i < count($speakerArr[1]['socialArr']) ){
-            switch ($speakerArr[1]['socialArr'][$i]['speaker_social_media_typ']){
-              case 'fb':
-                $icon = 'icon_facebook.svg';
-                break;
-              case 'yt':
-                $icon = 'icon_youtube.svg';
-                break;
-              case 'insta':
-                $icon = 'icon_insta.svg';
-                break;
-              case 'in':
-                $icon = 'icon_linkedin.svg';
-                break;
-              case 'twitter':
-                $icon = 'icon_twitter.svg';
-                break;
-            } $i++; ?>
-
-            <a href="<?php echo $speakerArr[1]['socialArr'][$i]['speaker_social_media_link']; ?>" target="_blank" class="se-sm-icon">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/<?php echo $icon; ?>" height="25px" style="margin:4px 8px 0 0;">
-            </a>
-
-            <?php  }
-
-            $webseite = $speakerArr[1]['webseite'];
-            if($webseite){ ?>
-              <a href="<?php $webseite; ?>" target="_blank" style="position:absolute; right:0; margin:0;">
-                <div class="mc-button-neg se-mc-txt" style="margin:0; border: solid 2px <?php echo esc_attr( get_option( 'main_color_picker' ) ); ?>; float:right;">
-                  <?php echo __( 'WEBSEITE', 'SimplEvent' ); ?>
-                </div>
-              </a>
-
-            <?php } ?>
-          </div>
         </div>
       </div>
-    </div>
-</div>
-
-
-<?php
-//review bereich
-
-$isPublic = get_post_meta($speakerArr[1]['ID'], 'review_public', true );
-if ($isPublic){ ?>
-
-  <div class="se-strip se-speaker-review se-sc-bg">
-    <div class="se-content">
-      <div class="se-col-12 se-wc-txt">
-        <h4 style="font-weight: 700; margin-bottom:30px;"><?php echo get_post_meta($speakerArr[1]['ID'], 'review_titel', true ); ?></h4>
-      </div>
-      <div class="se-col-5 se-wc-txt">
-        <p style="border-top:2px solid <?php echo esc_attr( get_option( 'main_color_picker' ) ) ; ?>; padding-top:10px;">
-          <?php echo get_post_meta($speakerArr[1]['ID'], 'review_text', true ); ?>
-        </p>
-      </div>
-      <div class="se-col-7 se-wc-txt">
-        <iframe width="100%" height="100%" src="https://media10.simplex.tv/content/73/4595/101725/index.html?embed=1" frameborder="0" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" scrolling="no"></iframe>
-      </div>
-    </div>
-    <?php $images = get_field('review_galerie', $speakerArr[1]['ID'] );?>
-
-    <div id="prevGallery" class="prevGallery">    </div>
-    <div id="nextGallery" class="nextGallery">    </div>
-    <div class="se-gallery-container">
-
-        <?php for ($i=0; $i < count($images) ; $i++) { ?>
-          <div counter="<?php echo $i + 1; ?>" class="se-gallery-pic image-settings" style="background-image:url(<?php echo $images[$i]['url']; ?>);">
-
-          </div>
-        <?php } ?>
-    </div>
-
+    <?php } ?>
   </div>
 
-<?php } else {
 
-} ?>
+  <div class="se-strip">
+      <?php echo $Loader->getLoader(); ?>
+      <div class="se-speaker-content-container se-content">
+          <?php echo $Speaker->getSpeaker($startID); ?>
+      </div>
+  </div>
+
+  <div class="se-speaker-review-container">
+    <?php
+    if(get_post_meta($startID, 'review_public', true )) {
+      echo $Speaker->getSpeakerReview($startID);
+    } ?>
+  </div>
+
+  <?php
+} else  {
+  echo '<h1 style="margin:40vh 20vw;">Keine Speaker in dem Augsewählten Jahr gefunden</h1>';
+}
+
+?>
 
 
 <script type="text/javascript">
@@ -233,10 +162,20 @@ jQuery(document).ready(function($){
         $('.se-speaker-content-container').append(response)
       },
       success : function( response ){
-        $('.se-speaker-content-container').empty(); //sicherheits leeren ( falls zu schnell gedrueckt wurde)
+         //sicherheits leeren ( falls zu schnell gedrueckt wurde
+        $('.se-speaker-content-container').empty();
+        $('.se-speaker-review-container').empty();
+
+        console.log(response['speaker']);
+        // var obj = JSON.parse(response);
+        // console.log(obj);
+
+
+        //laden neuer inhalt
         $('.se-speaker-content-container').animate({'margin-top': '-100px'}, 200)
         SELoader.css({'display': 'none'});
-        $('.se-speaker-content-container').append(response).css({'opacity': '0'}).animate({'margin-top': '0', 'opacity': '1'});
+        $('.se-speaker-content-container').append(response['speaker']).css({'opacity': '0'}).animate({'margin-top': '0', 'opacity': '1'});
+        $('.se-speaker-review-container').append(response['review']);
       }
     });
 

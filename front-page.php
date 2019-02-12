@@ -91,11 +91,12 @@ endif;
 ?>
 
 <!--strip 2-->
-<div class="se-strip clearfix se-sc-bg">
+<div class="se-strip clearfix ">
   <div class="se-content">
-    <div class="se-col-12 se-wc-txt" >
+    <div class=" " >
       <h1>NEWS</h1>
-      <script type="text/javascript" id="wb-7Yr4d57e8f0cba005dZp" src="https://app.newsroom.co/embed.js?newsroom=sif2016&embed_id=wb-7Yr4d57e8f0cba005dZp"></script>
+      <div data-embed-container data-newsroom-token="1k44kbgxwusdi" data-embed-id="nt-0kSx5c46c46eb0091zIJ7" ></div>
+      <script type="text/javascript" src="https://data.newsroom.co/lib/storyshaker-embed/js/storyshaker-embed.js"></script>
     </div>
   </div>
 </div>

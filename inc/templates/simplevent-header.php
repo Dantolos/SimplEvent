@@ -14,5 +14,6 @@
 <form action="options.php" method="post" class="simplevent-general-form se-sc-bg">
   <?php settings_fields( 'simplevent-header-group' ); ?>
   <?php do_settings_sections('simplevent_header'); ?>
+  
   <?php submit_button(); ?>
 </form>

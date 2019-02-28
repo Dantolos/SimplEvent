@@ -55,25 +55,25 @@ class SocialMedia {
     public function getSMicon($type, $color, $size) {
       $svghead = '<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
       	 width="'.$size.'" height="'.$size.'" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve" fill="'.$color.'">';
-  
+
       switch ($type){
         case 'fb':
-          $icon = $this->facebook;
+          $this->icon = $this->facebook;
           break;
         case 'yt':
-          $icon = $this->youtube;
+          $this->icon = $this->youtube;
           break;
         case 'insta':
-          $icon = $this->insta;
+          $this->icon = $this->insta;
           break;
         case 'in':
-          $icon = $this->linkedin;
+          $this->icon = $this->linkedin;
           break;
         case 'twitter':
-          $icon = $this->twitter;
+          $this->icon = $this->twitter;
           break;
       }
-      $output = $svghead . $icon . '</svg>';
+      $output = $svghead . $this->icon . '</svg>';
       return $output;
     }
 

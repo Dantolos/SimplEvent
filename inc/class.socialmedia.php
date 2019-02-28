@@ -50,10 +50,12 @@ class SocialMedia {
     		c0,2.521-2.051,4.572-4.572,4.572H12.771c-2.521,0-4.571-2.052-4.571-4.572v-7.907v-1.778v-4.831c0-2.52,2.05-4.571,4.571-4.571
     		h14.514c2.521,0,4.572,2.051,4.572,4.571V17.557z"/>
     </g>';
+    protected $icon = '';
 
     public function getSMicon($type, $color, $size) {
       $svghead = '<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
       	 width="'.$size.'" height="'.$size.'" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve" fill="'.$color.'">';
+  
       switch ($type){
         case 'fb':
           $icon = $this->facebook;

@@ -53,6 +53,7 @@ endif;
 ?>
 
 <!--Header-Slider-->
+<?php if($sliderQuery) { ?>
 <div id="slider" class="se-slider-header-container image-settings" style="background-image:url('<?php echo $slideArray[0]['image'] ?>');">
   <div class="se-slider-header-text-container">
     <p class="se-slider-header-zitat"><strong>&laquo;</strong><?php echo $slideArray[0]['zitat']; ?><strong>&raquo;</strong></p>
@@ -65,10 +66,11 @@ endif;
     </a>
   </div>
 </div>
+<?php }
 
-<!--CONTENT-->
-<?php
-if($Strips){
+//CONTENT
+
+if(have_rows('strip')){
   foreach ($Strips as $Strip) {
     if($Strip["strip_settings"]['public']) {
       echo $Modular->getLayout( $Strip );

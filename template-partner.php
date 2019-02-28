@@ -42,14 +42,21 @@ $terms = get_terms($taxonomy); // Get all terms of a taxonomy
     </div>
     <div class="se-partner-dropdown">
       <div class="se-partner-dropdown-button">
-
+        <svg version="1.1" id="se_burger_menu" x="0px" y="0px" viewBox="0 0 17.5 10.5" style="enable-background:new 0 0 17.5 10.5;" xml:space="preserve">
+          <g>
+          	<line LID="0" class="se_BMstroke" x1="0" y1="1" x2="17.5" y2="1"/>
+          	<line LID="1" class="se_BMstroke" x1="0" y1="5.2" x2="17.5" y2="5.2"/>
+          	<line LID="2" class="se_BMstroke" x1="0" y1="9.5" x2="17.5" y2="9.5"/>
+            <line LID="3" class="se_BMstroke" x1="0" y1="5.2" x2="17.5" y2="5.2"/>
+          </g>
+        </svg>
       </div>
       <?php if ( $terms && !is_wp_error( $terms ) ) : ?>
-          <ul>
-              <?php foreach ( $terms as $term ) { ?>
-                  <li data-cat="<?php echo $term->term_id; ?>" data-name="<?php echo $term->name; ?>" style="border-right: 0px solid <?php echo esc_attr( get_option( 'main_color_picker' ) ) ; ?>;"><?php echo $term->name; ?></li>
-              <?php } ?>
-          </ul>
+        <ul style="display:none;">
+          <?php foreach ( $terms as $term ) { ?>
+            <li data-cat="<?php echo $term->term_id; ?>" data-name="<?php echo $term->name; ?>" style="border-right: 0px solid <?php echo esc_attr( get_option( 'main_color_picker' ) ) ; ?>;"><?php echo $term->name; ?></li>
+          <?php } ?>
+        </ul>
       <?php endif; ?>
     </div>
 
@@ -127,9 +134,6 @@ jQuery(document).ready(function($){
       $('body').find('.se-lb-wrapper').remove();
     });
 
-
-
-
   });
 
     partnerLogo.on('click', function(){
@@ -148,10 +152,12 @@ jQuery(document).ready(function($){
   dDTL.staggerTo(catLI, 0.3, {y: '0px', autoAlpha: '1', ease:Power1.easeOut}, 0.05);
   partnerDDbutton.on('click', function(){
     if( toggled == false ){
+      $('.se-partner-dropdown').find('ul').css({'display': 'block'});
       dDTL.play();
       toggled = true;
     } else {
       dDTL.reverse();
+      $('.se-partner-dropdown').find('ul').fadeOut();
       toggled = false;
     }
   });
@@ -163,6 +169,7 @@ jQuery(document).ready(function($){
   kategorieTrigger.on('click', function(){
     var kID = $(this).data('cat');
     var kName = $(this).data('name');
+
     $('.se-partner-dropdown').find('li').css({'border-width': '0px'});
     $(this).css({'border-width': '4px'});
     partnercontent.empty();

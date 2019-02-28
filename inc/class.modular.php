@@ -6,26 +6,33 @@ class Modular extends ModularElements {
   public function getLayout( $Strip ) {
 
       //strip Settings
-      $BGstyle = $Strip["strip_settings"]["style"];
-      switch ($BGstyle) {
+      $BGTextStyle = $Strip["strip_settings"]["style"];
+      switch ($BGTextStyle) {
         case 'light':
-          $BGcolor = 'se-weiss';
+          $BGcolor = '';
           break;
         case 'dark':
-          $BGcolor = 'se-sc-bg se-wc-txt';
+          $BGcolor = 'se-wc-txt';
           break;
         default:
-          $BGcolor = 'se-wc-bg se-wc-txt';
+          $BGcolor = '';
           break;
       }
-
-      //BACKGROUND IMAGE
+      $BGstyle = '';
       $BGimg = '';
-      if($Strip["strip_settings"]["background_image"]) {
-        $BGimg = $Strip["strip_settings"]["background_image"];
+      if($Strip["strip_settings"]["tansparent"]){
+
+      } else {
+        if($Strip["strip_settings"]["background_image"]) {
+          $BGimg = $Strip["strip_settings"]["background_image"];
+        } else {
+          $BGstyle = ( $Strip["strip_settings"]["background_color"] ) ? 'background-color:'.$Strip["strip_settings"]["background_color"].';': 'none';
+        }
       }
 
-      $OutPut = '<div class="se-strip ' . $BGcolor . ' image-settings" style="background-image:url('.$BGimg.');">';
+
+
+      $OutPut = '<div class="se-strip ' . $BGcolor . ' image-settings" style="background-image:url('.$BGimg.'); '.$BGstyle.'">';
 
       //Create Column + Element
       if($Strip['row']) {
@@ -49,12 +56,12 @@ class Modular extends ModularElements {
           foreach($layoutName as $col){
 
             //CSS
-            foreach ((array)$ColEle[$colCount] as $Ele) {
-              //if($Ele[0]) { $Ele = $Ele[0]; }
-              if($Ele[0]["acf_fc_layout"] == 'css') {
-                $colPadding = $Ele["padding"];
-              }
+            if ((array)$ColEle[$colCount]['style']) {
+              $colPadding = $ColEle[$colCount]['style']['padding'];
+              $colPadding = $colPadding['padding-top'] . '% ' . $colPadding['padding-right'] . '% ' . $colPadding['padding-bottom'] . '% ' . $colPadding['padding-left'] . '%';
+              unset($ColEle[$colCount]['style']);
             }
+
             $OutPut .= '<div class="se-col-' . $col . '" style="padding:'. $colPadding .';">';
 
             //Create Element -> class.modular-elements.php

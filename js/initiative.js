@@ -33,8 +33,17 @@ jQuery(document).ready(function($){
 
   moreEventBtn.on("click", function(){
     if(!moreEventDone){
+
       loadEvents('initiativen?_embed&per_page=100');
+
     }
+  });
+
+  //mobile more button
+  $('#moEv-mobile-trigger').on("click", function(){
+
+      loadEvents('initiativen?_embed&per_page=100');
+      $('.se-more-events-container').fadeToggle();
   });
 
   moreEventBtnPre.on('click', function(){
@@ -49,12 +58,14 @@ jQuery(document).ready(function($){
     console.log('clicked');
     var iniReq = new XMLHttpRequest();
     var dir = 'http://www.nzz-konferenzen.ch//wp-json/wp/v2/' + direction;
+
     iniReq.open('GET', dir);
     iniReq.onload = function() {
       if(iniReq.status >= 200 && iniReq.status < 400) {
         var data = JSON.parse(iniReq.responseText);
         createMoreEvents(data);
         $('.se-more-event-content-inner').first().fadeIn();
+
         moreEventDone = true;
       } else {
         console.log('connection: OK; BUT ERROR');
@@ -96,7 +107,6 @@ jQuery(document).ready(function($){
           webBTN = 'site Internet';
           break;
         default:
-
       }
       eventHTMLstring += '<div countevent="'+i+'" class="se-more-event-content-inner" style="display:none;">';
       eventHTMLstring += '<div class="se-more-event-content-logo">';
@@ -146,19 +156,19 @@ jQuery(document).ready(function($){
     var tl;
     if(richting == 'next') {
       r = c-1;
-      tr = '50px';
-      tl = '-50px';
+      tr = '100px';
+      tl = '0px';
     } else if (richting == 'prev') {
       r = c+1;
-      tr = '-50px';
-      tl = '50px';
+      tr = '-100px';
+      tl = '0px';
     }
     let cEv = $('.se-more-event-content-inner[countevent="'+r+'"]');
     let nEv = $('.se-more-event-content-inner[countevent="'+c+'"]');
     console.log(c);
-    TweenMax.set($('.se-more-event-content-inner'), {x: 0});
-    moreEventTL.to(nEv, 0.5, {autoAlpha: 1, x: tr}, 0.1)
-      .from(cEv, 0.5, {autoAlpha: 1, x: tl});
+    TweenMax.set($('.se-more-event-content-inner'), {autoAlpha: 1, x: 0});
+    moreEventTL.from(nEv, 1, {autoAlpha: 0, x: tr})
+      .to(cEv, 1, {autoAlpha: 1, x: tl});
     moreEventTL.play();
 
   }

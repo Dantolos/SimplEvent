@@ -46,7 +46,7 @@ function se_partner_load() {
   $response = '<div class="clearfix" style="width:100%;">';
   $response .= '<div class="se-partner-lb-logo"><img src="'.get_field('partner-logo', $postID).'"/></div>';
   $response .= '<div class="se-partner-lb-content">';
-  $response .= '<h1>'. get_the_title( $postID ) .'</h1>';
+  $response .= '<h3>'. get_the_title( $postID ) .'</h3>';
   $response .= '<p style="width:100%;">'.get_field('partner-text', $postID) .'</p>';
   $response .= '<a href="' .get_field('partner-link', $postID) . '" target="_blank" style="">';
   $response .= '<div class="mc-button-neg se-mc-txt" style="margin:40px 0; border: solid 2px' . esc_attr( get_option( 'main_color_picker' ) ) . '; float:left;">';
@@ -144,6 +144,28 @@ function se_session_load() {
   $response .= '<p class="se-mc-txt"style="margin-bottom:20px;">' . $sessionRefs[$rIndex]['session_referent_funktion'] . '</p>';
   $response .= '<p>' . $sessionRefs[$rIndex]['cv'] . '</p>';
   $response .= '</div></div>';
+
+  echo $response;
+  die();
+}
+
+/*-------------ReviewGallery---------------*/
+add_action('wp_ajax_nopriv_se_review_gallery_load', 'se_review_gallery_load');
+add_action('wp_ajax_se_review_gallery_load', 'se_review_gallery_load'); //nur für angemeldete (admins)
+
+function se_review_gallery_load() {
+
+  $gaid = $_POST['gaid'];
+  $paid = $_POST['paid'];
+
+  $theReview = get_field('reviews', $paid );
+
+  $response = '<div class="clearfix" style="height:100%; width:100%; overflow-y:scroll;">';
+  foreach ( $theReview[$gaid]["gallery"] as $galIMG ) {
+    $response .= '<div class="image-settings se-review-gallery" imgsrc="' . $galIMG["url"] . '" style="background-image:url(' . $galIMG["url"] . '); "></div>';
+    //$response .= '<img src="' . $galIMG["url"] . '" width="23%" height="auto"/>';
+  }
+  $response .= '</div>';
 
   echo $response;
   die();

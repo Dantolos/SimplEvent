@@ -17,7 +17,7 @@ $firstSlot = array_shift($slotarray);
 <!--Session Main Content-->
 <div class="se-strip" id="touch-test">
   <div class="se-content">
-    <div class="se-col-8">
+    <div class="se-col-8" style="padding-right: 5%;">
       <h1><?php echo the_title(); ?></h1>
       <p><?php echo the_content(); ?></p>
     </div>
@@ -86,7 +86,7 @@ $firstSlot = array_shift($slotarray);
       $('#selected-slot-item').html(xTxt);
 
       $('#se-session-wrapper').empty();
-      $('.se-loader').css({'display': 'block', 'height': '800px'});
+      $('.se-loader').css({'display': 'block', 'height': '0px'});
 
       slotItemToggle();
 
@@ -125,6 +125,7 @@ $firstSlot = array_shift($slotarray);
       let rcount = sp.attr('rcount');
 
       LBclass.seOpenLB();
+
 
       $.ajax({
         url : ajaxurl,

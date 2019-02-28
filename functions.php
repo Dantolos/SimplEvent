@@ -74,21 +74,62 @@ function wp_bibel_de_custom_jpeg_quality($quality) {
 	return $quality;
 }
 
-/*ACF*/
+/*---------------------------------------------------------
+ACF - Start
+---------------------------------------------------------*/
 function my_acf_admin_head() {
     ?>
     <style type="text/css">
 
-    .se_ACF_modular { color: #dedede !important; background-color: #23282d; }
-    .acf-field {border-left: 0px !important;}
+      /* .se_ACF_modular { color: #dedede !important; background-color: #23282d; } */
+      .acf-field {border-left: 0px !important;}
+
+      .acf-flexible-content .layout .acf-fc-layout-handle {
+          /*background-color: #00B8E4;*/
+          background-color: #202428;
+          color: #eee;
+      }
+
+      .acf-repeater.-row > table > tbody > tr > td,
+      .acf-repeater.-block > table > tbody > tr > td {
+          border-top: 2px solid #202428;
+      }
+
+      .acf-repeater .acf-row-handle {
+          vertical-align: top !important;
+          padding-top: 16px;
+      }
+
+      .acf-repeater .acf-row-handle span {
+          font-size: 20px;
+          font-weight: bold;
+          color: #202428;
+      }
+
+      .imageUpload img {
+          width: 75px;
+      }
+
+      .acf-repeater .acf-row-handle .acf-icon.-minus {
+          top: 30px;
+      }
+      .acf-fields.-border {border:none; background-color: #eee !important;}
+      .se-backend-element-title .acf-label{display:none;}
+
+      .se-backend-style { padding:0 !important; }
+      .se-backend-style .acf-field-number { padding:7px ; }
+      .se-backend-style .acf-fields.-border {background-color: #d3d3d3 !important; border-bottom: solid 1px #202428;border-top: solid 1px #202428;}
+      .se-backend-style .acf-label {display:none;}
+      .se-backend-style .acf-field-group { padding:0 !important; }
 
     </style>
     <?php
 }
 
 add_action('acf/input/admin_head', 'my_acf_admin_head');
-
-
+/*---------------------------------------------------------
+ACF - END
+---------------------------------------------------------*/
 
 
 function array_insert(&$array, $position, $insert)

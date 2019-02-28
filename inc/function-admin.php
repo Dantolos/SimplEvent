@@ -38,11 +38,12 @@ function simplevent_custom_settings() {
   register_setting( 'simplevent-settings-group', 'second_color_picker' );
   register_setting( 'simplevent-settings-group', 'light_color_picker' );
 
-
+  register_setting( 'simplevent-settings-group', 'bg_img' );
 
   //****SECTIONS
   add_settings_section( 'simplevent-general-options', 'General Options', 'simplevent_general_options', 'aagi_simplevent');
   add_settings_section( 'simplevent-color-options', 'Colors', 'simplevent_color_options', 'aagi_simplevent');
+  add_settings_section( 'simplevent-bg', 'Background', 'simplevent_bg', 'aagi_simplevent');
 
 
   //****fields
@@ -58,7 +59,7 @@ function simplevent_custom_settings() {
   add_settings_field( 'second-color-picker', 'Second Color', 'simplevent_second_color_picker', 'aagi_simplevent', 'simplevent-color-options' );
   add_settings_field( 'light-color-picker', 'Light Color', 'simplevent_light_color_picker', 'aagi_simplevent', 'simplevent-color-options' );
 
-
+  add_settings_field( 'background-image', 'Hintergrundbild', 'simplevent_bg_img', 'aagi_simplevent', 'simplevent-bg' );
 
 
   //----------------------------------Header ---------------------------------------//
@@ -112,9 +113,11 @@ function simplevent_custom_settings() {
 function simplevent_general_options() {
   echo 'Allgemeine Anpassungen | Logo – Social Media';
 }
-
 function simplevent_color_options() {
   echo 'Farben anpassen';
+}
+function simplevent_bg() {
+  echo 'Das Hindergrundbild wechseln';
 }
 
 function simplevent_header_options() {
@@ -173,6 +176,11 @@ function simplevent_light_color_picker() {
   echo '<input class="se-color-picker" type="text" name="light_color_picker" value="' .$lightcolor. '" data-default-color="#dedede" />';
 }
 
+//BG
+function simplevent_bg_img() {
+  $bg = esc_attr( get_option( 'bg_img' ) );
+  echo '<input type="button" value="Bg" class="button button-secondary upload-button" data-target="bg-img"/><input type="" id="bg-img" name="bg_img" value="' .$bg. '"/>';
+}
 //----------------------------------HEADER ---------------------------------------//
 
 function simplevent_se_anmeldung() {

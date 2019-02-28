@@ -80,19 +80,19 @@ if (! isset($_GET['r'])) {
 if(count($speakerArr) > 1){
 ?>
 
+  <div class="se-speaker-slider-wrapper">
+    <div class="se-speaker-slider-container">
+    <?php
+      $speakerCount = count($speakerArr);
+      for ($i=0; $i < $speakerCount; $i++) { ?>
+        <div data-id="<?php echo $speakerArr[$i]['ID']; ?>" class="se-speaker-bild image-settings" nr="<?php echo $i; ?>" style="background-image:url('<?php echo $speakerArr[$i]['bild'] ?>');">
+          <div class="se-sc-bg se se-speaker-bild-overlay">
 
-  <div class="se-speaker-slider-container">
-  <?php
-    $speakerCount = count($speakerArr);
-    for ($i=0; $i < $speakerCount; $i++) { ?>
-      <div data-id="<?php echo $speakerArr[$i]['ID']; ?>" class="se-speaker-bild image-settings" nr="<?php echo $i; ?>" style="background-image:url('<?php echo $speakerArr[$i]['bild'] ?>');">
-        <div class="se-sc-bg se se-speaker-bild-overlay">
-
+          </div>
         </div>
-      </div>
-    <?php } ?>
+      <?php } ?>
+    </div>
   </div>
-
 
   <div class="se-strip">
       <?php echo $Loader->getLoader(); ?>
@@ -129,7 +129,7 @@ jQuery(document).ready(function($){
     if (nrI == 2 ) { //mainbild
       $(this).css({ 'left': 30 + 'vw' });
 
-    } else if (nrI > 2 ){ //alle danach
+    } else if ( nrI > 2 ){ //alle danach
       offset = offset + 5
       $(this).css({'left': offset + 'vw'});
     } else { //0
@@ -140,7 +140,7 @@ jQuery(document).ready(function($){
     }
 
   });
-    var SELoader = $('.se-loader');
+  var SELoader = $('.se-loader');
 
   //on click animationen
   speakerBild.on('click', function(){
@@ -165,11 +165,6 @@ jQuery(document).ready(function($){
          //sicherheits leeren ( falls zu schnell gedrueckt wurde
         $('.se-speaker-content-container').empty();
         $('.se-speaker-review-container').empty();
-
-        console.log(response['speaker']);
-        // var obj = JSON.parse(response);
-        // console.log(obj);
-
 
         //laden neuer inhalt
         $('.se-speaker-content-container').animate({'margin-top': '-100px'}, 200)
@@ -202,7 +197,7 @@ jQuery(document).ready(function($){
 
       if (newNr == 0 ){
         $(this).animate({'left': offsetSize + 'vw'});
-      } else if ( newNr == 1 ){ //aktiver Referent
+      } else if ( newNr == 1 ) { //aktiver Referent
         speakerBild.animate({'width': 12.5 + 'vw', 'height': '30vh'}, 100).find('.se-speaker-bild-overlay').css({ 'opacity': '0.8'});
         $(this).animate({'left': offsetSize + 'vw', 'width': 17.5 + 'vw', 'height': '33vh', 'opacity': '1' }, 500)
         .find('.se-speaker-bild-overlay').animate({ 'opacity': '0'});

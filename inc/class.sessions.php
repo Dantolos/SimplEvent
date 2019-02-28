@@ -22,7 +22,7 @@ class SessionsClass {
 
       if($this->slot == $curslot[0]){
         $sessionDir;
-        if (($sessionCount%2) == 0 ) {
+        if (($sessionCount%2) == 0 || wp_is_mobile() ) {
           $sessionDir = array(
             'dir' => 'l',
             'class' => 'se-content-session-l'

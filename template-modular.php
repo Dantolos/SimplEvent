@@ -6,7 +6,6 @@ get_header();
 
 $Modular = new Modular;
 
-
 if( have_rows('strip') ):
 
     $Strips = get_field('strip');
@@ -18,5 +17,6 @@ if( have_rows('strip') ):
     }
 
 endif;
+
 
 get_footer();

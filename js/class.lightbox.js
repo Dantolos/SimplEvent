@@ -30,15 +30,22 @@ class LightBox {
 
 
   seLoadLB(data){
-
     let LBcontainer = document.getElementById('se-lb-con');
-    LBcontainer.innerHTML += '<div class="se-lb-frame">'+data+'</div>'
+    LBcontainer.innerHTML += '<div class="se-lb-frame">'+data+'</div>';
     this.tlLoader.paused();
   }
 
   seCloseLB(){
     var ele = document.getElementById('se-lb-con')
     ele.removeChild(ele.childNodes[0]);
+  }
+
+  seImageLB(count, src){
+    var seLBCIMGon = document.createElement('div');
+    seLBCIMGon.className = "se-lb-img-wrapper";
+    seLBCIMGon.innerHTML += '<div class="se-img-lb-wrapper" ocounter="'+count+'"><img src="'+src+'" style=""></div>';
+    document.body.appendChild(seLBCIMGon);
+    console.log('lb img');
   }
 
 }

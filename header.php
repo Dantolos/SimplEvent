@@ -18,12 +18,16 @@
     wp_enqueue_style( 'print-style-css', get_template_directory_uri() . '/css/print.css' );
   	wp_enqueue_script( 'script-js', get_template_directory_uri() . '/js/script.js', array('jquery'), true );
 
-    wp_enqueue_script( 'mobile-script-js', get_template_directory_uri() . '/js/mobile.script.js', array('jquery'), true );
 
     wp_enqueue_script( 'particles', 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js', true );
     wp_enqueue_script( 'hammer-js', 'https://hammerjs.github.io/dist/hammer.js', true );
 
-
+    if ( wp_is_mobile() ) {
+    	wp_enqueue_style( 'mobile-style-css', get_template_directory_uri() . '/css/mobile.style.css' );
+      wp_enqueue_script( 'mobile-script-js', get_template_directory_uri() . '/js/mobile.script.js', array('jquery'), true );
+    } else {
+    	/* Include/display resources targeted to laptops/desktops here */
+    }
 
     wp_enqueue_script( 'lightbox-js', get_template_directory_uri() . '/js/class.lightbox.js', array('jquery'), true );
 
@@ -104,7 +108,7 @@
 
     <div class="se-sc-txt se-navbar-mainmenu">
       <div class="se-main-navi">
-<?php
+      <?php
 
         $current_menu = 'main-menu';
 
@@ -131,32 +135,38 @@
         }
 
         //echo '<pre>'; var_dump($menu); echo '</pre>';
-
-        foreach ($menu as $m){?>
-          <a href="<?php if( $m['url'] == '#'){ echo 'javascript:;'; } else { echo $m['url']; } ?>" class="aagi-w-txt se-navelement" nav="<?php echo $m['ID']; ?>">
-            <span class="se-navbar-mainmenu-item"><?php echo $m['title']; ?></span>
-          </a>
-        <?php } ?>
+        if (! wp_is_mobile() ) {
+          foreach ($menu as $m){?>
+            <a href="<?php if( $m['url'] == '#'){ echo 'javascript:;'; } else { echo $m['url']; } ?>" class="aagi-w-txt se-navelement" nav="<?php echo $m['ID']; ?>">
+              <span class="se-navbar-mainmenu-item"><?php echo $m['title']; ?></span>
+            </a>
+          <?php }
+        }
+        ?>
       </div>
+
+
+
 
       <div class="nav-layer se-mc-bg">
 
       </div>
 
       <?php
-      $seanmeldung = esc_attr( get_option( 'se_anmeldung' ) );
-      if( $seanmeldung == 'on') { ?>
-        <a href="<?php echo esc_attr( get_option( 'se_anmeldelink' ) ) ; ?>" target="_blank" style="padding:0;">
-          <div class="se_navbar_anmeldebutton se-mc-bg se-wc-txt">
-            Jetzt anmelden
-          </div>
-        </a>
+      if (! wp_is_mobile() ) {
+        $seanmeldung = esc_attr( get_option( 'se_anmeldung' ) );
+        if( $seanmeldung == 'on') { ?>
+          <a href="<?php echo esc_attr( get_option( 'se_anmeldelink' ) ) ; ?>" target="_blank" style="padding:0;">
+            <div class="se_navbar_anmeldebutton se-mc-bg se-wc-txt">
+              Jetzt anmelden
+            </div>
+          </a>
+        <?php } ?>
+
+        <div class="se_navbar_infobutton">
+          <img src="<?php echo get_template_directory_uri(); ?>/img/icon-info.svg" alt="more" title="show more Events" height="100%"/>
+        </div>
       <?php } ?>
-
-      <div class="se_navbar_infobutton">
-        <img src="<?php echo get_template_directory_uri(); ?>/img/icon-info.svg" alt="more" title="show more Events" height="100%"/>
-      </div>
-
     </div>
 
     <div class="se-navbar-language clearfix">
@@ -190,22 +200,23 @@
 
     <!--Submenu-->
     <?php
-    foreach ($menu as $m){
-      //echo '<pre>'; var_dump($m['children']); echo '</pre>';
-      $smArr = $m['children'];
-      if ($smArr) { ?>
-        <div subnav="<?php echo $m['ID']; ?>" class="se-subnav-container se-mc-bg se-wc-txt"> <?php
+    if(!wp_is_mobile()){
+      foreach ($menu as $m){
+        //echo '<pre>'; var_dump($m['children']); echo '</pre>';
+        $smArr = $m['children'];
+        if ($smArr) { ?>
+          <div subnav="<?php echo $m['ID']; ?>" class="se-subnav-container se-mc-bg se-wc-txt"> <?php
 
-        foreach($smArr as $sm){ ?>
-          <a href="<?php echo $sm['url']; ?>" class="aagi-w-txt"  id="<?php echo $sm['ID']; ?>">
-            <span class="se-navbar-sub-item"><?php echo $sm['title']; ?></span>
-          </a>
-        <?php } ?>
-      </div>
-      <?php } } ?>
+          foreach($smArr as $sm){ ?>
+            <a href="<?php echo $sm['url']; ?>" class="aagi-w-txt"  id="<?php echo $sm['ID']; ?>">
+              <span class="se-navbar-sub-item"><?php echo $sm['title']; ?></span>
+            </a>
+          <?php } ?>
+        </div>
+      <?php } } }?>
 
 
-
+    <!-- MoreEvent Container -->
     <div class="se-more-events-container se-sc-bg se-wc-txt clearfix" id="se-more-events">
       <div class="se-arrow-pre-event se-arrow-event">
         <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -233,28 +244,133 @@
         </svg>
       </div>
     </div>
+    <!-- MoreEvent Container -->
+
+    <!-- mobile navigation -->
+    <?php if ( wp_is_mobile() ) {
+      ?>
+        <div class="se-navbar-mainmenu-mobile-burger" style="border: solid 2px <?php echo esc_attr( get_option( 'main_color_picker' ) ); ?>;">
+
+            <svg version="1.1" id="se_burger_menu" x="0px" y="0px" viewBox="0 0 17.5 10.5" style="enable-background:new 0 0 17.5 10.5;" xml:space="preserve">
+              <style media="screen">#se_burger_menu {stroke:<?php echo esc_attr( get_option( 'main_color_picker' ) ); ?>;} </style>
+              <g>
+              	<line LID="0" class="se_BMstroke" x1="0" y1="1" x2="17.5" y2="1"/>
+              	<line LID="1" class="se_BMstroke" x1="0" y1="5.2" x2="17.5" y2="5.2"/>
+              	<line LID="2" class="se_BMstroke" x1="0" y1="9.5" x2="17.5" y2="9.5"/>
+                <line LID="3" class="se_BMstroke" x1="0" y1="5.2" x2="17.5" y2="5.2"/>
+              </g>
+            </svg>
+
+        </div>
+
+        <!-- mobile more event -->
+        <svg version="1.1" id="moEv-mobile-trigger" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+           viewBox="0 0 180.536 331.337" style="enable-background:new 0 0 180.536 331.337;" xml:space="preserve">
+          <path style="fill:#3B3B3A;" d="M175.612,206.977c-13.376-25.143-32.032-38.487-10.92-98.564h0c3.356-8.83,5.202-18.405,5.202-28.413
+            c0-44.183-35.817-80-80-80s-80,35.817-80,80c0,12.79,3.017,24.87,8.354,35.592c17.176,54.009-0.498,67.277-13.323,91.385
+            c0,0-4.925,22.028-4.925,34.092c0,49.854,40.414,90.268,90.268,90.268c49.854,0,90.268-40.414,90.268-90.268
+            C180.536,229.005,175.612,206.977,175.612,206.977z"/>
+          <g>
+            <line style="fill:none;stroke:#FFFFFF;stroke-width:8;stroke-miterlimit:10;" x1="124.663" y1="73.813" x2="55.873" y2="73.813"/>
+            <line id="moEv-mobile-trigger-line" style="fill:none;stroke:#FFFFFF;stroke-width:8;stroke-miterlimit:10;" x1="90.268" y1="108.208" x2="90.268" y2="39.418"/>
+          </g>
+        </svg>
+
+        <div class="se-navbar-mainmenu-mobile" style="background-color:#fff;  z-index: 6000;">
+
+          <div class="se-navbar-mainmenu-mobile-container">
+          <?php
+            foreach ($menu as $m){?>
+              <a href="<?php if( $m['url'] == '#'){ echo 'javascript:;'; } else { echo $m['url']; } ?>" class="" nav="<?php echo $m['ID']; ?>">
+                <p class="se-navbar-mainmenu-mobile-item"><?php echo $m['title']; ?></p>
+              </a>
+              <?php
+              $smArr = $m['children'];
+              if ($smArr) { ?>
+                <div subnav="<?php echo $m['ID']; ?>" class="se-subnav-mobile-container se-mc-bg se-wc-txt"> <?php
+
+                foreach($smArr as $sm){ ?>
+                  <a href="<?php echo $sm['url']; ?>" class="aagi-w-txt"  id="<?php echo $sm['ID']; ?>">
+                    <p class="se-navbar-sub-mobile-item"><?php echo $sm['title']; ?></p>
+                  </a>
+                <?php } ?>
+              </div>
+              <?php }
+
+            }
+          ?>
+          </div>
+
+
+        </div>
+        <div class="se-navbar-mainmenu-mobile-style-layer" style="z-index: 5900; background-color:<?php echo esc_attr( get_option( 'main_color_picker' ) ); ?>; border:20px <?php echo esc_attr( get_option( 'main_color_picker' ) ); ?> solid;"></div>
+
+        <div id="se-info-sidebar-container" class="se-sidebar-mobile-btn se-sc-bg">
+          <svg version="1.1" class="se-info-sidebar-btn" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          	 width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
+          <g>
+          	<g>
+          		<path fill="#fff" d="M9.271,5.837C9.099,5.665,9.013,5.439,9.013,5.158s0.086-0.507,0.257-0.679
+          			C9.442,4.308,9.668,4.223,9.95,4.223c0.28,0,0.506,0.085,0.678,0.257s0.257,0.398,0.257,0.679S10.8,5.665,10.628,5.837
+          			C10.456,6.008,10.23,6.094,9.95,6.094C9.668,6.094,9.442,6.008,9.271,5.837z M10.573,15.392H9.325v-7.8h1.248V15.392z"/>
+          	</g>
+          	<g>
+          		<path fill="#fff" d="M10,19.931c-5.475,0-9.93-4.455-9.93-9.93C0.07,4.525,4.525,0.07,10,0.07c5.476,0,9.931,4.455,9.931,9.931
+          			C19.931,15.476,15.476,19.931,10,19.931z M10,0.937c-4.997,0-9.062,4.066-9.062,9.064c0,4.997,4.065,9.062,9.062,9.062
+          			c4.998,0,9.063-4.065,9.063-9.062C19.063,5.003,14.998,0.937,10,0.937z"/>
+          	</g>
+          </g>
+          </svg>
+        </div>
+
+      <?php
+    } ?>
 
 </header>
+
+
+
 <div class="header-placeholder" style="height:120px;width:100vw;">
 
 </div>
 
+<?php if( wp_is_mobile() ){ ?>
+  <div style="position:fixed; left:0; bottom:0;z-index:9000; ">
+    <svg version="1.1" class="se-info-sidebar-btn" style="" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+       width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
+    <g>
+      <g>
+        <path fill="#fff" d="M9.271,5.837C9.099,5.665,9.013,5.439,9.013,5.158s0.086-0.507,0.257-0.679
+          C9.442,4.308,9.668,4.223,9.95,4.223c0.28,0,0.506,0.085,0.678,0.257s0.257,0.398,0.257,0.679S10.8,5.665,10.628,5.837
+          C10.456,6.008,10.23,6.094,9.95,6.094C9.668,6.094,9.442,6.008,9.271,5.837z M10.573,15.392H9.325v-7.8h1.248V15.392z"/>
+      </g>
+      <g>
+        <path fill="#fff" d="M10,19.931c-5.475,0-9.93-4.455-9.93-9.93C0.07,4.525,4.525,0.07,10,0.07c5.476,0,9.931,4.455,9.931,9.931
+          C19.931,15.476,15.476,19.931,10,19.931z M10,0.937c-4.997,0-9.062,4.066-9.062,9.064c0,4.997,4.065,9.062,9.062,9.062
+          c4.998,0,9.063-4.065,9.063-9.062C19.063,5.003,14.998,0.937,10,0.937z"/>
+      </g>
+    </g>
+    </svg>
+  </div>
+<?php } ?>
+
 <div class="se-info-sidebar se-sc-bg se-wc-txt" style="display:none;">
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.2673328665496!2d7.596948616013694!3d47.56258679900988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4791b9b9f44ce80f%3A0x549e8c49a2c2cdc1!2sCongress+Center+Basel!5e0!3m2!1sde!2sch!4v1530023396628" width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen></iframe>
+
+  <iframe src="<?php echo esc_attr( get_option( 'google_maps' )); ?>" width="100%" height="20%" frameborder="0" style="border:0;" allowfullscreen></iframe>
   <div class="se-info-sidebar-content clearfix" >
     <div class="se-info-sidebar-icon" style="border-top: 2px solid <?php echo $seWC; ?>;">
       <img src="<?php echo get_template_directory_uri(); ?>/img/icon-ort.svg" alt="">
     </div>
     <div class="se-info-sidebar-text">
-      <p><strong><?php echo esc_attr( get_option( 'location' ) ) ; ?></strong></p>
-      <pre><?php echo esc_attr(get_option( 'address' )) ; ?></pre>
+      <p><strong><?php echo esc_attr( get_option( 'location' )); ?></strong></p>
+      <pre><?php echo esc_attr(get_option( 'address' )); ?></pre>
     </div>
 
     <div class="se-info-sidebar-icon" style="border-top: 2px solid <?php echo $seWC; ?>;">
       <img src="<?php echo get_template_directory_uri(); ?>/img/icon-datum.svg" alt="">
     </div>
     <div class="se-info-sidebar-text">
-      <p><strong><?php echo esc_attr( get_option( 'date' ) ) ; ?></strong></p>
+      <p><strong><?php echo esc_attr( get_option( 'date' )); ?></strong></p>
       <pre><?php echo esc_attr(get_option( 'time' )); ?></pre>
     </div>
 
@@ -263,15 +379,15 @@
     </div>
     <div class="se-info-sidebar-text">
       <p><strong><?php echo __( 'Teilnehmende', 'SimplEvent' ); ?></strong></p>
-      <p><?php echo esc_attr(get_option( 'participants' )) ; ?></p>
+      <p><?php echo esc_attr(get_option( 'participants' )); ?></p>
     </div>
 
     <div class="se-info-sidebar-icon" style="border-top: 2px solid <?php echo $seWC; ?>;">
       <img src="<?php echo get_template_directory_uri(); ?>/img/icon_language.svg" alt="">
     </div>
     <div class="se-info-sidebar-text">
-      <p><strong><?php echo esc_attr( get_option( 'language' ) ) ; ?></strong></p>
-      <p><?php echo esc_attr(get_option( 'translation' ) ); ?></p>
+      <p><strong><?php echo esc_attr( get_option( 'language' )); ?></strong></p>
+      <p><?php echo esc_attr(get_option( 'translation' )); ?></p>
     </div>
 
     <div class="se-info-sidebar-icon" style="border-top: 2px solid <?php echo $seWC; ?>;">
@@ -279,13 +395,13 @@
     </div>
     <div class="se-info-sidebar-text">
       <p><strong><?php echo __( 'Preis', 'SimplEvent' ); ?></strong></p>
-      <p><?php echo esc_attr( get_option( 'price' ) ) ; ?></p>
+      <p><?php echo esc_attr( get_option( 'price' )); ?></p>
     </div>
 
     <?php
-    $seanmeldung = esc_attr( get_option( 'se_anmeldung' ) );
+    $seanmeldung = esc_attr( get_option( 'se_anmeldung' ));
     if( $seanmeldung == 'on') { ?>
-      <a href="<?php echo esc_attr( get_option( 'se_anmeldelink' ) ) ; ?>" target="_blank">
+      <a href="<?php echo esc_attr( get_option( 'se_anmeldelink' )); ?>" target="_blank">
         <div class="se_navbar_anmeldebutton se-mc-bg se-wc-txt" style="position: relative; left: 20%;">
           Jetzt anmelden
         </div>

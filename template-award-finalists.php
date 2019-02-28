@@ -35,7 +35,6 @@ $main_partner = new WP_Query($main_partner_args);
   <div class="se-content" style="position:relative;">
 
     <!--Main Award Content-->
-
     <?php
     $taxArgs = array('taxonomy' => 'Jahrgang', 'order' => 'DSC',); //ordnung umkehren ASC/DSC
     $terms = get_terms($taxArgs);
@@ -160,7 +159,7 @@ jQuery(document).ready(function($){
       success : function( response ){
         $('.se-award-lightbox-container').append(response);
         console.log(response);
-
+        $('.se-loader').css({'margin-top': '40vh'})
       }
     });
   });
@@ -177,12 +176,18 @@ jQuery(document).ready(function($){
 
   $( document ).ajaxComplete(function(){
     var lightboxCloser = jQuery('.se-award-lightbox-container');
-
+    $('.closer').on('click', function(){
+      console.log('asdfasdf');
+      $('body').find('.se-award-lightbox-container').remove();
+    });
   });
+
   $('.se-award-lightbox-container').on('click', function(){
     //console.log('hallasdfsa');
-    jQuery('body').find('.se-award-lightbox-container').remove();
+    $('body').find('.se-award-lightbox-container').remove();
   });
+
+
 });
 </script>
 

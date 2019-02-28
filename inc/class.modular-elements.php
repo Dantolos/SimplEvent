@@ -51,39 +51,46 @@ class ModularElements {
   //create $OutPut
   public function getModularElement( $Type ) {
     $this->Element = '';
-    foreach($Type as $element){
-      switch ($element["acf_fc_layout"]) {
-        case 'css':
-          break;
-        case 'titel':
-          $this->titelElement($element);
-          break;
-        case 'text':
-          $this->textElement($element);
-          break;
-        case 'wysiwyg':
-          $this->wysiwygElement($element);
-          break;
-        case 'download':
-          $this->downloadElement($element);
-          break;
-        case 'link':
-          $this->linkElement($element);
-          break;
-        case 'button':
-          $this->buttonElement($element);
-          break;
-        case 'bild':
-          $this->bildElement($element);
-          break;
-        case 'video':
-          $this->videoElement($element);
-          break;
+    if ($Type) {
+      foreach($Type as $element){
+        $padding = $element['style']['padding'];
+        $this->Element .= '<div class="se-mod-ele-wrapper" style="padding:'.$padding['padding-top'].'% '.$padding['padding-right'].'% '.$padding['padding-bottom'].'% '.$padding['padding-left'].'%;">';
+        $curType = $element["acf_fc_layout"];
 
-        default:
-          // code...
-          break;
-      }
+        switch ($curType) {
+          case 'css':
+            break;
+          case 'titel':
+            $this->titelElement($element);
+            break;
+          case 'text':
+            $this->textElement($element);
+            break;
+          case 'wysiwyg':
+            $this->wysiwygElement($element);
+            break;
+          case 'download':
+            $this->downloadElement($element);
+            break;
+          case 'link':
+            $this->linkElement($element);
+            break;
+          case 'button':
+            $this->buttonElement($element);
+            break;
+          case 'bild':
+            $this->bildElement($element);
+            break;
+          case 'video':
+            $this->videoElement($element);
+            break;
+
+          default:
+            // code...
+            break;
+        }
+        $this->Element .= '</div>';
+      }  
     }
 
 

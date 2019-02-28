@@ -3,4 +3,6 @@
 /*ACF Style*/
 
 /*Modular*/
-.se_ACF_modular { color: #dedede !important; background-color: #23282d; }
+.se_ACF_modular { color: #fff !important; background-color: #23282d; }
+
+.se-backend-style .acf-input {padding:0 !important; display: none !important;}

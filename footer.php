@@ -23,7 +23,23 @@
         </div>
 
         <div class="se-footer-nav">
-          Impressum | AGB | <span class="se-mc-txt">zur Anmeldung</span>
+          <?php
+          $array_footermenu = wp_get_nav_menu_items('Footermenu');
+          if($array_footermenu) {
+            $cf = 1;
+            foreach ($array_footermenu as $footermenu) {
+              $trenner = ($cf >= count($array_footermenu)) ? '' : '|';
+              echo '<a href="' . $footermenu->url . '"><span>' . $footermenu->title . ' ' . $trenner . ' </span></a>';
+              $cf++;
+            }
+          }
+
+          if( esc_attr( get_option( 'se_anmeldung' ) ) == 'on') {
+            ?> <a href="<?php echo esc_attr( get_option( 'se_anmeldelink' ) ) ; ?>" target="_blank"><span class="se-mc-txt">| zur Anmeldung</span></a> <?php
+          }
+          ?>
+
+
         </div>
 
         <div class="se-footer-sm" style="color:#757575;">

@@ -295,16 +295,30 @@
                   <a href="<?php echo $sm['url']; ?>" class="aagi-w-txt"  id="<?php echo $sm['ID']; ?>">
                     <p class="se-navbar-sub-mobile-item"><?php echo $sm['title']; ?></p>
                   </a>
-                <?php } ?>
+                <?php }  ?>
+
               </div>
               <?php }
+            }
+            $array_mfootermenu = wp_get_nav_menu_items('Footermenu');
+            if($array_mfootermenu) {
+              $cf = 1;
+              foreach ($array_mfootermenu as $mfootermenu) {  ?>
 
+                <a href="<?php echo $mfootermenu->url; ?>" class="" >
+                  <p class="se-navbar-footermenu-mobile-item se-wc-txt"><?php echo $mfootermenu->title; ?></p>
+                </a>
+                <?php
+                $cf++;
+              }
             }
           ?>
           </div>
 
 
         </div>
+
+
         <div class="se-navbar-mainmenu-mobile-style-layer" style="z-index: 5900; background-color:<?php echo esc_attr( get_option( 'main_color_picker' ) ); ?>; border:20px <?php echo esc_attr( get_option( 'main_color_picker' ) ); ?> solid;"></div>
 
         <div id="se-info-sidebar-container" class="se-sidebar-mobile-btn se-sc-bg">

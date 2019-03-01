@@ -2,9 +2,8 @@
 get_header();
 
 $Modular = new Modular;
-if( have_rows('strip') ):
-  $Strips = get_field('strip');
-endif;
+$curPageID = get_option( 'page_on_front' );
+
 
 //QUERY der Slides
 $slider = array( 'post_type' => 'slider' );
@@ -70,8 +69,10 @@ endif;
 
 //CONTENT
 
-if(have_rows('strip')){
+if( get_field('strip', $curPageID)  ) {
+  $Strips = get_field('strip', $curPageID);
   foreach ($Strips as $Strip) {
+
     if($Strip["strip_settings"]['public']) {
       echo $Modular->getLayout( $Strip );
     }

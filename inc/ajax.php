@@ -154,7 +154,7 @@ add_action('wp_ajax_nopriv_se_review_gallery_load', 'se_review_gallery_load');
 add_action('wp_ajax_se_review_gallery_load', 'se_review_gallery_load'); //nur für angemeldete (admins)
 
 function se_review_gallery_load() {
-
+  
   $gaid = $_POST['gaid'];
   $paid = $_POST['paid'];
 

@@ -56,4 +56,7 @@ get_header(); ?>
 
 
 <?php
+//mobile footer PLACEHOLDER
+if( wp_is_mobile() ) { echo '<div class="se-mobile-footer-placeholder"></div>'; }
+
 get_footer(); ?>

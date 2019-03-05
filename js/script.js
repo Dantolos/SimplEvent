@@ -497,6 +497,19 @@ jQuery(document).ready(function($){
   });
 
   //----------------------------------------------------
+  //----Peoples-----------------------------------------
+  //----------------------------------------------------
+  var PplPortrait = $('.se-people-portrait-img');
+  var PplBorder = '3px solid ' + seMC;
+  PplPortrait.on('mouseenter', function() {
+    TweenMax.to($(this), 0.5, { border: PplBorder, 'filter': 'grayscale(0%)', '-webkit-filter': 'grayscale(0%)' });
+  });
+  PplPortrait.on('mouseleave', function() {
+    TweenMax.to($(this), 0.5, { borderWidth: '0px', 'filter': 'grayscale(60%)', '-webkit-filter': 'grayscale(60%)' });
+  } );
+
+
+  //----------------------------------------------------
   //----Footer-----------------------------------------
   //----------------------------------------------------
   if(!isMobile){

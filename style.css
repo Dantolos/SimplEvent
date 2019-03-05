@@ -456,6 +456,17 @@ h6 { font-size: 12px; font-weight: 300;}
 /*GALLERY*/
 .se-review-gallery { float:left; height:23%; width:23%; min-width:250px; margin-left:1.5%; margin-bottom:1.5%;}
 .se-review-gallery-img { z-index:9500; height:95vh; width:95vw; position:fixed; top:0; left:0; bottom:0; right:0; margin:auto; }
+
+/*-----------------------------------------------------------------------*/
+/*---------------------------------PEOPLES-------------------------------*/
+/*-----------------------------------------------------------------------*/
+
+.se-people-container { text-align: center !important; margin-bottom:40px; overflow: visible;}
+.se-people-container h4 { font-weight: 700; margin-top: 20px;}
+.se-people-portrait-img { width:250px; height:250px; position: absolute; right:0; left:0; margin:auto; border-radius: 50%; filter: grayscale(60%); -webkit-filter: grayscale(60%); }
+.se-people-stroke { width: 20%; margin:20px auto 5px;}
+.se-people-socialmedia-wrapper { display: table; margin: auto; }
+.se-people-socialmedia-wrapper a { float:left; }
 /*-----------------------------------------------------------------------*/
 /*-------------------------------ERROR 404-------------------------------*/
 /*-----------------------------------------------------------------------*/

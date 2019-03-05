@@ -117,7 +117,7 @@ jQuery(document).ready(function($){
       eventHTMLstring += '<div class="se-more-event-content-text">';
       eventHTMLstring += '<h5>' + eventData[i].title.rendered + '</h5>';
       eventHTMLstring += '<p>' + mEdate + ' | ' + mEOrt + '</p>';
-      eventHTMLstring += '<p>' + mElead + '</p>';
+      eventHTMLstring += '<p class="se-more-event-content-lead">' + mElead + '</p>';
       eventHTMLstring += '<a href="'+ eventData[i].acf.webseite +'" target="_blank">';
       eventHTMLstring += '<div class="mc-button-neg se-mc-txt button-border se-more-event-web-btn" style="margin:0; ">';
       eventHTMLstring += webBTN;

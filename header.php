@@ -278,9 +278,15 @@
           </g>
         </svg>
 
-        <div class="se-navbar-mainmenu-mobile" style="background-color:#fff;  z-index: 6000;">
+        <div class="se-navbar-mainmenu-mobile" style="background-color:#fff; z-index: 6000;">
 
-          <div class="se-navbar-mainmenu-mobile-container">
+          <div class="se-navbar-mainmenu-home-icon">
+            <a href="<?php $url = home_url(); echo esc_url( $url ); ?>">
+              <img src="<?php echo esc_attr( get_option( 'event_icon' ) ); ?>" alt="Home" title="<?php bloginfo('name'); ?>" />
+            </a>
+          </div>
+
+          <div class="se-navbar-mainmenu-mobile-container" style="opacity:0;">
           <?php
             foreach ($menu as $m){?>
               <a href="<?php if( $m['url'] == '#'){ echo 'javascript:;'; } else { echo $m['url']; } ?>" class="" nav="<?php echo $m['ID']; ?>">
@@ -407,7 +413,7 @@
     </div>
 
     <div class="se-info-sidebar-icon" style="border-top: 2px solid <?php echo $seWC; ?>;">
-      <img src="<?php echo get_template_directory_uri(); ?>/img/icon_language.svg" alt="">
+      <img src="<?php echo get_template_directory_uri(); ?>/img/icon-price.svg" alt="">
     </div>
     <div class="se-info-sidebar-text">
       <p><strong><?php echo __( 'Preis', 'SimplEvent' ); ?></strong></p>

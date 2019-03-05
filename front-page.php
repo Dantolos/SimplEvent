@@ -18,16 +18,23 @@ if ( $sliderQuery -> have_posts() ) :
           while ( have_rows('slider') ) : the_row();
 
               $image = get_sub_field('slider_bild');
-              $zitat = get_sub_field('zitat');
+              $zitat = '';
+              if(get_sub_field('zitat')) {
+                $zitat = get_sub_field('zitat');
+              }
 
               $referent = get_sub_field('referentenbezeichnung');
               if ( $referent ) {
                 $referentname = $referent['referent'];
                 $referentfunktion = $referent['funktion'];
+                $referentcolor = $referent['textfarbe'];
               }
 
               $button = get_sub_field('verlinkung');
-              if ( $button ) {
+              $buttonOO = '';
+              $buttonlink = '';
+              $buttontext = '';
+              if ( $button['button'] ) {
                 $buttonOO = $button['button'];
                 $buttonlink = $button['buttonlink'];
                 $buttontext = $button['buttontext'];
@@ -40,7 +47,9 @@ if ( $sliderQuery -> have_posts() ) :
                 'funktion' => $referentfunktion,
                 'button' => $buttonOO,
                 'buttonlink' => $buttonlink,
-                'buttontext' => $buttontext);
+                'buttontext' => $buttontext,
+                'color' => $referentcolor
+              );
               array_push($slideArray, $slider);
 
           endwhile;
@@ -55,9 +64,11 @@ endif;
 <?php if($sliderQuery) { ?>
 <div id="slider" class="se-slider-header-container image-settings" style="background-image:url('<?php echo $slideArray[0]['image'] ?>');">
   <div class="se-slider-header-text-container">
-    <p class="se-slider-header-zitat"><strong>&laquo;</strong><?php echo $slideArray[0]['zitat']; ?><strong>&raquo;</strong></p>
-    <p id="slidename" style="margin-top:20px;"><strong><?php echo $slideArray[0]['name']; ?></strong></p>
-    <p id="slidefunktion"><?php echo $slideArray[0]['funktion']; ?></p>
+    <?php $displayer = ($slideArray[0]['zitat']) ? 'inline' : 'none'; ?>
+    <p class="se-slider-header-zitat" style="display:<?php echo $displayer; ?>;"><strong>&laquo;</strong><?php echo $slideArray[0]['zitat']; ?><strong>&raquo;</strong></p>
+
+    <p id="slidename" style="margin-top:20px; color:<?php echo $slideArray[0]['color']; ?>;"><strong><?php echo $slideArray[0]['name']; ?></strong></p>
+    <p id="slidefunktion" style="color:<?php echo $slideArray[0]['color']; ?>;"><?php echo $slideArray[0]['funktion']; ?></p>
     <a id="slidebutton" href="<?php echo $buttonlink; ?>">
       <div class="se-mc-bg mc-button se-wc-txt" style="margin-left:-15px;">
         <?php echo $buttontext; ?>
@@ -116,6 +127,7 @@ if( get_field('strip', $curPageID)  ) {
     var slideName = $('#slidename');
     var slideFunktion = $('#slidefunktion');
     var slideButton = $('#slidebutton');
+    var slideTextColor = [slideName, slideFunktion];
 
     var SlideArray = <?php echo json_encode($slideArray); ?>;
 
@@ -134,13 +146,17 @@ if( get_field('strip', $curPageID)  ) {
 
         var bildSRC = SlideArray[currentSlide]['image'];
         sliderContainer.animate({'opacity': 0, 'margin-right': '-50'}, function() {
-            jQuery(this).css({'background-image': 'url(' + bildSRC + ')', 'background-size': 'cover'})
+            $(this).css({'background-image': 'url(' + bildSRC + ')', 'background-size': 'cover'})
             .animate({'opacity': 1, 'margin-right': 0}, 200);
         });
 
         setTimeout(function() {
             var offsetRight = (!isMobile) ? '20vw' : '5vw';
+            var displayer = (SlideArray[currentSlide]['zitat']) ? 'inline' : 'none';
             slidesTC.css({'right': '-500', 'opacity': '0'}).animate({'right': offsetRight, 'opacity': '1' },700);
+            slideZitat.css({'display': displayer})
+            slideName.css({'color': SlideArray[currentSlide]['color']});
+            slideFunktion.css({'color': SlideArray[currentSlide]['color']});
             slideZitat.append('<strong>&laquo;</strong>'+SlideArray[currentSlide]['zitat']+'<strong>&raquo;</strong>');
             slideName.append('<strong>'+SlideArray[currentSlide]['name']+'</strong>');
             slideFunktion.append('<strong>'+SlideArray[currentSlide]['funktion']+'</strong>');
@@ -150,7 +166,7 @@ if( get_field('strip', $curPageID)  ) {
             }
             currentSlide++;
             if (currentSlide === SlideArray.length) {
-                currentSlide = 0;
+              currentSlide = 0;
             }
         }, 800);
 

@@ -1,5 +1,7 @@
 
     <?php
+
+
     if(!esc_attr( get_option( 'bg_img' ) )) {?>
 
       <div id="particles-js"></div>
@@ -63,7 +65,6 @@
               }
             }
           }
-
 
           ?>
         </div>

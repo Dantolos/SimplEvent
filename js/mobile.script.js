@@ -13,13 +13,14 @@ jQuery(document).ready(function($){
 
   var TLMMenu = new TimelineMax({paused:true});
   TweenMax.set(MnavLayer, { css:{borderRadius: "100%", y: '100%', scaleY: 0, scaleX: 0.5}  });
-  TweenMax.set(MnavMenu, { css:{borderRadius: "100%", y: '100%', scaleY: 0, scaleX: 0.5}  });
-  TweenMax.set(MnavMenu.find('.se-navbar-mainmenu-mobile-container'), { autoAlpha: 0, display: 'none' });
+  TweenMax.set(MnavMenu, { css:{borderRadius: "100%", y: '100%', scaleY: 0, scaleX: 0.5, autoAlpha: 0}  });
+  TweenMax.set(MnavMenu.find('.se-navbar-mainmenu-mobile-container'), {  autoAlpha:0});
   TweenMax.set(MnavMoEv, {autoAlpha:0, scaleY: 0, scaleX: 0.5, y:'10%' });
 
   TLMMenu.to(MnavLayer, 0.6, { borderRadius: "0px", y: '0%', scaleY: 1, scaleX: 1, borderWidth:'2px', ease: Power1.easeOut })
-         .to(MnavMenu, 0.6, { borderRadius: "0px", y: '0%', scaleY: 1, scaleX: 1, ease: Power1.easeInOut }, 0.2)
-         .to(MnavMenu.find('.se-navbar-mainmenu-mobile-container'), 0.5, { autoAlpha: 1, display: 'block' })
+          .to(MnavMenu.find('.se-navbar-mainmenu-mobile-container'), 0.5, { autoAlpha:1 })
+         .to(MnavMenu, 0.6, { borderRadius: "0px", y: '0%', scaleY: 1, scaleX: 1, autoAlpha: 1, ease: Power1.easeInOut }, 0.2)
+
          .to(MnavMoEv, 0.5, {autoAlpha:1, scaleY: 1, y: '0%', scaleX: 1, ease: Back.easeOut.config(0.4)});
 
 
@@ -29,6 +30,7 @@ jQuery(document).ready(function($){
       $('#moEv-mobile-trigger').show();
 
       TLMMenu.play();
+
     } else {
       if(MoEvBtnCounter%2 != 0){
         $('.se-more-events-container').fadeOut();

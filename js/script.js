@@ -499,13 +499,17 @@ jQuery(document).ready(function($){
   //----------------------------------------------------
   //----Peoples-----------------------------------------
   //----------------------------------------------------
+  let PplHeight = $('.se-people-portrait-wrapper');
+  PplHeight.css({'height': PplHeight.width()});
+  $(window).on('resize', function(){ PplHeight.css({'height': PplHeight.width()});})
+
   var PplPortrait = $('.se-people-portrait-img');
-  var PplBorder = '3px solid ' + seMC;
+
   PplPortrait.on('mouseenter', function() {
-    TweenMax.to($(this), 0.5, { border: PplBorder, 'filter': 'grayscale(0%)', '-webkit-filter': 'grayscale(0%)' });
+    TweenMax.to($(this), 0.5, {  'filter': 'grayscale(0%)', '-webkit-filter': 'grayscale(0%)' });
   });
   PplPortrait.on('mouseleave', function() {
-    TweenMax.to($(this), 0.5, { borderWidth: '0px', 'filter': 'grayscale(60%)', '-webkit-filter': 'grayscale(60%)' });
+    TweenMax.to($(this), 0.5, {  'filter': 'grayscale(60%)', '-webkit-filter': 'grayscale(60%)' });
   } );
 
 

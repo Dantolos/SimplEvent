@@ -58,7 +58,9 @@ class Modular extends ModularElements {
             //CSS
             if ((array)$ColEle[$colCount]['style']) {
               $colPadding = $ColEle[$colCount]['style']['padding'];
-              $colPadding = $colPadding['padding-top'] . '% ' . $colPadding['padding-right'] . '% ' . $colPadding['padding-bottom'] . '% ' . $colPadding['padding-left'] . '%';
+              $colPaddingR = (wp_is_mobile()) ? 0 : $colPadding['padding-right'];
+              $colPaddingL = (wp_is_mobile()) ? 0 : $colPadding['padding-left'];
+              $colPadding = $colPadding['padding-top'] . '% ' . $colPaddingR . '% ' . $colPadding['padding-bottom'] . '% ' . $colPaddingL . '%';
               unset($ColEle[$colCount]['style']);
             }
 

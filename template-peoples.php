@@ -19,6 +19,8 @@ get_header(); ?>
 <div class="se-strip" style="padding-top:00px;">
   <div class="se-content">
     <?php
+
+
     $PplTaxID = get_field('group');
     $Pplargs = array(
       'post_type' => 'people', 'orderby' => 'menu_order', 'order' => 'ASC', 'tax_query' => array(
@@ -28,12 +30,18 @@ get_header(); ?>
       ),
     );
     $Ppl = new WP_Query($Pplargs);
-    $cPpl = 1;
 
+    if (get_field('titel')) {
+      $term = get_term_by('id', $PplTaxID[0], 'Gruppe');
+
+      echo '<h3 style="margin-bottom:50px;">'.$term->name.'</h3>';
+    }
+
+    $cPpl = 1;
     if ( $Ppl->have_posts() ) : while ( $Ppl->have_posts() ) : $Ppl->the_post();
       ?>
         <div class="se-col-3 se-people-container">
-          <div class="" style="position:relative; width: 100%; height: 250px;">
+          <div class="se-people-portrait-wrapper" style="position:relative; width: 100%;">
             <div class="se-people-portrait-img image-settings" style="background-image:url(<?php echo the_field('foto'); ?>);"></div>
           </div>
           <h4 class="se-mc-txt"><?php echo the_title(); ?></h3>

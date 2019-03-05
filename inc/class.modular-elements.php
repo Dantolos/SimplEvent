@@ -54,7 +54,9 @@ class ModularElements {
     if ($Type) {
       foreach($Type as $element){
         $padding = $element['style']['padding'];
-        $this->Element .= '<div class="se-mod-ele-wrapper" style="padding:'.$padding['padding-top'].'% '.$padding['padding-right'].'% '.$padding['padding-bottom'].'% '.$padding['padding-left'].'%;">';
+        $paddingR = (wp_is_mobile()) ? 0 : $padding['padding-right'];
+        $paddingL = (wp_is_mobile()) ? 0 : $padding['padding-left'];
+        $this->Element .= '<div class="se-mod-ele-wrapper" style="padding:'.$padding['padding-top'].'% '.$paddingR.'% '.$padding['padding-bottom'].'% '.$paddingL.'%;">';
         $curType = $element["acf_fc_layout"];
 
         switch ($curType) {
@@ -90,7 +92,7 @@ class ModularElements {
             break;
         }
         $this->Element .= '</div>';
-      }  
+      }
     }
 
 

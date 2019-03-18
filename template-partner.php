@@ -72,7 +72,7 @@ $terms = get_terms($taxonomy); // Get all terms of a taxonomy
         $Logo = $bild = get_field('partner-logo'); ?>
 
           <div data-id="<?php echo get_the_ID(); ?>" class="se-col-3 se-partner-logo" style="position:relative;">
-            <div class="se-partner-logo-inner" style=" height:95%; width:95%; margin: auto; position:absolute; margin:2.5%; background-color:rgba(222, 222, 222, 0.5);">
+            <div class="se-partner-logo-inner" style=" height:95%; width:95%; margin: auto; position:absolute; margin:2.5%; background-color:#f7f7f7;">
 
               <div class="" style="margin:15%;height:70%; width:70%; background-image:url('<?php echo $Logo; ?>'); background-size: contain;background-repeat: no-repeat;
               background-position: center center;">
@@ -175,6 +175,7 @@ jQuery(document).ready(function($){
     partnercontent.empty();
     SELoader.css({'margin-top': '0'}).fadeIn();
     logoContainer.empty();
+    kategorieTitel.empty().append('<h3>' + kName + '</h3>');
     dDTL.reverse();
     toggled = false;
     $.ajax({
@@ -195,7 +196,7 @@ jQuery(document).ready(function($){
         pLogo.css({'height': (pLogo.width() / 10 * 9) });
         SELoader.animate({ 'margin-top': '-200px'}, 200).fadeOut();
         TweenMax.staggerFrom(pLogo, 0.5, {y: '30px', autoAlpha: '0', ease:Power1.easeOut}, 0.1);
-        kategorieTitel.empty().append('<h3>' + kName + '</h3>');
+
 
 
       }

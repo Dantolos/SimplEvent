@@ -18,30 +18,40 @@ jQuery(document).ready(function($){
 
   //info Sidebar
   var iSbO = false;
-  var infoSidebarWidth = jQuery('.se-info-sidebar').width();
+  var infoBarTrigger = $('.se-info-sidebar-trigger');
+  var infoBar = $('.se-info-sidebar');
+  var infoSidebarWidth = infoBar.width();
   var infoBarPos = -Math.abs(infoSidebarWidth);
-  jQuery('.se-info-sidebar').css({'right': infoBarPos + 'px' });
-  jQuery(window).on('resize', function(){
+  //$('.se-info-sidebar').css({'right': infoBarPos + 'px' });
+  TweenMax.set(infoBar, {x: infoSidebarWidth});
+  $(window).on('resize', function(){
     infoSidebarWidth = jQuery('.se-info-sidebar').width();
     infoBarPos = -Math.abs(infoSidebarWidth);
-    jQuery('.se-info-sidebar').css({'right': infoBarPos + 'px' });
+    $('.se-info-sidebar').css({'right': infoBarPos + 'px' });
   });
 
-  jQuery('.se_navbar_infobutton').on('click', function(){
-    if( ! iSbO ) {
-      jQuery('.se-info-sidebar').show();
-      jQuery('.se-info-sidebar').animate({ 'right': '0px' });
+  $('.se_navbar_infobutton').on('click', function(){
+    OpenInfoBar()
+  });
+  infoBarTrigger.on('click', function(){
+    OpenInfoBar()
+  });
 
+  function OpenInfoBar() {
+    if( ! iSbO ) {
+      $('.se-info-sidebar').show();
+      TweenMax.to(infoBar, 0.5, {x: 0, ease:Power1.easeOut})
+      TweenMax.to(infoBarTrigger, 0.5, {x: infoBarPos, ease:Power1.easeOut});
+      TweenMax.to(infoBarTrigger.find('svg'), 0.7, {rotationY:'+=180', ease:Power1.easeOut});
       iSbO = true;
     } else {
+      TweenMax.to(infoBar, 0.5, {x: infoSidebarWidth, ease:Power1.easeOut});
+      TweenMax.to(infoBarTrigger, 0.5, {x: 0, ease:Power1.easeOut});
+      TweenMax.to(infoBarTrigger.find('svg'), 0.7, {rotationY:'+=180', ease:Power1.easeOut});
 
-      jQuery('.se-info-sidebar').animate({ 'right': infoBarPos + 'px' });
-      jQuery('.se-info-sidebar').fadeOut();
       iSbO = false;
     }
-
-  });
-
+  }
   //Social Media Icons
   var SMIcon = $('.se-sm-icon-anim');
   SMiconAnim(SMIcon);
@@ -89,6 +99,7 @@ jQuery(document).ready(function($){
     BurgerMenuAnimation($(this), BMcntB);
     BMcntB++;
   });
+
   //--linkicon
   LinkIconAnim();
   $( document ).ajaxComplete(function(){
@@ -379,17 +390,31 @@ jQuery(document).ready(function($){
   //subnav
   var navEle = $('a.se-navelement');
   var subEle = $('.se-subnav-container');
-  TweenMax.set(subEle, {x: '100px',autoAlpha: 0});
+  TweenMax.set(subEle, {y: '-15px', scaleY: '0', 'overflow': 'hidden'});
   navEle.on('click', function(){
+    var posSubNav = $(this).offset();
+
     var navID = $(this).attr('nav');
     var subNav = $('.se-subnav-container[subnav="'+navID+'"]');
+    var posSubNav = parseInt(posSubNav.left) + 20;
+    console.log(posSubNav);
+    //subNav.css({'left': posSubNav})
     var subNavTL = new TimelineMax();
 
-    subNavTL.to(subEle, 0.2, {x: '100px',autoAlpha: 0, ease: Power1.easeInOut})
-            .to(subNav, 0.2, {x: '0px', autoAlpha: 1, ease: Power1.easeInOut});
+    subNavTL.to(subEle, 0.2, {y: '-15px', scaleY: '0',autoAlpha: 0, ease: Power1.easeInOut})
+            .to(subNav, 0.2, {y: '0px', scaleY: '1', autoAlpha: 1, ease: Power1.easeInOut});
   });
 
-
+  subEle.find('a').each(function() {
+    console.log(window.location.href);
+    if( $(this).attr('href') == window.location.href){
+      console.log(true);
+      $(this).css({'font-weight': 700})
+      TweenMax.to($(this).parent(), 0.2, {y: '0px', scaleY: '1', autoAlpha: 1});
+    } else {
+      console.log(false);
+    }
+  });
 
 
 
@@ -503,10 +528,15 @@ jQuery(document).ready(function($){
   PplHeight.css({'height': PplHeight.width()});
   $(window).on('resize', function(){ PplHeight.css({'height': PplHeight.width()});})
 
-  var PplPortrait = $('.se-people-portrait-img');
 
+  var PplPortrait = $('.se-people-portrait-img');
+  //TweenMax.staggerFrom($('.se-people-container'), 0.5, {autoAlpha: 0,  y: 50}, 0.1);
+
+  TweenMax.staggerFrom($('.se-people-container *'), 0.5, {y: 50}, 0.01);
+  TweenMax.staggerFrom(PplPortrait, 0.2, {scale: 0.5}, 0.1);
   PplPortrait.on('mouseenter', function() {
     TweenMax.to($(this), 0.5, {  'filter': 'grayscale(0%)', '-webkit-filter': 'grayscale(0%)' });
+
   });
   PplPortrait.on('mouseleave', function() {
     TweenMax.to($(this), 0.5, {  'filter': 'grayscale(60%)', '-webkit-filter': 'grayscale(60%)' });

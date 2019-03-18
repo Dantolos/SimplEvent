@@ -73,6 +73,8 @@ jQuery(document).ready(function($){
   MInfoSideBarBtn.on('click', function(){
     var cS = ( MInfoSideBarCount%2 == 0 ? true : false );
     MOpenInfoSideBar(cS);
+    $('.se-info-sidebar').css({'display': 'block', 'transform': 'unset'});
+    //if(cS){$('.se-info-sidebar').show();}else{$('.se-info-sidebar').show();}
     MInfoSideBarCount++;
   });
 

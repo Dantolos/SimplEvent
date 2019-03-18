@@ -3,7 +3,7 @@
  *Author: Aaron Giaimo
  *Author URI: http://aagi.ch/
  *Description: This Theme is specified for simple userfriendly Event-Communication. Its based for the Events, which organized by the Swiss Economic Forum AG.
- *Version: 0.1.48
+ *Version: 1.0.0
  *GitHub Theme URI: https://github.com/Dantolos/SimplEvent
  *GitHub Branch: master
  */
@@ -204,9 +204,9 @@ h6 { font-size: 12px; font-weight: 300;}
 .se-more-events-section {
   float: left; height: 130px; margin-left: 40px; position: relative;
 }
-.se-more-events-button { margin-top:50px; cursor: pointer;height:10px;}
-.se-more-events-button img { margin-right:5px;}
-.se-more-events-button span { vertical-align: top; display:none; }
+.se-more-events-button { margin-top:50px; cursor: pointer;height:10px;   }
+.se-more-events-button img { margin-right:5px; margin-top:2px;  height: 20px;}
+.se-more-events-button span { vertical-align: top; color:#b7b7b7; }
 
 .se-header-placeholder { height:80px; width:100vw; } /*----PLACEHOLDER----*/
 
@@ -219,7 +219,7 @@ h6 { font-size: 12px; font-weight: 300;}
 .se_navbar_infobutton { margin: 8px 30px; float:left; height:24px; cursor:pointer;}
 
 /*--Submenu--*/
-.se-subnav-container { position: fixed; top:120px; right:0; padding:5px; padding-bottom:8px; z-index: 10;}
+.se-subnav-container { position: fixed; top:120px;  padding:5px; padding-bottom:8px; z-index: 10;}
 .se-subnav-container a { padding:20px; margin-bottom:15px;}
 .se-subnav-container { font-size: 14px !important;}
 
@@ -270,6 +270,9 @@ h6 { font-size: 12px; font-weight: 300;}
 .se-info-sidebar-icon { width:15%; }
 .se-info-sidebar-icon img { width:30%; margin-left:70%; margin-top: 10px; right:0; }
 .se-info-sidebar-text {margin-left: 5%; width:80%; margin-bottom:10%;}
+
+.se-info-sidebar-trigger { z-index: 10000; position: fixed; right:0; top:0; bottom:0; margin:auto; width:25px; height:100px; border-radius:4px 0 0 4px; }
+.se-info-sidebar-trigger svg { position: absolute;  margin:auto; left:0; right:0; top:0; bottom:0; transform: rotate(180deg); -ms-transform: rotate(180deg); -webkit-transform: rotate(180deg);}
 /*--Gallery--*/
 .se-gallery-container { margin-top:150px; height:50vh; position: relative;}
 .se-gallery-pic { opacity: .2; width: 20%; height:100%;float:left; position: relative; cursor: pointer;}
@@ -327,7 +330,7 @@ h6 { font-size: 12px; font-weight: 300;}
 .se-speaker-slider-container { width:1000%; overflow-x: hidden;height:40vh;cursor: pointer;}
 .se-speaker-bild { width:12.5vw; height:30vh;position: absolute; top:50; cursor: pointer;}
 .se-speaker-bild-overlay { height:100%; width:100%; opacity:0.8; cursor: pointer;}
-
+.se-speaker-bild-overlay:hover { opacity:0.4; }
 
 /*--Content--*/
 .se-speaker-content-container { margin-bottom: 0px; }
@@ -379,6 +382,8 @@ h6 { font-size: 12px; font-weight: 300;}
 .se-partner-lb-logo { width:20%;  float:left; margin-top:5%; margin-bottom:3%; }
 .se-partner-lb-logo img { width:100%; position: relative; right:0%;}
 .se-partner-lb-content { margin-left:0%;width:100%; float:left;}
+.se-partner-socialmedia { bottom:0; left:0; }
+.se-partner-sm-icon { float:left; }
 
 /*-----------------------------------------------------------------------*/
 /*---------------------------------PROGRAMM------------------------------*/
@@ -463,8 +468,8 @@ h6 { font-size: 12px; font-weight: 300;}
 
 .se-people-container { text-align: center !important; margin-bottom:60px; overflow: visible;}
 .se-people-container h4 { font-weight: 700; margin-top: -20px;}
-.se-people-portrait-img { width:80%; height:80%; position: absolute; right:0; left:0; margin:auto; border-radius: 50%; filter: grayscale(60%); -webkit-filter: grayscale(60%); }
-.se-people-stroke { width: 20%; margin:20px auto 5px;}
+.se-people-portrait-img { width:80%; height:80%; position: absolute; right:0; left:0; margin:20px auto; border-radius: 50%; filter: grayscale(60%); -webkit-filter: grayscale(60%); }
+.se-people-stroke { width: 20%; margin:10px auto 5px;}
 .se-people-socialmedia-wrapper { display: table; margin: auto; }
 .se-people-socialmedia-wrapper a { float:left; }
 

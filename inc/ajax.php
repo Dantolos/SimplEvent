@@ -41,6 +41,7 @@ add_action('wp_ajax_se_partner_load', 'se_partner_load'); //nur für angemeldete
 
 function se_partner_load() {
 
+  $SMicon = new SocialMedia();
   $postID = $_POST['id'];
 
   $response = '<div class="clearfix" style="width:100%;">';
@@ -48,11 +49,29 @@ function se_partner_load() {
   $response .= '<div class="se-partner-lb-content">';
   $response .= '<h3>'. get_the_title( $postID ) .'</h3>';
   $response .= '<p style="width:100%;">'.get_field('partner-text', $postID) .'</p>';
+
+  $social = get_field('social_media', $postID);
+  $i = 0;
+  if($social){
+    $response .= '<div class="se-partner-socialmedia clearfix">';
+    while( $i < count($social["speaker_social_media"]) ){
+      $smType = $social["speaker_social_media"][$i]['speaker_social_media_typ'];
+      $icon = $SMicon->getSMicon($smType, '#d7d7d7', '25px');
+
+      $response .= '<a href="' . $social["speaker_social_media"][$i]['speaker_social_media_link'] . '"  target="_blank" class="se-partner-sm-icon" style="margin:0px 5px 0 0;">';
+      $response .= '<div class="se-sm-icon-anim" style="margin:8px 8px 0 0; height:18px; width:18px;">'.$icon.'</div>';
+      $response .= '</a>';
+      $i++;
+    }
+    $response .= '</div>';
+  }
+
   $response .= '<a href="' .get_field('partner-link', $postID) . '" target="_blank" style="">';
   $response .= '<div class="mc-button-neg se-mc-txt" style="margin:40px 0; border: solid 2px' . esc_attr( get_option( 'main_color_picker' ) ) . '; float:left;">';
   $response .= __( 'WEBSEITE', 'SimplEvent' );
   $response .= '</div>';
   $response .= '</a>';
+
   $response .= '</div></div>';
 
   echo $response;
@@ -80,7 +99,7 @@ function se_partner_cat_load() {
     $Logo = $bild =
 
     $response .= '<div data-id="' . get_the_ID() . '" class="se-col-3 se-partner-logo" style="position:relative;">';
-    $response .= '<div class="se-partner-logo-inner" style=" height:95%; width:95%; margin: auto; position:absolute; margin:2.5%; background-color:rgba(222, 222, 222, 0.5);">';
+    $response .= '<div class="se-partner-logo-inner" style=" height:95%; width:95%; margin: auto; position:absolute; margin:2.5%; background-color:#f7f7f7;">';
     $response .= '<div class="" style="margin:15%;height:70%; width:70%; background-image:url(';
     $response .= get_field('partner-logo');
     $response .= '); background-size: contain;background-repeat: no-repeat; background-position: center center;">';
@@ -154,7 +173,7 @@ add_action('wp_ajax_nopriv_se_review_gallery_load', 'se_review_gallery_load');
 add_action('wp_ajax_se_review_gallery_load', 'se_review_gallery_load'); //nur für angemeldete (admins)
 
 function se_review_gallery_load() {
-  
+
   $gaid = $_POST['gaid'];
   $paid = $_POST['paid'];
 

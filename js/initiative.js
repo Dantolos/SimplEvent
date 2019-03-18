@@ -3,15 +3,27 @@ jQuery(document).ready(function($){
   console.log(curLang);
 
   //more Event -BAR
-  var moEvImg = $('.se-more-events-button');
-  moEvImg.hover(function(){
-    moEvImg.find('span').fadeIn();
-  }, function(){
-    moEvImg.find('span').fadeOut();
-  });
+  // var moEvImg = $('.se-more-events-button');
+  // moEvImg.hover(function(){
+  //   moEvImg.find('span').fadeIn();
+  // }, function(){
+  //   moEvImg.find('span').fadeOut();
+  // });
 
   var moEvO = 1;
-  jQuery('.se-more-events-section').on('click', function(){
+  $('.se-more-events-section').on('click', function(){
+    OpenMoEventContainer();
+  });
+
+  //reset by info
+  $('.se-info-sidebar-trigger, .se_navbar_infobutton').on('click', function(){
+    if ( (moEvO % 2) == 0) {
+      OpenMoEventContainer();
+    }
+  });
+  
+
+  function OpenMoEventContainer(){
     moEvO++;
     var degrees = 0;
     $('.se-more-events-container').slideToggle();
@@ -22,7 +34,8 @@ jQuery(document).ready(function($){
     }
     moEvButton = $('.se-more-events-button').find('img');
     TweenMax.to(moEvButton, 0.5, {rotation: degrees});
-  });
+  }
+
   var moreEventDone = false;
   var moreEventBtn = $('#more-events-button');
   var moreEventBtnPre = $('.se-arrow-pre-event');

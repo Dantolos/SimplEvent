@@ -105,6 +105,9 @@ $firstSlot = array_shift($slotarray);
         success : function( response ){
           $('.se-loader').css({'display': 'none'});
           $('#se-session-wrapper').append(response)
+          $('html, body').animate({
+              scrollTop: $('#se-session-wrapper').offset().top
+          }, 1000);
           refEle = $('.se-session-referent');
           console.log(refEle);
         }
@@ -148,12 +151,10 @@ $firstSlot = array_shift($slotarray);
 
     $( document ).ajaxStop(function(){
       $('.closer').on('click', function(){
-        console.log('TTTTTT');
         $('body').find('#se-lb-con').parent().remove();
       });
       refEle.on('click', function(){
         seSessionSpeaker($(this));
-        console.log('asdf');
       });
 
     });

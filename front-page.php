@@ -137,7 +137,7 @@ if( get_field('strip', $curPageID)  ) {
       interval = setInterval(function() {
         slideCounter++;
 
-        slidesTC.animate({'right': '100vw' }, function() {
+        slidesTC.animate({ }, function() {
             slideZitat.empty();
             slideName.empty();
             slideFunktion.empty();

@@ -139,7 +139,7 @@
 
         if (! wp_is_mobile() ) {
           foreach ($menu as $m){?>
-            <a href="<?php if( $m['url'] == '#'){ echo 'javascript:;'; } else { echo $m['url']; } ?>" class="aagi-w-txt se-navelement" nav="<?php echo $m['ID']; ?>">
+            <a href="<?php if( $m['url'] == '#'){ echo 'javascript:;'; } else { echo $m['url']; } ?>" class="aagi-w-txt se-navelement" nav="<?php echo $m['ID']; ?>" >
               <span class="se-navbar-mainmenu-item"><?php echo $m['title']; ?></span>
             </a>
           <?php }
@@ -185,7 +185,7 @@
       if($MainSocial){
         foreach ($MainSocial as $SMName => $SMLink) {
           if($SMLink) {
-            $icon = $SMicon->getSMicon($SMName, '#404040', '15px');
+            $icon = $SMicon->getSMicon($SMName, '#b7b7b7', '16px');
             echo '<a href="'.$SMLink.'" class="" target="_blank" style="padding:0 3px; float:right; ">';
             echo '<div class="se-sm-icon-anim" style=" margin:3px 1px 0 0;"/>'.$icon;
             echo '</div></a>';
@@ -207,7 +207,7 @@
         //echo '<pre>'; var_dump($m['children']); echo '</pre>';
         $smArr = $m['children'];
         if ($smArr) { ?>
-          <div subnav="<?php echo $m['ID']; ?>" class="se-subnav-container se-mc-bg se-wc-txt"> <?php
+          <div subnav="<?php echo $m['ID']; ?>" class="se-subnav-container se-mc-bg se-wc-txt" style="opacity:0; width: 100vw;"> <?php
 
           foreach($smArr as $sm){ ?>
             <a href="<?php echo $sm['url']; ?>" class="aagi-w-txt"  id="<?php echo $sm['ID']; ?>">
@@ -374,6 +374,19 @@
     </g>
     </svg>
   </div>
+<?php } ?>
+
+<?php if(! wp_is_mobile()){ ?>
+<div class="se-info-sidebar-trigger se-sc-bg">
+  <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     width="20px" height="20px" viewBox="0 0 40 39" enable-background="new 0 0 40 39" xml:space="preserve">
+  <g>
+    <path class="se-arrow" fill="<?php echo $seWC; ?>" d="M30.105,18.204L11.357,7.249c-0.764-0.448-1.743-0.19-2.188,0.574C8.724,8.585,8.98,9.565,9.744,10.01
+      l16.333,9.545L9.819,29.446c-0.755,0.459-0.995,1.443-0.536,2.197c0.302,0.496,0.829,0.769,1.369,0.769
+      c0.284,0,0.57-0.074,0.83-0.232l18.146-11.039c0.426-0.09,0.815-0.345,1.053-0.749C31.125,19.628,30.868,18.649,30.105,18.204z"/>
+  </g>
+  </svg>
+</div>
 <?php } ?>
 
 <div class="se-info-sidebar se-sc-bg se-wc-txt" style="display:none;">

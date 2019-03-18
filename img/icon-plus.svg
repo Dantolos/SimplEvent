@@ -4,8 +4,8 @@
 <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="25px" height="25px" viewBox="0 0 22 22" enable-background="new 0 0 22 22" xml:space="preserve">
 <g>
-	<circle fill="none" stroke="#191919" cx="11" cy="11" r="10.5"/>
+	<circle fill="none" stroke="#b7b7b7" cx="11" cy="11" r="10.5"/>
 </g>
-<line fill="none" stroke="#191919" x1="11" y1="6.25" x2="11" y2="16.25"/>
-<line fill="none" stroke="#191919" x1="16" y1="11.25" x2="6" y2="11.25"/>
+<line fill="none" stroke="#b7b7b7" x1="11" y1="6.25" x2="11" y2="16.25"/>
+<line fill="none" stroke="#b7b7b7" x1="16" y1="11.25" x2="6" y2="11.25"/>
 </svg>

@@ -92,15 +92,16 @@ if( get_field('strip', $curPageID)  ) {
 ?>
 
 <!-- NEWS -->
-<div class="se-strip">
-  <div class="se-content">
-    <div class="se-col-12">
-      <h1>NEWS</h1>
-      <div data-embed-container data-newsroom-token="1k44kbgxwusdi" data-embed-id="nt-0kSx5c46c46eb0091zIJ7" ></div>
-      <script type="text/javascript" src="https://data.newsroom.co/lib/storyshaker-embed/js/storyshaker-embed.js"></script>
+<?php if( get_field('newsroom_teaser', $curPageID) ) {?>
+  <div class="se-strip">
+    <div class="se-content">
+      <div class="se-col-12">
+        <h1>NEWS</h1>
+        <?php echo get_field('newsroom_teaser', $curPageID); ?>
+      </div>
     </div>
   </div>
-</div>
+<?php } ?>
 
 <script>
   jQuery(function($){

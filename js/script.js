@@ -168,10 +168,13 @@ jQuery(document).ready(function($){
   var HeaderLogo = $('.se-header-logo');
   var HeaderIcon = $('.se-header-icon');
   var HeaderTL = new TimelineMax({paused:true});
-  TweenMax.set(HeaderIcon, {autoAlpha: 0, y: '-50px'});
+
+  if(!isMobile){ TweenMax.set(HeaderIcon, {autoAlpha: 0, y: '-50px'}); }
+
   HeaderTL.to(HeaderLogo, 0.2, { autoAlpha: 0, y: '-50px',  display:'none', ease:Power1.easeOut})
           .to(HeaderIcon, 0.2, { autoAlpha: 1, y: '0px',  display:'block', ease:Power1.easeOut});
   if(!isMobile){ //if mobile dont wrap header
+
     $(window).scroll(function(){
       var scrollPos = $(document).scrollTop();
 

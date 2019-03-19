@@ -24,7 +24,13 @@ get_header(); ?>
           if( get_row_layout() == 'titelzeile' ) {
           ?>
             <div class="se-programm-titelzeile se-sc-bg se-wc-txt se-programm-row">
-              <?php echo the_sub_field('titel'); ?>
+              <?php
+              $titelText = '';
+              if(get_sub_field('programmpunkt_zeit')){
+                $titelText = the_sub_field('programmpunkt_zeit');
+                echo ' | ';
+              }
+              echo the_sub_field('titel'); ?>
             </div>
           <?php
           } elseif( get_row_layout() == 'programmpunkt' ) {
@@ -37,8 +43,10 @@ get_header(); ?>
                   <?php echo the_sub_field('programmpunkt_zeit'); ?>
                 </div>
                 <div class="se-programm-titel">
-                  <?php echo the_sub_field('programmpunkt_titel'); ?>
-
+                  <?php echo the_sub_field('programmpunkt_titel');
+                  echo '</br>';
+                  ?>
+                  <?php echo the_sub_field('programmpunkt_subtext'); ?>
                 </div>
 
                 <?php if( $programmLink ) { ?>

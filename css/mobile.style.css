@@ -31,8 +31,8 @@
 
   /*---HEADER---*/
   .se-navbar-container { height: 50px; z-index:6500; }
-  .se-header-logo { margin: 10px 0 10px 10px; height: 40px; }
-
+  .se-header-logo { margin: 10px 0 10px 10px; height: 40px; display:none;}
+  .se-header-icon { display:block !important; margin: 10px 0 10px 10px; height: 40px;}
   .se-more-events-section { height: 40px; margin-left: 10px; display: none; }
 
   .se-navbar-language { margin-top:15px; }

@@ -22,6 +22,10 @@
 
   .se-loader { width:70%; position: fixed; top:45vh;}
 
+  /*--PLACEHOLDER--*/
+  .se-header-title-placeholder { height:50px; }
+  .se-footer-end-placeholder { height:50px; }
+
   /*--LIGHTBOX--*/
   .se-lb-frame { width:90vw; height:70vh; margin-top:-35vh; margin-left:-45vw; padding:5%;}
   .se-lb-frame div:first-child { overflow-y: scroll; height: 100%;}

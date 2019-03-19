@@ -20,6 +20,7 @@ class Modular extends ModularElements {
       }
       $BGstyle = '';
       $BGimg = '';
+
       if($Strip["strip_settings"]["tansparent"]){
 
       } else {
@@ -32,7 +33,8 @@ class Modular extends ModularElements {
 
 
 
-      $OutPut = '<div class="se-strip ' . $BGcolor . ' image-settings" style="background-image:url('.$BGimg.'); '.$BGstyle.'">';
+
+      $OutPut = '<div class="se-strip ' . $BGcolor . ' image-settings" style="background-image:url('.$BGimg.'); ' . $BGstyle . '">';
 
       //Create Column + Element
       if($Strip['row']) {

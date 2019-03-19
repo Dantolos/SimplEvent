@@ -73,9 +73,12 @@
   .se-info-sidebar-btn { position: absolute; bottom:10px; left:10px; width:25px; height:25px; }
   .se-info-sidebar { left: 0px; bottom:10vh; z-index: 8400; margin-top:0 !important; width:100vw; height:100vh; background-color: transparent !important; overflow-y: scroll;}
   .se-info-sidebar-content { width: 78vw; height: 70vh; top: 25%; position: absolute; left: 12vw; overflow-y: scroll; margin:0;}
+
   /*---HEADER-SLIDER---*/
   .se-slider-header-text-container  { right:10vw; width:80vw; bottom:20vh;}
   .se-slider-header-zitat { font-size: 18px !important; }
+
+  .se-slider-mobile-align-left { background-position: 20% center; }
 
   /*--SPEAKER--*/
   .se-speaker-slider-wrapper{overflow:hidden; width:100vw; position:relative;}

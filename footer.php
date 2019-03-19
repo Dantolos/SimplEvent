@@ -1,5 +1,12 @@
 
     <?php
+    //placeholder
+    if(!wp_is_mobile()){
+      if(is_page_template( 'template-modular.php' )){
+        echo '<div class="se-footer-end-placeholder"></div>';
+      }
+    }
+
 
 
     if(!esc_attr( get_option( 'bg_img' ) )) {?>

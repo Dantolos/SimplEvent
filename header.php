@@ -200,22 +200,6 @@
     </div>
 
 
-    <!--Submenu-->
-    <?php
-    if(!wp_is_mobile()){
-      foreach ($menu as $m){
-        //echo '<pre>'; var_dump($m['children']); echo '</pre>';
-        $smArr = $m['children'];
-        if ($smArr) { ?>
-          <div subnav="<?php echo $m['ID']; ?>" class="se-subnav-container se-mc-bg se-wc-txt" style="opacity:0; width: 100vw;"> <?php
-
-          foreach($smArr as $sm){ ?>
-            <a href="<?php echo $sm['url']; ?>" class="aagi-w-txt"  id="<?php echo $sm['ID']; ?>">
-              <span class="se-navbar-sub-item"><?php echo $sm['title']; ?></span>
-            </a>
-          <?php } ?>
-        </div>
-      <?php } } }?>
 
 
     <!-- MoreEvent Container -->
@@ -347,9 +331,25 @@
 
       <?php
     } ?>
+    <!--Submenu-->
+
 
 </header>
+<?php
+if(!wp_is_mobile()){
+  foreach ($menu as $m){
+    //echo '<pre>'; var_dump($m['children']); echo '</pre>';
+    $smArr = $m['children'];
+    if ($smArr) { ?>
+      <div subnav="<?php echo $m['ID']; ?>" class="se-subnav-container se-mc-bg se-wc-txt" style="opacity:0; width: 100vw;"> <?php
 
+      foreach(array_reverse($smArr) as $sm){ ?>
+        <a href="<?php echo $sm['url']; ?>" class="aagi-w-txt"  id="<?php echo $sm['ID']; ?>">
+          <span class="se-navbar-sub-item"><?php echo $sm['title']; ?></span>
+        </a>
+      <?php } ?>
+    </div>
+<?php } } }?>
 
 
 <div class="header-placeholder" style="height:120px;width:100vw;">
@@ -449,10 +449,10 @@
 <body>                                                                                                                                                                                                
 
   <?php
-  if(!is_page_template( 'template-modular.php' )) {
-    if(!is_front_page())
-    echo '<div class="se-header-title-placeholder"></div>';
+  if( !wp_is_mobile() ) {
+    if(!is_front_page() && !is_page_template( 'template-modular.php' ) && !is_page_template( 'template-review.php' ) && !is_page_template( 'template-speaker.php' )) {
+        echo '<div class="se-header-title-placeholder"></div>';
+    }
   }
-
 
   ?>

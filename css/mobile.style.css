@@ -5,7 +5,7 @@
   .se-content { width:90vw; min-height: 100px}
   .se-col-1, .se-col-2, .se-col-3, .se-col-4, .se-col-5, .se-col-6,
   .se-col-7, .se-col-8, .se-col-9, .se-col-10, .se-col-11, .se-col-12 {
-    width:100%; margin-bottom:30px;
+    width:100%; margin-bottom:10px;
   }
   .se-strip { padding-top:20px; padding-bottom:20px; margin-top:0px; min-height:100px;}
 

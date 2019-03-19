@@ -23,11 +23,14 @@ jQuery(document).ready(function($){
   var infoSidebarWidth = infoBar.width();
   var infoBarPos = -Math.abs(infoSidebarWidth);
   //$('.se-info-sidebar').css({'right': infoBarPos + 'px' });
-  TweenMax.set(infoBar, {x: infoSidebarWidth});
+  TweenMax.set(infoBar, { x: infoSidebarWidth });
   $(window).on('resize', function(){
-    infoSidebarWidth = jQuery('.se-info-sidebar').width();
+    infoSidebarWidth = infoBar.width();
     infoBarPos = -Math.abs(infoSidebarWidth);
-    $('.se-info-sidebar').css({'right': infoBarPos + 'px' });
+
+    TweenMax.set(infoBar, { x: infoSidebarWidth });
+    return infoSidebarWidth;
+
   });
 
   $('.se_navbar_infobutton').on('click', function(){
@@ -39,13 +42,13 @@ jQuery(document).ready(function($){
 
   function OpenInfoBar() {
     if( ! iSbO ) {
-      $('.se-info-sidebar').show();
-      TweenMax.to(infoBar, 0.5, {x: 0, ease:Power1.easeOut})
+      infoBar.show();
+      TweenMax.to($('.se-info-sidebar'), 0.5, {x: 0, ease:Power1.easeOut});
       TweenMax.to(infoBarTrigger, 0.5, {x: infoBarPos, ease:Power1.easeOut});
       TweenMax.to(infoBarTrigger.find('svg'), 0.7, {rotationY:'+=180', ease:Power1.easeOut});
       iSbO = true;
     } else {
-      TweenMax.to(infoBar, 0.5, {x: infoSidebarWidth, ease:Power1.easeOut});
+      TweenMax.to(infoBar, 0.5, {x: infoBar.width(), ease:Power1.easeOut});
       TweenMax.to(infoBarTrigger, 0.5, {x: 0, ease:Power1.easeOut});
       TweenMax.to(infoBarTrigger.find('svg'), 0.7, {rotationY:'+=180', ease:Power1.easeOut});
 

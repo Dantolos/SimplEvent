@@ -32,7 +32,7 @@
   /*---HEADER---*/
   .se-navbar-container { height: 50px; z-index:6500; }
   .se-header-logo { margin: 10px 0 10px 10px; height: 40px; display:none;}
-  .se-header-icon { display:block !important; margin: 10px 0 10px 10px; height: 40px;}
+  .se-header-icon { display:block !important; margin: 10px 0 10px 10px; height: 30px;}
   .se-more-events-section { height: 40px; margin-left: 10px; display: none; }
 
   .se-navbar-language { margin-top:15px; }
@@ -103,9 +103,12 @@
 
   /*--PROGRAMM--*/
   .se-programm-titelzeile, .se-programm-programmpunkt  {
-     padding: 5% 2%;
+
   }
-  .se-programm-programmpunkt img { opacity: 0.4 !important; right: 6%; height:15px;}
+  .se-programm-programmpunkt {  padding-bottom: 2%; border-bottom: 8px solid #fff; }
+  .se-programm-zeit { background-color: #fff; border-right: none;   border-bottom: 1px solid #b7b7b7; float:none; padding: 2% 0% 0; font-size: 14px;}
+  .se-programm-programmpunkt img { opacity: 0.4 !important; right: 5%; height:15px; top: 38px; bottom: unset; }
+
 
   /*--REVIEWS--*/
   .se-review-strip { margin-top:0 !important; }

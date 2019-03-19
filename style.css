@@ -3,7 +3,7 @@
  *Author: Aaron Giaimo
  *Author URI: http://aagi.ch/
  *Description: This Theme is specified for simple userfriendly Event-Communication. Its based for the Events, which organized by the Swiss Economic Forum AG.
- *Version: 1.0.21
+ *Version: 1.0.22
  *GitHub Theme URI: https://github.com/Dantolos/SimplEvent
  *GitHub Branch: master
  */
@@ -51,6 +51,7 @@ table, caption, tbody, tfoot, thead, tr, th, td,  {
   font-family: 'Open Sans', sans-serif;
   vertical-align: baseline;
 }
+sup { line-height: 0; }
 body {overflow-x: hidden;}
 
 /*--EMBED--*/
@@ -75,7 +76,7 @@ body {overflow-x: hidden;}
 
 /*--FONTS--*/
 body, pre { font-family: 'Open Sans', sans-serif; }
-p, pre {	font-size: 14px; line-height: 1.4em; }
+p, pre, ul, li {	font-size: 14px; line-height: 1.4em; }
 a { text-decoration:none; color:inherit; }
 h1 { font-size: 64px; font-weight: 700; margin-bottom:20px; text-transform: uppercase; }
 h2 { font-size: 52px; }
@@ -83,9 +84,13 @@ h3 { font-size: 36px; text-transform: uppercase; }
 h4 { font-size: 20px; font-weight: 300;}
 h5 { font-size: 24px; font-weight: 700;}
 h6 { font-size: 12px; font-weight: 300;}
+
+ul { list-style-position: inside;  list-style-type: initial; padding-top:  .6em;}
+ul li {padding-bottom: .6em;}
+
 /*--LAYOUT--*/
-.se-strip { padding-top:150px; padding-bottom:150px; }
-.se-content { width:75vw; min-height:250px; overflow:auto; overflow-y:hidden; margin-left: auto;margin-right: auto;}
+.se-strip { padding-top:50px; padding-bottom:20px; }
+.se-content { width:75vw; overflow:auto; overflow-y:hidden; margin-left: auto;margin-right: auto;}
 .se-col-1 { width: 8.33%; }
 .se-col-2 { width: 16.66%; }
 .se-col-3 { width: 25%; }

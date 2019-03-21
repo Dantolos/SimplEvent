@@ -17,6 +17,8 @@ function SimplEvent_add_admin_page() {
   add_submenu_page( 'aagi_simplevent', 'SimplEvent Theme Options', 'General', 'manage_options', 'aagi_simplevent', 'simplevent_theme_create_page' );
   add_submenu_page( 'aagi_simplevent', 'SimplEvent Header Options', 'Header', 'manage_options', 'simplevent_header', 'simplevent_theme_header_page' );
   add_submenu_page( 'aagi_simplevent', 'SimplEvent Sidebar Options', 'Sidebar', 'manage_options', 'simplevent_sidebar', 'simplevent_theme_sidebar_page' );
+  add_submenu_page( 'aagi_simplevent', 'SimplEvent Footer Options', 'Footer', 'manage_options', 'simplevent_footer', 'simplevent_theme_footer_page' );
+
   //activieren custom settings
   add_action( 'admin_init', 'simplevent_custom_settings' );
 }
@@ -108,6 +110,16 @@ function simplevent_custom_settings() {
   add_settings_field( 'translation', 'Uebersetungen', 'simplevent_translation', 'simplevent_sidebar', 'simplevent-sidebar-options' );
 
   add_settings_field( 'price', 'Preis', 'simplevent_price', 'simplevent_sidebar', 'simplevent-sidebar-options' );
+
+  //----------------------------------FOOTER ---------------------------------------//
+  //****Settings
+  register_setting( 'simplevent-footer-group', 'se_c_text' );
+
+  //****Section
+  add_settings_section( 'simplevent-footer-options', 'Footer', 'simplevent_footer_options', 'simplevent_footer');
+
+  //****Fields
+  add_settings_field( 'ctext', 'Copyright Text', 'simplevent_se_c_text', 'simplevent_footer', 'simplevent-footer-options' );
 }
 
 function simplevent_general_options() {
@@ -128,6 +140,9 @@ function simplevent_sidebar_options() {
   echo 'Sidebar anpassen';
 }
 
+function simplevent_footer_options() {
+  echo 'Slider für die Startseite generieren';
+}
 
 //---------------------------------------------OUTPUTS------------------------------------//
 
@@ -192,7 +207,7 @@ function simplevent_se_anmeldung() {
 }
 function simplevent_se_anmeldelink() {
   $anmeldelink = get_option( 'se_anmeldelink' );
-  echo '<input type="text" name="se_anmeldelink" value="' .$anmeldelink. '" laceholder="URL"/>';
+  echo '<input type="text" name="se_anmeldelink" value="' .$anmeldelink. '" placeholder="URL"/>';
 }
 
 //----------------------------------SIDEBAR ---------------------------------------//
@@ -233,6 +248,15 @@ function simplevent_price() {
   $price = esc_attr( get_option( 'price' ) );
   echo '<input type="text" name="price" value="' .$price. '" placeholder="Preis" />';
 }
+
+//----------------------------------FOOTER ---------------------------------------//
+
+function simplevent_se_c_text() {
+  $se_c_text = get_option( 'se_c_text' );
+  echo '<input type="text" name="se_c_text" value="' .$se_c_text. '" placeholder="Swiss Economic Forum | 2017"/>';
+}
+
+
 //---------------------------------------------TEMPLATES------------------------------------//
 function simplevent_theme_create_page() {
   require_once( get_template_directory() . '/inc/templates/simplevent-admin.php' );
@@ -244,4 +268,8 @@ function simplevent_theme_header_page(){
 
 function simplevent_theme_sidebar_page() {
   require_once( get_template_directory() . '/inc/templates/simplevent-sidebar.php' );
+}
+
+function simplevent_theme_footer_page(){
+  require_once( get_template_directory() . '/inc/templates/simplevent-footer.php' );
 }

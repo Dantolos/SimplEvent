@@ -6,12 +6,13 @@ get_header();
 
 $Loader = new loadingAnimation;
 
-
 /*QUERY*/
+$mainCat = get_field('hauptkategorie');
+
 $main_partner_args = array(
-  'post_type' => 'partner', 'orderby' => 'menu_order', 'order' => 'ASC', 'tax_query' => array(
+  'post_type' => 'p', 'orderby' => 'menu_order', 'order' => 'ASC', 'tax_query' => array(
     array(
-      'taxonomy' => 'Kategorie', 'field' => 'term_id', 'terms' => array(6),
+      'taxonomy' => 'Kategorie', 'field' => 'term_id', 'terms' => $mainCat,
     ),
   ),
 );
@@ -34,11 +35,18 @@ $terms = get_terms($taxonomy); // Get all terms of a taxonomy
 
 
 <!--Main Partner-->
-<div class="se-strip se-partner-strip" style="padding-top: 0px;" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
+<div class="se-strip se-partner-strip" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
   <div class="se-content" style="position:relative;">
 
     <div class="se-partner-kategorie" style="border-bottom: solid 2px <?php echo esc_attr( get_option( 'main_color_picker' ) ) ; ?>; margin-bottom:10px;">
-      <h3>Main-Partner</h3>
+      <h3>
+        <?php
+        foreach ($terms as $term){
+          if ($term->term_id==$mainCat) {
+            echo $term->name;
+          }
+        } ?>
+      </h3>
     </div>
     <div class="se-partner-dropdown">
       <div class="se-partner-dropdown-button">
@@ -74,7 +82,7 @@ $terms = get_terms($taxonomy); // Get all terms of a taxonomy
           <div data-id="<?php echo get_the_ID(); ?>" class="se-col-3 se-partner-logo" style="position:relative;">
             <div class="se-partner-logo-inner" style=" height:95%; width:95%; margin: auto; position:absolute; margin:2.5%; background-color:#f7f7f7;">
 
-              <div class="" style="margin:15%;height:70%; width:70%; background-image:url('<?php echo $Logo; ?>'); background-size: contain;background-repeat: no-repeat;
+              <div class="se-partner-logo-pic" style="margin:15%;height:70%; width:70%; background-image:url('<?php echo $Logo; ?>'); background-size: contain;background-repeat: no-repeat;
               background-position: center center;">
 
               </div>
@@ -192,6 +200,7 @@ jQuery(document).ready(function($){
       success : function( response ){
         logoContainer.empty();
         logoContainer.append(response);
+        $('.se-partner-dropdown').find('ul').fadeOut();
         var pLogo = $('.se-partner-logo');
         pLogo.css({'height': (pLogo.width() / 10 * 9) });
         SELoader.animate({ 'margin-top': '-200px'}, 200).fadeOut();
@@ -205,6 +214,23 @@ jQuery(document).ready(function($){
       partnerLogo.on('click', function(){ partnerFrame($(this));});
     });
   });
+
+
+  LogoHover(partnerLogo);
+  $(document).ajaxComplete( function(){
+    LogoHover(partnerLogo);
+  });
+
+  function LogoHover(e) {
+    e.live('mouseenter', function(){
+      TweenMax.to($(this).find('.se-partner-logo-pic'), 0.5, { scale: 1.1, ease:Power1.easeOut });
+    }).on('mouseleave', function() {
+      TweenMax.to($(this).find('.se-partner-logo-pic'), 0.5, { scale: 1, ease:Power1.easeOut });
+    });
+
+  }
+
+
 
 
 });

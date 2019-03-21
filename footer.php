@@ -28,7 +28,7 @@
 
       <div class="se-footer-container se-sc-bg se-wc-txt">
         <div class="se-footer-copyright">
-          &#9400; Swiss Innovation Forum | 2018
+          &#9400; <?php echo esc_attr( get_option( 'se_c_text' ) ) ; ?>
         </div>
 
         <div class="se-footer-nav">

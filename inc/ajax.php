@@ -47,7 +47,7 @@ function se_partner_load() {
   $response = '<div class="clearfix" style="width:100%;">';
   $response .= '<div class="se-partner-lb-logo"><img src="'.get_field('partner-logo', $postID).'"/></div>';
   $response .= '<div class="se-partner-lb-content">';
-  $response .= '<h3>'. get_the_title( $postID ) .'</h3>';
+  //$response .= '<h3>'. get_the_title( $postID ) .'</h3>';
   $response .= '<p style="width:100%;">'.get_field('partner-text', $postID) .'</p>';
 
   $social = get_field('social_media', $postID);
@@ -87,7 +87,7 @@ function se_partner_cat_load() {
   $postID = $_POST['cid'];
 
   $main_partner_args = array(
-    'post_type' => 'partner', 'orderby' => 'menu_order', 'order' => 'ASC', 'tax_query' => array(
+    'post_type' => 'p', 'orderby' => 'menu_order', 'order' => 'ASC', 'tax_query' => array(
       array(
         'taxonomy' => 'Kategorie', 'field' => 'term_id', 'terms' => $postID,
       ),
@@ -100,7 +100,7 @@ function se_partner_cat_load() {
 
     $response .= '<div data-id="' . get_the_ID() . '" class="se-col-3 se-partner-logo" style="position:relative;">';
     $response .= '<div class="se-partner-logo-inner" style=" height:95%; width:95%; margin: auto; position:absolute; margin:2.5%; background-color:#f7f7f7;">';
-    $response .= '<div class="" style="margin:15%;height:70%; width:70%; background-image:url(';
+    $response .= '<div class="se-partner-logo-pic" style="margin:15%;height:70%; width:70%; background-image:url(';
     $response .= get_field('partner-logo');
     $response .= '); background-size: contain;background-repeat: no-repeat; background-position: center center;">';
     $response .= '</div>';

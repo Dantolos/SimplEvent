@@ -6,7 +6,7 @@
   <title><?php bloginfo('name'); ?></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
-  <link rel="shortcut icon" href="favicon.ico" type="img/x-icon" />
+  <link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/favicon.ico" />
 
 <?php //import Files
   function theme_add_files() {

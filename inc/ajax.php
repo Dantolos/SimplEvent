@@ -87,7 +87,7 @@ function se_partner_cat_load() {
   $postID = $_POST['cid'];
 
   $main_partner_args = array(
-    'post_type' => 'p', 'orderby' => 'menu_order', 'order' => 'ASC', 'tax_query' => array(
+    'post_type' => 'p', 'orderby' => 'title', 'order' => 'ASC', 'tax_query' => array(
       array(
         'taxonomy' => 'Kategorie', 'field' => 'term_id', 'terms' => $postID,
       ),

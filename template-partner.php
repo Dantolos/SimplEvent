@@ -10,7 +10,7 @@ $Loader = new loadingAnimation;
 $mainCat = get_field('hauptkategorie');
 
 $main_partner_args = array(
-  'post_type' => 'p', 'orderby' => 'menu_order', 'order' => 'ASC', 'tax_query' => array(
+  'post_type' => 'p', 'orderby' => 'title', 'order' => 'ASC', 'tax_query' => array(
     array(
       'taxonomy' => 'Kategorie', 'field' => 'term_id', 'terms' => $mainCat,
     ),
@@ -36,7 +36,7 @@ $terms = get_terms($taxonomy); // Get all terms of a taxonomy
 
 <!--Main Partner-->
 <div class="se-strip se-partner-strip" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
-  <div class="se-content" style="position:relative;">
+  <div class="se-content" style="position:relative; overflow: visible;">
 
     <div class="se-partner-kategorie" style="border-bottom: solid 2px <?php echo esc_attr( get_option( 'main_color_picker' ) ) ; ?>; margin-bottom:10px;">
       <h3>

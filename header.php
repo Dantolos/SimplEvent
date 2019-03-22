@@ -138,8 +138,16 @@
         }
 
         if (! wp_is_mobile() ) {
-          foreach ($menu as $m){?>
-            <a href="<?php if( $m['url'] == '#'){ echo 'javascript:;'; } else { echo $m['url']; } ?>" class="aagi-w-txt se-navelement" nav="<?php echo $m['ID']; ?>" >
+          foreach ($menu as $m){
+            $subURL;
+            if( $m['url'] == '#'){
+              $firstSub = reset($m['children']);
+              $subURL = $firstSub['url'];
+            } else {
+              $subURL = $m['url'];
+            } ?>
+
+            <a href="<?php echo $subURL ?>" class="aagi-w-txt se-navelement" nav="<?php echo $m['ID']; ?>" >
               <span class="se-navbar-mainmenu-item"><?php echo $m['title']; ?></span>
             </a>
           <?php }
@@ -155,6 +163,8 @@
       </div>
 
       <?php
+
+
       if (! wp_is_mobile() ) {
         $seanmeldung = esc_attr( get_option( 'se_anmeldung' ) );
         if( $seanmeldung == 'on') { ?>

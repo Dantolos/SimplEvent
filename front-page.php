@@ -64,12 +64,12 @@ endif;
 <?php if($sliderQuery) { ?>
 <div id="slider" class="se-slider-header-container image-settings se-slider-mobile-align-left" style="background-image:url('<?php echo $slideArray[0]['image'] ?>');">
   <div class="se-slider-header-text-container">
-    <?php if(!wp_is_mobile()) {
+    <?php 
       $displayer = ($slideArray[0]['zitat']) ? 'block' : 'none'; ?>
       <div class="se-slider-header-zitat">
         <p class="" style="display:<?php echo $displayer; ?>;"><strong>&laquo;</strong><?php echo $slideArray[0]['zitat']; ?><strong>&raquo;</strong></p>
       </div>
-    <?php } ?>
+
 
     <p id="slidename" style="margin-top:20px; color:<?php echo $slideArray[0]['color']; ?>;"><strong><?php echo $slideArray[0]['name']; ?></strong></p>
     <p id="slidefunktion" style="color:<?php echo $slideArray[0]['color']; ?>; font-weight: 300;"><?php echo $slideArray[0]['funktion']; ?></p>
@@ -145,11 +145,13 @@ if( get_field('strip', $curPageID)  ) {
         slideCounter++;
 
         slidesTC.animate({ }, function() {
-            slideZitat.empty();
             slideZitat.fadeOut();
-            slideName.empty();
-            slideFunktion.empty();
-            slideButton.empty();
+            setTimeout(function(){
+              slideZitat.empty();
+              slideName.empty();
+              slideFunktion.empty();
+              slideButton.empty();
+            }, 500);
         });
 
         var bildSRC = SlideArray[currentSlide]['image'];

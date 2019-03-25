@@ -2,7 +2,7 @@
     <?php
     //placeholder
     if(!wp_is_mobile()){
-      if(is_page_template( 'template-modular.php' )){
+      if(is_page_template( 'template-modular.php' ) || is_page_template( 'template-partner.php' )){
         echo '<div class="se-footer-end-placeholder"></div>';
       }
     }

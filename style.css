@@ -380,6 +380,7 @@ ul li {padding-bottom: .6em;}
 /*----------------------------------PARTNER------------------------------*/
 /*-----------------------------------------------------------------------*/
 .se-partner-strip { padding-top: 50px; padding-bottom: 150px;}
+.se-partner-logo-containter { min-height: 50vh; }
 .se-partner-logo { height:200px; cursor:pointer; }
 .se-partner-logo-inner:hover { box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);  }
 .se-partner-dropdown { position: absolute; right:0;top:0; text-align:right; line-height:2.5em; z-index:150;}

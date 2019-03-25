@@ -68,6 +68,7 @@ function simplevent_custom_settings() {
   //****Settings
   register_setting( 'simplevent-header-group', 'se_anmeldung' );
   register_setting( 'simplevent-header-group', 'se_anmeldelink' );
+  register_setting( 'simplevent-header-group', 'se_anmeldetext' );
 
   //****Section
   add_settings_section( 'simplevent-header-options', 'Header', 'simplevent_header_options', 'simplevent_header');
@@ -75,6 +76,7 @@ function simplevent_custom_settings() {
   //****Fields
   add_settings_field( 'se-anmeldung', 'Anmeldung Aktiv', 'simplevent_se_anmeldung', 'simplevent_header', 'simplevent-header-options' );
   add_settings_field( 'se-anmeldelink', 'Anmeldung Link', 'simplevent_se_anmeldelink', 'simplevent_header', 'simplevent-header-options' );
+  add_settings_field( 'se-anmeldetext', 'Anmeldung Text', 'simplevent_se_anmeldetext', 'simplevent_header', 'simplevent-header-options' );
 
   //----------------------------------SIDEBAR ---------------------------------------//
   //****Settings
@@ -204,6 +206,10 @@ function simplevent_se_anmeldung() {
     $seanmeldung = 'checked';
   }
   echo '<input type="checkbox" name="se_anmeldung" ' .$seanmeldung. '/>';
+}
+function simplevent_se_anmeldetext() {
+  $anmeldetext = get_option( 'se_anmeldetext' );
+  echo '<input type="text" name="se_anmeldetext" value="' .$anmeldetext. '" placeholder="Jetzt Anmelden"/>';
 }
 function simplevent_se_anmeldelink() {
   $anmeldelink = get_option( 'se_anmeldelink' );

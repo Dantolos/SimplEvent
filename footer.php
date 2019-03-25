@@ -44,7 +44,8 @@
           }
 
           if( esc_attr( get_option( 'se_anmeldung' ) ) == 'on') {
-            ?> <a href="<?php echo esc_attr( get_option( 'se_anmeldelink' ) ) ; ?>" target="_blank"><span class="se-mc-txt">| zur Anmeldung</span></a> <?php
+            $regBtnText = esc_attr( get_option( 'se_anmeldetext' ));
+            ?> <a href="<?php echo esc_attr( get_option( 'se_anmeldelink' ) ) ; ?>" target="_blank"><span class="se-mc-txt">| <?php echo __($regBtnText, 'SimplEvent') ?></span></a> <?php
           }
           ?>
 

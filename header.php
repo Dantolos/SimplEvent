@@ -170,7 +170,10 @@
         if( $seanmeldung == 'on') { ?>
           <a href="<?php echo esc_attr( get_option( 'se_anmeldelink' ) ) ; ?>" target="_blank" style="padding:0;">
             <div class="se_navbar_anmeldebutton se-mc-bg se-wc-txt">
-              Jetzt anmelden
+                <?php
+                $regBtnText = esc_attr( get_option( 'se_anmeldetext' ));
+                echo __($regBtnText, 'SimplEvent');
+                 ?>
             </div>
           </a>
         <?php } ?>
@@ -400,23 +403,34 @@ if(!wp_is_mobile()){
 <?php } ?>
 
 <div class="se-info-sidebar se-sc-bg se-wc-txt" style="display:none;">
-
+  <?php
+  $stringTranslationArr = array(
+    'location' => esc_attr( get_option( 'location' )),
+    'address' => esc_attr( get_option( 'address' )),
+    'date' => esc_attr( get_option( 'date' )),
+    'time' => esc_attr( get_option( 'time' )),
+    'participants' => esc_attr( get_option( 'participants' )),
+    'language' => esc_attr( get_option( 'language' )),
+    'translation' => esc_attr( get_option( 'translation' )),
+    'price' => esc_attr( get_option( 'price' ))
+  );
+   ?>
   <iframe src="<?php echo esc_attr( get_option( 'google_maps' )); ?>" width="100%" height="20%" frameborder="0" style="border:0;" allowfullscreen></iframe>
   <div class="se-info-sidebar-content clearfix" >
     <div class="se-info-sidebar-icon" style="border-top: 2px solid <?php echo $seWC; ?>;">
       <img src="<?php echo get_template_directory_uri(); ?>/img/icon-ort.svg" alt="">
     </div>
     <div class="se-info-sidebar-text">
-      <p><strong><?php echo esc_attr( get_option( 'location' )); ?></strong></p>
-      <pre><?php echo esc_attr(get_option( 'address' )); ?></pre>
+      <p><strong><?php echo __( $stringTranslationArr['location'], 'SimplEvent' ); ?></strong></p>
+      <pre><?php echo __( $stringTranslationArr['address'], 'SimplEvent' ); ?></pre>
     </div>
 
     <div class="se-info-sidebar-icon" style="border-top: 2px solid <?php echo $seWC; ?>;">
       <img src="<?php echo get_template_directory_uri(); ?>/img/icon-datum.svg" alt="">
     </div>
     <div class="se-info-sidebar-text">
-      <p><strong><?php echo esc_attr( get_option( 'date' )); ?></strong></p>
-      <pre><?php echo esc_attr(get_option( 'time' )); ?></pre>
+      <p><strong><?php echo __( $stringTranslationArr['date'], 'SimplEvent' ); ?></strong></p>
+      <pre><?php echo __( $stringTranslationArr['time'], 'SimplEvent' ); ?></pre>
     </div>
 
     <div class="se-info-sidebar-icon" style="border-top: 2px solid <?php echo $seWC; ?>;">
@@ -424,15 +438,15 @@ if(!wp_is_mobile()){
     </div>
     <div class="se-info-sidebar-text">
       <p><strong><?php echo __( 'Teilnehmende', 'SimplEvent' ); ?></strong></p>
-      <p><?php echo esc_attr(get_option( 'participants' )); ?></p>
+      <p><?php echo __( $stringTranslationArr['participants'], 'SimplEvent' ); ?></p>
     </div>
 
     <div class="se-info-sidebar-icon" style="border-top: 2px solid <?php echo $seWC; ?>;">
       <img src="<?php echo get_template_directory_uri(); ?>/img/icon_language.svg" alt="">
     </div>
     <div class="se-info-sidebar-text">
-      <p><strong><?php echo esc_attr( get_option( 'language' )); ?></strong></p>
-      <p><?php echo esc_attr(get_option( 'translation' )); ?></p>
+      <p><strong><?php echo __( $stringTranslationArr['language'], 'SimplEvent' );?></strong></p>
+      <p><?php echo __( $stringTranslationArr['translation'], 'SimplEvent' ); ?></p>
     </div>
 
     <div class="se-info-sidebar-icon" style="border-top: 2px solid <?php echo $seWC; ?>;">
@@ -440,7 +454,7 @@ if(!wp_is_mobile()){
     </div>
     <div class="se-info-sidebar-text">
       <p><strong><?php echo __( 'Preis', 'SimplEvent' ); ?></strong></p>
-      <p><?php echo esc_attr( get_option( 'price' )); ?></p>
+      <p><?php echo __( $stringTranslationArr['price'], 'SimplEvent' ); ?></p>
     </div>
 
     <?php
@@ -448,7 +462,7 @@ if(!wp_is_mobile()){
     if( $seanmeldung == 'on') { ?>
       <a href="<?php echo esc_attr( get_option( 'se_anmeldelink' )); ?>" target="_blank">
         <div class="se_navbar_anmeldebutton se-mc-bg se-wc-txt" style="position: relative; left: 20%;">
-          Jetzt anmelden
+          <?php echo __($regBtnText, 'SimplEvent'); ?>
         </div>
       </a>
     <?php } ?>

@@ -12,7 +12,7 @@ get_header();?>
   <a href="#"><h6 class="se-mc-txt">><b>Report your Bug</b></h6></a>
     <a href="<?php echo home_url(); ?>" >
       <div class="mc-button-neg se-mc-txt" style="border: solid 2px <?php  esc_attr( get_option( 'main_color_picker' ) )?>;">
-        <?php echo __('zurück zur Startseite', 'SimplEvet'); ?>
+        <?php echo __('zurück zur Startseite', 'SimplEvent'); ?>
       </div>
     </a>
 </div>

@@ -163,7 +163,7 @@
       </div>
 
       <?php
-
+      $regBtnText = esc_attr( get_option( 'se_anmeldetext' ));
 
       if (! wp_is_mobile() ) {
         $seanmeldung = esc_attr( get_option( 'se_anmeldung' ) );
@@ -171,7 +171,7 @@
           <a href="<?php echo esc_attr( get_option( 'se_anmeldelink' ) ) ; ?>" target="_blank" style="padding:0;">
             <div class="se_navbar_anmeldebutton se-mc-bg se-wc-txt">
                 <?php
-                $regBtnText = esc_attr( get_option( 'se_anmeldetext' ));
+
                 echo __($regBtnText, 'SimplEvent');
                  ?>
             </div>

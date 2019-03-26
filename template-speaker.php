@@ -96,6 +96,7 @@ if(count($speakerArr) > 1){
 
   <div class="se-strip">
       <?php echo $Loader->getLoader(); ?>
+
       <div class="se-speaker-content-container se-content">
           <?php echo $Speaker->getSpeaker($startID); ?>
       </div>

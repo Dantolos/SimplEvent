@@ -13,14 +13,17 @@ class SpeakerClass {
   protected $postIDs;
 
   public function getSpeaker($Pid = 'N'){
-    if($Pid == 'N') {  //check require parameter
-      $this->outputSpeaker = 'pls set ID -> get_Speaker(ID, )';
+
+    if($Pid == 'N' ) {  //check require parameter
+      $this->outputSpeaker = 'pls set ID -> get_Speaker(TermID)';
 
     } else {
+
       $seMaC = esc_attr( get_option( 'main_color_picker' ) ) ;
       $Clink = new LinkIcon($seMaC);
       $SMicon = new SocialMedia();
       $post = get_post($Pid);
+
 
       $this->outputSpeaker = '<div class="se-col-8" style="padding-right:5%;">';
       $this->outputSpeaker .= '<h1>'. $post->post_title.'</h1>';
@@ -32,7 +35,8 @@ class SpeakerClass {
       $this->outputSpeaker .= '<div class="se-infobox se-speaker-content-container-infobox">';
       $this->outputSpeaker .= '<p style="margin-top:-40px;">' . get_post_meta($Pid, 'speaker_kategorie', true ) . '</p>';
       $this->outputSpeaker .= '<h2>' . get_post_meta($Pid, 'speaker_zeit', true ) . '</h2>';
-      $this->outputSpeaker .= $Clink->getLinkIcon('http://wpsif.e-towers.ch/programm/', 'PROGRAMM');
+      $programmLink = get_site_url() . '/programm';
+      $this->outputSpeaker .= $Clink->getLinkIcon($programmLink, 'Programm');
 
       $i = 0;
       $this->outputSpeaker .= '<div class="se_speaker_social-media">';
@@ -59,6 +63,9 @@ class SpeakerClass {
       }
       $this->outputSpeaker .= '</div>';
       $this->outputSpeaker .= '</div></div>';
+
+
+
     }
 
     return $this->outputSpeaker;

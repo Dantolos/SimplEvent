@@ -484,7 +484,7 @@ ul li {padding-bottom: .6em;}
 /*---------------------------------PEOPLES-------------------------------*/
 /*-----------------------------------------------------------------------*/
 
-.se-people-container { text-align: center !important; margin-bottom:60px; overflow: visible;}
+.se-people-container { text-align: center !important; margin-bottom:60px; overflow: visible; padding: 0 0.5%;}
 .se-people-container h4 { font-weight: 700; margin-top: -20px;}
 .se-people-portrait-img { width:80%; height:80%; position: absolute; right:0; left:0; margin:20px auto; border-radius: 50%; filter: grayscale(60%); -webkit-filter: grayscale(60%); }
 .se-people-stroke { width: 20%; margin:10px auto 5px;}

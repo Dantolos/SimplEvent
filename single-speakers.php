@@ -10,7 +10,7 @@ if(count($term) > 1){
 $SpslugFull = explode('/', $current_url);
 $SpslugFull = array_filter($SpslugFull);
 
-$Spslug = $SpslugFull[count($SpslugFull) - 1];
+$Spslug = $SpslugFull[count($SpslugFull)];
 
 $url = home_url() . '/' . ICL_LANGUAGE_CODE . '/speaker/?j='.$term->name.'&r=' . $Spslug;
 

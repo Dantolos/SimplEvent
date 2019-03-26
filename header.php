@@ -101,8 +101,8 @@
     </div>
     <div class="se-more-events-section">
       <div class="se-more-events-button se-sc-txt" id="more-events-button">
-        <img src="<?php echo get_template_directory_uri(); ?>/img/icon-plus.svg" alt="more" title="show more Events"/>
-        <span style="">more Events</span>
+        <!-- <img src="<?php echo get_template_directory_uri(); ?>/img/icon-plus.svg" alt="more" title="show more Events"/>
+        <span style="">more Events</span> -->
       </div>
     </div>
 
@@ -263,7 +263,7 @@
         </div>
 
         <!-- mobile more event -->
-        <svg version="1.1" id="moEv-mobile-trigger" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        <!-- <svg version="1.1" id="moEv-mobile-trigger" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
            viewBox="0 0 180.536 331.337" style="enable-background:new 0 0 180.536 331.337;" xml:space="preserve">
           <path style="fill:#3B3B3A;" d="M175.612,206.977c-13.376-25.143-32.032-38.487-10.92-98.564h0c3.356-8.83,5.202-18.405,5.202-28.413
             c0-44.183-35.817-80-80-80s-80,35.817-80,80c0,12.79,3.017,24.87,8.354,35.592c17.176,54.009-0.498,67.277-13.323,91.385
@@ -273,7 +273,7 @@
             <line style="fill:none;stroke:#FFFFFF;stroke-width:8;stroke-miterlimit:10;" x1="124.663" y1="73.813" x2="55.873" y2="73.813"/>
             <line id="moEv-mobile-trigger-line" style="fill:none;stroke:#FFFFFF;stroke-width:8;stroke-miterlimit:10;" x1="90.268" y1="108.208" x2="90.268" y2="39.418"/>
           </g>
-        </svg>
+        </svg> -->
 
         <div class="se-navbar-mainmenu-mobile" style="background-color:#fff; z-index: 6000;">
 

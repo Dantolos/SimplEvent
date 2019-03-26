@@ -15,8 +15,8 @@ $firstSlot = array_shift($slotarray);
 ?>
 
 <!--Session Main Content-->
-<div class="se-strip" id="touch-test">
-  <div class="se-content">
+<div class="se-strip" id="touch-test" >
+  <div class="se-content" style="margin-bottom:50px;">
     <div class="se-col-8" style="padding-right: 5%;">
       <h1><?php echo the_title(); ?></h1>
       <p><?php echo the_content(); ?></p>
@@ -26,6 +26,8 @@ $firstSlot = array_shift($slotarray);
         <p><?php echo __( 'Parallelprogramm', 'SimplEvent' ); ?></p>
         <div class="se-infobox-session-dropdown-menu">
           <h2><?php the_field('session_zeit'); ?></h2>
+
+          <?php if(count(get_field('slots')) > 1) {?>
           <div class="se-infobox-session-selector">
             <p id="selected-slot-item" slot="<?php echo $slot; ?>"><?php echo $firstSlot; ?></p>
             <svg version="1.1" id="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -44,8 +46,10 @@ $firstSlot = array_shift($slotarray);
           </div>
         </div>
         <?php
-          $link = get_field('session_linkurl');
-          echo $Clink->getLinkIcon($link, 'PROGRAMM'); ?>
+        }
+
+        $link = get_field('session_linkurl');
+        echo $Clink->getLinkIcon($link, 'PROGRAMM'); ?>
       </div>
     </div>
   </div>

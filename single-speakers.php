@@ -7,8 +7,11 @@ if(count($term) > 1){
   $term = $term[0];
 }
 
-$Spslug = explode('/', $current_url);
-$Spslug = $Spslug[count($Spslug) - 1];
+$SpslugFull = explode('/', $current_url);
+$SpslugFull = array_filter($SpslugFull);
+
+$Spslug = $SpslugFull[count($SpslugFull) - 1];
+
 $url = home_url() . '/' . ICL_LANGUAGE_CODE . '/speaker/?j='.$term->name.'&r=' . $Spslug;
 
 wp_redirect( $url );

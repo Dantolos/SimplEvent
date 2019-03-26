@@ -38,7 +38,7 @@ class SessionsClass {
           $this->output .= '<div class="se-picture-session image-settings" style="background-image:url(' . get_field('session_bild') . ')"></div>';
         }
         $this->output .= '<div class="' . $sessionDir['class'] . ' se-wc-txt se-session-txt">';
-        $this->output .= '<p style="border-left: solid 1px '. esc_attr( get_option( 'main_color_picker' ) ) .'">BS <?php echo $sessionCount + 1; ?></p>';
+        $this->output .= '<p style="border-left: solid 1px '. esc_attr( get_option( 'main_color_picker' ) ) .'">' . ($sessionCount + 1) . '</p>';
         $this->output .= '<h3>'. get_the_title() . '</h3>';
         $this->output .= '<p>'. get_field('session_text') .'</p>';
 

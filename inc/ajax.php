@@ -25,6 +25,8 @@ function se_speaker_load() {
   $review = '';
   if(get_post_meta($postID, 'review_public', true )) {
       $review = $SpeakerCl->getSpeakerReview($postID);
+  } else {
+    $review = '<div style="width:100%; height:150px;"></div>';
   }
 
   $response = array(

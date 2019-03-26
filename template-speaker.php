@@ -106,7 +106,10 @@ if(count($speakerArr) > 1){
     <?php
     if(get_post_meta($startID, 'review_public', true )) {
       echo $Speaker->getSpeakerReview($startID);
-    } ?>
+    } else {
+      echo '<div style="width:100%; height:150px;"></div>';
+    }?>
+
   </div>
 
   <?php

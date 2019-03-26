@@ -48,8 +48,20 @@ $firstSlot = array_shift($slotarray);
         <?php
         }
 
-        $link = get_field('session_linkurl');
-        echo $Clink->getLinkIcon($link, 'PROGRAMM'); ?>
+        switch (ICL_LANGUAGE_CODE) {
+          case 'de':
+            $programmLink = get_site_url() . '/de/programm';
+            $programmText = 'Programm';
+            break;
+          case 'en':
+            $programmLink = get_site_url() . '/en/program';
+            $programmText = 'Program';
+            break;
+          default:
+            $programmLink = get_site_url() . '/programm';
+            break;
+        }
+        echo $Clink->getLinkIcon($programmLink, $programmText); ?>
       </div>
     </div>
   </div>

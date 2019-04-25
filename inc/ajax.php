@@ -10,6 +10,7 @@ ini_set('display_errors', 0);
 
 require_once('class.speaker.php');
 require_once('class.sessions.php');
+require_once('class.award.php');
 
 /*-------------SPEAKER---------------*/
 add_action('wp_ajax_nopriv_se_speaker_load', 'se_speaker_load');
@@ -187,6 +188,40 @@ function se_review_gallery_load() {
     //$response .= '<img src="' . $galIMG["url"] . '" width="23%" height="auto"/>';
   }
   $response .= '</div>';
+
+  echo $response;
+  die();
+}
+
+
+/*-------------Current Award---------------*/
+
+add_action('wp_ajax_nopriv_se_curr_award', 'se_curr_award');
+add_action('wp_ajax_se_curr_award', 'se_curr_award'); //nur für angemeldete (admins)
+
+function se_curr_award() {
+  $Candidate = new AwardClass;
+
+  $cat = $_POST['cate'];
+
+  $response = $Candidate->getCandidate( 2017, $cat, false );
+
+  echo $response;
+  die();
+}
+
+/*-------------Former Award---------------*/
+
+add_action('wp_ajax_nopriv_se_former_award', 'se_former_award');
+add_action('wp_ajax_se_former_award', 'se_former_award'); //nur für angemeldete (admins)
+
+function se_former_award() {
+  $Candidates = new AwardClass;
+
+  $finalists = $_POST['finalists'] === 'true'? true: false;;
+  $jahr = $_POST['jahr'];
+
+  $response = $Candidates->getCandidate( intval($jahr), 'all', $finalists );
 
   echo $response;
   die();

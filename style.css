@@ -3,7 +3,7 @@
  *Author: Aaron Giaimo
  *Author URI: http://aagi.ch/
  *Description: This Theme is specified for simple userfriendly Event-Communication. Its based for the Events, which organized by the Swiss Economic Forum AG.
- *Version: 1.0.38
+ *Version: 1.0.40
  *GitHub Theme URI: https://github.com/Dantolos/SimplEvent
  *GitHub Branch: master
  */
@@ -177,6 +177,72 @@ ul li {padding-bottom: .6em;}
   -moz-box-shadow: 0px 0px 102px 22px rgba(0,0,0,0.5);
   box-shadow: 0px 0px 102px 22px rgba(0,0,0,0.5);
 }
+
+/*---------------FORMS-----------------*/
+.se-award-categories, .se-former-award-winner { position: absolute; top:20px; right:0;}
+.se-form-container {
+  display: block;
+  position: relative;
+  padding-right: 15px;
+  padding-left: 25px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  float:left;
+}
+/* Hide the browser's default radio button */
+.se-form-container input {  position: absolute;  opacity: 0;  cursor: pointer; }
+.se-former-award-winner select { display:none;  }
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #CCC;
+  border-radius: 20%;
+  -webkit-transition: border-radius 500ms; /* Safari */
+  transition: border-radius 500ms;
+}
+
+/* On mouse-over, add a grey background color */
+.se-form-container:hover input ~ .checkmark {
+  background-color: #C5C5C5;
+}
+
+/* When the radio button is checked, add a blue background */
+.se-form-container input:checked ~ .checkmark {
+  border-radius: 50%;
+  background-color: #C5C5C5;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.se-form-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.se-form-container .checkmark:after {
+ 	top: 6px;
+	left: 6px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+
 
 
 /*--------------------------Allgemein-ThemeBased-------------------------*/
@@ -421,7 +487,7 @@ ul li {padding-bottom: .6em;}
 /*-----------------------------------------------------------------------*/
 /*---------------------------------AWARD---------------------------------*/
 /*-----------------------------------------------------------------------*/
-.se-award-jahr-container { width:100%; margin-bottom:100px;}
+/* .se-award-jahr-container { width:100%; margin-bottom:100px;}
 .se-award-box-container { float:left; width:33.1%; height:150px; margin-right: 0.3%; position: relative; overflow: hidden; }
 .se-award-box-container:last-of-type { margin-right: 0; }
 
@@ -431,6 +497,26 @@ ul li {padding-bottom: .6em;}
 .se-award-info-container { width:100%; height:100%;}
 .se-award-info-container p { padding: 10% 10px 20px 48px; margin:0; font-size: 1.4vh; height:40%; overflow-y: auto;}
 .se-award-button { position: absolute; bottom:20%; cursor: pointer;}
+*/
+
+.se-candidate-container { background-color: #fff; margin-bottom:20px; height:300px; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 2px 5px 0 rgba(0, 0, 0, 0.1); transition: box-shadow 500ms;}
+.se-candidate-container:hover { box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19); }
+.se-candidate-img, .se-candidate-content  { float: left; height:100%; position: relative;}
+.se-candidate-img { width:33.3%; }
+.se-candidate-content { width:66.6%; padding: 20px;}
+.se-candidate-logo-container {
+  position: absolute; bottom:0; background-color: rgba(255, 255, 255, .8); height:25%; width:100%;
+  background-size: auto 60%;
+  -ms-background-size: auto 60%;
+  -o-background-size: auto 60%;
+  -moz-background-size: auto 60%;
+  -webkit-background-size: auto 60%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+
+
 
 /*Lightbox*/
 .se-award-lightbox-container { opacity: 0; width:100vw; height:100vh; background-color:rgba(0, 0, 0, 0.8); z-index:2000; position: fixed; top:0;left:0;}

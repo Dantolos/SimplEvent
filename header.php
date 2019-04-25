@@ -48,9 +48,12 @@
   require_once('inc/class.link.php');
   require_once('inc/class.loading.php');
   require_once('inc/class.lightbox.php');
+  require_once('inc/class.socialmedia.php');
+
   require_once('inc/class.speaker.php');
   require_once('inc/class.sessions.php');
-  require_once('inc/class.socialmedia.php');
+  require_once('inc/class.award.php');
+
 
   //modular classes
   require_once('inc/class.modular-elements.php');

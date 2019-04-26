@@ -4,7 +4,7 @@
 */
 
 get_header();
-$Candidate = new AwardClass;
+
 $Loader = new loadingAnimation;
 echo $Loader->getLoader();
 ?>
@@ -58,8 +58,8 @@ echo $Loader->getLoader();
     <!--current Award Content-->
     <div id="se-current-award-wrapper" style="margin-bottom:150px;">
     <?php
-
-    echo $Candidate->getCandidate( $currYear->name, 'all', false ); //getCandidate( jahr(int), kategorie(string), gewinner(bool) )
+    $CurrCandidate = new AwardClass;
+    echo $CurrCandidate->getCandidate( $currYear->name, 'all', true ); //getCandidate( jahr(int), kategorie(string), gewinner(bool) )
 
     ?>
     </div>
@@ -105,13 +105,13 @@ echo $Loader->getLoader();
 
     </div>
 
-    <!--current Award Content-->
+    <!--former Award Content-->
     <div id="se-former-award-wrapper">
-    <?php
-
-    echo $Candidate->getCandidate( 2016, 'all', true ); //getCandidate( jahr(int), kategorie(string), gewinner(bool) )
-
-    ?>
+      <?php
+      $lastYear = intval($formerYear->name);
+      $lastCandidate = new AwardClass;
+      echo $lastCandidate->getCandidate( $lastYear, 'all', true ); //getCandidate( jahr(int), kategorie(string), gewinner(bool) )
+      ?>
     </div>
 
   </div>

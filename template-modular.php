@@ -22,4 +22,6 @@ if( have_rows('strip') ):
 
 endif;
 
+
+
 get_footer();

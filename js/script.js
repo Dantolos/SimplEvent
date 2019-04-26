@@ -132,12 +132,20 @@ jQuery(document).ready(function($){
 
   //--downloadicon
   let DLicon = $('.se-dnl');
+  DLicon.find('path').css({'fill': seMC});
+  DLicon.find('polygon').css({'fill': seMC});
+  $( document ).live(function(){
+    DLicon.find('path').css({'fill': seMC});
+    DLicon.find('polygon').css({'fill': seMC});
+  });
+
   let DLiconBar = DLicon.find('.load');
   let DLiconTL;
   TweenMax.set(DLiconBar, {autoAlpha: 1});
 
   function DLtimeline(e) {
     e = e.find('.load');
+
     DLiconTL = new TimelineMax({paused:true, onComplete:function() {
       this.restart()}
     });
@@ -149,18 +157,10 @@ jQuery(document).ready(function($){
   DLicon.on('mouseover', function(){
     DLtimeline($(this));
     DLiconTL.play();
-    $(this).find('path').css({'fill': seMC});
-    $(this).find('polygon').css({'fill': seMC});
-    $(this).find('.se-dnl-text').removeClass('se-wc-txt');
-    $(this).find('.se-dnl-text').addClass('se-mc-txt');
   });
   DLicon.on('mouseout', function(){
     DLiconTL.stop();
     TweenMax.set(DLiconBar, {autoAlpha: 1});
-    $(this).find('path').css({'fill': 'dedede'});
-    $(this).find('polygon').css({'fill': 'dedede'});
-    $(this).find('.se-dnl-text').removeClass('se-mc-txt');
-    $(this).find('.se-dnl-text').addClass('se-wc-txt');
   });
 
   //header

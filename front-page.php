@@ -64,7 +64,7 @@ endif;
 <?php if($sliderQuery) { ?>
 <div id="slider" class="se-slider-header-container image-settings se-slider-mobile-align-left" style="background-image:url('<?php echo $slideArray[0]['image'] ?>');">
   <div class="se-slider-header-text-container">
-    <?php 
+    <?php
       $displayer = ($slideArray[0]['zitat']) ? 'block' : 'none'; ?>
       <div class="se-slider-header-zitat">
         <p class="" style="display:<?php echo $displayer; ?>;"><strong>&laquo;</strong><?php echo $slideArray[0]['zitat']; ?><strong>&raquo;</strong></p>
@@ -75,7 +75,7 @@ endif;
     <p id="slidefunktion" style="color:<?php echo $slideArray[0]['color']; ?>; font-weight: 300;"><?php echo $slideArray[0]['funktion']; ?></p>
     <?php if($slideArray[0]['button']){ ?>
     <a id="slidebutton" href="<?php echo $slideArray[0]['buttonlink']; ?>">
-      <div class="se-mc-bg mc-button se-wc-txt" style="margin-left:-15px;">
+      <div class="se-mc-bg mc-button se-wc-txt">
         <?php echo $slideArray[0]['buttontext']; ?>
       </div>
     </a>

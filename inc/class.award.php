@@ -8,7 +8,7 @@ class AwardClass {
   public $candIDs = array();
 
   public function getCandidate($Jahr, $Kategorie, $Gewinner = false) {
-
+    intval($Jahr);
     if($Kategorie != 'all'){
       $this->kategorie = array( 'taxonomy' => 'Awardkategorie', 'field' => 'slug', 'terms' => $Kategorie );
     } else {
@@ -16,9 +16,7 @@ class AwardClass {
     }
     $candQuery_args = array(
       'post_type' => 'award', 'orderby' => 'title', 'order' => 'ASC', 'tax_query' => array(
-        array(
-          'taxonomy' => 'Jahrgang', 'field' => 'slug', 'terms' => $Jahr
-        ),
+        array( 'taxonomy' => 'Jahrgang', 'field' => 'slug', 'terms' => $Jahr ),
         $this->kategorie
       ),
     );
@@ -36,7 +34,7 @@ class AwardClass {
     foreach ($this->candIDs as $candID) {
       $winner = get_field('award_gewinner', $candID) ? __('Gewinner', 'SimplEvent') : __('Finalist', 'SimplEvent');
       $kategorie = get_the_terms( $candID, 'Awardkategorie' );
-      
+
       $this->outputCandidate .= '<div class="se-candidate-container">';
       $this->outputCandidate .= '<div class="se-candidate-img image-settings" style="background-image:url(' . get_field('finalist_bild', $candID) . ');">';
       $this->outputCandidate .= '<div class="se-candidate-logo-container" style="background-image:url(' . get_field('award_logo', $candID) . ');"></div>';

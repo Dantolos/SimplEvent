@@ -29,6 +29,18 @@ echo $Loader->getLoader();
       <h3>
         <?php
         $taxonomy = 'Jahrgang';
+        $args = array(
+          'taxonomy' => $taxonomy,
+          'orderby' => 'title',
+          'order' => 'ASC',
+          'hide_empty' => false,
+          'hierarchical' => false,
+          'parent' => 0,
+          'meta_query' => [[
+            'key' => 'wm-cat-prod-order',
+            'type' => 'NUMERIC',
+          ]],
+        );
         $terms = get_terms($taxonomy);
         $currYear = end($terms);
         echo __('Finalisten', 'SimplEvent') . ' ' . $currYear->name;

@@ -47,9 +47,9 @@ echo $Loader->getLoader();
         ?>
       </h3>
 
-      <form class="se-award-categories" action="index.html" method="post">
+      <form class="se-award-categories" action="index.html" method="post" jahr="<?php echo $currYear->name; ?>">
         <label class="se-form-container"><?php echo __('alle', 'SimplEvent') ?>
-          <input class="se-curr-categorie-radio" type="radio" name="categorie" value="all" checked="checked" jahr="<?php echo $currYear->name; ?>">
+          <input class="se-curr-categorie-radio" type="radio" name="categorie" value="all" checked="checked">
           <span class="checkmark"></span>
         </label>
 
@@ -140,7 +140,8 @@ echo $Loader->getLoader();
 
     currCatRadio.on('click', function() {
       var cat = $(this).attr('value');
-      var year = $(this).attr('jahr');
+      var year = $('.se-award-categories').attr('jahr');
+      console.log(year);
       $('#se-current-award-wrapper').empty();
       $('#se-current-award-wrapper').append(seLoader);
       seLoader.css({'display': 'block', 'height': '0px'});
@@ -150,7 +151,7 @@ echo $Loader->getLoader();
         type : 'post',
         data : {
           cate : cat,
-          jahr : year;
+          jahr : year,
           action : 'se_curr_award'
         },
 

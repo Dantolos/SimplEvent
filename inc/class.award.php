@@ -37,7 +37,9 @@ class AwardClass {
 
       $this->outputCandidate .= '<div class="se-candidate-container">';
       $this->outputCandidate .= '<div class="se-candidate-img image-settings" style="background-image:url(' . get_field('finalist_bild', $candID) . ');">';
-      $this->outputCandidate .= '<div class="se-candidate-logo-container" style="background-image:url(' . get_field('award_logo', $candID) . ');"></div>';
+      if(get_field('award_logo', $candID)){
+        $this->outputCandidate .= '<div class="se-candidate-logo-container" style="background-image:url(' . get_field('award_logo', $candID) . ');"></div>';
+      }
       $this->outputCandidate .= '</div>';
       $this->outputCandidate .= '<div class="se-candidate-content">';
 

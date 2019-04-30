@@ -3,11 +3,14 @@
 * Template Name: Peoples Template
 */
 
-get_header(); ?>
+get_header();
+
+$titelAnzeigen = get_field('titel', get_the_ID());
+?>
 
 
 <!--Award Main Content-->
-<div class="se-strip" style="padding-bottom:00px;">
+<div class="se-strip" style="padding-bottom:50px;">
   <div class="se-content">
     <div class="se-col-12">
       <h1><?php echo the_title(); ?></h1>
@@ -16,12 +19,24 @@ get_header(); ?>
   </div>
 </div>
 
+<?php
+  $PplTaxIDs = get_field('group');
+
+  foreach ($PplTaxIDs as $PplTaxID) {
+
+?>
+
 <div class="se-strip" style="padding-top:00px;">
   <div class="se-content">
     <?php
 
+    if ($titelAnzeigen) {
+      $term = get_term_by('id', $PplTaxID, 'Gruppe');
 
-    $PplTaxID = get_field('group');
+      echo '<h3 style="margin-bottom:50px;">'.$term->name.'</h3>';
+    }
+
+
     $Pplargs = array(
       'post_type' => 'people', 'orderby' => 'menu_order', 'order' => 'ASC', 'tax_query' => array(
         array(
@@ -31,11 +46,7 @@ get_header(); ?>
     );
     $Ppl = new WP_Query($Pplargs);
 
-    if (get_field('titel')) {
-      $term = get_term_by('id', $PplTaxID[0], 'Gruppe');
 
-      echo '<h3 style="margin-bottom:50px;">'.$term->name.'</h3>';
-    }
 
     $cPpl = 1;
     if ( $Ppl->have_posts() ) : while ( $Ppl->have_posts() ) : $Ppl->the_post();
@@ -84,6 +95,8 @@ get_header(); ?>
 </div>
 
 <?php
+}
+
 //mobile footer PLACEHOLDER
 if( wp_is_mobile() ) { echo '<div class="se-mobile-footer-placeholder"></div>'; }
 

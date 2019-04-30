@@ -203,8 +203,9 @@ function se_curr_award() {
   $Candidate = new AwardClass;
 
   $cat = $_POST['cate'];
+  $year = $_POST['jahr'];
 
-  $response = $Candidate->getCandidate( 2017, $cat, false );
+  $response = $Candidate->getCandidate( $year, $cat, false );
 
   echo $response;
   die();

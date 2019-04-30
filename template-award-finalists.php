@@ -31,7 +31,7 @@ echo $Loader->getLoader();
         $taxonomy = 'Jahrgang';
         $args = array(
           'taxonomy' => $taxonomy,
-          'orderby' => 'title',
+          'orderby' => 'slug',
           'order' => 'ASC',
           'hide_empty' => false,
           'hierarchical' => false,
@@ -70,8 +70,8 @@ echo $Loader->getLoader();
     <!--current Award Content-->
     <div id="se-current-award-wrapper" style="margin-bottom:150px;">
     <?php
-    $CurrCandidate = new AwardClass;
-    echo $CurrCandidate->getCandidate( $currYear->name, 'all', true ); //getCandidate( jahr(int), kategorie(string), gewinner(bool) )
+      $CurrCandidate = new AwardClass;
+      echo $CurrCandidate->getCandidate( $currYear->name, 'all', false ); //getCandidate( jahr(int), kategorie(string), gewinner(bool) )
 
     ?>
     </div>

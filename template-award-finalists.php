@@ -53,7 +53,7 @@ echo $Loader->getLoader();
           <span class="checkmark"></span>
         </label>
 
-        <?php $categories = get_terms('Awardkategorie');
+        <?php $categories = get_terms(array('taxonomy' => 'Awardkategorie', 'orderby' => 'term_order'));
           foreach ($categories as $categorie) {
             echo '<label class="se-form-container">';
             echo '<input class="se-curr-categorie-radio" type="radio" name="categorie" value="'.$categorie->slug.'">' . $categorie->name;
@@ -77,7 +77,7 @@ echo $Loader->getLoader();
     </div>
 
     <!--former winners-->
-    <div class="se-partner-kategorie" style="position:relative; border-bottom: solid 2px <?php echo esc_attr( get_option( 'main_color_picker' ) ) ; ?>; margin-bottom:10px;">
+    <div id="formerWinners" class="se-partner-kategorie" style="position:relative; border-bottom: solid 2px <?php echo esc_attr( get_option( 'main_color_picker' ) ) ; ?>; margin-bottom:10px;">
       <h3>
         <?php
         end($terms);
@@ -212,7 +212,7 @@ echo $Loader->getLoader();
         $('#se-former-award-wrapper').empty();
         $('#se-former-award-wrapper').append(seLoader);
 
-        $('.se-partner-kategorie').find('h3').empty().append(Jahrgang);
+        $('#formerWinners').find('h3').empty().append(Jahrgang);
 
         seLoader.css({'display': 'block', 'height': '0px'});
 

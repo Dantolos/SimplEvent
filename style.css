@@ -3,7 +3,7 @@
  *Author: Aaron Giaimo
  *Author URI: http://aagi.ch/
  *Description: This Theme is specified for simple userfriendly Event-Communication. Its based for the Events, which organized by the Swiss Economic Forum AG.
- *Version: 1.0.46
+ *Version: 1.0.47
  *GitHub Theme URI: https://github.com/Dantolos/SimplEvent
  *GitHub Branch: master
  */
@@ -469,6 +469,7 @@ ul li {padding-bottom: .6em;}
 .se-partner-socialmedia { bottom:0; left:0; }
 .se-partner-sm-icon { float:left; }
 
+
 /*-----------------------------------------------------------------------*/
 /*---------------------------------PROGRAMM------------------------------*/
 /*-----------------------------------------------------------------------*/
@@ -484,21 +485,10 @@ ul li {padding-bottom: .6em;}
 .se-programm-programmpunkt { width:99.8%; position: relative; opacity: .8;}
 .se-programm-programmpunkt img { position: absolute; right:2%; top:0; bottom: 0;margin: auto 0;}
 
+
 /*-----------------------------------------------------------------------*/
 /*---------------------------------AWARD---------------------------------*/
 /*-----------------------------------------------------------------------*/
-/* .se-award-jahr-container { width:100%; margin-bottom:100px;}
-.se-award-box-container { float:left; width:33.1%; height:150px; margin-right: 0.3%; position: relative; overflow: hidden; }
-.se-award-box-container:last-of-type { margin-right: 0; }
-
-.se-award-bar{ position: absolute; bottom:0; width:100%; height:40px;}
-.se-award-bar img { position: absolute; }
-.se-award-bar h4 { padding:5px 10px 5px 48px; }
-.se-award-info-container { width:100%; height:100%;}
-.se-award-info-container p { padding: 10% 10px 20px 48px; margin:0; font-size: 1.4vh; height:40%; overflow-y: auto;}
-.se-award-button { position: absolute; bottom:20%; cursor: pointer;}
-*/
-
 .se-candidate-container { background-color: #fff; margin-bottom:20px; height:300px; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 2px 5px 0 rgba(0, 0, 0, 0.1); transition: box-shadow 500ms;}
 .se-candidate-container:hover { box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19); }
 .se-candidate-img, .se-candidate-content  { float: left; height:100%; position: relative;}

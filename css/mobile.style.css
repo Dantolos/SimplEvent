@@ -117,6 +117,17 @@
   .se-programm-zeit { background-color: #fff; border-right: none;   border-bottom: 1px solid #b7b7b7; float:none; padding: 2% 0% 0; font-size: 14px;}
   .se-programm-programmpunkt img { opacity: 0.4 !important; right: 5%; height:15px; top: 38px; bottom: unset; }
 
+  /*--AWARD--*/
+  .se-candidate-container { height:auto; }
+  .se-candidate-img { float: none; height:200px; width: 100%;}
+  .se-candidate-content { float: none; width:100%; }
+  .se-candidate-content a { position: static !important; margin-top:10px;}
+  .se-candidate-content a div {  margin-top:20px !important; }
+
+  /*FORM*/
+  .se-award-categories, .se-former-award-winner { position:static;}
+  .se-form-container { float:none; }
+  .se-form-container .se-partner-dropdown { top: -42px !important; }
 
   /*--REVIEWS--*/
   .se-review-strip { margin-top:0 !important; }

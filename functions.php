@@ -148,3 +148,10 @@ function array_insert(&$array, $position, $insert)
 
 /*------------------------------DISABLE BlockEditor---------------------------*/
 add_filter('use_block_editor_for_post', '__return_false');
+
+/*------------------------------User Show Media---------------------------*/
+add_filter('ure_attachments_show_full_list', 'show_full_list_of_attachments', 10, 1);
+function show_full_list_of_attachments($show_all) {
+
+   return true;
+}

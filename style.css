@@ -3,7 +3,7 @@
  *Author: Aaron Giaimo
  *Author URI: http://aagi.ch/
  *Description: This Theme is specified for simple userfriendly Event-Communication. Its based for the Events, which organized by the Swiss Economic Forum AG.
- *Version: 1.0.48
+ *Version: 1.0.49
  *GitHub Theme URI: https://github.com/Dantolos/SimplEvent
  *GitHub Branch: master
  */
@@ -533,15 +533,15 @@ ul li {padding-bottom: .6em;}
 .se-review-content-title svg { position: absolute; right:5px; top:5px; height:25px;}
 
 .se-review-content-inner { margin:10px 20px; position:relative;}
-.se-review-col { float:left;width:50%; margin:40px 0; }
+.se-review-col { float:left; width:33.3%; margin:40px 0; }
 .se-review-col svg { width:100%; }
 .se-review-col h5 { margin-top:10px; }
-.se-review-button { width:10%; border-radius: 20px; margin:auto; cursor: pointer;}
+.se-review-button { width:20%; border-radius: 20px; margin:auto; cursor: pointer;}
 
-.se-review-medien-button { cursor: pointer; font-weight: 700;  margin:0px 0 10px 0;}
+.se-review-medien-button { cursor: pointer; font-weight: 700;  }
 .se-review-medien-line { margin:2px 0 30px 0; position:absolute; margin:auto; left:0; right:0; width:20%; bottom:0;}
 .se-review-medien-button h6 {border-top: 2px solid #fff; }
-.se-review-medien-container {position:absolute; margin:auto; left:0; right:0; width:20%; bottom:52px;}
+.se-review-medien-container {position:unset; margin: 20px auto; left:0; right:0; width:20%; bottom:52px; z-index: 500;}
 
 .se-review-medien-head h6 {line-height: 2.5em; font-weight: 700;}
 .se-review-medien-row {height:25px; width:100%; }

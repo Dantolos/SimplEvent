@@ -16,14 +16,14 @@ if(! isset($_GET['c'])) {
 } else {
   foreach ($terms as $term){
     if ($term->slug == $_GET['c'] ) {
-      $mainCat = icl_object_id( $term->term_id, 'Kategorie', ICL_LANGUAGE_CODE );;
+      $mainCat = icl_object_id( $term->term_id, 'Kategorie', ICL_LANGUAGE_CODE );
     }
   }
 }
 
 
 $main_partner_args = array(
-  'post_type' => 'p', 'orderby' => 'title', 'order' => 'ASC', 'tax_query' => array(
+  'post_type' => 'p', 'orderby' => 'term_order', 'order' => 'ASC', 'tax_query' => array(
     array(
       'taxonomy' => 'Kategorie', 'field' => 'term_id', 'terms' => $mainCat,
     ),

@@ -6,8 +6,21 @@ get_header();
 
 $Loader = new loadingAnimation;
 
+$taxonomy = 'Kategorie';
+$terms = get_terms($taxonomy); // Get all terms of a taxonomy
+
 /*QUERY*/
-$mainCat = get_field('hauptkategorie');
+$mainCat;
+if(! isset($_GET['c'])) {
+  $mainCat = get_field('hauptkategorie');
+} else {
+  foreach ($terms as $term){
+    if ($term->slug == $_GET['c'] ) {
+      $mainCat = $term->term_id;
+    }
+  }
+}
+
 
 $main_partner_args = array(
   'post_type' => 'p', 'orderby' => 'title', 'order' => 'ASC', 'tax_query' => array(
@@ -18,8 +31,7 @@ $main_partner_args = array(
 );
 $main_partner = new WP_Query($main_partner_args);
 
-$taxonomy = 'Kategorie';
-$terms = get_terms($taxonomy); // Get all terms of a taxonomy
+
 
 ?>
 

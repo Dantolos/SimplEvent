@@ -7,7 +7,11 @@ get_header();
 $Loader = new loadingAnimation;
 
 $taxonomy = 'Kategorie';
-$terms = get_terms($taxonomy); // Get all terms of a taxonomy
+$terms = get_terms( array(
+            'taxonomy' => $taxonomy,
+            'orderby' => 'term_order'
+          )
+        ); // Get all terms of a taxonomy
 
 /*QUERY*/
 $mainCat;

@@ -16,7 +16,7 @@ if(! isset($_GET['c'])) {
 } else {
   foreach ($terms as $term){
     if ($term->slug == $_GET['c'] ) {
-      $mainCat = $term->term_id;
+      $mainCat = icl_object_id( $term->term_id, 'Kategorie', ICL_LANGUAGE_CODE );;
     }
   }
 }

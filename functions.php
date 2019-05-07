@@ -1,4 +1,6 @@
 <?php
+
+
 //include Theme Setting Seite
 require get_template_directory() . '/inc/function-admin.php';
 require get_template_directory() . '/inc/enqeue.php';
@@ -74,6 +76,14 @@ function wp_bibel_de_custom_jpeg_quality($quality) {
 	return $quality;
 }
 
+/*------------------------------User Show Media---------------------------*/
+add_filter('ure_attachments_show_full_list', 'show_full_list_of_attachments', 10, 1);
+function show_full_list_of_attachments($show_all) {
+
+   return true;
+}
+
+
 /*---------------------------------------------------------
 ACF - Start
 ---------------------------------------------------------*/
@@ -148,10 +158,3 @@ function array_insert(&$array, $position, $insert)
 
 /*------------------------------DISABLE BlockEditor---------------------------*/
 add_filter('use_block_editor_for_post', '__return_false');
-
-/*------------------------------User Show Media---------------------------*/
-add_filter('ure_attachments_show_full_list', 'show_full_list_of_attachments', 10, 1);
-function show_full_list_of_attachments($show_all) {
-
-   return true;
-}

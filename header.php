@@ -357,7 +357,7 @@ if(!wp_is_mobile()){
     //echo '<pre>'; var_dump($m['children']); echo '</pre>';
     $smArr = $m['children'];
     if ($smArr) { ?>
-      <div subnav="<?php echo $m['ID']; ?>" class="se-subnav-container se-mc-bg se-wc-txt" style="opacity:0; width: 100vw;"> <?php
+      <div subnav="<?php echo $m['ID']; ?>" class="se-subnav-container se-sc-bg se-wc-txt" style="opacity:0; width: 100vw;"> <?php
 
       foreach(array_reverse($smArr) as $sm){ ?>
         <a href="<?php echo $sm['url']; ?>" class="aagi-w-txt"  id="<?php echo $sm['ID']; ?>">

@@ -47,13 +47,19 @@ echo $Loader->getLoader();
         ?>
       </h3>
 
+      <?php
+      $categories = get_terms(array('taxonomy' => 'Awardkategorie', 'orderby' => 'term_order'));
+
+      //dont show selection if less then 2 categories (trend radar)
+      if(count($categories) > 1) {
+      ?>
       <form class="se-award-categories" action="index.html" method="post" jahr="<?php echo $currYear->name; ?>">
         <label class="se-form-container"><?php echo __('alle', 'SimplEvent') ?>
           <input class="se-curr-categorie-radio" type="radio" name="categorie" value="all" checked="checked">
           <span class="checkmark"></span>
         </label>
 
-        <?php $categories = get_terms(array('taxonomy' => 'Awardkategorie', 'orderby' => 'term_order'));
+        <?php
           foreach ($categories as $categorie) {
             echo '<label class="se-form-container">';
             echo '<input class="se-curr-categorie-radio" type="radio" name="categorie" value="'.$categorie->slug.'">' . $categorie->name;
@@ -62,8 +68,9 @@ echo $Loader->getLoader();
 
           }
         ?>
-
       </form>
+      <?php } ?>
+
     </div>
 
 

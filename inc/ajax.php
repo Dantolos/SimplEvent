@@ -87,8 +87,7 @@ add_action('wp_ajax_se_partner_cat_load', 'se_partner_cat_load'); //nur für ang
 
 function se_partner_cat_load() {
 
-  $postID = $_POST['cid'];
-
+  $postID = icl_object_id( $_POST['cid'], 'Kategorie', ICL_LANGUAGE_CODE );
   $main_partner_args = array(
     'post_type' => 'p', 'orderby' => 'title', 'order' => 'ASC', 'tax_query' => array(
       array(

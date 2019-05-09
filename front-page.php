@@ -16,6 +16,7 @@ if ( $sliderQuery -> have_posts() ) :
 
       if( have_rows('slider') ):
           while ( have_rows('slider') ) : the_row();
+              $type = get_row_layout();
 
               $image = get_sub_field('slider_bild');
               $zitat = '';
@@ -23,12 +24,12 @@ if ( $sliderQuery -> have_posts() ) :
                 $zitat = get_sub_field('zitat');
               }
 
-              $referent = get_sub_field('referentenbezeichnung');
-              if ( $referent ) {
-                $referentname = $referent['referent'];
-                $referentfunktion = $referent['funktion'];
-                $referentcolor = $referent['textfarbe'];
-              }
+
+                $referent = get_sub_field('referentenbezeichnung');
+                $referentname = $referent ? $referent['referent'] : 'empty';
+                $referentfunktion = $referent ? $referent['funktion'] : 'empty';
+                $referentcolor = $referent ? $referent['textfarbe'] : 'empty';
+
 
               $button = get_sub_field('verlinkung');
               $buttonOO = '';
@@ -41,6 +42,7 @@ if ( $sliderQuery -> have_posts() ) :
               }
 
               $slider = array(
+                'type' => $type,
                 'image' => $image,
                 'zitat' => $zitat,
                 'name' => $referentname,
@@ -48,7 +50,13 @@ if ( $sliderQuery -> have_posts() ) :
                 'button' => $buttonOO,
                 'buttonlink' => $buttonlink,
                 'buttontext' => $buttontext,
-                'color' => $referentcolor
+                'color' => $referentcolor,
+
+                'datum' => get_sub_field('datum'),
+                'logo' => get_sub_field('logo'),
+                'titel' => get_sub_field('titel'),
+                'logosize' => get_sub_field('logosize'),
+                'textcolor' => get_sub_field('textfarbe')
               );
               array_push($slideArray, $slider);
 
@@ -61,28 +69,66 @@ endif;
 ?>
 
 <!--Header-Slider-->
-<?php if($sliderQuery) { ?>
-<div id="slider" class="se-slider-header-container image-settings se-slider-mobile-align-left" style="background-image:url('<?php echo $slideArray[0]['image'] ?>');">
-  <div class="se-slider-header-text-container">
+<?php if($sliderQuery) {
+
+  ?>
+  <div id="slider" class="se-slider-header-container image-settings se-slider-mobile-align-left" style="background-image:url('<?php echo $slideArray[0]['image'] ?>');">
     <?php
-      $displayer = ($slideArray[0]['zitat']) ? 'block' : 'none'; ?>
-      <div class="se-slider-header-zitat">
-        <p class="" style="display:<?php echo $displayer; ?>;"><strong>&laquo;</strong><?php echo $slideArray[0]['zitat']; ?><strong>&raquo;</strong></p>
-      </div>
+    $typeOrder;
+    switch ($slideArray[0]['type']) {
+      case 'zitat':
+        $typeOrder = array('block', 'none');
+        break;
+      case 'titel':
+        $typeOrder = array('none', 'block');
+        break;
+      default:
+        $typeOrder = array('none', 'block');
+        break;
+    }
+
+    $displayer = $slideArray[0]['zitat'] ? 'block' : 'none'; //if zitat in zitat
+
+    ?>
+    <!-- zitat -->
+    <div id="se-slider-type-zitat" class="se-slider-header-text-container" style="display:<?php echo $typeOrder[0]; ?>;">
 
 
-    <p id="slidename" style="margin-top:20px; color:<?php echo $slideArray[0]['color']; ?>;"><strong><?php echo $slideArray[0]['name']; ?></strong></p>
-    <p id="slidefunktion" style="color:<?php echo $slideArray[0]['color']; ?>; font-weight: 300;"><?php echo $slideArray[0]['funktion']; ?></p>
-    <?php if($slideArray[0]['button']){ ?>
-    <a id="slidebutton" href="<?php echo $slideArray[0]['buttonlink']; ?>">
-      <div class="se-mc-bg mc-button se-wc-txt">
-        <?php echo $slideArray[0]['buttontext']; ?>
+      <div class="se-slider-type-zitat" >
+
+        <div class="se-slider-header-zitat" style="display:<?php echo $typeOrder[$typeDisplayer]; ?>;">
+          <p class="" style="display:<?php echo $displayer; ?>;"><strong>&laquo;</strong><?php echo $slideArray[0]['zitat']; ?><strong>&raquo;</strong></p>
+        </div>
+
+
+        <p id="slidename" style="margin-top:20px; color:<?php echo $slideArray[0]['color']; ?>;"><strong><?php echo $slideArray[0]['name']; ?></strong></p>
+        <p id="slidefunktion" style="color:<?php echo $slideArray[0]['color']; ?>; font-weight: 300;"><?php echo $slideArray[0]['funktion']; ?></p>
+
+        <?php if($slideArray[0]['button']){ ?>
+          <a id="slidebutton" href="<?php echo $slideArray[0]['buttonlink']; ?>">
+            <div class="se-mc-bg mc-button se-wc-txt">
+              <?php echo $slideArray[0]['buttontext']; ?>
+            </div>
+          </a>
+        <?php } ?>
+
       </div>
-    </a>
-    <?php } ?>
+    </div>
+
+
+    <!-- titel -->
+    <div id="se-slider-type-titel" class="" style="display:<?php echo $typeOrder[1]; ?>; color: <?php echo $slideArray[0]['textcolor']; ?>;">
+      <div id="sliderLogo" style="padding:0 <?php echo $slideArray[0]['logosize']; ?>%;">
+        <img src="<?php echo $slideArray[0]['logo']; ?>" alt="" width="100%">
+      </div>
+      <h3 id="sliderTitel"><?php echo $slideArray[0]['titel']; ?></h3>
+      <p id="sliderDatum"><?php echo $slideArray[0]['datum']; ?></p>
+    </div>
+
+
+
   </div>
-</div>
-<?php }
+  <?php }
 
 //CONTENT
 
@@ -128,6 +174,9 @@ if( get_field('strip', $curPageID)  ) {
 
     var currentSlide = 1;
 
+    var TitelSlide = $('#se-slider-type-titel');
+    var ZitatSlide = $('#se-slider-type-zitat');
+
     var sliderContainer = $('#slider');
     var slidesTC = $('.se-slider-header-text-container');
     var slideZitat = $('.se-slider-header-zitat');
@@ -136,21 +185,33 @@ if( get_field('strip', $curPageID)  ) {
     var slideButton = $('#slidebutton');
     var slideTextColor = [slideName, slideFunktion];
 
+    var sliderLogo = $('#sliderLogo');
+    var sliderTitel = $('#sliderTitel');
+    var sliderDatum = $('#sliderDatum');
+
     var SlideArray = <?php echo json_encode($slideArray); ?>;
 
-    var interval
+    var interval;
     function startSlider() {
 
       interval = setInterval(function() {
         slideCounter++;
 
+        ZitatSlide.fadeOut();
+        TitelSlide.fadeOut();
         slidesTC.animate({ }, function() {
             slideZitat.fadeOut();
+
             setTimeout(function(){
               slideZitat.empty();
               slideName.empty();
               slideFunktion.empty();
               slideButton.empty();
+
+              sliderLogo.find('img').attr('src', '');
+              sliderLogo.hide();
+              sliderTitel.empty();
+              sliderDatum.empty();
             }, 500);
         });
 
@@ -163,8 +224,22 @@ if( get_field('strip', $curPageID)  ) {
         setTimeout(function() {
             var offsetRight = (!isMobile) ? '20vw' : '5vw';
             var displayer = (SlideArray[currentSlide]['zitat']) ? 'block' : 'none';
-            slidesTC.css({'right': '-500', 'opacity': '0'}).animate({'right': offsetRight, 'opacity': '1' },700);
-            slideZitat.css({'display': displayer})
+            var typeDisplayer;
+            switch (SlideArray[currentSlide]['type']) {
+              case 'zitat':
+                typeDisplayer = ['block', 'none'];
+                break;
+              case 'titel':
+                typeDisplayer = ['none', 'block'];
+                break;
+              default:
+            }
+            ZitatSlide.css({'display': typeDisplayer[0]});
+            TitelSlide.css({'display': typeDisplayer[1], 'color': SlideArray[currentSlide]['textcolor']});
+
+            //Zitat
+            slidesTC.css({'right': '-500', 'opacity': '0'}).animate({'right': offsetRight, 'opacity': '1' }, 700);
+            slideZitat.css({'display': displayer});
             slideName.css({'color': SlideArray[currentSlide]['color']});
             slideFunktion.css({'color': SlideArray[currentSlide]['color']});
             slideZitat.append('<p><strong>&laquo;</strong>'+SlideArray[currentSlide]['zitat']+'<strong>&raquo;</strong></p>');
@@ -174,6 +249,15 @@ if( get_field('strip', $curPageID)  ) {
               slideButton.attr('href', SlideArray[currentSlide]['buttonlink']);
               slideButton.append('<div class="se-mc-bg mc-button se-wc-txt">'+SlideArray[currentSlide]['buttontext']+'</div>');
             }
+
+            let logosize = '0 ' + SlideArray[currentSlide]['logosize'] + '%';
+            sliderLogo.css({'padding': logosize });
+            sliderLogo.find('img').attr('src', SlideArray[currentSlide]['logo']);
+            sliderLogo.fadeIn();
+            sliderTitel.append(SlideArray[currentSlide]['titel']);
+            sliderDatum.append(SlideArray[currentSlide]['titel']);
+
+
             currentSlide++;
             if (currentSlide === SlideArray.length) {
               currentSlide = 0;
@@ -186,7 +270,10 @@ if( get_field('strip', $curPageID)  ) {
     function stopSlider() {
         clearInterval(interval);
     }
-    startSlider();
+    if(SlideArray.length > 1) {
+      startSlider();
+    }
+
     slidesTC.on('mouseenter', stopSlider).on('mouseleave', startSlider);
 
   });

@@ -11,8 +11,13 @@ $SpslugFull = explode('/', $current_url);
 $SpslugFull = array_filter($SpslugFull);
 
 $Spslug = $SpslugFull[count($SpslugFull)];
+if ( function_exists('icl_object_id') ) {
+  $url = home_url() . '/' . ICL_LANGUAGE_CODE . '/speaker/?j='.$term->name.'&r=' . $Spslug;
+}else{
+  $url = home_url() . '/speaker/?j='.$term->name.'&r=' . $Spslug;
+}
 
-$url = home_url() . '/' . ICL_LANGUAGE_CODE . '/speaker/?j='.$term->name.'&r=' . $Spslug;
+
 
 wp_redirect( $url );
 exit;

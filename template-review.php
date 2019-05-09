@@ -8,26 +8,31 @@ get_header();
 $Olink = new LinkIcon;
 $rCount = 0;
 
+
 //Button Medien in Variable
-$RevMediaButton = '<div class="se-review-col" style="text-align:center;">';
-$RevMediaButton .= '<div class="button-border se-review-button se-review-medien-button" mid="' . $rCount . '"  mopen="N">';
-$RevMediaButton .= '<a>';
-$RevMediaButton .= '<svg version="1.1" id="Medien" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="50%" y="50%"
-   viewBox="0 0 148.7 148.7" style="enable-background:new 0 0 148.7 148.7;" xml:space="preserve">';
+function createMediaBtn($rC) {
+  $RevMediaButton = '<div class="se-review-col" style="text-align:center;">';
+  $RevMediaButton .= '<div class="button-border se-review-button se-review-medien-button" mid="' . $rC . '"  mopen="N">';
+  $RevMediaButton .= '<a>';
+  $RevMediaButton .= '<svg version="1.1" id="Medien" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="50%" y="50%"
+     viewBox="0 0 148.7 148.7" style="enable-background:new 0 0 148.7 148.7;" xml:space="preserve">';
 
 
-$RevMediaButton .= '<style type="text/css"> .icon-in{fill:#C3B940;} </style>';
-$RevMediaButton .= '<g>
-                      <path class="icon-in" d="M91.4,72.9H88c9.2-4.6,15.6-14.2,15.6-25.1c0-15.5-12.6-28.1-28.1-28.1S47.3,32.2,47.3,47.7
-                        c0,11,6.3,20.5,15.6,25.1h-5.6c-0.2,0-21.9,0.3-21.9,21.9v34.1h2.7V94.8c0-18.9,18.4-19.2,19.2-19.2h34.1
-                        c18.9,0,19.2,18.4,19.2,19.2v34.1h2.7V94.8C113.3,94.6,113,72.9,91.4,72.9z M50,47.7c0-14,11.4-25.4,25.4-25.4
-                        c14,0,25.4,11.4,25.4,25.4c0,12.8-9.5,23.4-21.7,25.1h-7.4C59.5,71.1,50,60.5,50,47.7z"/>
-                    </g>';
-$RevMediaButton .= '</svg></a></div>';
-$RevMediaButton .= '<h5>' . __('MEDIEN', 'SimplEvent') . '</h5>';
-$RevMediaButton .= '<h6>'. __('Schauen Sie alle nochmals alle Referate in Ruhe durch', 'SimplEvent') . '</h6>';
-$RevMediaButton .= '</div>';
+  $RevMediaButton .= '<style type="text/css"> .icon-in{fill:#C3B940;} </style>';
+  $RevMediaButton .= '<g>
+                        <path class="icon-in" d="M91.4,72.9H88c9.2-4.6,15.6-14.2,15.6-25.1c0-15.5-12.6-28.1-28.1-28.1S47.3,32.2,47.3,47.7
+                          c0,11,6.3,20.5,15.6,25.1h-5.6c-0.2,0-21.9,0.3-21.9,21.9v34.1h2.7V94.8c0-18.9,18.4-19.2,19.2-19.2h34.1
+                          c18.9,0,19.2,18.4,19.2,19.2v34.1h2.7V94.8C113.3,94.6,113,72.9,91.4,72.9z M50,47.7c0-14,11.4-25.4,25.4-25.4
+                          c14,0,25.4,11.4,25.4,25.4c0,12.8-9.5,23.4-21.7,25.1h-7.4C59.5,71.1,50,60.5,50,47.7z"/>
+                      </g>';
+  $RevMediaButton .= '</svg></a></div>';
+  $RevMediaButton .= '<h5>' . __('MEDIEN', 'SimplEvent') . '</h5>';
+  $RevMediaButton .= '<h6>'. __('Schauen Sie alle nochmals alle Referate in Ruhe durch', 'SimplEvent') . '</h6>';
+  $RevMediaButton .= '</div>';
 
+  echo $RevMediaButton;
+
+}
 
 if( have_rows('reviews') ) {
   while ( have_rows('reviews') ) : the_row();
@@ -84,47 +89,56 @@ if( have_rows('reviews') ) {
 
           <!-- Medien -->
           <?php
-          if (!wp_is_mobile()) {
-            echo $RevMediaButton;
+          if (!wp_is_mobile() && get_sub_field('medienmitteilungen') ) {
+            createMediaBtn($rCount);
           }
           ?>
 
 
           <!-- Fotos -->
-          <div class="se-review-col" style="text-align:center;">
-            <div class="button-border se-review-button se-review-gallery-btn" pagid="<?php echo get_the_ID(); ?>" galid="<?php echo $rCount; ?>">
-              <svg version="1.1" id="Fotos" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="50%" y="50%"
-                 viewBox="0 0 148.7 148.7" style="enable-background:new 0 0 148.7 148.7;" xml:space="preserve">
-              <style type="text/css">
-                .icon-in{fill:#C3B940;}
-              </style>
-              <g>
+
+          <?php
+  
+
+          if( get_field('gallery') ) {
+
+            ?>
+            <div class="se-review-col" style="text-align:center;">
+              <div class="button-border se-review-button se-review-gallery-btn" pagid="<?php echo get_the_ID(); ?>" galid="<?php echo $rCount; ?>">
+                <svg version="1.1" id="Fotos" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="50%" y="50%"
+                   viewBox="0 0 148.7 148.7" style="enable-background:new 0 0 148.7 148.7;" xml:space="preserve">
+                <style type="text/css">
+                  .icon-in{fill:#C3B940;}
+                </style>
                 <g>
-                  <path class="icon-in" d="M74.4,98.1c-13.2,0-24-10.8-24-24c0-13.2,10.8-24,24-24s24,10.8,24,24C98.4,87.4,87.6,98.1,74.4,98.1z
-                     M74.4,52.8C62.6,52.8,53,62.4,53,74.1c0,11.8,9.6,21.3,21.3,21.3s21.3-9.6,21.3-21.3C95.7,62.4,86.1,52.8,74.4,52.8z"/>
+                  <g>
+                    <path class="icon-in" d="M74.4,98.1c-13.2,0-24-10.8-24-24c0-13.2,10.8-24,24-24s24,10.8,24,24C98.4,87.4,87.6,98.1,74.4,98.1z
+                       M74.4,52.8C62.6,52.8,53,62.4,53,74.1c0,11.8,9.6,21.3,21.3,21.3s21.3-9.6,21.3-21.3C95.7,62.4,86.1,52.8,74.4,52.8z"/>
+                  </g>
+                  <g>
+                    <path class="icon-in" d="M118.6,107.5H30.1c-7.2,0-9.1-5.9-9.1-9.1V49.6c0-7.2,5.9-9.1,9.1-9.1h88.6c7.2,0,9.1,5.9,9.1,9.1v48.8
+                      C127.7,105.6,121.8,107.5,118.6,107.5z M30.1,43.3c-0.7,0-6.4,0.2-6.4,6.4v48.8c0,0.6,0.2,6.4,6.4,6.4h88.6c0.6,0,6.4-0.2,6.4-6.4
+                      V49.6c0-0.6-0.2-6.4-6.4-6.4H30.1z"/>
+                  </g>
                 </g>
-                <g>
-                  <path class="icon-in" d="M118.6,107.5H30.1c-7.2,0-9.1-5.9-9.1-9.1V49.6c0-7.2,5.9-9.1,9.1-9.1h88.6c7.2,0,9.1,5.9,9.1,9.1v48.8
-                    C127.7,105.6,121.8,107.5,118.6,107.5z M30.1,43.3c-0.7,0-6.4,0.2-6.4,6.4v48.8c0,0.6,0.2,6.4,6.4,6.4h88.6c0.6,0,6.4-0.2,6.4-6.4
-                    V49.6c0-0.6-0.2-6.4-6.4-6.4H30.1z"/>
-                </g>
-              </g>
-              </svg>
+                </svg>
+              </div>
+              <h5><?php echo __('FOTOS', 'SimplEvent'); ?></h5>
+              <h6>Impressionen rund um die Bühne</h6>
             </div>
-            <h5><?php echo __('FOTOS', 'SimplEvent'); ?></h5>
-            <h6>Impressionen rund um die Bühne</h6>
-          </div>
+          <?php } ?>
 
 
           <!-- Medien -->
           <?php
-          if (wp_is_mobile()) {
-            echo $RevMediaButton;
+          if (wp_is_mobile() && get_sub_field('medienmitteilungen')) {
+            createMediaBtn($rCount);
           }
           ?>
 
 
           <!-- Inhalt Medien -->
+
           <div class="se-review-medien-container" style="display:none;">
             <?php
             $mm = get_sub_field('medienmitteilungen');
@@ -156,6 +170,7 @@ if( have_rows('reviews') ) {
 
 
   <?php
+
   $rCount++;
   endwhile;
 }?>

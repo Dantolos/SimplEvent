@@ -172,7 +172,7 @@ if( get_field('strip', $curPageID)  ) {
             slideFunktion.append(SlideArray[currentSlide]['funktion']);
             if ( SlideArray[currentSlide]['button'] === true ) {
               slideButton.attr('href', SlideArray[currentSlide]['buttonlink']);
-              slideButton.append('<div class="se-mc-bg mc-button se-wc-txt" style="margin-left:-15px;">'+SlideArray[currentSlide]['buttontext']+'</div>');
+              slideButton.append('<div class="se-mc-bg mc-button se-wc-txt">'+SlideArray[currentSlide]['buttontext']+'</div>');
             }
             currentSlide++;
             if (currentSlide === SlideArray.length) {

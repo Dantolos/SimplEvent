@@ -93,7 +93,7 @@ $main_partner = new WP_Query($main_partner_args);
 
     <div class="se-partner-logo-containter">
       <?php  if ( $main_partner->have_posts() ) : while ( $main_partner->have_posts() ) : $main_partner->the_post();
-        $Logo = $bild = get_field('partner-logo'); ?>
+        $Logo = esc_url( get_field('partner-logo') ); ?>
 
           <div data-id="<?php echo get_the_ID(); ?>" class="se-col-3 se-partner-logo" style="position:relative;">
             <div class="se-partner-logo-inner" style=" height:95%; width:95%; margin: auto; position:absolute; margin:2.5%; background-color:#f7f7f7;">

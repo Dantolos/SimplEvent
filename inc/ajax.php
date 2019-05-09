@@ -48,10 +48,10 @@ function se_partner_load() {
   $postID = $_POST['id'];
 
   $response = '<div class="clearfix" style="width:100%;">';
-  $response .= '<div class="se-partner-lb-logo"><img src="'.get_field('partner-logo', $postID).'"/></div>';
+  $response .= '<div class="se-partner-lb-logo"><img src="'. esc_url( get_field('partner-logo', $postID) ) .'"/></div>';
   $response .= '<div class="se-partner-lb-content">';
   //$response .= '<h3>'. get_the_title( $postID ) .'</h3>';
-  $response .= '<p style="width:100%;">'.get_field('partner-text', $postID) .'</p>';
+  $response .= '<p style="width:100%;">'. esc_attr__( get_field('partner-text', $postID) ) .'</p>';
 
   $social = get_field('social_media', $postID);
   $i = 0;
@@ -87,7 +87,11 @@ add_action('wp_ajax_se_partner_cat_load', 'se_partner_cat_load'); //nur für ang
 
 function se_partner_cat_load() {
 
-  $postID = icl_object_id( $_POST['cid'], 'Kategorie', ICL_LANGUAGE_CODE );
+  if ( function_exists('icl_object_id') ) {
+    $postID = icl_object_id( $_POST['cid'], 'Kategorie', ICL_LANGUAGE_CODE );
+  } else {
+    $postID =  $_POST['cid'];
+  }
   $main_partner_args = array(
     'post_type' => 'p', 'orderby' => 'title', 'order' => 'ASC', 'tax_query' => array(
       array(

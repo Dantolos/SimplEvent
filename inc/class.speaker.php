@@ -35,18 +35,24 @@ class SpeakerClass {
       $this->outputSpeaker .= '<div class="se-infobox se-speaker-content-container-infobox">';
       $this->outputSpeaker .= '<p style="margin-top:-40px;">' . get_post_meta($Pid, 'speaker_kategorie', true ) . '</p>';
       $this->outputSpeaker .= '<h2>' . get_post_meta($Pid, 'speaker_zeit', true ) . '</h2>';
-      switch (ICL_LANGUAGE_CODE) {
-        case 'de':
-          $programmLink = get_site_url() . '/de/programm';
-          $programmText = 'Programm';
-          break;
-        case 'en':
-          $programmLink = get_site_url() . '/en/program';
-          $programmText = 'Program';
-          break;
-        default:
-          $programmLink = get_site_url() . '/programm';
-          break;
+
+      if ( function_exists('icl_object_id') ) {
+        switch (ICL_LANGUAGE_CODE) {
+          case 'de':
+            $programmLink = get_site_url() . '/de/programm';
+            $programmText = 'Programm';
+            break;
+          case 'en':
+            $programmLink = get_site_url() . '/en/program';
+            $programmText = 'Program';
+            break;
+          default:
+            $programmLink = get_site_url() . '/programm';
+            break;
+        }
+      } else {
+        $programmLink = get_site_url() . '/programm';
+        $programmText = 'Programm';
       }
 
       $this->outputSpeaker .= $Clink->getLinkIcon($programmLink, $programmText);

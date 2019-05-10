@@ -14,17 +14,35 @@ function createMediaBtn($rC) {
   $RevMediaButton = '<div class="se-review-col" style="text-align:center;">';
   $RevMediaButton .= '<div class="button-border se-review-button se-review-medien-button" mid="' . $rC . '"  mopen="N">';
   $RevMediaButton .= '<a>';
-  $RevMediaButton .= '<svg version="1.1" id="Medien" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="50%" y="50%"
-     viewBox="0 0 148.7 148.7" style="enable-background:new 0 0 148.7 148.7;" xml:space="preserve">';
+  $RevMediaButton .= '<svg version="1.1" id="Fotos" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="50%" y="50%"
+	 viewBox="0 0 453.541 311.809" enable-background="new 0 0 453.541 311.809" xml:space="preserve" height="70px">';
 
 
-  $RevMediaButton .= '<style type="text/css"> .icon-in{fill:#C3B940;} </style>';
-  $RevMediaButton .= '<g>
-                        <path class="icon-in" d="M91.4,72.9H88c9.2-4.6,15.6-14.2,15.6-25.1c0-15.5-12.6-28.1-28.1-28.1S47.3,32.2,47.3,47.7
-                          c0,11,6.3,20.5,15.6,25.1h-5.6c-0.2,0-21.9,0.3-21.9,21.9v34.1h2.7V94.8c0-18.9,18.4-19.2,19.2-19.2h34.1
-                          c18.9,0,19.2,18.4,19.2,19.2v34.1h2.7V94.8C113.3,94.6,113,72.9,91.4,72.9z M50,47.7c0-14,11.4-25.4,25.4-25.4
-                          c14,0,25.4,11.4,25.4,25.4c0,12.8-9.5,23.4-21.7,25.1h-7.4C59.5,71.1,50,60.5,50,47.7z"/>
-                      </g>';
+  $RevMediaButton .= '<style type="text/css"> .icon-in{fill:'. esc_attr( get_option( 'main_color_picker' ) ) .';} </style>';
+  $RevMediaButton .= '
+      <path fill="#141412" d="M306.331,274H149.169c-4.78,0-8.669-3.89-8.669-8.67V47.169c0-4.78,3.889-8.669,8.669-8.669h157.162
+			c4.78,0,8.669,3.889,8.669,8.669v218.161C315,270.111,311.111,274,306.331,274z M149.169,44.5c-1.472,0-2.669,1.197-2.669,2.669
+			v218.161c0,1.473,1.197,2.67,2.669,2.67h157.162c1.472,0,2.669-1.197,2.669-2.67V47.169c0-1.472-1.197-2.669-2.669-2.669H149.169z
+			"/>
+
+  		<rect class="icon-in" x="155.5" y="91.561" fill="#141412" width="144.25" height="6"/>
+
+  		<rect class="icon-in" x="155.5" y="112.811" fill="#141412" width="144.25" height="6"/>
+
+  		<rect class="icon-in" x="155.5" y="134.062" fill="#141412" width="144.25" height="6"/>
+
+  		<rect class="icon-in" x="155.5" y="155.311" fill="#141412" width="144.25" height="6"/>
+
+  		<rect class="icon-in" x="155.5" y="176.561" fill="#141412" width="144.25" height="6"/>
+
+  		<rect class="icon-in" x="155.5" y="197.811" fill="#141412" width="144.25" height="6"/>
+
+  		<rect class="icon-in" x="155.5" y="219.061" fill="#141412" width="144.25" height="6"/>
+
+  		<rect class="icon-in" x="155.5" y="240.311" fill="#141412" width="78.25" height="6"/>
+
+  		<path fill="#141412" d="M300.089,79.321H155.16V61.349h144.928V79.321z M161.16,73.321h132.928v-5.972H161.16V73.321z"/>
+      ';
   $RevMediaButton .= '</svg></a></div>';
   $RevMediaButton .= '<h5>' . __('MEDIEN', 'SimplEvent') . '</h5>';
   $RevMediaButton .= '<h6>'. __('Schauen Sie alle nochmals alle Referate in Ruhe durch', 'SimplEvent') . '</h6>';
@@ -98,7 +116,7 @@ if( have_rows('reviews') ) {
           <!-- Fotos -->
 
           <?php
-  
+
 
           if( get_field('gallery') ) {
 

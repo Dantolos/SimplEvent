@@ -45,7 +45,7 @@ function createMediaBtn($rC) {
       ';
   $RevMediaButton .= '</svg></a></div>';
   $RevMediaButton .= '<h5>' . __('MEDIEN', 'SimplEvent') . '</h5>';
-  $RevMediaButton .= '<h6>'. __('Schauen Sie alle nochmals alle Referate in Ruhe durch', 'SimplEvent') . '</h6>';
+  $RevMediaButton .= '<h6>'. __('Medienmitteungen und verlagsbeilagen', 'SimplEvent') . '</h6>';
   $RevMediaButton .= '</div>';
 
   echo $RevMediaButton;
@@ -101,7 +101,7 @@ if( have_rows('reviews') ) {
               </div>
             </a>
             <h5><?php echo __('REFERENTEN', 'SimplEvent'); ?></h5>
-            <h6>Schauen Sie alle nochmals alle Referate in Ruhe durch</h6>
+            <h6><?php echo __('Schauen Sie alle nochmals alle Referate in Ruhe durch', 'SimplEvent') ?></h6>
           </div>
 
 
@@ -142,7 +142,7 @@ if( have_rows('reviews') ) {
                 </svg>
               </div>
               <h5><?php echo __('FOTOS', 'SimplEvent'); ?></h5>
-              <h6>Impressionen rund um die Bühne</h6>
+              <h6><?php __('Impressionen rund um die Bühne', 'SimplEvent')  ?></h6>
             </div>
           <?php } ?>
 

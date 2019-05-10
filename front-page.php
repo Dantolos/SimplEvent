@@ -121,8 +121,8 @@ endif;
       <div id="sliderLogo" style="padding:0 <?php echo $slideArray[0]['logosize']; ?>%;">
         <img src="<?php echo $slideArray[0]['logo']; ?>" alt="" width="100%">
       </div>
-      <h3 id="sliderTitel"><?php echo $slideArray[0]['titel']; ?></h3>
-      <p id="sliderDatum"><?php echo $slideArray[0]['datum']; ?></p>
+      <h2 id="sliderTitel"><?php echo $slideArray[0]['titel']; ?></h2>
+      <h4 id="sliderDatum"><?php echo $slideArray[0]['datum']; ?></h4>
     </div>
 
 

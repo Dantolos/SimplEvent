@@ -12,12 +12,14 @@ $Loader = new loadingAnimation;
 
 /*QUERY*/
 $JahrID;
+$programm = true;
 if (! isset($_GET['j'])) {
   $JahrID = get_field('jahr');
+
 } else {
   $JahrID = get_term_by('name', $_GET['j'], 'Jahre');
   $JahrID = $JahrID->term_id;
-
+  $programm = $_GET['j'] == get_field('jahr') ? true : false;
 }
 
 
@@ -80,7 +82,7 @@ if (! isset($_GET['r'])) {
 if(count($speakerArr) > 1){
 ?>
 
-  <div class="se-speaker-slider-wrapper">
+  <div class="se-speaker-slider-wrapper" programm="<?php echo $programm ? 1 : 0 ; ?>">
     <div class="se-speaker-slider-container">
     <?php
       $speakerCount = count($speakerArr);
@@ -98,7 +100,7 @@ if(count($speakerArr) > 1){
       <?php echo $Loader->getLoader(); ?>
 
       <div class="se-speaker-content-container se-content">
-          <?php echo $Speaker->getSpeaker($startID); ?>
+          <?php echo $Speaker->getSpeaker($startID, $programm); ?>
       </div>
   </div>
 
@@ -145,11 +147,14 @@ jQuery(document).ready(function($){
 
   });
   var SELoader = $('.se-loader');
+  var prg = $('.se-speaker-slider-wrapper').attr('programm');
+
 
   //on click animationen
   speakerBild.on('click', function(){
 
     var page = $(this).data('id');
+
     var ajaxurl = $('header').data('url');
     $('.se-speaker-content-container').empty();
     SELoader.css({'display': 'block'});
@@ -159,6 +164,7 @@ jQuery(document).ready(function($){
       type : 'post',
       data : {
         id : page,
+        programm : prg,
         action : 'se_speaker_load'
       },
 

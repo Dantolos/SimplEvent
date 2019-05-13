@@ -12,7 +12,7 @@ class SpeakerClass {
   public $outputReview;
   protected $postIDs;
 
-  public function getSpeaker($Pid = 'N', $Programm = true ){
+  public function getSpeaker( $Pid = 'N', $Programm = true, $PageID = 0 ){
 
     if($Pid == 'N' ) {  //check require parameter
       $this->outputSpeaker = 'pls set ID -> get_Speaker(TermID)';
@@ -36,26 +36,28 @@ class SpeakerClass {
       $this->outputSpeaker .= '<p style="margin-top:-40px;">' . get_post_meta($Pid, 'speaker_kategorie', true ) . '</p>';
       $this->outputSpeaker .= '<h2>' . get_post_meta($Pid, 'speaker_zeit', true ) . '</h2>';
 
-      if($Programm){
-        if ( function_exists('icl_object_id') ) {
-          switch (ICL_LANGUAGE_CODE) {
-            case 'de':
-              $programmLink = get_site_url() . '/de/programm';
-              $programmText = 'Programm';
-              break;
-            case 'en':
-              $programmLink = get_site_url() . '/en/program';
-              $programmText = 'Program';
-              break;
-            default:
-              $programmLink = get_site_url() . '/programm';
-              break;
+      if($Programm){ //check ob aktuelles jahr, wenn nicht, keine Programmverlinkung
+        if(get_field('programm_link', $PageID )){
+          if ( function_exists('icl_object_id') ) {
+            $programmLink = get_field('programm_link', $PageID );
+            switch (ICL_LANGUAGE_CODE) {
+              case 'de':
+
+                $programmText = 'Programm';
+                break;
+              case 'en':
+
+                $programmText = 'Program';
+                break;
+              default:
+                $programmText = get_site_url() . '/programm';
+                break;
+            }
+          } else {
+            $programmText = 'Programm';
           }
-        } else {
-          $programmLink = get_site_url() . '/programm';
-          $programmText = 'Programm';
+          $this->outputSpeaker .= $Clink->getLinkIcon($programmLink, $programmText);
         }
-        $this->outputSpeaker .= $Clink->getLinkIcon($programmLink, $programmText);
       }
 
 

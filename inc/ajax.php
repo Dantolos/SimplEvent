@@ -19,9 +19,9 @@ add_action('wp_ajax_se_speaker_load', 'se_speaker_load'); //nur für angemeldete
 function se_speaker_load() {
   $SpeakerCl = new SpeakerClass;
   $postID = $_POST['id'];
-  $Programm = $_POST['programm'] == 1 ? true : false ; 
-
-  $speakerInfo = $SpeakerCl->getSpeaker($postID, $Programm);
+  $Programm = $_POST['programm'] == 1 ? true : false ;
+  $pageID = $_POST['pageid'];
+  $speakerInfo = $SpeakerCl->getSpeaker($postID, $Programm, $pageID);
 
   //REVIEWS
   $review = '';

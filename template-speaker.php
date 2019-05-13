@@ -13,6 +13,7 @@ $Loader = new loadingAnimation;
 /*QUERY*/
 $JahrID;
 $programm = true;
+$PageID = get_the_ID();
 if (! isset($_GET['j'])) {
   $JahrID = get_field('jahr');
 
@@ -82,7 +83,7 @@ if (! isset($_GET['r'])) {
 if(count($speakerArr) > 1){
 ?>
 
-  <div class="se-speaker-slider-wrapper" programm="<?php echo $programm ? 1 : 0 ; ?>">
+  <div class="se-speaker-slider-wrapper" programm="<?php echo $programm ? 1 : 0 ; ?>" page="<?php echo $PageID; ?>">
     <div class="se-speaker-slider-container">
     <?php
       $speakerCount = count($speakerArr);
@@ -96,11 +97,11 @@ if(count($speakerArr) > 1){
     </div>
   </div>
 
-  <div class="se-strip">
+  <div class="se-strip" style="padding-bottom: 80px;">
       <?php echo $Loader->getLoader(); ?>
 
       <div class="se-speaker-content-container se-content">
-          <?php echo $Speaker->getSpeaker($startID, $programm); ?>
+          <?php echo $Speaker->getSpeaker($startID, $programm, $PageID); ?>
       </div>
   </div>
 
@@ -148,7 +149,10 @@ jQuery(document).ready(function($){
   });
   var SELoader = $('.se-loader');
   var prg = $('.se-speaker-slider-wrapper').attr('programm');
+  var pID = $('.se-speaker-slider-wrapper').attr('page');
 
+  var SpeakerContainer = $('.se-speaker-content-container');
+  var ReviewContainer = $('.se-speaker-review-container');
 
   //on click animationen
   speakerBild.on('click', function(){
@@ -156,7 +160,12 @@ jQuery(document).ready(function($){
     var page = $(this).data('id');
 
     var ajaxurl = $('header').data('url');
-    $('.se-speaker-content-container').empty();
+    SpeakerContainer.empty();
+
+
+    TweenMax.set(SpeakerContainer,  { autoAlpha: 0, y: '100px' })
+    TweenMax.set(ReviewContainer,  { autoAlpha: 0, y: '100px' });
+
     SELoader.css({'display': 'block'});
     $('#speakerName').html(page);
     $.ajax({
@@ -165,22 +174,29 @@ jQuery(document).ready(function($){
       data : {
         id : page,
         programm : prg,
+        pageid : pID,
         action : 'se_speaker_load'
       },
 
       error : function( response ){
-        $('.se-speaker-content-container').append(response)
+        SpeakerContainer.append(response)
       },
       success : function( response ){
          //sicherheits leeren ( falls zu schnell gedrueckt wurde
-        $('.se-speaker-content-container').empty();
-        $('.se-speaker-review-container').empty();
+        SpeakerContainer.empty();
+        ReviewContainer.empty();
 
         //laden neuer inhalt
-        $('.se-speaker-content-container').animate({'margin-top': '-100px'}, 200)
+        //speaker
         SELoader.css({'display': 'none'});
-        $('.se-speaker-content-container').append(response['speaker']).css({'opacity': '0'}).animate({'margin-top': '0', 'opacity': '1'});
-        $('.se-speaker-review-container').append(response['review']);
+        TweenMax.to( SpeakerContainer, 1, { autoAlpha: 1, y: 0, ease: Expo.easeInOut });
+        TweenMax.from( SpeakerContainer.find('.se-infobox'), 2, { autoAlpha: 0, y: 500, delay: 500 })
+        SpeakerContainer.append(response['speaker']);
+
+        //review
+        TweenMax.to( ReviewContainer, 1, { autoAlpha: 1, y: 0, ease: Expo.easeInOut });
+
+        ReviewContainer.append(response['review']);
       }
     });
 

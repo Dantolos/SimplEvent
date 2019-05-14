@@ -255,7 +255,7 @@ if( get_field('strip', $curPageID)  ) {
             sliderLogo.find('img').attr('src', SlideArray[currentSlide]['logo']);
             sliderLogo.fadeIn();
             sliderTitel.append(SlideArray[currentSlide]['titel']);
-            sliderDatum.append(SlideArray[currentSlide]['titel']);
+            sliderDatum.append(SlideArray[currentSlide]['datum']);
 
 
             currentSlide++;

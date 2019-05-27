@@ -163,8 +163,8 @@ jQuery(document).ready(function($){
     SpeakerContainer.empty();
 
 
-    TweenMax.set(SpeakerContainer,  { autoAlpha: 0, y: '100px' })
-    TweenMax.set(ReviewContainer,  { autoAlpha: 0, y: '100px' });
+    TweenMax.set(SpeakerContainer,  { autoAlpha: 0, y: '-50px' })
+    TweenMax.set(ReviewContainer,  { autoAlpha: 0, y: '-50px' });
 
     SELoader.css({'display': 'block'});
     $('#speakerName').html(page);
@@ -186,17 +186,21 @@ jQuery(document).ready(function($){
         SpeakerContainer.empty();
         ReviewContainer.empty();
 
+
         //laden neuer inhalt
         //speaker
         SELoader.css({'display': 'none'});
         TweenMax.to( SpeakerContainer, 1, { autoAlpha: 1, y: 0, ease: Expo.easeInOut });
-        TweenMax.from( SpeakerContainer.find('.se-infobox'), 2, { autoAlpha: 0, y: 500, delay: 500 })
+
         SpeakerContainer.append(response['speaker']);
-
+        let infoBox = SpeakerContainer.find('.se-infobox').parent();
+        TweenMax.from( infoBox, 1, { autoAlpha: 0, y: '-50', ease: Expo.easeInOut })
         //review
-        TweenMax.to( ReviewContainer, 1, { autoAlpha: 1, y: 0, ease: Expo.easeInOut });
-
         ReviewContainer.append(response['review']);
+        TweenMax.to( ReviewContainer, .5, { autoAlpha: 1, y: 0, ease: Expo.easeInOut });
+        ReviewChilds = ReviewContainer.find('div');
+
+        TweenMax.from( ReviewChilds, .5, { autoAlpha: 0, y: '-50', ease: Expo.easeInOut }, 0.1);
       }
     });
 

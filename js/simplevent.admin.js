@@ -45,6 +45,11 @@ jQuery(function($) {
 
             });
 
+
+            //height preview
+            let ContHeight = $('.simplevent-general-form').height();
+            $('.simplevent_option_preview').css({'height': ContHeight});
+        
     });
 
 });

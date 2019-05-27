@@ -25,10 +25,10 @@ if ( $sliderQuery -> have_posts() ) :
               }
 
 
-                $referent = get_sub_field('referentenbezeichnung');
-                $referentname = $referent ? $referent['referent'] : 'empty';
-                $referentfunktion = $referent ? $referent['funktion'] : 'empty';
-                $referentcolor = $referent ? $referent['textfarbe'] : 'empty';
+              $referent = get_sub_field('referentenbezeichnung');
+              $referentname = $referent ? $referent['referent'] : 'empty';
+              $referentfunktion = $referent ? $referent['funktion'] : 'empty';
+              $referentcolor = $referent ? $referent['textfarbe'] : 'empty';
 
 
               $button = get_sub_field('verlinkung');
@@ -69,66 +69,82 @@ endif;
 ?>
 
 <!--Header-Slider-->
-<?php if($sliderQuery) {
+<?php
+if( empty( get_option( 'se_livestream' ) ) ) {  //check ob live event
+  if($sliderQuery) {
 
   ?>
   <div id="slider" class="se-slider-header-container image-settings se-slider-mobile-align-left" style="background-image:url('<?php echo $slideArray[0]['image'] ?>');">
     <?php
-    $typeOrder;
-    switch ($slideArray[0]['type']) {
-      case 'zitat':
-        $typeOrder = array('block', 'none');
-        break;
-      case 'titel':
-        $typeOrder = array('none', 'block');
-        break;
-      default:
-        $typeOrder = array('none', 'block');
-        break;
-    }
 
-    $displayer = $slideArray[0]['zitat'] ? 'block' : 'none'; //if zitat in zitat
+      $typeOrder;
+      switch ($slideArray[0]['type']) {
+        case 'zitat':
+          $typeOrder = array('block', 'none');
+          break;
+        case 'titel':
+          $typeOrder = array('none', 'block');
+          break;
+        default:
+          $typeOrder = array('none', 'block');
+          break;
+      }
 
-    ?>
-    <!-- zitat -->
-    <div id="se-slider-type-zitat" class="se-slider-header-text-container" style="display:<?php echo $typeOrder[0]; ?>;">
+      $displayer = $slideArray[0]['zitat'] ? 'block' : 'none'; //if zitat in zitat
+
+      ?>
+      <!-- zitat -->
+      <div id="se-slider-type-zitat" class="se-slider-header-text-container" style="display:<?php echo $typeOrder[0]; ?>;">
 
 
-      <div class="se-slider-type-zitat" >
+        <div class="se-slider-type-zitat" >
 
-        <div class="se-slider-header-zitat" style="display:<?php echo $typeOrder[$typeDisplayer]; ?>;">
-          <p class="" style="display:<?php echo $displayer; ?>;"><strong>&laquo;</strong><?php echo $slideArray[0]['zitat']; ?><strong>&raquo;</strong></p>
+          <div class="se-slider-header-zitat" style="display:<?php echo $typeOrder[$typeDisplayer]; ?>;">
+            <p class="" style="display:<?php echo $displayer; ?>;"><strong>&laquo;</strong><?php echo $slideArray[0]['zitat']; ?><strong>&raquo;</strong></p>
+          </div>
+
+
+          <p id="slidename" style="margin-top:20px; color:<?php echo $slideArray[0]['color']; ?>;"><strong><?php echo $slideArray[0]['name']; ?></strong></p>
+          <p id="slidefunktion" style="color:<?php echo $slideArray[0]['color']; ?>; font-weight: 300;"><?php echo $slideArray[0]['funktion']; ?></p>
+
+          <?php if($slideArray[0]['button']){ ?>
+            <a id="slidebutton" href="<?php echo $slideArray[0]['buttonlink']; ?>">
+              <div class="se-mc-bg mc-button se-wc-txt">
+                <?php echo $slideArray[0]['buttontext']; ?>
+              </div>
+            </a>
+          <?php } ?>
+
         </div>
-
-
-        <p id="slidename" style="margin-top:20px; color:<?php echo $slideArray[0]['color']; ?>;"><strong><?php echo $slideArray[0]['name']; ?></strong></p>
-        <p id="slidefunktion" style="color:<?php echo $slideArray[0]['color']; ?>; font-weight: 300;"><?php echo $slideArray[0]['funktion']; ?></p>
-
-        <?php if($slideArray[0]['button']){ ?>
-          <a id="slidebutton" href="<?php echo $slideArray[0]['buttonlink']; ?>">
-            <div class="se-mc-bg mc-button se-wc-txt">
-              <?php echo $slideArray[0]['buttontext']; ?>
-            </div>
-          </a>
-        <?php } ?>
-
       </div>
-    </div>
 
 
-    <!-- titel -->
-    <div id="se-slider-type-titel" class="" style="display:<?php echo $typeOrder[1]; ?>; color: <?php echo $slideArray[0]['textcolor']; ?>;">
-      <div id="sliderLogo" style="padding:0 <?php echo $slideArray[0]['logosize']; ?>%;">
-        <img src="<?php echo $slideArray[0]['logo']; ?>" alt="" width="100%">
+      <!-- titel -->
+      <div id="se-slider-type-titel" class="" style="display:<?php echo $typeOrder[1]; ?>; color: <?php echo $slideArray[0]['textcolor']; ?>;">
+        <div id="sliderLogo" style="padding:0 <?php echo $slideArray[0]['logosize']; ?>%;">
+          <img src="<?php echo $slideArray[0]['logo']; ?>" alt="" width="100%">
+        </div>
+        <h2 id="sliderTitel"><?php echo $slideArray[0]['titel']; ?></h2>
+        <h4 id="sliderDatum"><?php echo $slideArray[0]['datum']; ?></h4>
       </div>
-      <h2 id="sliderTitel"><?php echo $slideArray[0]['titel']; ?></h2>
-      <h4 id="sliderDatum"><?php echo $slideArray[0]['datum']; ?></h4>
-    </div>
+
 
 
 
   </div>
-  <?php }
+<?php
+  }
+} else { //live version mit livestream
+?>
+
+  <div id="" class="se-slider-header-container se-slider-mobile-align-left" style="height:80vh;">
+    <?php echo get_option( 'se_iframe' );?>
+  </div>
+
+<?php
+
+}
+
 
 //CONTENT
 
@@ -242,12 +258,12 @@ if( get_field('strip', $curPageID)  ) {
             slideZitat.css({'display': displayer});
             slideName.css({'color': SlideArray[currentSlide]['color']});
             slideFunktion.css({'color': SlideArray[currentSlide]['color']});
-            slideZitat.append('<p><strong>&laquo;</strong>'+SlideArray[currentSlide]['zitat']+'<strong>&raquo;</strong></p>');
-            slideName.append('<strong>'+SlideArray[currentSlide]['name']+'</strong>');
+            slideZitat.append('<p><strong>&laquo;</strong>' + SlideArray[currentSlide]['zitat'] + '<strong>&raquo;</strong></p>');
+            slideName.append('<strong>' + SlideArray[currentSlide]['name'] + '</strong>');
             slideFunktion.append(SlideArray[currentSlide]['funktion']);
             if ( SlideArray[currentSlide]['button'] === true ) {
               slideButton.attr('href', SlideArray[currentSlide]['buttonlink']);
-              slideButton.append('<div class="se-mc-bg mc-button se-wc-txt">'+SlideArray[currentSlide]['buttontext']+'</div>');
+              slideButton.append('<div class="se-mc-bg mc-button se-wc-txt">' + SlideArray[currentSlide]['buttontext'] + '</div>');
             }
 
             let logosize = '0 ' + SlideArray[currentSlide]['logosize'] + '%';

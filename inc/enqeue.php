@@ -8,7 +8,7 @@
 
 function se_load_admin_scripts( $hook ){
 
-  if ( 'toplevel_page_aagi_simplevent' != $hook && 'simplevent_page_simplevent_header' != $hook && 'simplevent_page_simplevent_sidebar' != $hook && 'simplevent_page_simplevent_footer' != $hook){ //checken damit nur auf entsprechenden Seiten eingefügt wird
+  if ( 'toplevel_page_aagi_simplevent' != $hook && 'simplevent_page_simplevent_header' != $hook && 'simplevent_page_simplevent_sidebar' != $hook && 'simplevent_page_simplevent_footer' != $hook && 'simplevent_page_simplevent_live' != $hook){ //checken damit nur auf entsprechenden Seiten eingefügt wird
     return;
   }
 

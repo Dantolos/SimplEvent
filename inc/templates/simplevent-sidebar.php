@@ -8,11 +8,14 @@
   .se-sc-txt { color: <?php echo esc_attr( get_option( 'second_color_picker' ) ); ?>; }
   .se-wc-bg { background-color: <?php echo esc_attr( get_option( 'light_color_picker' ) ); ?>; } /*light*/
   .se-wc-txt { color: <?php echo esc_attr( get_option( 'light_color_picker' ) ); ?>; }
-</style> 
+</style>
 
 <?php settings_errors(); ?>
-<form action="options.php" method="post" class="simplevent-general-form se-sc-bg">
+<form action="options.php" method="post" class="simplevent-general-form">
   <?php settings_fields( 'simplevent-sidebar-group' ); ?>
   <?php do_settings_sections('simplevent_sidebar'); ?>
   <?php submit_button(); ?>
 </form>
+
+<!--VORSCHAU-->
+<iframe src="<?php echo get_site_url(); ?>" class="simplevent_option_preview" frameborder="0"></iframe>

@@ -5,29 +5,27 @@
 */
 
 body { color: #dedede !important; background-color: #23282d;}
-h1, h2, h3, h4, h5, tr, th {color: #dedede !important;}
-input[type=text], textarea {  background-color: #dedede; width:100%;}
+h1, h2, h3, h4, h5, tr, th {color: #23282d !important;}
+input[type=text], textarea {  background-color: #fff; width:100%;}
+
+.se-settings-container { background-color: #f2f2f2; }
 
 .form-table td, .form-table th { padding:5px; }
 a { text-decoration:none; color:inherit; }
 a:hover { text-decoration:none; color:inherit; }
-.simplevent_option_preview, .simplevent-general-form { margin-top:30px; display: inline-blog; float:left;}
+.simplevent_option_preview, .simplevent-general-form { margin-top:30px; display: inline-blog; float:left; padding:2%;}
 .simplevent-general-form {
-  width:26%;border: 1px solid #6b6b6b; padding:2%;
+  min-height:50vh; width:40%; padding:2%; background-color: #f2f2f2; color:#23282d;
 }
-.simplevent-general-form h2 { border-bottom:2px solid #6b6b6b; padding-bottom: 15px; margin-bottom:5px;}
+.simplevent-general-form h2 { border-bottom:1px solid #23282d; color:#23282d !important; padding-bottom: 5px; margin-bottom:5px;}
 .simplevent_option_preview {
-  width:65%;
-  margin-left: 2%;
-  margin-right: 2%;
+  width:50%;
   position: relative;
-  background-color: #cecece;
-  height:400px;
-  border: 1px solid #6b6b6b;
-
+  background-color: #f2f2f2;
+  height:100%;
 }
 .form-table { margin-top:20px; }
-.se-separator { border-bottom:2px solid #6b6b6b; width:100%; }
+.se-separator { border-bottom:0px solid #6b6b6b; width:100%; }
 /*--NAVBAR--*/
 .se-navbar-container {
   position:absolute;

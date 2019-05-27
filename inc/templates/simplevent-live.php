@@ -11,15 +11,16 @@
 </style>
 
 <?php settings_errors(); ?>
+
 <div class="se-settings-container">
 
   <form action="options.php" method="post" class="simplevent-general-form">
-    <?php settings_fields( 'simplevent-settings-group' ); ?>
-    <?php do_settings_sections('aagi_simplevent'); ?>
+    <?php settings_fields( 'simplevent-live-group' ); ?>
+    <?php do_settings_sections('simplevent_live'); ?>
     <?php submit_button(); ?>
   </form>
 
   <!--VORSCHAU-->
-  <iframe src="<?php echo get_site_url(); ?>" class="simplevent_option_preview" frameborder="0"></iframe>
+  <iframe src="<?php echo get_site_url(); ?>" class="simplevent_option_preview" ></iframe>
 
 </div>

@@ -150,7 +150,7 @@
               $subURL = $m['url'];
             } ?>
 
-            <a href="<?php echo $subURL ?>" class="aagi-w-txt se-navelement" nav="<?php echo $m['ID']; ?>" >
+            <a href="<?php echo $subURL ?>" class="aagi-w-txt se-navelement" nav="<?php echo $m['ID']; ?>" activem="<?php echo $firstSub['ID'] ?>">
               <span class="se-navbar-mainmenu-item"><?php echo $m['title']; ?></span>
             </a>
           <?php }
@@ -161,9 +161,8 @@
 
 
 
-      <div class="nav-layer se-mc-bg">
-
-      </div>
+      <div class="nav-layer se-mc-bg"></div>
+      <div class="curr-nav-layer se-mc-bg" style="display:none;"></div>
 
       <?php
       $regBtnText = esc_attr( get_option( 'se_anmeldetext' ));
@@ -354,13 +353,14 @@
 <?php
 if(!wp_is_mobile()){
   foreach ($menu as $m){
-    //echo '<pre>'; var_dump($m['children']); echo '</pre>';
+
+    //echo '<pre>'; var_dump(); echo '</pre>';
     $smArr = $m['children'];
     if ($smArr) { ?>
       <div subnav="<?php echo $m['ID']; ?>" class="se-subnav-container se-sc-bg se-wc-txt" style="opacity:0; width: 100vw;"> <?php
 
       foreach(array_reverse($smArr) as $sm){ ?>
-        <a href="<?php echo $sm['url']; ?>" class="aagi-w-txt"  id="<?php echo $sm['ID']; ?>">
+        <a href="<?php echo $sm['url']; ?>" class="aagi-w-txt"  id="<?php echo $sm['ID']; ?>" parent="<?php echo $m['ID']; ?>">
           <span class="se-navbar-sub-item"><?php echo $sm['title']; ?></span>
         </a>
       <?php } ?>

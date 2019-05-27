@@ -144,13 +144,14 @@ echo $Loader->getLoader();
     var seLoader = $('.se-loader');
 
     var currCatRadio = $('.se-curr-categorie-radio');
+    var currCandCon = $('#se-current-award-wrapper');
 
     currCatRadio.on('click', function() {
       var cat = $(this).attr('value');
       var year = $('.se-award-categories').attr('jahr');
       console.log(year);
-      $('#se-current-award-wrapper').empty();
-      $('#se-current-award-wrapper').append(seLoader);
+      currCandCon.empty();
+      currCandCon.append(seLoader);
       seLoader.css({'display': 'block', 'height': '0px'});
 
       $.ajax({
@@ -166,10 +167,10 @@ echo $Loader->getLoader();
           console.log('ajax error');
         },
         success : function( response ){
-          $('#se-current-award-wrapper').empty();
-          $('#se-current-award-wrapper').append(response);
+          currCandCon.empty();
+          currCandCon.append(response);
 
-          console.log(response);
+          cantidateFadeIn( currCandCon.find('.se-candidate-container') );
         }
       });
 
@@ -208,6 +209,9 @@ echo $Loader->getLoader();
       loadFormer();
     });
 
+    //load Formers
+    var formerCantCon = $('#se-former-award-wrapper');
+
     function loadFormer() {
 
         var Ckecked = formFinalist.attr('checked') ? false : true;
@@ -216,8 +220,8 @@ echo $Loader->getLoader();
         $('.se-partner-dropdown').find('li').css({'border-width': '0px'});
         $(this).css({'border-width': '4px'});
 
-        $('#se-former-award-wrapper').empty();
-        $('#se-former-award-wrapper').append(seLoader);
+        formerCantCon.empty();
+        formerCantCon.append(seLoader);
 
         $('#formerWinners').find('h3').empty().append(Jahrgang);
 
@@ -241,13 +245,20 @@ echo $Loader->getLoader();
           },
           success : function( response ){
             $('.se-partner-dropdown').find('ul').fadeOut();
-            $('#se-former-award-wrapper').empty();
-            $('#se-former-award-wrapper').append(response);
-            console.log(response);
+            formerCantCon.empty();
+            formerCantCon.append(response);
+
+            cantidateFadeIn( formerCantCon.find('.se-candidate-container') );
           }
         });
 
 
+    }
+
+
+    //load in Animation
+    function cantidateFadeIn(cand) {
+      TweenMax.staggerFrom(cand, 0.4, {autoAlpha: 0, y: 20, ease:Power1.easeOut}, 0.1);
     }
 
   });

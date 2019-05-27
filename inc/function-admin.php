@@ -18,6 +18,7 @@ function SimplEvent_add_admin_page() {
   add_submenu_page( 'aagi_simplevent', 'SimplEvent Header Options', 'Header', 'manage_options', 'simplevent_header', 'simplevent_theme_header_page' );
   add_submenu_page( 'aagi_simplevent', 'SimplEvent Sidebar Options', 'Sidebar', 'manage_options', 'simplevent_sidebar', 'simplevent_theme_sidebar_page' );
   add_submenu_page( 'aagi_simplevent', 'SimplEvent Footer Options', 'Footer', 'manage_options', 'simplevent_footer', 'simplevent_theme_footer_page' );
+  add_submenu_page( 'aagi_simplevent', 'SimplEvent Live Options', 'Live', 'manage_options', 'simplevent_live', 'simplevent_theme_live_page' );
 
   //activieren custom settings
   add_action( 'admin_init', 'simplevent_custom_settings' );
@@ -78,6 +79,7 @@ function simplevent_custom_settings() {
   add_settings_field( 'se-anmeldelink', 'Anmeldung Link', 'simplevent_se_anmeldelink', 'simplevent_header', 'simplevent-header-options' );
   add_settings_field( 'se-anmeldetext', 'Anmeldung Text', 'simplevent_se_anmeldetext', 'simplevent_header', 'simplevent-header-options' );
 
+
   //----------------------------------SIDEBAR ---------------------------------------//
   //****Settings
   register_setting( 'simplevent-sidebar-group', 'google_maps' );
@@ -122,6 +124,22 @@ function simplevent_custom_settings() {
 
   //****Fields
   add_settings_field( 'ctext', 'Copyright Text', 'simplevent_se_c_text', 'simplevent_footer', 'simplevent-footer-options' );
+
+
+  //----------------------------------Live ---------------------------------------//
+
+  //****Settings
+  register_setting( 'simplevent-live-group', 'se_livestream' );
+  register_setting( 'simplevent-live-group', 'se_iframe' );
+
+  //****Section
+  add_settings_section( 'simplevent-live-options', 'Live', 'simplevent_live_options', 'simplevent_live');
+
+  //****Fields
+  add_settings_field( 'se-livestream', 'Livestream Aktiv', 'simplevent_se_livestream', 'simplevent_live', 'simplevent-live-options' );
+  add_settings_field( 'se-iframe', 'iFrame', 'simplevent_se_iframe', 'simplevent_live', 'simplevent-live-options' );
+
+
 }
 
 function simplevent_general_options() {
@@ -135,7 +153,7 @@ function simplevent_bg() {
 }
 
 function simplevent_header_options() {
-  echo 'Slider für die Startseite generieren';
+  echo '';
 }
 
 function simplevent_sidebar_options() {
@@ -143,8 +161,13 @@ function simplevent_sidebar_options() {
 }
 
 function simplevent_footer_options() {
-  echo 'Slider für die Startseite generieren';
+  echo '';
 }
+
+function simplevent_live_options() {
+  echo 'Livestream De/aktivieren';
+}
+
 
 //---------------------------------------------OUTPUTS------------------------------------//
 
@@ -152,11 +175,11 @@ function simplevent_footer_options() {
 //social media
 function simplevent_event_logo() {
   $logo = esc_attr( get_option( 'event_logo' ) );
-  echo '<input type="button" value="Logo" class="button button-secondary upload-button" data-target="event-logo"/><input type="" id="event-logo" name="event_logo" value="' .$logo. '"/>';
+  echo '<input type="button" style="width:25%;" value="Logo" class="button button-secondary upload-button" data-target="event-logo"/><input type="" style="width:73%;" id="event-logo" name="event_logo" value="' .$logo. '"/>';
 }
 function simplevent_event_icon() {
   $icon = esc_attr( get_option( 'event_icon' ) );
-  echo '<input type="button" value="Icon" class="button button-secondary upload-button" data-target="event-icon"/><input type="" id="event-icon" name="event_icon" value="' .$icon. '"/>';
+  echo '<input type="button" style="width:25%;" value="Icon" class="button button-secondary upload-button" data-target="event-icon"/><input type="" style="width:73%;" id="event-icon" name="event_icon" value="' .$icon. '"/>';
 }
 function simplevent_twitter_link() {
   $twitter = esc_attr( get_option( 'twitter_link' ) );
@@ -196,7 +219,7 @@ function simplevent_light_color_picker() {
 //BG
 function simplevent_bg_img() {
   $bg = esc_attr( get_option( 'bg_img' ) );
-  echo '<input type="button" value="Bg" class="button button-secondary upload-button" data-target="bg-img"/><input type="" id="bg-img" name="bg_img" value="' .$bg. '"/>';
+  echo '<input type="button" style="width:25%;" value="Bg" class="button button-secondary upload-button" data-target="bg-img"/><input type="" style="width:73%;" id="bg-img" name="bg_img" value="' .$bg. '"/>';
 }
 //----------------------------------HEADER ---------------------------------------//
 
@@ -263,6 +286,22 @@ function simplevent_se_c_text() {
 }
 
 
+//----------------------------------LIVE ---------------------------------------//
+
+function simplevent_se_livestream() {
+  $livestream = esc_attr( get_option( 'se_livestream' ) );
+  if($livestream == 'on'){
+    $livestream = 'checked';
+  }
+  echo '<input type="checkbox" name="se_livestream" ' . $livestream . '/>';
+}
+
+function simplevent_se_iframe() {
+  $iframe = get_option( 'se_iframe' );
+  echo '<textarea type="textarea" rows="10" name="se_iframe"  style="width: 100%;">' . $iframe . '</textarea>';
+}
+
+
 //---------------------------------------------TEMPLATES------------------------------------//
 function simplevent_theme_create_page() {
   require_once( get_template_directory() . '/inc/templates/simplevent-admin.php' );
@@ -278,4 +317,8 @@ function simplevent_theme_sidebar_page() {
 
 function simplevent_theme_footer_page(){
   require_once( get_template_directory() . '/inc/templates/simplevent-footer.php' );
+}
+
+function simplevent_theme_live_page(){
+  require_once( get_template_directory() . '/inc/templates/simplevent-live.php' );
 }

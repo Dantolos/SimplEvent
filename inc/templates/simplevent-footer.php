@@ -11,8 +11,11 @@
 </style>
 
 <?php settings_errors(); ?>
-<form action="options.php" method="post" class="simplevent-general-form se-sc-bg">
+<form action="options.php" method="post" class="simplevent-general-form">
   <?php settings_fields( 'simplevent-footer-group' ); ?>
   <?php do_settings_sections('simplevent_footer'); ?>
   <?php submit_button(); ?>
 </form>
+
+<!--VORSCHAU-->
+<iframe src="<?php echo get_site_url(); ?>" class="simplevent_option_preview"></iframe>

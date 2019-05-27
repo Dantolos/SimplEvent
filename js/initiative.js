@@ -21,7 +21,7 @@ jQuery(document).ready(function($){
       OpenMoEventContainer();
     }
   });
-  
+
 
   function OpenMoEventContainer(){
     moEvO++;
@@ -70,7 +70,7 @@ jQuery(document).ready(function($){
   function loadEvents(direction){
     console.log('clicked');
     var iniReq = new XMLHttpRequest();
-    var dir = 'http://www.nzz-konferenzen.ch//wp-json/wp/v2/' + direction;
+    var dir = 'https://www.nzz-konferenzen.ch//wp-json/wp/v2/' + direction;
 
     iniReq.open('GET', dir);
     iniReq.onload = function() {

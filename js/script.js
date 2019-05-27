@@ -55,6 +55,7 @@ jQuery(document).ready(function($){
       iSbO = false;
     }
   }
+
   //Social Media Icons
   var SMIcon = $('.se-sm-icon-anim');
   SMiconAnim(SMIcon);

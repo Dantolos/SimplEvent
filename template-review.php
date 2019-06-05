@@ -56,7 +56,7 @@ if( have_rows('reviews') ) {
   while ( have_rows('reviews') ) : the_row();
     $thumb = get_sub_field('thumb');
     $jahr = get_sub_field('jahr');
-    $jahr = $jahr[0]->name;
+    $jahr = ($jahr) ? $jahr[0]->name : false;
     $refLink = home_url() . '/speaker/?j=' . $jahr;
 
   ?>
@@ -82,28 +82,29 @@ if( have_rows('reviews') ) {
 
 
           <!-- Speakers -->
-          <div class="se-review-col" style="text-align:center;">
-            <a href="<?php echo $refLink; ?>">
-              <div class="button-border se-review-button">
+          <?php if($jahr) { ?>
+            <div class="se-review-col" style="text-align:center;">
+              <a href="<?php echo $refLink; ?>">
+                <div class="button-border se-review-button">
 
-                <svg version="1.1" id="Referenten" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="50%" y="50%"
-                   viewBox="0 0 148.7 148.7" style="enable-background:new 0 0 148.7 148.7;" xml:space="preserve">
-                <style type="text/css">
-                  .icon-in{fill:#C3B940;}
-                </style>
-                <g>
-                  <path class="icon-in" d="M91.4,72.9H88c9.2-4.6,15.6-14.2,15.6-25.1c0-15.5-12.6-28.1-28.1-28.1S47.3,32.2,47.3,47.7
-                    c0,11,6.3,20.5,15.6,25.1h-5.6c-0.2,0-21.9,0.3-21.9,21.9v34.1h2.7V94.8c0-18.9,18.4-19.2,19.2-19.2h34.1
-                    c18.9,0,19.2,18.4,19.2,19.2v34.1h2.7V94.8C113.3,94.6,113,72.9,91.4,72.9z M50,47.7c0-14,11.4-25.4,25.4-25.4
-                    c14,0,25.4,11.4,25.4,25.4c0,12.8-9.5,23.4-21.7,25.1h-7.4C59.5,71.1,50,60.5,50,47.7z"/>
-                </g>
-                </svg>
-              </div>
-            </a>
-            <h5><?php echo __('REFERENTEN', 'SimplEvent'); ?></h5>
-            <h6><?php echo __('Schauen Sie alle nochmals alle Referate in Ruhe durch', 'SimplEvent') ?></h6>
-          </div>
-
+                  <svg version="1.1" id="Referenten" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="50%" y="50%"
+                     viewBox="0 0 148.7 148.7" style="enable-background:new 0 0 148.7 148.7;" xml:space="preserve">
+                  <style type="text/css">
+                    .icon-in{fill:#C3B940;}
+                  </style>
+                  <g>
+                    <path class="icon-in" d="M91.4,72.9H88c9.2-4.6,15.6-14.2,15.6-25.1c0-15.5-12.6-28.1-28.1-28.1S47.3,32.2,47.3,47.7
+                      c0,11,6.3,20.5,15.6,25.1h-5.6c-0.2,0-21.9,0.3-21.9,21.9v34.1h2.7V94.8c0-18.9,18.4-19.2,19.2-19.2h34.1
+                      c18.9,0,19.2,18.4,19.2,19.2v34.1h2.7V94.8C113.3,94.6,113,72.9,91.4,72.9z M50,47.7c0-14,11.4-25.4,25.4-25.4
+                      c14,0,25.4,11.4,25.4,25.4c0,12.8-9.5,23.4-21.7,25.1h-7.4C59.5,71.1,50,60.5,50,47.7z"/>
+                  </g>
+                  </svg>
+                </div>
+              </a>
+              <h5><?php echo __('REFERENTEN', 'SimplEvent'); ?></h5>
+              <h6><?php echo __('Schauen Sie alle nochmals alle Referate in Ruhe durch', 'SimplEvent') ?></h6>
+            </div>
+          <?php } ?>
 
           <!-- Medien -->
           <?php

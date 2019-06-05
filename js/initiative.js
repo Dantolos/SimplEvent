@@ -70,7 +70,7 @@ jQuery(document).ready(function($){
   function loadEvents(direction){
     console.log('clicked');
     var iniReq = new XMLHttpRequest();
-    var dir = 'https://www.nzz-konferenzen.ch//wp-json/wp/v2/' + direction;
+    var dir = 'https://www.nzz-konferenzen.ch/wp-json/wp/v2/' + direction;
 
     iniReq.open('GET', dir);
     iniReq.onload = function() {
@@ -120,7 +120,12 @@ jQuery(document).ready(function($){
           webBTN = 'site Internet';
           break;
         default:
+          mElead = eventData[i].acf.lead;
+          mEdate = eventData[i].acf.datum;
+          mEOrt = eventData[i].acf.ort;
+          webBTN = 'Webseite';
       }
+
       eventHTMLstring += '<div countevent="'+i+'" class="se-more-event-content-inner" style="display:none;">';
       eventHTMLstring += '<div class="se-more-event-content-logo">';
       eventHTMLstring += '<a href="'+eventData[i].acf.webseite+'" target="_blank">';

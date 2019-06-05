@@ -117,11 +117,8 @@ if( have_rows('reviews') ) {
           <!-- Fotos -->
 
           <?php
-
-
-          if( get_field('gallery') ) {
-
-            ?>
+      
+          if( get_sub_field('gallery') ) { ?>
             <div class="se-review-col" style="text-align:center;">
               <div class="button-border se-review-button se-review-gallery-btn" pagid="<?php echo get_the_ID(); ?>" galid="<?php echo $rCount; ?>">
                 <svg version="1.1" id="Fotos" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="50%" y="50%"

@@ -59,6 +59,29 @@ get_header(); ?>
           }
         endwhile; endif; ?>
     </div>
+
+    <!-- MODERATION -->
+    <div class="se-col-12 se-programm-moderation">
+      <?php
+      if( have_rows('moderation') ):
+        ?>
+          <h3><b><?php echo __('Moderation', 'SimplEvent'); ?></b></h3>
+        <?php
+        while ( have_rows('moderation') ) : the_row();
+          $moderator = get_sub_field('moderator');
+          ?>
+          <div class="se-programm-moderator-container clearfix">
+            <div class="se-programm-moderator-bild image-settings" style="background-image:url('<?php echo $moderator['foto']; ?>');"></div>
+            <div class="se-programm-moderator-text">
+              <h4><b><?php echo $moderator['name']; ?></b></h4>
+              <p><?php echo $moderator['funktion'] ?></p>
+            </div>
+          </div>
+
+        <?php
+      endwhile; endif; ?>
+
+    </div>
   </div>
 </div>
 

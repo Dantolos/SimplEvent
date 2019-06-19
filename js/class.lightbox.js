@@ -2,7 +2,7 @@
 class LightBox {
 
   constructor () {
-    this.seLoaderDIV = '<div class="se-loader" style="height:100vh;"><svg version="1.1" id="dots" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="125.812px" height="125.812px" viewBox="0 0 125.812 125.812" enable-background="new 0 0 125.812 125.812" xml:space="preserve"><circle class="load-d1" fill="#FFFFFF" stroke="#dedede" stroke-width="1" stroke-miterlimit="10" cx="13.666" cy="63.24" r="8.282"/> <circle class="load-d2" fill="#FFFFFF" stroke="#dedede"stroke-width="1" stroke-miterlimit="10" cx="46.42" cy="63.24" r="8.282"/><circle class="load-d3" fill="#FFFFFF" stroke="#dedede" stroke-width="1" stroke-miterlimit="10" cx="79.173" cy="63.24" r="8.282"/><circle class="load-d4" fill="#FFFFFF" stroke="#dedede" stroke-width="1" stroke-miterlimit="10" cx="111.928" cy="63.24" r="8.282"/></svg></div> ';
+    this.seLoaderDIV = '<div class="se-loader" style="position: fixed; top:50vh; left:50%; margin-top:-100px; margin-left:-50%; "><svg version="1.1" id="dots" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="125.812px" height="125.812px" viewBox="0 0 125.812 125.812" enable-background="new 0 0 125.812 125.812" xml:space="preserve"><circle class="load-d1" fill="#FFFFFF" stroke="#dedede" stroke-width="1" stroke-miterlimit="10" cx="13.666" cy="63.24" r="8.282"/> <circle class="load-d2" fill="#FFFFFF" stroke="#dedede"stroke-width="1" stroke-miterlimit="10" cx="46.42" cy="63.24" r="8.282"/><circle class="load-d3" fill="#FFFFFF" stroke="#dedede" stroke-width="1" stroke-miterlimit="10" cx="79.173" cy="63.24" r="8.282"/><circle class="load-d4" fill="#FFFFFF" stroke="#dedede" stroke-width="1" stroke-miterlimit="10" cx="111.928" cy="63.24" r="8.282"/></svg></div> ';
 
     this.DirURL = seDIR.templateUrl;
     this.dots;
@@ -31,13 +31,17 @@ class LightBox {
 
   seLoadLB(data){
     let LBcontainer = document.getElementById('se-lb-con');
+    let LBframe = document.getElementsByClassName('se-lb-frame');
+
     LBcontainer.innerHTML += '<div class="se-lb-frame">'+data+'</div>';
+    TweenMax.from( document.getElementsByClassName('se-lb-frame'), 0.2, { autoAlpha: 0, y: '-5%', scale: '.8', transformOrigin:'50% 50%'} );
+
     this.tlLoader.paused();
   }
 
   seCloseLB(){
-    var ele = document.getElementById('se-lb-con')
-    ele.removeChild(ele.childNodes[0]);
+
+
   }
 
   seImageLB(count, src){

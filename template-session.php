@@ -135,16 +135,17 @@ $firstSlot = array_shift($slotarray);
     var LBclass = new LightBox;
     var LBtrigger = $('.se-session-referent');
 
-    var FrameLB = $('#se-lb-con');
     let refEle = $('.se-session-referent');
 
     function seSessionSpeaker(sp) {
-      $('body').find('#se-lb-con').parent().remove();
+
+
+      $('body').find('.se-lb-wrapper').remove();
       let page = sp.attr('pid');
       let rcount = sp.attr('rcount');
-
+      console.log(page);
       LBclass.seOpenLB();
-
+      $('.se-lb-con').empty();
 
       $.ajax({
         url : ajaxurl,
@@ -155,29 +156,25 @@ $firstSlot = array_shift($slotarray);
           action : 'se_session_load'
         },
 
-        error : function( response ){
+        error : function( r ){
           console.log('ajax error');
         },
-        success : function( response ){
-          LBclass.seLoadLB(response);
+        success : function( r ){
+          console.log( r );
+          LBclass.seLoadLB( r );
           $('.se-loader').css({'display': 'none'});
         }
       });
     }
 
-    $( document ).ajaxStop(function(){
-      $('.closer').on('click', function(){
-        $('body').find('#se-lb-con').parent().remove();
-      });
-      refEle.on('click', function(){
-        seSessionSpeaker($(this));
-      });
 
+    $('.closer').live('click', function(){
+      $('.se-lb-wrapper').remove();
     });
 
-    refEle.on('click', function(){
+
+    refEle.live('click', function(){
       seSessionSpeaker($(this));
-      console.log('asdf');
     });
 
   });

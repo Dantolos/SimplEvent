@@ -24,6 +24,19 @@ class SpeakerClass {
       $SMicon = new SocialMedia();
       $post = get_post($Pid);
 
+      $Ssprache = '';
+      switch (get_post_meta($Pid, 'speaker_sprache' )) {
+        case 'de':
+          $Ssprache = __( 'Deutsch', 'SimplEvent' );  break;
+        case 'en':
+          $Ssprache = __( 'Englisch', 'SimplEvent' );  break;
+        case 'fr':
+          $Ssprache = __( 'Französisch', 'SimplEvent' );  break;
+        case 'it':
+          $Ssprache = __( 'Italienisch', 'SimplEvent' );  break;
+        default:
+          $Ssprache = __( 'Deutsch', 'SimplEvent' );  break;
+      }
 
       $this->outputSpeaker = '<div class="se-col-8" style="padding-right:5%;">';
       $this->outputSpeaker .= '<h1>'. $post->post_title.'</h1>';
@@ -33,8 +46,12 @@ class SpeakerClass {
       $infoWidth = (wp_is_mobile()) ? 200 : 300;
       $this->outputSpeaker .= '<div class="se-col-4 se-sc-bg se-wc-txt" style="display:table;height:'.$infoWidth.'px;overflow:hidden;">';
       $this->outputSpeaker .= '<div class="se-infobox se-speaker-content-container-infobox">';
-      $this->outputSpeaker .= '<p style="margin-top:-40px;">' . get_post_meta($Pid, 'speaker_kategorie', true ) . '</p>';
-      $this->outputSpeaker .= '<h2>' . get_post_meta($Pid, 'speaker_zeit', true ) . '</h2>';
+      $this->outputSpeaker .= '<p style="margin-top:-40px; margin-bottom:-1px;">' . get_post_meta($Pid, 'speaker_kategorie', true ) . ' | <span> ' . $Ssprache . '</span></p>';
+      $this->outputSpeaker .= '<h3>' . get_post_meta($Pid, 'speaker_zeit', true ) . '</h3>';
+
+
+      //$this->outputSpeaker .= '<p style="border-bottom:1px solid #fff; text-align">' . $Ssprache . '</p>';
+
 
       if($Programm){ //check ob aktuelles jahr, wenn nicht, keine Programmverlinkung
         if(get_field('programm_link', $PageID )){
@@ -42,16 +59,11 @@ class SpeakerClass {
             $programmLink = get_field('programm_link', $PageID );
             switch (ICL_LANGUAGE_CODE) {
               case 'de':
-
-                $programmText = 'Programm';
-                break;
+                $programmText = 'Programm'; break;
               case 'en':
-
-                $programmText = 'Program';
-                break;
+                $programmText = 'Program'; break;
               default:
-                $programmText = get_site_url() . '/programm';
-                break;
+                $programmText = get_site_url() . '/programm'; break;
             }
           } else {
             $programmText = 'Programm';

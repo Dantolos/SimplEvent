@@ -15,14 +15,13 @@ $JahrID;
 $programm = true;
 $PageID = get_the_ID();
 if (! isset($_GET['j'])) {
-  $JahrID = get_field('jahr');
-
+  $JahrID = get_field('jahr', $PageID );
 } else {
   $JahrID = get_term_by('name', $_GET['j'], 'Jahre');
   $JahrID = $JahrID->term_id;
-  $programm = $_GET['j'] == get_field('jahr') ? true : false;
+  $CurrJahr = get_field('jahr', $PageID );
+  $programm = $_GET['j'] == $CurrJahr->name ? true : false;
 }
-
 
 $speaker_args = array(
   'post_type' => 'speakers',
@@ -79,7 +78,6 @@ if (! isset($_GET['r'])) {
 }
 
 
-
 if(count($speakerArr) > 1){
 ?>
 
@@ -101,7 +99,7 @@ if(count($speakerArr) > 1){
       <?php echo $Loader->getLoader(); ?>
 
       <div class="se-speaker-content-container se-content">
-          <?php echo $Speaker->getSpeaker($startID, $programm, $PageID); ?>
+          <?php echo $Speaker->getSpeaker( $startID, $programm, $PageID ); ?>
       </div>
   </div>
 
@@ -112,14 +110,12 @@ if(count($speakerArr) > 1){
     } else {
       echo '<div style="width:100%; height:150px;"></div>';
     }?>
-
   </div>
 
   <?php
 } else  {
   echo '<h1 style="margin:40vh 20vw;">Keine Speaker in dem Augsewählten Jahr gefunden</h1>';
 }
-
 ?>
 
 
@@ -185,7 +181,6 @@ jQuery(document).ready(function($){
          //sicherheits leeren ( falls zu schnell gedrueckt wurde
         SpeakerContainer.empty();
         ReviewContainer.empty();
-
 
         //laden neuer inhalt
         //speaker

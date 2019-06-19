@@ -25,7 +25,7 @@ class SpeakerClass {
       $post = get_post($Pid);
 
       $Ssprache = '';
-      switch (get_post_meta($Pid, 'speaker_sprache' )) {
+      switch (get_post_meta($Pid, 'speaker_sprache', true )) {
         case 'de':
           $Ssprache = __( 'Deutsch', 'SimplEvent' );  break;
         case 'en':

@@ -99,55 +99,54 @@ jQuery(document).ready(function($){
     var eventHTMLstring = '';
     moreEventCount = eventData.length;
     for ( var i = 0; i < eventData.length; i++ ) {
-      let Hurl = document.location.origin + '/';
-      if( eventData[i].acf.webseite != Hurl ) {
-        let mElead;
-        let mEdate;
-        let mEOrt;
-        let webBTN;
-        switch (curLang) {
-          case 'de':
-            mElead = eventData[i].acf.lead;
-            mEdate = eventData[i].acf.datum;
-            mEOrt = eventData[i].acf.ort;
-            webBTN = 'Webseite';
-            break;
-          case 'en':
-            mElead = eventData[i].acf.lead_en;
-            mEdate = eventData[i].acf.datum_en;
-            mEOrt = eventData[i].acf.ort_en;
-            webBTN = 'Website';
-            break;
-          case 'fr':
-            mElead = eventData[i].acf.lead_fr;
-            mEdate = eventData[i].acf.datum_fr;
-            mEOrt = eventData[i].acf.ort_fr;
-            webBTN = 'site Internet';
-            break;
-          default:
-            mElead = eventData[i].acf.lead;
-            mEdate = eventData[i].acf.datum;
-            mEOrt = eventData[i].acf.ort;
-            webBTN = 'Webseite';
-        }
 
-        eventHTMLstring += '<div countevent="'+i+'" class="se-more-event-content-inner" style="display:none;">';
-        eventHTMLstring += '<div class="se-more-event-content-logo">';
-        eventHTMLstring += '<a href="'+eventData[i].acf.webseite+'" target="_blank">';
-        eventHTMLstring += '<img src="'+eventData[i].acf.logos.logo_negativ.url+'" alt="' + eventData[i].title.rendered + '" title="' + eventData[i].title.rendered + '"/>';
-        eventHTMLstring += '</a>';
-        eventHTMLstring += '</div>';
-        eventHTMLstring += '<div class="se-more-event-content-text">';
-        eventHTMLstring += '<h5>' + eventData[i].title.rendered + '</h5>';
-        eventHTMLstring += '<p>' + mEdate + ' | ' + mEOrt + '</p>';
-        eventHTMLstring += '<p class="se-more-event-content-lead">' + mElead + '</p>';
-        eventHTMLstring += '<a href="'+ eventData[i].acf.webseite +'" target="_blank">';
-        eventHTMLstring += '<div class="mc-button-neg se-mc-txt button-border se-more-event-web-btn" style="margin:0; ">';
-        eventHTMLstring += webBTN;
-        eventHTMLstring += '</div></a>';
-        eventHTMLstring += '</div>';
-        eventHTMLstring += '</div>';
+      let mElead;
+      let mEdate;
+      let mEOrt;
+      let webBTN;
+      switch (curLang) {
+        case 'de':
+          mElead = eventData[i].acf.lead;
+          mEdate = eventData[i].acf.datum;
+          mEOrt = eventData[i].acf.ort;
+          webBTN = 'Webseite';
+          break;
+        case 'en':
+          mElead = eventData[i].acf.lead_en;
+          mEdate = eventData[i].acf.datum_en;
+          mEOrt = eventData[i].acf.ort_en;
+          webBTN = 'Website';
+          break;
+        case 'fr':
+          mElead = eventData[i].acf.lead_fr;
+          mEdate = eventData[i].acf.datum_fr;
+          mEOrt = eventData[i].acf.ort_fr;
+          webBTN = 'site Internet';
+          break;
+        default:
+          mElead = eventData[i].acf.lead;
+          mEdate = eventData[i].acf.datum;
+          mEOrt = eventData[i].acf.ort;
+          webBTN = 'Webseite';
       }
+
+      eventHTMLstring += '<div countevent="'+i+'" class="se-more-event-content-inner" style="display:none;">';
+      eventHTMLstring += '<div class="se-more-event-content-logo">';
+      eventHTMLstring += '<a href="'+eventData[i].acf.webseite+'" target="_blank">';
+      eventHTMLstring += '<img src="'+eventData[i].acf.logos.logo_negativ.url+'" alt="' + eventData[i].title.rendered + '" title="' + eventData[i].title.rendered + '"/>';
+      eventHTMLstring += '</a>';
+      eventHTMLstring += '</div>';
+      eventHTMLstring += '<div class="se-more-event-content-text">';
+      eventHTMLstring += '<h5>' + eventData[i].title.rendered + '</h5>';
+      eventHTMLstring += '<p>' + mEdate + ' | ' + mEOrt + '</p>';
+      eventHTMLstring += '<p class="se-more-event-content-lead">' + mElead + '</p>';
+      eventHTMLstring += '<a href="'+ eventData[i].acf.webseite +'" target="_blank">';
+      eventHTMLstring += '<div class="mc-button-neg se-mc-txt button-border se-more-event-web-btn" style="margin:0; ">';
+      eventHTMLstring += webBTN;
+      eventHTMLstring += '</div></a>';
+      eventHTMLstring += '</div>';
+      eventHTMLstring += '</div>';
+
     }
     moreEventContainer.append(eventHTMLstring);
   }

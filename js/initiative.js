@@ -99,7 +99,8 @@ jQuery(document).ready(function($){
     var eventHTMLstring = '';
     moreEventCount = eventData.length;
     for ( var i = 0; i < eventData.length; i++ ) {
-      if( eventData[i].acf.webseite != document.location.origin ) {
+      let Hurl = document.location.origin + '/';
+      if( eventData[i].acf.webseite != Hurl ) {
         let mElead;
         let mEdate;
         let mEOrt;

@@ -99,7 +99,7 @@ jQuery(document).ready(function($){
     var eventHTMLstring = '';
     moreEventCount = eventData.length;
     for ( var i = 0; i < eventData.length; i++ ) {
-      if( eventData[i].acf.webseite != seDIR.templateUrl ) {
+      if( eventData[i].acf.webseite != document.location.origin ) {
         let mElead;
         let mEdate;
         let mEOrt;
@@ -147,7 +147,6 @@ jQuery(document).ready(function($){
         eventHTMLstring += '</div>';
         eventHTMLstring += '</div>';
       }
-
     }
     moreEventContainer.append(eventHTMLstring);
   }

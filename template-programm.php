@@ -74,7 +74,7 @@ get_header(); ?>
             <div class="se-programm-moderator-bild image-settings" style="background-image:url('<?php echo $moderator['foto']; ?>');"></div>
             <div class="se-programm-moderator-text">
               <h4><b><?php echo $moderator['name']; ?></b></h4>
-              <p><?php echo $moderator['funktion'] ?></p>
+              <p><?php echo $moderator['funktion']; ?></p>
             </div>
           </div>
 

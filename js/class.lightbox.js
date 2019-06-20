@@ -21,10 +21,10 @@ class LightBox {
     seLoader[0].classList.add("se-loader-center");
     seLoader[0].style.display = 'block';
 
-    this.tlLoader = new TimelineMax({repeat:-1});
+    this.tlLoader = new TimelineMax({ repeat:-1 });
     this.tlLoader
-      .staggerTo(this.dots, 0.3, {y: '-6px', fill: '#dedede', stroke: '#dedede',  scale: 1.2, ease:Power1.easeIn}, 0.2)
-      .staggerTo(this.dots, 0.3, {y: '0px', fill: '#fff', stroke: '#dedede',   scale: 1, ease:Power1.easeOut}, 0.2, "-=0.5");
+      .staggerTo(this.dots, 0.3, { y: '-6px', fill: '#dedede', stroke: '#dedede',  scale: 1.2, ease:Power1.easeIn }, 0.2)
+      .staggerTo(this.dots, 0.3, { y: '0px', fill: '#fff', stroke: '#dedede',   scale: 1, ease:Power1.easeOut }, 0.2, "-=0.5");
     this.tlLoader.play();
   }
 

@@ -18,7 +18,6 @@
     wp_enqueue_style( 'print-style-css', get_template_directory_uri() . '/css/print.css' );
   	wp_enqueue_script( 'script-js', get_template_directory_uri() . '/js/script.js', array('jquery'), true );
 
-
     wp_enqueue_script( 'particles', 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js', true );
     wp_enqueue_script( 'hammer-js', 'https://hammerjs.github.io/dist/hammer.js', true );
 
@@ -58,7 +57,6 @@
   //modular classes
   require_once('inc/class.modular-elements.php');
   require_once('inc/class.modular.php');
-
 
 
   //colors
@@ -197,7 +195,7 @@
         'yt' => esc_attr( get_option( 'youtube_link' ) ),
         'insta' => esc_attr( get_option( 'insta_link' ) )
       );
-      if($MainSocial){
+      if($MainSocial) {
         foreach ($MainSocial as $SMName => $SMLink) {
           if($SMLink) {
             $icon = $SMicon->getSMicon($SMName, '#b7b7b7', '16px');

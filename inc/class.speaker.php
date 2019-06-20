@@ -7,18 +7,15 @@ require_once('class.socialmedia.php');
 
 class SpeakerClass {
 
-
   public $outputSpeaker;
   public $outputReview;
   protected $postIDs;
 
-  public function getSpeaker( $Pid = 'N', $Programm = true, $PageID = 0 ){
+  public function getSpeaker( $Pid = 'N', $Programm = true, $PageID = 0 ) {
 
     if($Pid == 'N' ) {  //check require parameter
       $this->outputSpeaker = 'pls set ID -> get_Speaker(TermID)';
-
     } else {
-
       $seMaC = esc_attr( get_option( 'main_color_picker' ) ) ;
       $Clink = new LinkIcon($seMaC);
       $SMicon = new SocialMedia();
@@ -27,34 +24,30 @@ class SpeakerClass {
       $Ssprache = '';
       switch (get_post_meta($Pid, 'speaker_sprache', true )) {
         case 'de':
-          $Ssprache = __( 'Deutsch', 'SimplEvent' );  break;
+          $Ssprache = __( 'Deutsch', 'SimplEvent' ); break;
         case 'en':
-          $Ssprache = __( 'Englisch', 'SimplEvent' );  break;
+          $Ssprache = __( 'Englisch', 'SimplEvent' ); break;
         case 'fr':
-          $Ssprache = __( 'Französisch', 'SimplEvent' );  break;
+          $Ssprache = __( 'Französisch', 'SimplEvent' ); break;
         case 'it':
-          $Ssprache = __( 'Italienisch', 'SimplEvent' );  break;
+          $Ssprache = __( 'Italienisch', 'SimplEvent' ); break;
         default:
-          $Ssprache = __( 'Deutsch', 'SimplEvent' );  break;
+          $Ssprache = __( 'Deutsch', 'SimplEvent' ); break;
       }
 
       $this->outputSpeaker = '<div class="se-col-8" style="padding-right:5%;">';
-      $this->outputSpeaker .= '<h1>'. $post->post_title.'</h1>';
-      $this->outputSpeaker .= '<p>' . get_post_meta($Pid, 'speaker_funktion', true ) . ', ' . get_field('speaker_firma', $Pid ) . '</p>';
-      $this->outputSpeaker .= '<p>' . get_field('speaker_cv', $Pid ) . '</p>';
+      $this->outputSpeaker .= '<h1>' . $post->post_title . '</h1>';
+      $this->outputSpeaker .= '<p>' . get_post_meta( $Pid, 'speaker_funktion', true ) . ', ' . get_field('speaker_firma', $Pid ) . '</p>';
+      $this->outputSpeaker .= '<p>' . get_field( 'speaker_cv', $Pid ) . '</p>';
       $this->outputSpeaker .= '</div>';
-      $infoWidth = (wp_is_mobile()) ? 200 : 300;
-      $this->outputSpeaker .= '<div class="se-col-4 se-sc-bg se-wc-txt" style="display:table;height:'.$infoWidth.'px;overflow:hidden;">';
+      $infoWidth = ( wp_is_mobile() ) ? 180 : 250;
+      $this->outputSpeaker .= '<div class="se-col-4 se-sc-bg se-wc-txt" style="display:table;height:' . $infoWidth . 'px;overflow:hidden;">';
       $this->outputSpeaker .= '<div class="se-infobox se-speaker-content-container-infobox">';
-      $this->outputSpeaker .= '<p style="margin-top:-40px; margin-bottom:-1px;">' . get_post_meta($Pid, 'speaker_kategorie', true ) . ' | <span> ' . $Ssprache . '</span></p>';
-      $this->outputSpeaker .= '<h3>' . get_post_meta($Pid, 'speaker_zeit', true ) . '</h3>';
+      $this->outputSpeaker .= '<p style="margin-top:-40px; border-bottom:.5px solid #fff; margin-bottom:25px;">' . get_post_meta($Pid, 'speaker_kategorie', true ) . ' | <span> ' . $Ssprache . '</span></p>';
+      $this->outputSpeaker .= '<h3>' . get_post_meta( $Pid, 'speaker_zeit', true ) . '</h3>';
 
-
-      //$this->outputSpeaker .= '<p style="border-bottom:1px solid #fff; text-align">' . $Ssprache . '</p>';
-
-
-      if($Programm){ //check ob aktuelles jahr, wenn nicht, keine Programmverlinkung
-        if(get_field('programm_link', $PageID )){
+      if($Programm) { //check ob aktuelles jahr, wenn nicht, keine Programmverlinkung
+        if(get_field('programm_link', $PageID )) {
           if ( function_exists('icl_object_id') ) {
             $programmLink = get_field('programm_link', $PageID );
             switch (ICL_LANGUAGE_CODE) {
@@ -72,13 +65,11 @@ class SpeakerClass {
         }
       }
 
-
-
       $i = 0;
       $this->outputSpeaker .= '<div class="se_speaker_social-media">';
 
       $social = get_field('speaker_social_media', $Pid);
-      while( $i < count($social) ){
+      while( $i < count($social) ) {
         $smType = $social[$i]['speaker_social_media_typ'];
         $icon = $SMicon->getSMicon($smType, '#fff', '25px');
 
@@ -90,7 +81,7 @@ class SpeakerClass {
       }
 
       $webseite = get_field('speaker_webseite', $Pid );
-      if($webseite){
+      if($webseite) {
         $this->outputSpeaker .= '<a href="' .$webseite. '" target="_blank" style="position:absolute; right:0;">';
         $this->outputSpeaker .= '<div class="mc-button-neg se-mc-txt" style="margin:0px; border: solid 2px' . esc_attr( get_option( 'main_color_picker' ) ) . '; float:right;">';
         $this->outputSpeaker .= __( 'WEBSEITE', 'SimplEvent' );
@@ -99,11 +90,7 @@ class SpeakerClass {
       }
       $this->outputSpeaker .= '</div>';
       $this->outputSpeaker .= '</div></div>';
-
-
-
     }
-
     return $this->outputSpeaker;
   }
 
@@ -127,7 +114,7 @@ class SpeakerClass {
       }
       $this->outputReview .= '</div>';
       $reviewIMG = get_field('review_galerie', $Pid );
-      if($reviewIMG){
+      if($reviewIMG) {
         $this->outputReview .= '<div class="se-gallery-container">';
         for ($c=0; $c < count($reviewIMG); $c++) {
           $reviewIMGurl = $reviewIMG[$c]['url'];

@@ -131,7 +131,6 @@ function se_award_video_load() {
   $response = '<img src="' . get_template_directory_uri() . '/img/close.svg" alt="" class="closer">';
   $response .= '<iframe  src="https://www.youtube.com/embed/' . get_post_meta( $postID, 'award_video', true ) . '?rel=0&amp;controls=0;autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
 
-
   echo $response;
   die();
 }
@@ -223,7 +222,7 @@ add_action('wp_ajax_se_former_award', 'se_former_award'); //nur für angemeldete
 function se_former_award() {
   $Candidates = new AwardClass;
 
-  $finalists = $_POST['finalists'] === 'true'? true: false;;
+  $finalists = $_POST['finalists'] === 'true' ? true: false;;
   $jahr = $_POST['jahr'];
 
   $response = $Candidates->getCandidate( intval($jahr), 'all', $finalists );

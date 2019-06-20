@@ -268,7 +268,7 @@ jQuery(document).ready(function($){
       tempID++;
     });
 
-    $(window).on('resize', function(){
+    $(window).on('resize', function() {
       allColumns.each(function(){
         cP = $(this).parent();
         if ( checkArr.indexOf(cP[0]) == -1 ) {
@@ -362,7 +362,7 @@ jQuery(document).ready(function($){
   }
   sessionResizing();
 
-  $(window).on('resize', function(){
+  $( window ).on('resize', function(){
     sessionResizing();
   });
 
@@ -378,6 +378,7 @@ jQuery(document).ready(function($){
   }).mouseleave(function(){
     $('.nav-layer').fadeOut();
   });
+
   function navBGslide( e, curr = false ) {
     if( !curr ) {
       navPos = $(e).position().left;

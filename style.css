@@ -3,7 +3,7 @@
  *Author: Aaron Giaimo
  *Author URI: http://aagi.ch/
  *Description: This Theme is specified for simple userfriendly Event-Communication. Its based for the Events, which organized by the Swiss Economic Forum AG.
- *Version: 1.1.05
+ *Version: 1.1.06
  *GitHub Theme URI: https://github.com/Dantolos/SimplEvent
  *GitHub Branch: master
  */
@@ -419,11 +419,11 @@ ul li {padding-bottom: .6em;}
 /*--Content--*/
 .se-speaker-content-container { margin-bottom: 0px; }
 .se-speaker-content-container h1 { margin-bottom:0; }
-.se-speaker-content-container p:last-of-type { padding-bottom:10px;}
-.se-speaker-content-container h3 { line-height: 0.8; padding-bottom:13px; border-bottom:.5px solid #fff; }
+.se-speaker-content-container p:last-of-type { padding-bottom:10px;  }
+.se-speaker-content-container h3 { line-height: 0.8; padding-bottom:13px;  }
 .se-speaker-content-container-infobox { position: relative; }
-.se-speaker-content-container-infobox p { text-transform: uppercase;}
-.se-speaker-content-container-infobox p span{ color:#bdbdbd; display:inline-block;}
+.se-speaker-content-container-infobox p { text-transform: uppercase; }
+.se-speaker-content-container-infobox p span{ color:#bdbdbd; display:inline-block; margin-top: -2px; }
 .se_speaker_social-media { height:auto; width:80%; position: absolute; bottom:15%; left:10%; }
 .se_speaker_social-media a { float:left; margin-top:0px;}
 
@@ -441,7 +441,7 @@ ul li {padding-bottom: .6em;}
 .se-content-session-l p:first-of-type, .se-content-session-r p:first-of-type { padding-left:10px; padding-top:40px; }
 .se-content-session-l h3, .se-content-session-r h3 { margin: 40px 0 -3px 0;}
 .se-session-sprache { opacity:.4; font-size:14px; margin-bottom: 20px; }
-.se-session-referent { width:50%; margin-top:40px; float:left; cursor:pointer;}
+.se-session-referent { width:50%; margin-top:40px; float:left; cursor:pointer; }
 .se-infobox-session-selector { position:relative; width:100%; height:40px; background-color:#444545; margin-top:20px; border-radius: 5px; }
 .se-infobox-session-selector { padding:10px 15px; }
 .se-infobox-session-dropdown { background-color:#444545; width:100%; border-radius: 5px; }
@@ -574,7 +574,7 @@ ul li {padding-bottom: .6em;}
 .se-people-portrait-img { width:80%; height:80%; position: absolute; right:0; left:0; margin:20px auto; border-radius: 50%; filter: grayscale(60%); -webkit-filter: grayscale(60%); }
 .se-people-stroke { width: 20%; margin:10px auto 5px;}
 .se-people-socialmedia-wrapper { display: table; margin: auto; }
-.se-people-socialmedia-wrapper a { float:left; }
+.se-people-socialmedia-wrapper a { float: left; }
 
 /*-----------------------------------------------------------------------*/
 /*-------------------------------COOKIE NOTICE---------------------------*/

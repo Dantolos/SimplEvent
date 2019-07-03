@@ -483,20 +483,23 @@ jQuery(document).ready(function($){
     console.log(btnPos.top);
   });
 
-  function getReviewAttentioner() {
-    let btnPos = $('.se-review-attention').position();
-    let revPos = $('.se-speaker-review').position();
-    if( revPos.top > btnPos.top ) {
-      $('.se-review-attention').fadeOut();
+
+
+  if( $('.se-review-attention') ) {
+    $(window).live('scroll', function() {
+      getReviewAttentioner();
+    });
+    $(document).live(function(){
+      getReviewAttentioner();
+    });
+    function getReviewAttentioner() {
+      let btnPos = $('.se-review-attention').position();
+      let revPos = $('.se-speaker-review').position();
+      if( revPos.top > btnPos.top ) {
+        $('.se-review-attention').fadeOut();
+      }
     }
   }
-
-  $(window).live('scroll', function() {
-    getReviewAttentioner();
-  });
-  $(document).ajaxComplete(function(){
-    getReviewAttentioner();
-  });
 
   //----------------------------------------------------
   //----partner-----------------------------------------

@@ -131,7 +131,7 @@ jQuery(document).ready(function($){
       var pID = sp.data('id');
 
       LBclass.seOpenLB();
-      
+
       $.ajax({
         url : ajaxurl,
         type : 'post',

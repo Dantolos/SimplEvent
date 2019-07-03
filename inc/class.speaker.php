@@ -9,6 +9,7 @@ class SpeakerClass {
 
   public $outputSpeaker;
   public $outputReview;
+
   protected $postIDs;
 
   public function getSpeaker( $Pid = 'N', $Programm = true, $PageID = 0 ) {
@@ -95,26 +96,48 @@ class SpeakerClass {
   }
 
   public function getSpeakerReview($Pid = 'N'){
+    $seMaC = esc_attr( get_option( 'main_color_picker' ) );
+    $Vlink = new LinkIcon($seMaC);
     if($Pid == 'N') {  //check require parameter
+
       $this->outputSpeaker = 'pls set ID -> get_Speaker(ID, )';
 
     } else {
-      $this->outputReview = '<div class="se-strip se-speaker-review se-sc-bg"><div class="se-content" style="overflow:hidden;">';
+
+      //Review Attentioner
+      $this->outputReview = '<div class="se-sc-bg se-wc-txt se-review-attention" style="border-bottom: 2px solid' . esc_attr( get_option( 'main_color_picker' ) ) . ';">';
+      $this->outputReview .= '<h6>REVIEW</h6>';
+      $this->outputReview .= '<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            	 width="16px" height="16px" viewBox="0 0 40 39" enable-background="new 0 0 40 39" xml:space="preserve"><g>
+                              	<path class="se-arrow" fill="#dedede" d="M30.105,18.204L11.357,7.249c-0.764-0.448-1.743-0.19-2.188,0.574C8.724,8.585,8.98,9.565,9.744,10.01
+                              		l16.333,9.545L9.819,29.446c-0.755,0.459-0.995,1.443-0.536,2.197c0.302,0.496,0.829,0.769,1.369,0.769
+                              		c0.284,0,0.57-0.074,0.83-0.232l18.146-11.039c0.426-0.09,0.815-0.345,1.053-0.749C31.125,19.628,30.868,18.649,30.105,18.204z"/>
+                                </g>
+                              </svg>';
+      $this->outputReview .= '</div>';
+
+      $this->outputReview .= '<div class="se-strip se-speaker-review se-sc-bg"><div class="se-content" style="overflow:hidden;">';
       $this->outputReview .= '<div class="se-col-12 se-wc-txt">';
       $this->outputReview .= '<h4 style="font-weight: 700; margin-bottom:30px;">' . get_post_meta($Pid, 'review_titel', true ) . '</h4>';
       $this->outputReview .= '</div>';
-      $columns = (get_post_meta($Pid, 'review_video', true )) ? 5 : 12;
-      $this->outputReview .= '<div class="se-col-'.$columns.' se-wc-txt" style="padding-right:3%;">';
-      $this->outputReview .= '<p style="border-top:2px solid ' . esc_attr( get_option( 'main_color_picker' ) ) . '; padding-top:10px;">';
-      $this->outputReview .= get_post_meta($Pid, 'review_text', true ) . '</p></div>';
-      if(get_post_meta($Pid, 'review_video', true )){
-        $this->outputReview .= '<div class="se-col-7 se-wc-txt se-speaker-review-video">';
+      $columnsV = (get_post_meta($Pid, 'review_video', true )) ? 5 : 12;
+      $columnsT = (get_post_meta($Pid, 'review_text', true )) ? 7 : 12;
+
+      if( $columnsT === 7 ){
+        $this->outputReview .= '<div class="se-col-'.$columnsV.' se-wc-txt" style="padding-right:3%;">';
+        $this->outputReview .= '<p style="border-top:2px solid ' . esc_attr( get_option( 'main_color_picker' ) ) . '; padding-top:10px;">';
+        $this->outputReview .= get_post_meta( $Pid, 'review_text', true ) . '</p></div>';
+      }
+
+      if( get_post_meta( $Pid, 'review_video', true ) ) {
+        $this->outputReview .= '<div class="se-col-'.$columnsT.' se-wc-txt se-speaker-review-video">';
         $this->outputReview .= '<iframe width="100%" height="100%" src="https://media10.simplex.tv/content/'.get_post_meta($Pid, 'review_video', true ).'/index.html?embed=1" frameborder="0" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" scrolling="no"></iframe>';
         $this->outputReview .= '</div>';
       }
+
       $this->outputReview .= '</div>';
       $reviewIMG = get_field('review_galerie', $Pid );
-      if($reviewIMG) {
+      if( $reviewIMG ) {
         $this->outputReview .= '<div class="se-gallery-container">';
         for ($c=0; $c < count($reviewIMG); $c++) {
           $reviewIMGurl = $reviewIMG[$c]['url'];
@@ -123,6 +146,8 @@ class SpeakerClass {
           $this->outputReview .= '</div>';
         }
         $this->outputReview .= '</div>';
+      } else {
+        $this->outputReview .= '<div class="se-review-placehodler" style="height:50px; width:100%;"></div>';
       }
 
       $this->outputReview .= '</div></div>';

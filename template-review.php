@@ -70,7 +70,7 @@ if( have_rows('reviews') ) {
         }
       ?>
 
-      <div class="se-sc-bg se-wc-txt se-review-content" style="border-left:2px solid <?php echo esc_attr( get_option( 'main_color_picker' ) ) ; ?>;">
+      <div class="se-wc-bg se-sc-txt se-review-content" style="border-left:2px solid <?php echo esc_attr( get_option( 'main_color_picker' ) ) ; ?>;">
         <div class="se-review-content-title" style="position:relative;" rid="<?php echo $rCount; ?>" copen="N">
           <h5><?php echo get_sub_field('motto'); ?></h5>
           <p class="se-mc-txt" style="margin-bottom:40px;"><?php echo get_sub_field('ort'); ?>, <?php echo get_sub_field('datum'); ?></p>
@@ -117,7 +117,7 @@ if( have_rows('reviews') ) {
           <!-- Fotos -->
 
           <?php
-      
+
           if( get_sub_field('gallery') ) { ?>
             <div class="se-review-col" style="text-align:center;">
               <div class="button-border se-review-button se-review-gallery-btn" pagid="<?php echo get_the_ID(); ?>" galid="<?php echo $rCount; ?>">

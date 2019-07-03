@@ -2,6 +2,8 @@
 get_header();
 
 $Modular = new Modular;
+$seButton = new seButton;
+$seLink = new LinkIcon;
 $curPageID = get_option( 'page_on_front' );
 
 
@@ -91,18 +93,16 @@ if( empty( get_option( 'se_livestream' ) ) ) {  //check ob live event
       }
 
       $displayer = $slideArray[0]['zitat'] ? 'block' : 'none'; //if zitat in zitat
-
       ?>
+
       <!-- zitat -->
       <div id="se-slider-type-zitat" class="se-slider-header-text-container" style="display:<?php echo $typeOrder[0]; ?>;">
 
-
-        <div class="se-slider-type-zitat" >
+        <div class="se-slider-type-zitat">
 
           <div class="se-slider-header-zitat" style="display:<?php echo $typeOrder[$typeDisplayer]; ?>;">
             <p class="" style="display:<?php echo $displayer; ?>;"><strong>&laquo;</strong><?php echo $slideArray[0]['zitat']; ?><strong>&raquo;</strong></p>
           </div>
-
 
           <p id="slidename" style="margin-top:20px; color:<?php echo $slideArray[0]['color']; ?>;"><strong><?php echo $slideArray[0]['name']; ?></strong></p>
           <p id="slidefunktion" style="color:<?php echo $slideArray[0]['color']; ?>; font-weight: 300;"><?php echo $slideArray[0]['funktion']; ?></p>
@@ -117,7 +117,7 @@ if( empty( get_option( 'se_livestream' ) ) ) {  //check ob live event
 
         </div>
       </div>
-
+      <!-- zitat END-->
 
       <!-- titel -->
       <div id="se-slider-type-titel" class="" style="display:<?php echo $typeOrder[1]; ?>; color: <?php echo $slideArray[0]['textcolor']; ?>;">
@@ -126,23 +126,82 @@ if( empty( get_option( 'se_livestream' ) ) ) {  //check ob live event
         </div>
         <h2 id="sliderTitel"><?php echo $slideArray[0]['titel']; ?></h2>
         <h4 id="sliderDatum"><?php echo $slideArray[0]['datum']; ?></h4>
+        <?php if($slideArray[0]['button']){ ?>
+          <a id="slidebutton" href="<?php echo $slideArray[0]['buttonlink']; ?>">
+            <div class="se-mc-bg mc-button se-wc-txt">
+              <?php echo $slideArray[0]['buttontext']; ?>
+            </div>
+          </a>
+        <?php } ?>
       </div>
-
-
-
+      <!-- titel END-->
 
   </div>
 <?php
   }
 } else { //live version mit livestream
 ?>
-
-  <div id="" class="se-slider-header-container se-slider-mobile-align-left" style="height:80vh;">
+  <!-- Livestream Frame -->
+  <div id="" class="se-slider-header-container se-slider-mobile-align-left se-slider-stream-frame">
     <?php echo get_option( 'se_iframe' );?>
   </div>
 
-<?php
+  <!-- Next Programm -->
+  <div class="se-sc-bg se-programm-next">
+    <div class="se-content">
 
+      <div class="se-col-12 se-wc-txt">
+        <div class="" style="margin-top:20px; ">
+          <?php
+          $slug = 'programm';
+          $programmPage = get_page_by_path( $slug );
+
+          $now = new DateTime();
+          $now = $now->setTimezone(new DateTimeZone('Europe/Zurich'));
+          if( have_rows('programmraster', $programmPage->ID ) ):
+            while ( have_rows('programmraster', $programmPage->ID ) ) : the_row();
+              if( get_row_layout() == 'programmpunkt' ) {
+                if( get_sub_field('programmpunkt_zeit') ) {
+                  $programmZeit = substr(get_sub_field('programmpunkt_zeit'), 0, 5);
+
+                  if( str_replace( ':', '', $now->format('H:i') ) < str_replace('.', '', $programmZeit) ) {
+                    ?>
+
+                      <h6 style="border-bottom: solid 1px #fff; margin-bottom:10px; padding-bottom:5px;">
+                        <span style="opacity:.6;"><?php echo __('Nächster Programmpunkt', 'SimplEvent') ?></span>
+                        <span style="float: right;"><b><?php echo the_sub_field('programmpunkt_zeit'); ?></b></span>
+                      </h6>
+
+                      <?php
+                      $programmLink = get_sub_field('programmpunkt_verlinkung');
+                      if( $programmLink ) {
+                        echo '<a href="' . $programmLink . '">';
+                      } ?>
+
+                        <h4><b><?php echo the_sub_field('programmpunkt_titel'); ?></b></h4>
+                        <H6><?php echo the_sub_field('programmpunkt_subtext'); ?></H6>
+
+                      <?php
+                      if( $programmLink ) { echo '</a>'; }
+
+                      echo '<div class="se-programm-next-btn">';
+                      echo $seLink->getLinkIcon('www.google.ch', 'zum Programm');
+                      echo '</div>';
+
+                    break;
+                  }
+                }
+              }
+          endwhile; endif;
+          ?>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Next Programm END-->
+
+<?php
 }
 
 

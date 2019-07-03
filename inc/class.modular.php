@@ -31,9 +31,6 @@ class Modular extends ModularElements {
         }
       }
 
-
-
-
       $OutPut = '<div class="se-strip ' . $BGcolor . ' image-settings" style="background-image:url('.$BGimg.'); ' . $BGstyle . '">';
 
       //Create Column + Element

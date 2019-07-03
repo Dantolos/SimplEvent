@@ -268,7 +268,7 @@ jQuery(document).ready(function($){
       tempID++;
     });
 
-    $(window).on('resize', function() {
+    $(window).on('resize', function(){
       allColumns.each(function(){
         cP = $(this).parent();
         if ( checkArr.indexOf(cP[0]) == -1 ) {
@@ -468,7 +468,35 @@ jQuery(document).ready(function($){
     }
   }
 
+  //Attiontioner
 
+  $('.se-review-attention').live('click', function(){
+    let btnPos = $(this).position();
+    let revPos = $('.se-speaker-review').position();
+    window.scroll({
+      top: revPos.top,
+      behavior: 'smooth'
+    });
+
+    $(this).fadeOut();
+    console.log(revPos.top);
+    console.log(btnPos.top);
+  });
+
+  function getReviewAttentioner() {
+    let btnPos = $('.se-review-attention').position();
+    let revPos = $('.se-speaker-review').position();
+    if( revPos.top > btnPos.top ) {
+      $('.se-review-attention').fadeOut();
+    }
+  }
+
+  $(window).live('scroll', function() {
+    getReviewAttentioner();
+  });
+  $(document).ajaxComplete(function(){
+    getReviewAttentioner();
+  });
 
   //----------------------------------------------------
   //----partner-----------------------------------------
@@ -522,7 +550,6 @@ jQuery(document).ready(function($){
     awarContainer.css({'height': awardBoxHeight + 20 });
   });
 
-
   //overlay
   var awardInfoContainer = $('.se-award-info-container');
   var awardInfoTL = new  TimelineMax({paused:true});
@@ -561,6 +588,7 @@ jQuery(document).ready(function($){
   //----------------------------------------------------
   if(!isMobile){
     function doFooterPosition() {
+
       let footerPos = $('.se-footer-container').offset().top;
       let windowHeight = $(window).height();
       if(windowHeight > footerPos){

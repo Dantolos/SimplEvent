@@ -1,5 +1,7 @@
 jQuery(document).ready(function($){
   var curLang = $('header').attr('curlang');
+  var seLoaderMoreEvent = $('#se-more-event-content').find('.se-loader');
+
   console.log(curLang);
 
   //more Event -BAR
@@ -24,6 +26,7 @@ jQuery(document).ready(function($){
 
 
   function OpenMoEventContainer(){
+
     moEvO++;
     var degrees = 0;
     $('.se-more-events-container').slideToggle();
@@ -46,9 +49,7 @@ jQuery(document).ready(function($){
 
   moreEventBtn.on("click", function(){
     if(!moreEventDone){
-
       loadEvents('initiativen?_embed&per_page=100');
-
     }
   });
 
@@ -69,11 +70,16 @@ jQuery(document).ready(function($){
   //QUERY
   function loadEvents(direction){
     console.log('clicked');
+
     var iniReq = new XMLHttpRequest();
     var dir = 'https://www.nzz-konferenzen.ch/wp-json/wp/v2/' + direction;
 
+
+    loadLoader();
+
     iniReq.open('GET', dir);
     iniReq.onload = function() {
+
       if(iniReq.status >= 200 && iniReq.status < 400) {
         var data = JSON.parse(iniReq.responseText);
           for (var i = 0; i < data.length; i++) {
@@ -81,6 +87,8 @@ jQuery(document).ready(function($){
           }
         createMoreEvents(data);
         $('.se-more-event-content-inner').first().fadeIn();
+
+        seLoaderMoreEvent.css({'display': 'none'});
 
         moreEventDone = true;
       } else {
@@ -96,6 +104,7 @@ jQuery(document).ready(function($){
 
   //HTML
   function createMoreEvents(eventData) {
+    console.log( window.location );
     var eventHTMLstring = '';
     moreEventCount = eventData.length;
     for ( var i = 0; i < eventData.length; i++ ) {
@@ -152,6 +161,7 @@ jQuery(document).ready(function($){
   }
 
   function getNextPrev(richtung) {
+    loadLoader();
     var currentEvent = $('.se-more-event-content-inner:visible').attr('countevent');
     $('.se-more-event-content-inner[countevent="'+currentEvent+'"]').fadeOut(300);
     if(richtung == 'next') {
@@ -168,7 +178,7 @@ jQuery(document).ready(function($){
     }
     changeEventAnim(currentEvent, richtung);
     $('.se-more-event-content-inner[countevent="'+currentEvent+'"]').show();
-
+    seLoaderMoreEvent.css({'display': 'none'});
   }
 
   //change Event animation
@@ -208,4 +218,16 @@ jQuery(document).ready(function($){
     getNextPrev('prev');
     console.log('swioeright');
   });
+
+  function loadLoader(){
+    seLoaderMoreEvent.css({'display': 'block', 'position': 'relative', 'height': '50%', 'width': '100%' });
+    seLoaderMoreEvent.find('svg').css({
+      'display': 'block',
+      'position': 'absolute',
+      'margin': 'auto',
+      'top': 0, 'left': 0, 'bottom': 0, 'right': 0
+    });
+    TweenMax.from(seLoaderMoreEvent.find('svg'), 0.5, { autoAlpha: 0, y: '-80px' });
+  }
+
 });

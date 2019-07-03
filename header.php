@@ -53,6 +53,7 @@
   require_once('inc/class.sessions.php');
   require_once('inc/class.award.php');
 
+  require_once('inc/elements/class.button.php');
 
   //modular classes
   require_once('inc/class.modular-elements.php');
@@ -66,6 +67,8 @@
 
   //Language
   $curLang = apply_filters( 'wpml_current_language', NULL );
+
+  $MoEvLoader = new loadingAnimation;
 ?>
 
   <!-- Google Tag Manager -->
@@ -229,7 +232,7 @@
       </div>
       <!-- more Events Content -->
       <div class="se-more-event-content" id="se-more-event-content">
-
+        <?php //echo $MoEvLoader->getLoader(); ?>
       </div>
       <!-- more Events Content END -->
       <div class="se-arrow-next-event se-arrow-event">
@@ -450,15 +453,18 @@ if(!wp_is_mobile()){
       <p><?php echo __( $stringTranslationArr['translation'], 'SimplEvent' ); ?></p>
     </div>
 
-    <div class="se-info-sidebar-icon" style="border-top: 2px solid <?php echo $seWC; ?>;">
-      <img src="<?php echo get_template_directory_uri(); ?>/img/icon-price.svg" alt="">
-    </div>
-    <div class="se-info-sidebar-text">
-      <p><strong><?php echo __( 'Preis', 'SimplEvent' ); ?></strong></p>
-      <p><?php echo __( $stringTranslationArr['price'], 'SimplEvent' ); ?></p>
-    </div>
-
     <?php
+    if( $stringTranslationArr['price'] ) { ?>
+      <div class="se-info-sidebar-icon" style="border-top: 2px solid <?php echo $seWC; ?>;">
+        <img src="<?php echo get_template_directory_uri(); ?>/img/icon-price.svg" alt="">
+      </div>
+      <div class="se-info-sidebar-text">
+        <p><strong><?php echo __( 'Preis', 'SimplEvent' ); ?></strong></p>
+        <p><?php echo __( $stringTranslationArr['price'], 'SimplEvent' ); ?></p>
+      </div>
+    <?php
+    }
+
     $seanmeldung = esc_attr( get_option( 'se_anmeldung' ));
     if( $seanmeldung == 'on') { ?>
       <a href="<?php echo esc_attr( get_option( 'se_anmeldelink' )); ?>" target="_blank">
@@ -475,7 +481,10 @@ if(!wp_is_mobile()){
 
   <?php
   if( !wp_is_mobile() ) {
-    if(!is_front_page() && !is_page_template( 'template-modular.php' ) && !is_page_template( 'template-review.php' ) && !is_page_template( 'template-speaker.php' )) {
+    if( !is_front_page() && !is_page_template( 'template-modular.php' )
+      && !is_page_template( 'template-review.php' )
+      && !is_page_template( 'template-speaker.php' )
+      && !is_page_template( 'template-maps.php' ) ) {
         echo '<div class="se-header-title-placeholder"></div>';
     }
   }

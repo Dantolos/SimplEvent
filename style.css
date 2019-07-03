@@ -3,7 +3,7 @@
  *Author: Aaron Giaimo
  *Author URI: http://aagi.ch/
  *Description: This Theme is specified for simple userfriendly Event-Communication. Its based for the Events, which organized by the Swiss Economic Forum AG.
- *Version: 1.1.09
+ *Version: 1.1.10
  *GitHub Theme URI: https://github.com/Dantolos/SimplEvent
  *GitHub Branch: master
  */
@@ -52,7 +52,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   vertical-align: baseline;
 }
 sup { line-height: 0; }
-body {overflow-x: hidden;}
+body { overflow-x: hidden; }
 
 /*--EMBED--*/
 .embed-container {
@@ -346,7 +346,8 @@ ul li {padding-bottom: .6em;}
 .se-info-sidebar-icon img { width:30%; margin-left:70%; margin-top: 10px; right:0; }
 .se-info-sidebar-text {margin-left: 5%; width:80%; margin-bottom:10%;}
 
-.se-info-sidebar-trigger { z-index: 10000; position: fixed; right:0; top:0; bottom:0; margin:auto; width:25px; height:100px; border-radius:4px 0 0 4px; }
+.se-info-sidebar-trigger { cursor: pointer; z-index: 10000; position: fixed; right:0; top:0; bottom:0; margin:auto; width:25px; height:100px; border-radius:4px 0 0 4px; transition: opacity .5s;}
+.se-info-sidebar-trigger:hover { opacity: .8; }
 .se-info-sidebar-trigger svg { position: absolute;  margin:auto; left:0; right:0; top:0; bottom:0; transform: rotate(180deg); -ms-transform: rotate(180deg); -webkit-transform: rotate(180deg);}
 /*--Gallery--*/
 .se-gallery-container { margin-top:150px; height:50vh; position: relative;}
@@ -406,6 +407,10 @@ ul li {padding-bottom: .6em;}
 .se-navbar-language {background-color: none !important; color:#444545;}
 .wpml-ls { padding:0px; }
 
+.se-slider-stream-frame { height:70vh; }
+.se-programm-next { height:25vh; }
+.se-programm-next-btn { float: right; }
+
 #se-slider-type-titel { position: absolute;  bottom:20vh; left:0; right:0; margin: auto; width:60vw; text-align: center;}
 
 /*-----------------------------------------------------------------------*/
@@ -418,7 +423,7 @@ ul li {padding-bottom: .6em;}
 
 /*--Content--*/
 .se-speaker-content-container { margin-bottom: 0px; }
-.se-speaker-content-container h1 { margin-bottom:0; }
+.se-speaker-content-container h1 { margin-bottom:15px; line-height: 1.0em; }
 .se-speaker-content-container p:last-of-type { padding-bottom:10px;  }
 .se-speaker-content-container h3 { line-height: 0.8; padding-bottom:13px;  }
 .se-speaker-content-container-infobox { position: relative; }
@@ -429,6 +434,10 @@ ul li {padding-bottom: .6em;}
 
 /*--Review--*/
 .se-speaker-review { padding-bottom: 0 !important; position: relative;}
+.se-review-attention { position:fixed; bottom:0; left: 50%; padding:5px 5px 0px 10px; border-radius: 5px 3px 0 0; cursor: pointer;}
+
+.se-review-attention h6 { float:left; margin-right:5px; }
+.se-review-attention .se-arrow { float:left; transform-origin: 50% 50%; transform: rotate(90deg); left:10px; }
 
 /*-----------------------------------------------------------------------*/
 /*----------------------------------SESSION------------------------------*/
@@ -536,7 +545,8 @@ ul li {padding-bottom: .6em;}
 /*---------------------------------REVIEWS-------------------------------*/
 /*-----------------------------------------------------------------------*/
 .se-review-bg { width:100%; height:80vh; z-index:0; }
-.se-review-content { width:75vw;height:auto; position:absolute; z-index:50; margin-left:12.5vw; bottom:0; opacity: 0.9;}
+.se-review-content { width:75vw;height:auto; position:absolute; z-index:50; margin-left:12.5vw; bottom:0; opacity: 0.9; transition: opacity .5s;}
+.se-review-content:hover { opacity: 1; }
 
 .se-review-content-title { margin:10px 20px; cursor: pointer;}
 .se-review-content-title svg { position: absolute; right:5px; top:5px; height:25px;}
@@ -564,7 +574,14 @@ ul li {padding-bottom: .6em;}
 /*GALLERY*/
 .se-review-gallery { float:left; height:23%; width:23%; min-width:250px; margin-left:1.5%; margin-bottom:1.5%;}
 .se-review-gallery-img { z-index:9500; height:95vh; width:95vw; position:fixed; top:0; left:0; bottom:0; right:0; margin:auto; }
-
+.se-gallery-pic { background-position-y: 30%; transition: opacity; }
+.se-gallery-pic:hover {
+	-webkit-transition: opacity .3s ease-in-out;
+  -moz-transition: opacity .3s ;
+  -ms-transition: opacity .3s ;
+  -o-transition: opacity .3s ;
+	opacity: 1 !important;
+}
 /*-----------------------------------------------------------------------*/
 /*---------------------------------PEOPLES-------------------------------*/
 /*-----------------------------------------------------------------------*/

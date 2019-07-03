@@ -22,7 +22,7 @@ class LinkIcon {
                 </svg>';
 
 
-  public function getLinkIcon($LinkURL, $LinkText, $Target = '_self' ) {
+  public function getLinkIcon( $LinkURL, $LinkText, $Target = '_self' ) {
     $this->LinkIcon = '<a href="'.$LinkURL.'" target="'.$Target.'" title="'.$LinkText.'"><div class="se-link clearfix">';
 		$this->LinkIcon .= $this->LinkArrow.'<p class="se-link-text se-mc-txt">'.$LinkText.'</p></div></a>';
     return $this->LinkIcon;

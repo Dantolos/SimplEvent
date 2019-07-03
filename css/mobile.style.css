@@ -76,16 +76,19 @@
   .se-more-event-content-lead { font-size: 10px !important; }
 
   /*--SIDEBAR--*/
-  .se-sidebar-mobile-btn { position: fixed; left:0; bottom:0; width:60px; height:60px; z-index:6100; border-radius: 0px 100% 0px 0px; overflow-y: scroll;}
+  .se-sidebar-mobile-btn { position: fixed; left:0; bottom:0; width:60px; height:60px; z-index:6100; border-radius: 0px 100% 0px 0px; overflow-y: hidden; }
   .se-info-sidebar-btn { position: absolute; bottom:10px; left:10px; width:25px; height:25px; }
   .se-info-sidebar { left: 0px; bottom:10vh; z-index: 8400; margin-top:0 !important; width:100vw; height:100vh; background-color: transparent !important; overflow-y: scroll;}
-  .se-info-sidebar-content { width: 78vw; height: 70vh; top: 25%; position: absolute; left: 12vw; overflow-y: scroll; margin:0;}
+  .se-info-sidebar-content { width: 78vw; height: 65vh; top: 25%; position: absolute; left: 12vw; overflow-y: scroll; margin:0;}
 
   /*---HEADER-SLIDER---*/
   .se-slider-header-text-container  { right:10vw; width:80vw; bottom:20vh;}
   .se-slider-header-zitat { font-size: 18px !important; }
 
   .se-slider-mobile-align-left { background-position: 20% center; }
+  .se-slider-stream-frame { height:32vh; }
+  .se-programm-next { height:40vh; }
+
 
   /*--SPEAKER--*/
   .se-speaker-slider-wrapper{overflow:hidden; width:100vw; position:relative;}
@@ -96,7 +99,8 @@
   .closer { position:fixed; width:25px; right:15px; top:15px; z-index: 9200;}
 
   .se-img-lb-wrapper  img { position: absolute;width:100%; margin:auto; top:0; bottom:0; right:0;}
-
+  .se-review-attention { right:5px; left: auto; padding: 10px 20px 5px 20px;}
+  .se-attention-next-btn { float: left; margin-top:40px; }
 
   /*--SESSIONS--*/
   .se-content-session-l, .se-content-session-r { width:100vw; padding-right:3.5vw;}
@@ -109,7 +113,7 @@
   /*--PARTNER--*/
   .se-partner-logo { width:50%; }
   .se-partner-dropdown-button { width:30px; height:25px;}
-  .se-partner-dropdown-button #se_burger_menu {margin:30% 12% 30% 12% !important;stroke:#000 !important;}
+  .se-partner-dropdown-button #se_burger_menu {margin:30% 12% 30% 12% !important; stroke:#000 !important;}
 
 
   /*--PROGRAMM--*/

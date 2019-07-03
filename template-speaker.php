@@ -20,7 +20,12 @@ if (! isset($_GET['j'])) {
   $JahrID = get_term_by('name', $_GET['j'], 'Jahre');
   $JahrID = $JahrID->term_id;
   $CurrJahr = get_field('jahr', $PageID );
-  $programm = $_GET['j'] == $CurrJahr->name ? true : false;
+  if( $CurrJahr ) {
+    $programm = $_GET['j'] == $CurrJahr->name ? true : false;
+  } else {
+    $programm = false;
+  }
+
 }
 
 $speaker_args = array(

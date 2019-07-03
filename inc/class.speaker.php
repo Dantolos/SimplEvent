@@ -38,8 +38,11 @@ class SpeakerClass {
 
       $this->outputSpeaker = '<div class="se-col-8" style="padding-right:5%;">';
       $this->outputSpeaker .= '<h1>' . $post->post_title . '</h1>';
-      $this->outputSpeaker .= '<p>' . get_post_meta( $Pid, 'speaker_funktion', true ) . ', ' . get_field('speaker_firma', $Pid ) . '</p>';
-      $this->outputSpeaker .= '<p>' . get_field( 'speaker_cv', $Pid ) . '</p>';
+      $this->outputSpeaker .= '<p class="se-mc-txt" style="margin-bottom:5px;"><b>' . get_post_meta( $Pid, 'speaker_funktion', true );
+      if( get_field('speaker_firma', $Pid ) ) {
+        $this->outputSpeaker .= ', ' . get_field('speaker_firma', $Pid );
+      }
+      $this->outputSpeaker .= '</b></p><p>' . get_field( 'speaker_cv', $Pid ) . '</p>';
       $this->outputSpeaker .= '</div>';
       $infoWidth = ( wp_is_mobile() ) ? 180 : 250;
       $this->outputSpeaker .= '<div class="se-col-4 se-sc-bg se-wc-txt" style="display:table;height:' . $infoWidth . 'px;overflow:hidden;">';

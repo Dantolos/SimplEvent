@@ -21,7 +21,7 @@ if (! isset($_GET['j'])) {
   $JahrID = $JahrID->term_id;
   $CurrJahr = get_field('jahr', $PageID );
 
-  if( $CurrJahr->name ) {
+  if( is_object($CurrJahr) ) {
     $programm = $_GET['j'] == $CurrJahr->name ? true : false;
   } else {
     $programm = false;

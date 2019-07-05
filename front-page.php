@@ -80,15 +80,15 @@ if( empty( get_option( 'se_livestream' ) ) ) {  //check ob live event
     <?php
 
       $typeOrder;
-      switch ($slideArray[0]['type']) {
+      switch ( $slideArray[0]['type'] ) {
         case 'zitat':
-          $typeOrder = array('block', 'none');
+          $typeOrder = array( 'block', 'none' );
           break;
         case 'titel':
-          $typeOrder = array('none', 'block');
+          $typeOrder = array( 'none', 'block' );
           break;
         default:
-          $typeOrder = array('none', 'block');
+          $typeOrder = array( 'none', 'block' );
           break;
       }
 
@@ -122,7 +122,7 @@ if( empty( get_option( 'se_livestream' ) ) ) {  //check ob live event
       <!-- titel -->
       <div id="se-slider-type-titel" class="" style="display:<?php echo $typeOrder[1]; ?>; color: <?php echo $slideArray[0]['textcolor']; ?>;">
         <div id="sliderLogo" style="padding:0 <?php echo $slideArray[0]['logosize']; ?>%;">
-          <img src="<?php echo $slideArray[0]['logo']; ?>" alt="" width="100%">
+          <img src="<?php echo $slideArray[0]['logo']; ?>" alt="" width="auto" height="auto">
         </div>
         <h2 id="sliderTitel"><?php echo $slideArray[0]['titel']; ?></h2>
         <h4 id="sliderDatum"><?php echo $slideArray[0]['datum']; ?></h4>

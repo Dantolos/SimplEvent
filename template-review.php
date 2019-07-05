@@ -83,7 +83,7 @@ if( have_rows('reviews') ) {
 
           <!-- Speakers -->
           <?php if($jahr) { ?>
-            <div class="se-review-col" style="text-align:center;">
+            <div class="se-review-col" style="text-align: center;">
               <a href="<?php echo $refLink; ?>">
                 <div class="button-border se-review-button">
 

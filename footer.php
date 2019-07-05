@@ -1,8 +1,9 @@
 
     <?php
     //placeholder
+    //is_page_template( 'template-modular.php' )
     if(!wp_is_mobile()){
-      if( is_page_template( 'template-modular.php' ) || is_page_template( 'template-partner.php' ) || is_page_template( 'template-maps.php' ) ){
+      if( is_page_template( 'template-partner.php' ) || is_page_template( 'template-maps.php' ) ){
         echo '<div class="se-footer-end-placeholder"></div>';
       }
     }

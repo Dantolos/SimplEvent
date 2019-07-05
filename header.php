@@ -179,12 +179,16 @@
                  ?>
             </div>
           </a>
-        <?php } ?>
+        <?php }
 
+        //sidebat button
+        if( get_option( 'sb_active' ) ) {
+        ?>
         <div class="se_navbar_infobutton">
           <img src="<?php echo get_template_directory_uri(); ?>/img/icon-info.svg" alt="more" title="show more Events" height="100%"/>
         </div>
-      <?php } ?>
+      <?php }
+      } ?>
     </div>
 
     <div class="se-navbar-language clearfix">
@@ -301,7 +305,7 @@
                   <a href="<?php echo $sm['url']; ?>" class="aagi-w-txt"  id="<?php echo $sm['ID']; ?>">
                     <p class="se-navbar-sub-mobile-item"><?php echo $sm['title']; ?></p>
                   </a>
-                <?php }  ?>
+                <?php } ?>
 
               </div>
               <?php }
@@ -327,25 +331,25 @@
 
         <div class="se-navbar-mainmenu-mobile-style-layer" style="z-index: 5900; background-color:<?php echo esc_attr( get_option( 'main_color_picker' ) ); ?>; border:20px <?php echo esc_attr( get_option( 'main_color_picker' ) ); ?> solid;"></div>
 
-        <div id="se-info-sidebar-container" class="se-sidebar-mobile-btn se-sc-bg">
-          <svg version="1.1" class="se-info-sidebar-btn" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-          	 width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
-          <g>
-          	<g>
-          		<path fill="#fff" d="M9.271,5.837C9.099,5.665,9.013,5.439,9.013,5.158s0.086-0.507,0.257-0.679
-          			C9.442,4.308,9.668,4.223,9.95,4.223c0.28,0,0.506,0.085,0.678,0.257s0.257,0.398,0.257,0.679S10.8,5.665,10.628,5.837
-          			C10.456,6.008,10.23,6.094,9.95,6.094C9.668,6.094,9.442,6.008,9.271,5.837z M10.573,15.392H9.325v-7.8h1.248V15.392z"/>
-          	</g>
-          	<g>
-          		<path fill="#fff" d="M10,19.931c-5.475,0-9.93-4.455-9.93-9.93C0.07,4.525,4.525,0.07,10,0.07c5.476,0,9.931,4.455,9.931,9.931
-          			C19.931,15.476,15.476,19.931,10,19.931z M10,0.937c-4.997,0-9.062,4.066-9.062,9.064c0,4.997,4.065,9.062,9.062,9.062
-          			c4.998,0,9.063-4.065,9.063-9.062C19.063,5.003,14.998,0.937,10,0.937z"/>
-          	</g>
-          </g>
-          </svg>
-        </div>
-
-      <?php
+        <?php if( get_option('sb_active') ) { ?>
+          <div id="se-info-sidebar-container" class="se-sidebar-mobile-btn se-sc-bg">
+            <svg version="1.1" class="se-info-sidebar-btn" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            	 width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
+            <g>
+            	<g>
+            		<path fill="#fff" d="M9.271,5.837C9.099,5.665,9.013,5.439,9.013,5.158s0.086-0.507,0.257-0.679
+            			C9.442,4.308,9.668,4.223,9.95,4.223c0.28,0,0.506,0.085,0.678,0.257s0.257,0.398,0.257,0.679S10.8,5.665,10.628,5.837
+            			C10.456,6.008,10.23,6.094,9.95,6.094C9.668,6.094,9.442,6.008,9.271,5.837z M10.573,15.392H9.325v-7.8h1.248V15.392z"/>
+            	</g>
+            	<g>
+            		<path fill="#fff" d="M10,19.931c-5.475,0-9.93-4.455-9.93-9.93C0.07,4.525,4.525,0.07,10,0.07c5.476,0,9.931,4.455,9.931,9.931
+            			C19.931,15.476,15.476,19.931,10,19.931z M10,0.937c-4.997,0-9.062,4.066-9.062,9.064c0,4.997,4.065,9.062,9.062,9.062
+            			c4.998,0,9.063-4.065,9.063-9.062C19.063,5.003,14.998,0.937,10,0.937z"/>
+            	</g>
+            </g>
+            </svg>
+          </div>
+        <?php }
     } ?>
     <!--Submenu-->
 
@@ -373,7 +377,7 @@ if(!wp_is_mobile()){
 
 </div>
 
-<?php if( wp_is_mobile() ){ ?>
+<?php if( wp_is_mobile() && get_option( 'sb_active' ) ) { ?>
   <div style="position:fixed; left:0; bottom:0;z-index:9000; ">
     <svg version="1.1" class="se-info-sidebar-btn" style="" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
        width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
@@ -393,7 +397,7 @@ if(!wp_is_mobile()){
   </div>
 <?php } ?>
 
-<?php if(! wp_is_mobile()){ ?>
+<?php if(! wp_is_mobile() && get_option( 'sb_active' ) ) { ?>
 <div class="se-info-sidebar-trigger se-sc-bg">
   <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
      width="20px" height="20px" viewBox="0 0 40 39" enable-background="new 0 0 40 39" xml:space="preserve">

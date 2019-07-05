@@ -82,6 +82,8 @@ function simplevent_custom_settings() {
 
   //----------------------------------SIDEBAR ---------------------------------------//
   //****Settings
+  register_setting( 'simplevent-sidebar-group', 'sb_active' );
+
   register_setting( 'simplevent-sidebar-group', 'google_maps' );
   register_setting( 'simplevent-sidebar-group', 'location' );
   register_setting( 'simplevent-sidebar-group', 'address' );
@@ -100,6 +102,8 @@ function simplevent_custom_settings() {
   add_settings_section( 'simplevent-sidebar-options', 'Sidebar', 'simplevent_sidebar_options', 'simplevent_sidebar');
 
   //****Fields
+  add_settings_field( 'sb-active', 'SBactive', 'simplevent_sb_active', 'simplevent_sidebar', 'simplevent-sidebar-options' );
+
   add_settings_field( 'google-maps', 'GoogleMaps', 'simplevent_google_maps', 'simplevent_sidebar', 'simplevent-sidebar-options' );
 
   add_settings_field( 'location', 'Location', 'simplevent_location', 'simplevent_sidebar', 'simplevent-sidebar-options' );
@@ -240,6 +244,13 @@ function simplevent_se_anmeldelink() {
 }
 
 //----------------------------------SIDEBAR ---------------------------------------//
+function simplevent_sb_active() {
+  $sbactive = esc_attr( get_option( 'sb_active' ) );
+  if($sbactive == 'on'){
+    $sbactive = 'checked';
+  }
+  echo '<input type="checkbox" name="sb_active" ' .$sbactive. '/>';
+}
 
 function simplevent_google_maps() {
   $gmaps = esc_attr( get_option( 'google_maps' ) );

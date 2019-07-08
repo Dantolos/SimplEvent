@@ -9,7 +9,7 @@ $Speaker = new SpeakerClass;
 $Clink = new LinkIcon;
 $Loader = new loadingAnimation;
 
-
+//asdf
 /*QUERY*/
 $JahrID;
 $programm = true;

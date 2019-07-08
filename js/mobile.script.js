@@ -79,12 +79,15 @@ jQuery(document).ready(function($){
   });
 
   var MInfoSideBarContainerEl = document.getElementById('se-info-sidebar-container');
-  var MInfoSideBarBtnHammer = new Hammer(MInfoSideBarContainerEl);
+  if( MInfoSideBarContainerEl ) {
+    var MInfoSideBarBtnHammer = new Hammer(MInfoSideBarContainerEl);
 
-  MInfoSideBarBtnHammer.on('swipeup', function(e){
-    console.log('seosadse');
-    MOpenInfoSideBar(cS);
-  });
+    MInfoSideBarBtnHammer.on('swipeup', function(e){
+      console.log('seosadse');
+      MOpenInfoSideBar(cS);
+    });
+  }
+
 
   //Image gallery referenten
   var LBclassImg = new LightBox;
@@ -125,12 +128,15 @@ jQuery(document).ready(function($){
     LBclassImg.seImageLB(e, src);
     TweenMax.from($('.se-lb-img-wrapper').find('img'), 0.5, {x: slideEf, autoAlpha: 0.8, scale: 0.99 });
 
-    var LBIMGGalleryContainer = document.getElementsByClassName('se-img-lb-wrapper');
-    var LBIMGGalleryCount = $('.se-img-lb-wrapper').attr('ocounter');
-    LBIMGGallerySwipe = new Hammer(LBIMGGalleryContainer[0]);
-    LBIMGGallerySwipe.on('swipe', function(et){
-      LBImgSwipe(et.direction, LBIMGGalleryCount);
-    });
+    LBIMGGalleryContainer = document.getElementsByClassName('se-img-lb-wrapper');
+    if(LBIMGGalleryContainer){
+      var LBIMGGalleryCount = $('.se-img-lb-wrapper').attr('ocounter');
+      LBIMGGallerySwipe = new Hammer(LBIMGGalleryContainer[0]);
+      LBIMGGallerySwipe.on('swipe', function(et){
+        LBImgSwipe(et.direction, LBIMGGalleryCount);
+      });
+    }
+
   }
 
 
@@ -145,8 +151,6 @@ jQuery(document).ready(function($){
 
     LBImgOpen(cEle, nextPic, dir)
   }
-
-  //speaker swipe next
 
 
 });

@@ -19,7 +19,7 @@
   	wp_enqueue_script( 'script-js', get_template_directory_uri() . '/js/script.js', array('jquery'), true );
 
     wp_enqueue_script( 'particles', 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js', true );
-    wp_enqueue_script( 'hammer-js', 'https://hammerjs.github.io/dist/hammer.js', true );
+    wp_enqueue_script( 'hammer-js', 'https://hammerjs.github.io/dist/hammer.js', false );
 
     if ( wp_is_mobile() ) {
     	wp_enqueue_style( 'mobile-style-css', get_template_directory_uri() . '/css/mobile.style.css' );
@@ -482,6 +482,7 @@ if(!wp_is_mobile()){
 </div>
 
 <body>                                                                                                                                                                                                
+  <div id="se-site-loader" style="opacity: 0;">
 
   <?php
   if( !wp_is_mobile() ) {

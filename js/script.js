@@ -15,6 +15,12 @@ jQuery(document).ready(function($){
   var seSC = $('header').attr('sesc');
   var seWC = $('header').attr('sewc');
 
+  //animation on site-load
+  $(document).ready(function(){
+    var SEInhalt = $('#se-site-loader');
+    SEInhalt.css({'opacity': 1});
+    TweenMax.staggerFrom(SEInhalt, .3, {autoAlpha: 0, y: '150', ease:Power1.easeOut}, .2);
+  });
 
   //info Sidebar
   var iSbO = false;
@@ -470,36 +476,36 @@ jQuery(document).ready(function($){
 
   //Attiontioner
 
-  $('.se-review-attention').live('click', function(){
-    let btnPos = $(this).position();
-    let revPos = $('.se-speaker-review').position();
-    window.scroll({
-      top: revPos.top,
-      behavior: 'smooth'
-    });
-
-    $(this).fadeOut();
-    console.log(revPos.top);
-    console.log(btnPos.top);
-  });
-
-
-
-  if( $('.se-review-attention') ) {
-    $(window).live('scroll', function() {
-      getReviewAttentioner();
-    });
-    $(document).live(function(){
-      getReviewAttentioner();
-    });
-    function getReviewAttentioner() {
-      let btnPos = $('.se-review-attention').position();
-      let revPos = $('.se-speaker-review').position();
-      if( revPos.top > btnPos.top ) {
-        $('.se-review-attention').fadeOut();
-      }
-    }
-  }
+  // $('.se-review-attention').live('click', function(){
+  //   let btnPos = $(this).position();
+  //   let revPos = $('.se-speaker-review').position();
+  //   window.scroll({
+  //     top: revPos.top,
+  //     behavior: 'smooth'
+  //   });
+  //
+  //   $(this).fadeOut();
+  //   console.log(revPos.top);
+  //   console.log(btnPos.top);
+  // });
+  //
+  //
+  //
+  // if( $('.se-review-attention') ) {
+  //   $(window).live('scroll', function() {
+  //     getReviewAttentioner();
+  //   });
+  //   $(document).live(function(){
+  //     getReviewAttentioner();
+  //   });
+  //   function getReviewAttentioner() {
+  //     let btnPos = $('.se-review-attention').position();
+  //     let revPos = $('.se-speaker-review').position();
+  //     if( revPos.top > btnPos.top ) {
+  //       $('.se-review-attention').fadeOut();
+  //     }
+  //   }
+  // }
 
   //----------------------------------------------------
   //----partner-----------------------------------------

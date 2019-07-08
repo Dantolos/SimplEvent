@@ -146,5 +146,7 @@ jQuery(document).ready(function($){
     LBImgOpen(cEle, nextPic, dir)
   }
 
+  //speaker swipe next
+
 
 });

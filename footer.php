@@ -8,7 +8,7 @@
       }
     }
 
-
+    ?></div><?php //site load animation
 
     if(!esc_attr( get_option( 'bg_img' ) )) {?>
 

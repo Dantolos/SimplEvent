@@ -107,10 +107,17 @@ function se_partner_cat_load() {
 
     $response .= '<div data-id="' . get_the_ID() . '" class="se-col-3 se-partner-logo" style="position:relative;">';
     $response .= '<div class="se-partner-logo-inner" style=" height:95%; width:95%; margin: auto; position:absolute; margin:2.5%; background-color:#f7f7f7;">';
-    $response .= '<div class="se-partner-logo-pic" style="margin:15%;height:70%; width:70%; background-image:url(';
-    $response .= get_field('partner-logo');
-    $response .= '); background-size: contain;background-repeat: no-repeat; background-position: center center;">';
-    $response .= '</div>';
+    if( get_field('partner-logo') ){
+      $response .= '<div class="se-partner-logo-pic" style="margin:15%;height:70%; width:70%; background-image:url(';
+      $response .= get_field('partner-logo');
+      $response .= '); background-size: contain;background-repeat: no-repeat; background-position: center center;">';
+      $response .= '</div>';
+    } else {
+      $response .= '<div style="margin:15%;height:70%; width:70%; position:relative;">';
+      $response .= '<h4 style="position:absolute; margin:auto; top: 0; bottom:0;height:30px;width:100%;text-align:center; opacity:.6;"><b>';
+      $response .= get_the_title();
+      $response .= '</b></h4></div>';
+    }
     $response .= '</div>';
     $response .= '</div>';
 

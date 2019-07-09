@@ -98,9 +98,14 @@ $main_partner = new WP_Query($main_partner_args);
           <div data-id="<?php echo get_the_ID(); ?>" class="se-col-3 se-partner-logo" style="position:relative;">
             <div class="se-partner-logo-inner" style=" height:95%; width:95%; margin: auto; position:absolute; margin:2.5%; background-color:#f7f7f7;">
 
-              <div class="se-partner-logo-pic" style="margin:15%;height:70%; width:70%; background-image:url('<?php echo $Logo; ?>'); background-size: contain;background-repeat: no-repeat;
-              background-position: center center;">
-
+              <?php if( $Logo ) { ?>
+                <div class="se-partner-logo-pic" style="margin:15%;height:70%; width:70%; background-image:url('<?php echo $Logo; ?>'); background-size: contain;background-repeat: no-repeat;
+                background-position: center center;">
+              <?php } else { ?>
+                <div class="" style="margin:15%;height:70%; width:70%; position:relative;">
+                  <h4 style="position:absolute; margin:auto; top: 0; bottom:0;height:30px;width:100%;text-align:center; opacity:.6;"><b><?php echo the_title(); ?></b></h4>
+                </div>
+              <?php } ?>
               </div>
 
             </div>

@@ -11,6 +11,7 @@ $rCount = 0;
 
 //Button Medien in Variable
 function createMediaBtn($rC) {
+  $mainColorSVG = esc_attr( get_option( 'main_color_picker' ) );
   $RevMediaButton = '<div class="se-review-col" style="text-align:center;">';
   $RevMediaButton .= '<div class="button-border se-review-button se-review-medien-button" mid="' . $rC . '"  mopen="N">';
   $RevMediaButton .= '<a>';
@@ -18,34 +19,34 @@ function createMediaBtn($rC) {
 	 viewBox="0 0 453.541 311.809" enable-background="new 0 0 453.541 311.809" xml:space="preserve" height="70px">';
 
 
-  $RevMediaButton .= '<style type="text/css"> .icon-in{fill:'. esc_attr( get_option( 'main_color_picker' ) ) .';} </style>';
+  $RevMediaButton .= '<style type="text/css"> .icon-in{fill:'. esc_attr( get_option( 'main_color_picker' ) ) .' !important;} </style>';
   $RevMediaButton .= '
-      <path fill="#141412" d="M306.331,274H149.169c-4.78,0-8.669-3.89-8.669-8.67V47.169c0-4.78,3.889-8.669,8.669-8.669h157.162
+      <path fill="'. $mainColorSVG .'" d="M306.331,274H149.169c-4.78,0-8.669-3.89-8.669-8.67V47.169c0-4.78,3.889-8.669,8.669-8.669h157.162
 			c4.78,0,8.669,3.889,8.669,8.669v218.161C315,270.111,311.111,274,306.331,274z M149.169,44.5c-1.472,0-2.669,1.197-2.669,2.669
 			v218.161c0,1.473,1.197,2.67,2.669,2.67h157.162c1.472,0,2.669-1.197,2.669-2.67V47.169c0-1.472-1.197-2.669-2.669-2.669H149.169z
 			"/>
 
-  		<rect class="icon-in" x="155.5" y="91.561" fill="#141412" width="144.25" height="6"/>
+  		<rect class="icon-in" x="155.5" y="91.561" fill="'. $mainColorSVG .'" width="144.25" height="6"/>
 
-  		<rect class="icon-in" x="155.5" y="112.811" fill="#141412" width="144.25" height="6"/>
+  		<rect class="icon-in" x="155.5" y="112.811" fill="'. $mainColorSVG .'" width="144.25" height="6"/>
 
-  		<rect class="icon-in" x="155.5" y="134.062" fill="#141412" width="144.25" height="6"/>
+  		<rect class="icon-in" x="155.5" y="134.062" fill="'. $mainColorSVG .'" width="144.25" height="6"/>
 
-  		<rect class="icon-in" x="155.5" y="155.311" fill="#141412" width="144.25" height="6"/>
+  		<rect class="icon-in" x="155.5" y="155.311" fill="'. $mainColorSVG .'" width="144.25" height="6"/>
 
-  		<rect class="icon-in" x="155.5" y="176.561" fill="#141412" width="144.25" height="6"/>
+  		<rect class="icon-in" x="155.5" y="176.561" fill="'. $mainColorSVG .'" width="144.25" height="6"/>
 
-  		<rect class="icon-in" x="155.5" y="197.811" fill="#141412" width="144.25" height="6"/>
+  		<rect class="icon-in" x="155.5" y="197.811" fill="'. $mainColorSVG .'" width="144.25" height="6"/>
 
-  		<rect class="icon-in" x="155.5" y="219.061" fill="#141412" width="144.25" height="6"/>
+  		<rect class="icon-in" x="155.5" y="219.061" fill="'. $mainColorSVG .'" width="144.25" height="6"/>
 
-  		<rect class="icon-in" x="155.5" y="240.311" fill="#141412" width="78.25" height="6"/>
+  		<rect class="icon-in" x="155.5" y="240.311" fill="'. $mainColorSVG .'" width="78.25" height="6"/>
 
-  		<path fill="#141412" d="M300.089,79.321H155.16V61.349h144.928V79.321z M161.16,73.321h132.928v-5.972H161.16V73.321z"/>
+  		<path fill="'. $mainColorSVG .'" d="M300.089,79.321H155.16V61.349h144.928V79.321z M161.16,73.321h132.928v-5.972H161.16V73.321z"/>
       ';
   $RevMediaButton .= '</svg></a></div>';
   $RevMediaButton .= '<h5>' . __('MEDIEN', 'SimplEvent') . '</h5>';
-  $RevMediaButton .= '<h6>'. __('Medienmitteungen und verlagsbeilagen', 'SimplEvent') . '</h6>';
+  $RevMediaButton .= '<h6>'. __('Medienmitteungen und Verlagsbeilagen', 'SimplEvent') . '</h6>';
   $RevMediaButton .= '</div>';
 
   echo $RevMediaButton;

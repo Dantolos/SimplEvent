@@ -15,6 +15,7 @@ get_header();
 <div class="se-strip" style="padding:0;">
   <div class="se-content">
     <div class="se-col-12">
+
       <?php
       if (! isset($_GET['pin'])) {
         ?>
@@ -36,6 +37,10 @@ get_header();
         }
       }
       ?>
+
+      <h1>Ermes Solution</h1>
+      <iframe src="https://sef.events/red19" width="100%" height="800px"></iframe>
+
     </div>
   </div>
 </div>

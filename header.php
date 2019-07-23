@@ -18,6 +18,7 @@
     wp_enqueue_style( 'print-style-css', get_template_directory_uri() . '/css/print.css' );
   	wp_enqueue_script( 'script-js', get_template_directory_uri() . '/js/script.js', array('jquery'), true );
 
+    //Externan Plugins
     wp_enqueue_script( 'particles', 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js', true );
     wp_enqueue_script( 'hammer-js', 'https://hammerjs.github.io/dist/hammer.js', true );
 
@@ -61,7 +62,7 @@
 
 
   //colors
-  $seMC = esc_attr( get_option( 'main_color_picker' ) ) ;
+  $seMC = esc_attr( get_option( 'main_color_picker' ) );
   $seSC = esc_attr( get_option( 'second_color_picker' ) );
   $seWC = esc_attr( get_option( 'light_color_picker' ) );
 

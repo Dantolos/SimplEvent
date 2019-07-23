@@ -21,6 +21,10 @@ if ( $sliderQuery -> have_posts() ) :
               $type = get_row_layout();
 
               $image = get_sub_field('slider_bild');
+              $layer = '';
+              if(get_sub_field('layer')){
+                $layer = get_sub_field('layer');
+              }
               $zitat = '';
               if(get_sub_field('zitat')) {
                 $zitat = get_sub_field('zitat');
@@ -46,6 +50,7 @@ if ( $sliderQuery -> have_posts() ) :
               $slider = array(
                 'type' => $type,
                 'image' => $image,
+                'layer' => $layer,
                 'zitat' => $zitat,
                 'name' => $referentname,
                 'funktion' => $referentfunktion,
@@ -76,9 +81,12 @@ if( empty( get_option( 'se_livestream' ) ) ) {  //check ob live event
   if($sliderQuery) {
 
   ?>
-  <div id="slider" class="se-slider-header-container image-settings se-slider-mobile-align-left" style="background-image:url('<?php echo $slideArray[0]['image'] ?>');">
-    <?php
+  <div id="slider" class="se-slider-header-container image-settings se-slider-mobile-align-left" style="background-image:url('<?php  echo $slideArray[0]['image']; ?>');">
 
+
+      <div id="sliderlayer" class="image-settings" style="background-image:url(<?php if(!empty( $slideArray[0]['layer'] )) { echo $slideArray[0]['layer']; } ?>); height:100%; width:100%; background-size:160%; background-position:50% 0;"> </div>
+
+      <?php
       $typeOrder;
       switch ( $slideArray[0]['type'] ) {
         case 'zitat':
@@ -253,6 +261,7 @@ if( get_field('strip', $curPageID)  ) {
     var ZitatSlide = $('#se-slider-type-zitat');
 
     var sliderContainer = $('#slider');
+    var sliderLayer = $('#sliderlayer');
     var slidesTC = $('.se-slider-header-text-container');
     var slideZitat = $('.se-slider-header-zitat');
     var slideName = $('#slidename');
@@ -274,6 +283,7 @@ if( get_field('strip', $curPageID)  ) {
 
         ZitatSlide.fadeOut();
         TitelSlide.fadeOut();
+        sliderLayer.fadeOut();
         slidesTC.animate({ }, function() {
             slideZitat.fadeOut();
 
@@ -312,8 +322,12 @@ if( get_field('strip', $curPageID)  ) {
             ZitatSlide.css({'display': typeDisplayer[0]});
             TitelSlide.css({'display': typeDisplayer[1], 'color': SlideArray[currentSlide]['textcolor']});
 
+
             //Zitat
             slidesTC.css({'right': '-500', 'opacity': '0'}).animate({'right': offsetRight, 'opacity': '1' }, 700);
+            //layer
+            sliderLayer.css({'display': 'displayer', 'background-image': 'url('+SlideArray[currentSlide]['layer']+')'});
+            sliderLayer.fadeIn();
             slideZitat.css({'display': displayer});
             slideName.css({'color': SlideArray[currentSlide]['color']});
             slideFunktion.css({'color': SlideArray[currentSlide]['color']});
@@ -350,6 +364,26 @@ if( get_field('strip', $curPageID)  ) {
     }
 
     slidesTC.on('mouseenter', stopSlider).on('mouseleave', startSlider);
+
+    //parallax
+    var $el = $('#slider');
+    var $layer = $('#sliderlayer');
+    var $titel = $('#se-slider-type-titel');
+    var $zitat = $('#se-slider-type-zitat');
+    var screenHeight = parseInt( $(window).height() ) / 100 * 20;
+    $(window).on('scroll', function () {
+        var scroll = $(document).scrollTop();
+        if(!isMobile) {
+          $el.css({ 'background-position':'center '+(+.4*scroll)+'px' });
+        } else {
+          $el.css({ 'background-position':'20% '+(+.4*scroll)+'px' });
+        }
+
+
+        $layer.css({ 'background-position':'50% '+(+.3*scroll)+'px' });
+         $zitat.css({ 'bottom': screenHeight+(-.2*scroll)+'px' });
+         $titel.css({ 'bottom': screenHeight+(-.2*scroll)+'px' });
+    });
 
   });
 </script>

@@ -84,7 +84,7 @@ if( empty( get_option( 'se_livestream' ) ) ) {  //check ob live event
   <div id="slider" class="se-slider-header-container image-settings se-slider-mobile-align-left" style="background-image:url('<?php  echo $slideArray[0]['image']; ?>');">
 
 
-      <div id="sliderlayer" class="image-settings" style="background-image:url(<?php if(!empty( $slideArray[0]['layer'] )) { echo $slideArray[0]['layer']; } ?>); height:100%; width:100%; background-size:160%; background-position:50% 0;"> </div>
+      <div id="sliderlayer" class="image-settings" style="background-image:url(<?php if(!empty( $slideArray[0]['layer'] )) { echo $slideArray[0]['layer']; } ?>); height:100%; width:100%; background-size:160%; background-position:50% -200px;"> </div>
 
       <?php
       $typeOrder;
@@ -380,7 +380,7 @@ if( get_field('strip', $curPageID)  ) {
         }
 
 
-        $layer.css({ 'background-position':'50% '+(+.3*scroll)+'px' });
+        $layer.css({ 'background-position':'50% '+(+.3*scroll)+'-200px' });
          $zitat.css({ 'bottom': screenHeight+(-.2*scroll)+'px' });
          $titel.css({ 'bottom': screenHeight+(-.2*scroll)+'px' });
     });

@@ -61,9 +61,6 @@ class ModularElements {
   }
 
   protected function boxElement($data) {
-    echo '<pre style="margin:150px 0 0 40px;"">';
-    var_dump( $data );
-    echo '</pre>';
     $bordercolor = '';
     $borderCSS = '';
     $boxstyle = '';

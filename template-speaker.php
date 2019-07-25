@@ -63,7 +63,7 @@ $startBild;
 
 //GEt DIREKT SPECIFITC SPEAKER
 if (! isset($_GET['r'])) {
-  $startID = $speakerArr[1]['ID'];
+  $startID = (count($speakerArr) > 1) ? $speakerArr[1]['ID'] : $speakerArr[0]['ID'];
   $startBild = 1;
 } else {
   $direktSpeaker = $_GET["r"];
@@ -83,7 +83,7 @@ if (! isset($_GET['r'])) {
 }
 
 
-if(count($speakerArr) > 1){
+if(count($speakerArr) > 0){
 ?>
 
   <div class="se-speaker-slider-wrapper" programm="<?php echo $programm ? 1 : 0 ; ?>" page="<?php echo $PageID; ?>">
@@ -139,19 +139,24 @@ jQuery(document).ready(function($){
   var speakerCount = '<?php echo json_encode($speakerCount); ?>';
   var currentSpeaker = $('.se-speaker-bild[nr="1"]');
 
+  var justOne = ( speakerBild.length == 1 ) ? parseInt(-1) : parseInt(0);
+
   speakerBild.each(function(){
+
     var nrI = $(this).attr('nr');
     var offset = 12.5 * nrI;
-    if (nrI == 2 ) { //mainbild
+    if (nrI == (2 + justOne) ) { //mainbild
       $(this).css({ 'left': 30 + 'vw' });
-
-    } else if ( nrI > 2 ){ //alle danach
+    } else if ( nrI > (2 + justOne) ){ //alle danach
       offset = offset + 5
       $(this).css({'left': offset + 'vw'});
     } else { //0
       $(this).css({'left': offset + 'vw'});
-      if ( nrI == 1 ){ //aktiver Referent
+      if ( nrI == (1 + justOne) ){ //aktiver Referent
         $(this).css({'width': 17.5 + 'vw', 'height': '33vh' }).find('.se-speaker-bild-overlay').css({ 'opacity': '0'});
+        if(justOne == -1){
+          $(this).css({'margin-left': '12.5vw'});
+        }
       }
     }
 

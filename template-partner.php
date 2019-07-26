@@ -64,11 +64,11 @@ $rest_partner = new WP_Query($rest_partner_args);
     <div class="se-partner-kategorie" style="border-bottom: solid 2px <?php echo esc_attr( get_option( 'main_color_picker' ) ) ; ?>; margin-bottom:10px;">
       <h3>
         <?php
-        foreach ($terms as $term){
-          if ($term->term_id==$mainCat) {
-            echo $term->name;
-          }
-        } ?>
+        // foreach ($terms as $term){
+        //   if ($term->term_id==$mainCat) {
+        //     echo $term->name;
+        //   }
+        // } ?>
       </h3>
     </div>
     <div class="se-partner-dropdown">

@@ -115,37 +115,39 @@ $main_partner = new WP_Query($main_partner_args);
 
       <?php  endwhile; endif;
       foreach ($terms as $term){
-        $rest_partner_args = array(
-          'post_type' => 'p', 'orderby' => 'term_order', 'order' => 'ASC', 'tax_query' => array(
-            array(
-              'taxonomy' => 'Kategorie', 'field' => 'term_id', 'terms' => $term->term_id
+        if($term->term_id != $mainCat){
+          $rest_partner_args = array(
+            'post_type' => 'p', 'orderby' => 'term_order', 'order' => 'ASC', 'tax_query' => array(
+              array(
+                'taxonomy' => 'Kategorie', 'field' => 'term_id', 'terms' => $term->term_id
+              ),
             ),
-          ),
-        );
-        $rest_partner = new WP_Query($rest_partner_args);
+          );
+          $rest_partner = new WP_Query($rest_partner_args);
 
-        if ( $rest_partner->have_posts() ) : while ( $rest_partner->have_posts() ) : $rest_partner->the_post();
-        $Logo = esc_url( get_field('partner-logo') ); ?>
+          if ( $rest_partner->have_posts() ) : while ( $rest_partner->have_posts() ) : $rest_partner->the_post();
+          $Logo = esc_url( get_field('partner-logo') ); ?>
 
-          <div  data-id="<?php echo get_the_ID(); ?>" class="se-partner-logo se-partner-logo-small" style="width:12.15%; float:left; position:relative;">
-            <div class="se-partner-logo-inner" style=" height:95%; width:95%; margin: auto; position:absolute; margin:5px; background-color:#f7f7f7;">
+            <div  data-id="<?php echo get_the_ID(); ?>" class="se-partner-logo se-partner-logo-small" style="width:12.15%; float:left; position:relative;">
+              <div class="se-partner-logo-inner" style=" height:95%; width:95%; margin: auto; position:absolute; margin:5px; background-color:#f7f7f7;">
 
-              <?php if( $Logo ) { ?>
-                <div class="se-partner-logo-pic" style="margin:15%;height:70%; width:70%; background-image:url('<?php echo $Logo; ?>'); background-size: contain;background-repeat: no-repeat;
-                background-position: center center;"></div>
-              <?php } else { ?>
-                <div class="" style="margin:15%;height:70%; width:70%; position:relative;">
-                  <h4 style="position:absolute; margin:auto; top: 0; bottom:0;height:30px;width:100%;text-align:center; opacity:.6;"><b><?php echo the_title(); ?></b></h4>
-                </div>
-              <?php } ?>
-            </dsiv>
+                <?php if( $Logo ) { ?>
+                  <div class="se-partner-logo-pic" style="margin:15%;height:70%; width:70%; background-image:url('<?php echo $Logo; ?>'); background-size: contain;background-repeat: no-repeat;
+                  background-position: center center;"></div>
+                <?php } else { ?>
+                  <div class="" style="margin:15%;height:70%; width:70%; position:relative;">
+                    <h4 style="position:absolute; margin:auto; top: 0; bottom:0;height:30px;width:100%;text-align:center; opacity:.6;"><b><?php echo the_title(); ?></b></h4>
+                  </div>
+                <?php } ?>
+              </dsiv>
+
+              </div>
 
             </div>
 
-          </div>
-
-        <?php
-        endwhile; endif;
+          <?php
+          endwhile; endif;
+        }
       }
       ?>
 

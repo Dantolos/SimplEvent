@@ -114,7 +114,7 @@ $main_partner = new WP_Query($main_partner_args);
 
       <?php  endwhile; endif;
       foreach ($terms as $term){
-        if($term->term_id != $mainCat[0] ){
+        if( ! in_array($term->term_id, $mainCat) ){
           $rest_partner_args = array(
             'post_type' => 'p', 'orderby' => 'title', 'order' => 'ASC', 'tax_query' => array(
               array(

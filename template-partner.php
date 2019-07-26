@@ -103,7 +103,7 @@ $rest_partner = new WP_Query($rest_partner_args);
         $Logo = esc_url( get_field('partner-logo') ); ?>
 
           <div data-id="<?php echo get_the_ID(); ?>" class="se-partner-logo se-partner-logo-big" style="width:25%; float:left; position:relative;">
-            <div class="se-partner-logo-inner" style=" height:95%; width:95%; margin: auto; position:absolute; margin:2.5%; background-color:#f7f7f7;">
+            <div class="se-partner-logo-inner" style=" height:95%; width:95%; margin: auto; position:absolute; margin:5px; background-color:#f7f7f7;">
 
               <?php if( $Logo ) { ?>
                 <div class="se-partner-logo-pic" style="margin:15%;height:70%; width:70%; background-image:url('<?php echo $Logo; ?>'); background-size: contain;background-repeat: no-repeat;
@@ -125,7 +125,7 @@ $rest_partner = new WP_Query($rest_partner_args);
       $Logo = esc_url( get_field('partner-logo') ); ?>
 
         <div  data-id="<?php echo get_the_ID(); ?>" class="se-partner-logo se-partner-logo-small" style="width:12.15%; float:left; position:relative;">
-          <div class="se-partner-logo-inner" style=" height:95%; width:95%; margin: auto; position:absolute; margin:5%; background-color:#f7f7f7;">
+          <div class="se-partner-logo-inner" style=" height:95%; width:95%; margin: auto; position:absolute; margin:5px; background-color:#f7f7f7;">
 
             <?php if( $Logo ) { ?>
               <div class="se-partner-logo-pic" style="margin:15%;height:70%; width:70%; background-image:url('<?php echo $Logo; ?>'); background-size: contain;background-repeat: no-repeat;

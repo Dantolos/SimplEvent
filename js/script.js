@@ -513,7 +513,7 @@ jQuery(document).ready(function($){
   var pLogoBig = $('.se-partner-logo-big');
   var pLogoSmall = $('.se-partner-logo-small');
 
-  pLogoBig.css({'height': (pLogoBig.width() / 10 * 9) });
+  pLogoBig.css({'height': (pLogoBig.width() / 10 * 8.9) });
   pLogoSmall.css({'height': (pLogoSmall.width() / 10 * 9)});
   $(window).on('resize', function(){
     pLogoBig.css({'height': (pLogoBig.width() / 10 * 9) })

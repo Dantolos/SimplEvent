@@ -25,7 +25,6 @@ if(! isset($_GET['c'])) {
   }
 }
 
-
 $main_partner_args = array(
   'post_type' => 'p', 'orderby' => 'term_order', 'order' => 'ASC', 'tax_query' => array(
     array(
@@ -115,7 +114,7 @@ $main_partner = new WP_Query($main_partner_args);
 
       <?php  endwhile; endif;
       foreach ($terms as $term){
-        if($term->term_id != $mainCat){
+        if($term->term_id != $mainCat[0] ){
           $rest_partner_args = array(
             'post_type' => 'p', 'orderby' => 'term_order', 'order' => 'ASC', 'tax_query' => array(
               array(

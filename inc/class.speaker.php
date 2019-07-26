@@ -47,7 +47,7 @@ class SpeakerClass {
       $infoWidth = ( wp_is_mobile() ) ? 180 : 250;
       $this->outputSpeaker .= '<div class="se-col-4 se-sc-bg se-wc-txt" style="display:table;height:' . $infoWidth . 'px;overflow:hidden;">';
       $this->outputSpeaker .= '<div class="se-infobox se-speaker-content-container-infobox">';
-      $this->outputSpeaker .= '<p style="margin-top:-40px; border-bottom:.5px solid #fff; margin-bottom:25px;">' . get_post_meta($Pid, 'speaker_kategorie', true ) . ' | <span> ' . $Ssprache . '</span></p>';
+      $this->outputSpeaker .= '<p style="margin-top:-40px; border-bottom:.5px solid #fff; margin-bottom:25px;">' . __(get_post_meta($Pid, 'speaker_kategorie', true ), 'SimplEvent') . ' | <span> ' . $Ssprache . '</span></p>';
       $this->outputSpeaker .= '<h3>' . get_post_meta( $Pid, 'speaker_zeit', true ) . '</h3>';
 
       if($Programm) { //check ob aktuelles jahr, wenn nicht, keine Programmverlinkung

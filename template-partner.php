@@ -61,7 +61,7 @@ $rest_partner = new WP_Query($rest_partner_args);
 <div class="se-strip se-partner-strip" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
   <div class="se-content" style="position:relative; overflow: visible;">
 
-    <div class="se-partner-kategorie" style="border-bottom: solid 2px <?php echo esc_attr( get_option( 'main_color_picker' ) ) ; ?>; margin-bottom:10px;">
+    <div class="se-partner-kategorie" style="min-height: 50px; border-bottom: solid 2px <?php echo esc_attr( get_option( 'main_color_picker' ) ) ; ?>; margin-bottom:10px;">
       <h3>
         <?php
         // foreach ($terms as $term){

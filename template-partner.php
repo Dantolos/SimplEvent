@@ -116,14 +116,16 @@ $main_partner = new WP_Query($main_partner_args);
       foreach ($terms as $term){
         if($term->term_id != $mainCat[0] ){
           $rest_partner_args = array(
-            'post_type' => 'p', 'orderby' => 'term_order', 'order' => 'ASC', 'tax_query' => array(
+            'post_type' => 'p', 'orderby' => 'title', 'order' => 'ASC', 'tax_query' => array(
               array(
                 'taxonomy' => 'Kategorie', 'field' => 'term_id', 'terms' => $term->term_id
               ),
             ),
           );
           $rest_partner = new WP_Query($rest_partner_args);
-
+          // echo '<pre style="margin:150px 0 0 40px;"">';
+          // var_dump( $rest_partner );
+          // echo '</pre>';
           if ( $rest_partner->have_posts() ) : while ( $rest_partner->have_posts() ) : $rest_partner->the_post();
           $Logo = esc_url( get_field('partner-logo') ); ?>
 

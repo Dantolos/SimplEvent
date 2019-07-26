@@ -209,7 +209,7 @@ jQuery(document).ready(function($){
   var TitelBar = $('.se-review-content-title');
 
 
-  TitelBar.on('click', function(){
+  TitelBar.on('mouseenter', function(){
     let cCount = $(this).attr('copen');
 
     var tOIcon = $(this).find('svg');

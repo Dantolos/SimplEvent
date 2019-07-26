@@ -510,21 +510,33 @@ jQuery(document).ready(function($){
   //----------------------------------------------------
   //----partner-----------------------------------------
   //----------------------------------------------------
-  var pLogo = $('.se-partner-logo');
+  var pLogoBig = $('.se-partner-logo-big');
+  var pLogoSmall = $('.se-partner-logo-small');
 
-  pLogo.css({'height': (pLogo.width() / 10 * 9) });
-  $(window).on('resize', function(){ pLogo.css({'height': (pLogo.width() / 10 * 9) }) });
+  pLogoBig.css({'height': (pLogoBig.width() / 10 * 9) });
+  pLogoSmall.css({'height': (pLogoSmall.width() / 10 * 9)});
+  $(window).on('resize', function(){
+    pLogoBig.css({'height': (pLogoBig.width() / 10 * 9) })
+    pLogoSmall.css({'height': (pLogoSmall.width() / 10 * 9)});
+  });
 
   var pLogoContainer = $('.se-partner-logo-containter');
-  PartnerContainerSize();
-  $( document ).ajaxComplete(function(){ PartnerContainerSize(); });
-  function PartnerContainerSize(){
-    pLogo = $('.se-partner-logo');
-    let theHeight = Math.ceil(pLogo.length / 4) * pLogo.width();
+  PartnerContainerSize(pLogoBig, 4);
+  PartnerContainerSize(pLogoSmall, 8);
+
+  $( document ).ajaxComplete(function(){
+    PartnerContainerSize(pLogoBig, 4);
+    PartnerContainerSize(pLogoSmall, 4);
+  });
+
+  function PartnerContainerSize(p, cnt){
+    let theHeight = Math.ceil(p.length / 4) * p.width();
     pLogoContainer.css({'height': theHeight});
   }
-  TweenMax.staggerFrom(pLogo, 0.5, {y: '30px', autoAlpha: '0', ease:Power1.easeOut}, 0.1);
 
+
+  TweenMax.staggerFrom(pLogoBig, 0.5, {y: '30px', autoAlpha: '0', ease:Power1.easeOut}, 0.1);
+  TweenMax.staggerFrom(pLogoSmall, 0.5, {y: '30px', autoAlpha: '0', ease:Power1.easeOut}, 0.1);
 
   //----------------------------------------------------
   //----programm-----------------------------------------

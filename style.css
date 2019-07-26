@@ -3,7 +3,7 @@
  *Author: Aaron Giaimo
  *Author URI: http://aagi.ch/
  *Description: This Theme is specified for simple userfriendly Event-Communication. Its based for the Events, which organized by the Swiss Economic Forum AG.
- *Version: 1.1.25
+ *Version: 1.1.26
  *GitHub Theme URI: https://github.com/Dantolos/SimplEvent
  *GitHub Branch: master
  */
@@ -177,13 +177,14 @@ ul li {padding-bottom: .6em;}
 .se-lightbox-container { opacity: 0; width:100vw; height:100vh; background-color:rgba(0, 0, 0, 0.8); z-index:2000; position: fixed; top:0;left:0;}
 .se-lightbox-container img { width:30px; position: absolute; right:5%; top:5%; cursor: pointer; z-index: 9000;}
 .se-lb-frame {
+  border-radius: 3px;
   position:absolute;
   background-color: #fff;
   width:80vw;
-  height:70vh;
+  height:auto;
   top: 50%;
   left: 50%;
-  margin-top:-35vh;
+  margin-top:-20vh;
   margin-left:-40vw;
   padding:3%;
   -webkit-box-shadow: 0px 0px 102px 22px rgba(0,0,0,0.5);
@@ -474,7 +475,7 @@ ul li {padding-bottom: .6em;}
 #dropdown-arrow { position: absolute; right:15px; top:12px; width:20px; }
 
 /*lightbox*/
-.se-sessions-img { float:left; width:28%; height:100%; margin-right: 4%; }
+.se-sessions-img { float:left; width:25%; height:200px; margin-right: 4%; }
 .se-sessions-content { float:left; width:68%; }
 
 /*-----------------------------------------------------------------------*/
@@ -489,8 +490,11 @@ ul li {padding-bottom: .6em;}
 .se-partner-dropdown li:hover { background-color:rgba(200, 200, 200, 1); }
 .se-partner-dropdown-button { cursor: pointer; height:40px; width:40px; background-color:#f7f7f7; position: absolute; right:0; margin-top:5px;}
 
+/*small*/
+.se-partner-logo-small { cursor:pointer; height:200px; }
+
 /**lightbox*/
-.se-partner-lb-logo { width:20%;  float:left; margin-top:2%; margin-bottom:3%; height:auto;  }
+.se-partner-lb-logo { width:20%;  float:left; margin-top:2%; margin-bottom:3%; height:auto; }
 .se-partner-lb-logo img { width: auto; height: auto;  max-width: 100%; max-height: 150px; position: relative; right:0%;}
 .se-partner-lb-content { margin-left:0%;width:100%; float:left;}
 .se-partner-socialmedia { bottom:0; left:0; }
@@ -582,7 +586,7 @@ ul li {padding-bottom: .6em;}
 .se-review-medien-row h6 { line-height: 2em;}
 
 .se-review-medien-head, .se-review-media-bar {border-radius: 5px; margin-bottom:4px; text-align: center; overflow: hidden; }
-.se-review-medien-head { height:30px;  background-color:#2c2c2c; }
+.se-review-medien-head { height:30px;  background-color:#fff; }
 .se-review-media-bar { background-color:#444545;}
 .se-review-media-bar:hover { background-color:#2c2c2c;}
 

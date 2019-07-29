@@ -28,10 +28,11 @@
 
   /*--LIGHTBOX--*/
   .se-lb-frame { width:90vw; height:70vh; margin-top:-35vh; margin-left:-45vw; padding:5%;}
-  .se-lb-frame div:first-child { overflow-y: scroll; height: 100%;}
+  .se-lb-frame:first-child {  height: 100%; overflow-y: scroll; }
+  .se-partner-lb-categorie {  height: auto !important; }
   .se-lightbox-container img { top:62px; z-index:6000; width:20px;}
-  .se-partner-lb-logo { top:0 !important; width:70%; height:auto !important; overflow-y: hidden !important; margin-bottom:30px;}
-  .se-partner-lb-logo  img {  top:0 !important; width:100% !important; }
+  .se-partner-lb-logo { top:0 !important; width:auto; height:auto !important; overflow-y: hidden !important; margin-bottom:30px; max-width:70%; margin-top:50px;}
+  .se-partner-lb-logo  img {  top:0 !important; width:100% !important;  }
 
   /*---HEADER---*/
   .se-navbar-container { height: 50px; z-index:6500; }
@@ -113,7 +114,8 @@
   .se-sessions-content { float:none; width:100%; }
 
   /*--PARTNER--*/
-  .se-partner-logo { width:50%; }
+  .se-partner-logo-big { width:50% !important; }
+  .se-partner-logo-small { width:23.8% !important; margin: 1.5% 1.2% .5% 0 !important; }
   .se-partner-dropdown-button { width:30px; height:25px;}
   .se-partner-dropdown-button #se_burger_menu {margin:30% 12% 30% 12% !important; stroke:#000 !important;}
 

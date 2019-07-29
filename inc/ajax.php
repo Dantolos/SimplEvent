@@ -55,7 +55,7 @@ function se_partner_load() {
   $response .= '<div class="se-partner-lb-logo"><img src="'. esc_url( get_field('partner-logo', $postID) ) .'"/></div>';
   $response .= '<div class="se-partner-lb-content">';
   //$response .= '<h3>'. get_the_title( $postID ) .'</h3>';
-  $response .= '<p style="width:100%;">'. esc_attr__( get_field('partner-text', $postID) ) .'</p>';
+  $response .= '<p style="width:100%;">'. get_field('partner-text', $postID) .'</p>';
 
   $social = get_field('social_media', $postID);
   $i = 0;

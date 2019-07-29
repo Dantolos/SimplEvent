@@ -50,7 +50,7 @@ function se_partner_load() {
   $catName = get_the_terms( $postID, 'Kategorie' );
   $catName = (is_array($catName)) ? $catName[0] : $catName;
 
-  $response = '<div class="clearfix" style="width:100%;">';
+  $response = '<div class="clearfix se-partner-lb-first" style="width:100%;">';
   $response .= '<div class="se-partner-lb-categorie" style="border-right: solid 2px' . esc_attr( get_option( 'main_color_picker' ) ) . '; background_color:' . esc_attr( get_option( 'second_color_picker' ) ) . ';"><p>' . $catName->name . '</p></div>';
   $response .= '<div class="se-partner-lb-logo"><img src="'. esc_url( get_field('partner-logo', $postID) ) .'"/></div>';
   $response .= '<div class="se-partner-lb-content">';

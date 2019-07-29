@@ -28,7 +28,7 @@
 
   /*--LIGHTBOX--*/
   .se-lb-frame { width:90vw; height:70vh; margin-top:-35vh; margin-left:-45vw; padding:5%;}
-  .se-lb-frame:first-child {  height: 100%; overflow-y: scroll; }
+  .se-partner-lb-first { height:100%; overflow-y: scroll;}
   .se-partner-lb-categorie {  height: auto !important; }
   .se-lightbox-container img { top:62px; z-index:6000; width:20px;}
   .se-partner-lb-logo { top:0 !important; width:auto; height:auto !important; overflow-y: hidden !important; margin-bottom:30px; max-width:70%; margin-top:50px;}

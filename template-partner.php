@@ -37,7 +37,9 @@ $main_partner = new WP_Query($main_partner_args);
 
 
 ?>
-
+<style>
+  .se-partner-lb-content a { color:<?php echo esc_attr( get_option( 'main_color_picker' ) ) ; ?>; }
+</style>
 <!--Partner Main Content-->
 <div class="se-strip">
   <div class="se-content">

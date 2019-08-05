@@ -110,7 +110,8 @@ if(count($speakerArr) > 0){
 
   <div class="se-speaker-review-container">
     <?php
-    if(get_post_meta($startID, 'review_public', true )) {
+
+    if(get_post_meta($startID, 'review_jahr', true )) {
       echo $Speaker->getSpeakerReview($startID);
     } else {
       echo '<div style="width:100%; height:150px;"></div>';

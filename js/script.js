@@ -438,6 +438,25 @@ jQuery(document).ready(function($){
   //----------------------------------------------------
 
   //// REVIEW:
+  //change Tabs
+  function changeTab() {
+    let Tabs = $('.se-speaker-review-tabs');
+    Tabs.on('click', function() {
+      let ClickedTab = $(this).attr('revcon');
+      $('.se-speaker-review').hide();
+      $('.se-speaker-review-tabs').css({'opacity': '.8' });
+      $('.se-speaker-review[revcon="'+ClickedTab+'"]').show();
+      $('.se-speaker-review-tabs[revcon="'+ClickedTab+'"]').css({'opacity': '1' });
+    });
+  }
+  $(document).ajaxComplete(function(){
+    changeTab();
+  });
+  
+  changeTab();
+
+
+
   //video
   let revVID = $('.se-speaker-review-video');
   revVID.css({'height': (revVID.innerWidth() / 16 * 9) + 'px' });

@@ -123,21 +123,23 @@ class SpeakerClass {
         $this->outputReview .= '</div>';
       }
 
+
       $jahrCounterere = 0;
       foreach ($reviewsData as $revJahr) {
         $jahrCounterere++;
         $hideTabes = ($jahrCounterere > 1) ? 'none' : 'block';
         //Review Attentioner
-        $this->outputReview .= '<div class="se-sc-bg se-wc-txt se-review-attention" style="border-bottom: 2px solid' . esc_attr( get_option( 'main_color_picker' ) ) . ';">';
-        $this->outputReview .= '<h6>REVIEW</h6>';
-        $this->outputReview .= '<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                 width="16px" height="16px" viewBox="0 0 40 39" enable-background="new 0 0 40 39" xml:space="preserve"><g>
-                                  <path class="se-arrow" fill="#dedede" d="M30.105,18.204L11.357,7.249c-0.764-0.448-1.743-0.19-2.188,0.574C8.724,8.585,8.98,9.565,9.744,10.01
-                                    l16.333,9.545L9.819,29.446c-s0.755,0.459-0.995,1.443-0.536,2.197c0.302,0.496,0.829,0.769,1.369,0.769
-                                    c0.284,0,0.57-0.074,0.83-0.232l18.146-11.039c0.426-0.09,0.815-0.345,1.053-0.749C31.125,19.628,30.868,18.649,30.105,18.204z"/>
-                                  </g>
-                                </svg>';
-        $this->outputReview .= '</div>';
+        // $this->outputReview .= '<div class="se-sc-bg se-wc-txt se-review-attention" style="border-bottom: 2px solid' . esc_attr( get_option( 'main_color_picker' ) ) . ';">';
+        // $this->outputReview .= '<h6>REVIEW</h6>';
+        // $this->outputReview .= '<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        //                          width="16px" height="16px" viewBox="0 0 40 39" enable-background="new 0 0 40 39" xml:space="preserve"><g>
+        //                           <path class="se-arrow" fill="#dedede" d="M30.105,18.204L11.357,7.249c-0.764-0.448-1.743-0.19-2.188,0.574C8.724,8.585,8.98,9.565,9.744,10.01
+        //                             l16.333,9.545L9.819,29.446c-s0.755,0.459-0.995,1.443-0.536,2.197c0.302,0.496,0.829,0.769,1.369,0.769
+        //                             c0.284,0,0.57-0.074,0.83-0.232l18.146-11.039c0.426-0.09,0.815-0.345,1.053-0.749C31.125,19.628,30.868,18.649,30.105,18.204z"/>
+        //                           </g>
+        //                         </svg>';
+        // $this->outputReview .= '</div>';
+
 
         $this->outputReview .= '<div revcon="'. $revJahr['jahr'][0]->name .'" class="se-strip se-speaker-review se-sc-bg" style="display:' . $hideTabes . ';"><div class="se-content" style="overflow:hidden;">';
         $this->outputReview .= '<div class="se-col-12 se-wc-txt">';

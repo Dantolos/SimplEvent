@@ -223,7 +223,7 @@ jQuery(document).ready(function($){
          //sicherheits leeren ( falls zu schnell gedrueckt wurde
         SpeakerContainer.empty();
         ReviewContainer.empty();
-
+        //$('.').empty();
         //laden neuer inhalt
         //speaker
         SELoader.css({'display': 'none'});

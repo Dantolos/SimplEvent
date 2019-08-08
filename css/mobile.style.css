@@ -105,7 +105,7 @@
   .se-review-attention { right:5px; left: auto; padding: 10px 20px 5px 20px;}
   .se-attention-next-btn { float: left; margin-top:40px; }
 
-  .se-speaker-review-tabs-container { min-height: 0 !important; }
+  /* .se-speaker-review-tabs-container { min-height: 0 !important; } */
   
   /*--SESSIONS--*/
   .se-content-session-l, .se-content-session-r { width:100vw; padding-right:3.5vw;}

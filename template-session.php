@@ -29,7 +29,7 @@ $firstSlot = array_shift($slotarray);
 
           <?php if(count(get_field('slots')) > 1) {?>
           <div class="se-infobox-session-selector">
-            <p id="selected-slot-item" slot="<?php echo $slot; ?>"><?php echo $firstSlot; ?></p>
+            <p id="selected-slot-item" slot="<?php echo $slot; ?>"><?php echo __( $firstSlot, 'SimplEvent' ); ?></p>
             <svg version="1.1" id="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
             	 width="50px" height="16px" viewBox="0 0 40 39" enable-background="new 0 0 40 39" xml:space="preserve">
               <g>

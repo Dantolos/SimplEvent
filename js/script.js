@@ -452,7 +452,7 @@ jQuery(document).ready(function($){
   $(document).ajaxComplete(function(){
     changeTab();
   });
-  
+
   changeTab();
 
 
@@ -467,17 +467,26 @@ jQuery(document).ready(function($){
 
   //gallery
   if(!isMobile){
-    let revIMG = $('.se-gallery-pic');
-    revIMG.css({'width': (100 / revIMG.length) + '%' });
-    revIMG.on('click', function(){
-      reviewGallery($(this));
-    });
+    let revGalContainer = $('.se-gallery-container');
 
-    $(document).ajaxComplete(function(){
-      revIMG = $('.se-gallery-pic');
+    revGalContainer.each(function(){
+      let revIMG = $(this).find('.se-gallery-pic');
       revIMG.css({'width': (100 / revIMG.length) + '%' });
       revIMG.on('click', function(){
         reviewGallery($(this));
+      });
+    });
+
+
+    $(document).ajaxComplete(function(){
+      let revGalContainer = $('.se-gallery-container');
+
+      revGalContainer.each(function(){
+        let revIMG = $(this).find('.se-gallery-pic');
+        revIMG.css({'width': (100 / revIMG.length) + '%' });
+        revIMG.on('click', function(){
+          reviewGallery($(this));
+        });
       });
     });
 

@@ -41,7 +41,7 @@ $firstSlot = array_shift($slotarray);
           </div>
           <div class="se-infobox-session-dropdown" style="position:absolute;">
             <?php foreach ($slotarray as $slot): ?>
-                <div class="se-infobox-session-dropdown-item" slot="<?php echo $slot; ?>"> <p><?php echo $slot; ?></p></div>
+                <div class="se-infobox-session-dropdown-item" slot="<?php echo $slot; ?>"> <p><?php echo __( $slot, 'SimplEvent' ); ?></p></div>
             <?php endforeach; ?>
           </div>
         </div>

@@ -473,7 +473,7 @@ jQuery(document).ready(function($){
       let revIMG = $(this).find('.se-gallery-pic');
       revIMG.css({'width': (100 / revIMG.length) + '%' });
       revIMG.on('click', function(){
-        reviewGallery($(this));
+        reviewGallery($(this), revIMG);
       });
     });
 
@@ -482,18 +482,18 @@ jQuery(document).ready(function($){
       let revGalContainer = $('.se-gallery-container');
 
       revGalContainer.each(function(){
-        let revIMG = $(this).find('.se-gallery-pic');
+        var revIMG = $(this).find('.se-gallery-pic');
         revIMG.css({'width': (100 / revIMG.length) + '%' });
         revIMG.on('click', function(){
-          reviewGallery($(this));
+          reviewGallery($(this), revIMG);
         });
       });
     });
 
-    function reviewGallery(b) {
-      revIMG.each(function(){
+    function reviewGallery(b, img) {
+      img.each(function(){
         if($(this).attr('counter') !== b.attr('counter')) {
-          $(this).animate({'width': (29.9 / (revIMG.length - 1)) + '%' });
+          $(this).animate({'width': (29.9 / (img.length - 1)) + '%' });
           $(this).css({'opacity': '0.2'});
         }
       });

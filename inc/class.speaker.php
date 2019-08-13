@@ -125,6 +125,7 @@ class SpeakerClass {
 
 
       $jahrCounterere = 0;
+    
       foreach ($reviewsData as $revJahr) {
         $jahrCounterere++;
         $hideTabes = ($jahrCounterere > 1) ? 'none' : 'block';

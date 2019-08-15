@@ -438,7 +438,28 @@ jQuery(document).ready(function($){
   //----------------------------------------------------
 
   //// REVIEW:
+  //review tabber
+  var ReviewTabber = $('.se-speaker-review-tabs-container');
+    
+  ReviewTabber.live('click', function(){
+    ScrolltoReview($(this));
+  });
+
+  function ScrolltoReview(e) {
+    var curPosTab = e.position().top;
+    window.scroll({
+      top: curPosTab,
+      behavior: 'smooth'
+    });
+  }
+
   //change Tabs
+    $(document).ajaxComplete(function(){
+    changeTab();
+  });
+
+  changeTab();
+  
   function changeTab() {
     let Tabs = $('.se-speaker-review-tabs');
     Tabs.on('click', function() {
@@ -449,12 +470,6 @@ jQuery(document).ready(function($){
       $('.se-speaker-review-tabs[revcon="'+ClickedTab+'"]').css({'opacity': '1' });
     });
   }
-  $(document).ajaxComplete(function(){
-    changeTab();
-  });
-
-  changeTab();
-
 
 
   //video
@@ -502,38 +517,7 @@ jQuery(document).ready(function($){
     }
   }
 
-  //Attiontioner
 
-  // $('.se-review-attention').live('click', function(){
-  //   let btnPos = $(this).position();
-  //   let revPos = $('.se-speaker-review').position();
-  //   window.scroll({
-  //     top: revPos.top,
-  //     behavior: 'smooth'
-  //   });
-  //
-  //   $(this).fadeOut();
-  //   console.log(revPos.top);
-  //   console.log(btnPos.top);
-  // });
-  //
-  //
-  //
-  // if( $('.se-review-attention') ) {
-  //   $(window).live('scroll', function() {
-  //     getReviewAttentioner();
-  //   });
-  //   $(document).live(function(){
-  //     getReviewAttentioner();
-  //   });
-  //   function getReviewAttentioner() {
-  //     let btnPos = $('.se-review-attention').position();
-  //     let revPos = $('.se-speaker-review').position();
-  //     if( revPos.top > btnPos.top ) {
-  //       $('.se-review-attention').fadeOut();
-  //     }
-  //   }
-  // }
 
   //----------------------------------------------------
   //----partner-----------------------------------------

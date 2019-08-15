@@ -120,7 +120,6 @@
         $array_menu = wp_get_nav_menu_items('Hauptmenu');
         $menu = array();
         if ($array_menu) {
-
           foreach ($array_menu as $m) {
               if (empty($m->menu_item_parent)) {
                   $menu[$m->ID] = array();

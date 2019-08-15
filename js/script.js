@@ -459,7 +459,7 @@ jQuery(document).ready(function($){
   });
 
   changeTab();
-  
+
   function changeTab() {
     let Tabs = $('.se-speaker-review-tabs');
     Tabs.on('click', function() {
@@ -553,9 +553,10 @@ jQuery(document).ready(function($){
   //----------------------------------------------------
   //----programm-----------------------------------------
   //----------------------------------------------------
-  var prigrammLines = $('.se-programm-row');
+  var prigrammLines = $('.se-programm-programmpunkt');
+  var programmL = $('.se-programm-line');
   var programmLink = $('.se-programm-row').find('img');
-  TweenMax.staggerFrom(prigrammLines, 0.5, {y: '300px', autoAlpha: '0', ease:Power1.easeOut}, 0.1);
+  TweenMax.staggerFrom(programmL, 0.5, {y: '300px', autoAlpha: '0', ease:Power1.easeOut}, 0.1);
   TweenMax.set(programmLink, {autoAlpha: '0', x: '5px'})
   prigrammLines.mouseenter(function(){
     TweenMax.to($(this), 0.2, {x: '0px', scale: 0.99, ease:Power1.easeOut});
@@ -564,6 +565,11 @@ jQuery(document).ready(function($){
   }).mouseleave(function(){
     TweenMax.to($(this), 0.2, {x: '0px', scale: 1, ease:Power1.easeOut});
     TweenMax.to(programmLink, 0.2, {autoAlpha: '0', x: '5px'});
+  });
+
+  $('.se-programm-zeit').each(function(){
+    $(this).css({
+      'height': $(this).parent().height() });
   });
 
   //----------------------------------------------------

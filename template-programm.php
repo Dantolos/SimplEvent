@@ -25,7 +25,7 @@ get_header(); ?>
           //Programmtitel
           if( get_row_layout() == 'titelzeile' ) {
           ?>
-            <div class="se-programm-titelzeile se-sc-bg se-wc-txt se-programm-row">
+            <div class="se-programm-titelzeile se-sc-bg se-wc-txt se-programm-row se-programm-line">
               <?php
               $titelText = '';
               if(get_sub_field('programmpunkt_zeit')){
@@ -40,7 +40,7 @@ get_header(); ?>
             $programmLink = get_sub_field('programmpunkt_verlinkung');
             if( $programmLink ) { ?> <a href="<?php echo $programmLink ?>"> <?php }
             ?>
-              <div class="se-programm-programmpunkt se-wc-bg se-programm-row">
+              <div class="se-programm-programmpunkt se-wc-bg se-programm-row se-programm-line">
 
                 <div class="se-programm-zeit">
                   <?php echo the_sub_field('programmpunkt_zeit'); ?>
@@ -61,7 +61,7 @@ get_header(); ?>
             if( $programmLink ) { ?> </a> <?php }
           //Programm Tag
           } elseif( get_row_layout() == 'programm-tag' ) { ?>
-            <div class="se-programm-programmpunkt" style="margin-bottom:15px;">
+            <div class="se-programm-programmpunkt se-programm-line" style="margin-bottom:15px;">
               <h5>
                 <?php echo the_sub_field('tag'); ?><br>
               </h5>
@@ -71,7 +71,7 @@ get_header(); ?>
             <?php
           //Placeholder
           } elseif( get_row_layout() == 'placeholder' ) { ?>
-              <div class="se-programm-programmpunkt" style="height:<?php echo the_sub_field('hieght'); ?>px;">
+              <div class="se-programm-programmpunkt se-programm-line" style="height:<?php echo the_sub_field('hieght'); ?>px;">
 
               </div>
             <?php

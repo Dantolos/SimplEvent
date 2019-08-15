@@ -19,8 +19,10 @@ get_header(); ?>
 <div class="se-strip clearfix" style="padding-top:0;">
   <div class="se-content">
     <div class="se-col-12 se-programmtabelle" >
-      <?php if( have_rows('programmraster') ):
+      <?php 
+      if( have_rows('programmraster') ):
         while ( have_rows('programmraster') ) : the_row();
+          //Programmtitel
           if( get_row_layout() == 'titelzeile' ) {
           ?>
             <div class="se-programm-titelzeile se-sc-bg se-wc-txt se-programm-row">
@@ -33,6 +35,7 @@ get_header(); ?>
               echo the_sub_field('titel'); ?>
             </div>
           <?php
+          //Programmpunkt
           } elseif( get_row_layout() == 'programmpunkt' ) {
             $programmLink = get_sub_field('programmpunkt_verlinkung');
             if( $programmLink ) { ?> <a href="<?php echo $programmLink ?>"> <?php }
@@ -56,6 +59,22 @@ get_header(); ?>
               </div>
             <?php
             if( $programmLink ) { ?> </a> <?php }
+          //Programm Tag
+          } elseif( get_row_layout() == 'programm-tag' ) { ?>
+            <div class="se-programm-programmpunkt" style="margin-bottom:15px;">
+              <h5>
+                <?php echo the_sub_field('tag'); ?><br>
+              </h5>
+              <p style="font-weight:200;"><?php echo the_sub_field('datum'); ?></p>
+              
+            </div>
+            <?php
+          //Placeholder
+          } elseif( get_row_layout() == 'placeholder' ) { ?>
+              <div class="se-programm-programmpunkt" style="height:<?php echo the_sub_field('hieght'); ?>px;">
+
+              </div>
+            <?php
           }
         endwhile; endif; ?>
     </div>

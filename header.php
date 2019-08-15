@@ -124,26 +124,26 @@
           foreach ($array_menu as $m) {
               if (empty($m->menu_item_parent)) {
                   $menu[$m->ID] = array();
-                  $menu[$m->ID]['ID']      =   $m->ID;
-                  $menu[$m->ID]['title']       =   $m->title;
-                  $menu[$m->ID]['url']         =   $m->url;
-                  $menu[$m->ID]['children']    =   array();
+                  $menu[$m->ID]['ID']       =   $m->ID;
+                  $menu[$m->ID]['title']    =   $m->title;
+                  $menu[$m->ID]['url']      =   $m->url;
+                  $menu[$m->ID]['children'] =   array();
               }
           }
           $submenu = array();
           foreach ($array_menu as $m) {
               if ($m->menu_item_parent) {
                   $submenu[$m->ID] = array();
-                  $submenu[$m->ID]['ID']       =   $m->ID;
-                  $submenu[$m->ID]['title']    =   $m->title;
-                  $submenu[$m->ID]['url']  =   $m->url;
+                  $submenu[$m->ID]['ID']    =   $m->ID;
+                  $submenu[$m->ID]['title'] =   $m->title;  
+                  $submenu[$m->ID]['url']   =   $m->url;
                   $menu[$m->menu_item_parent]['children'][$m->ID] = $submenu[$m->ID];
               }
           }
         }
 
         if (! wp_is_mobile() ) {
-          foreach ($menu as $m){
+          foreach ($menu as $m) {
             $subURL;
             if( $m['url'] == '#'){
               $firstSub = reset($m['children']);
@@ -159,7 +159,6 @@
         }
         ?>
       </div>
-
 
 
 

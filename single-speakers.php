@@ -17,7 +17,5 @@ if ( function_exists('icl_object_id') ) {
   $url = home_url() . '/speaker/?j='.$term->name.'&r=' . $Spslug;
 }
 
-
-
 wp_redirect( $url );
 exit;

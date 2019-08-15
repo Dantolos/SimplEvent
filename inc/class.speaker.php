@@ -52,7 +52,7 @@ class SpeakerClass {
 
       if($Programm) { //check ob aktuelles jahr, wenn nicht, keine Programmverlinkung
         if(get_field('programm_link', $PageID )) {
-          $programmLink = '';
+          $programmLink = get_field('programm_link', $PageID );
           if ( function_exists('icl_object_id') ) {
             $programmLink = get_field('programm_link', $PageID );
             switch (ICL_LANGUAGE_CODE) {

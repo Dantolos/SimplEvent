@@ -191,9 +191,11 @@ if( empty( get_option( 'se_livestream' ) ) ) {  //check ob live event
 
                       <?php
                       if( $programmLink ) { echo '</a>'; }
-
+                      
+                      $toProgram = get_permalink($programmPage->ID);
+                      var_dump($toProgram );
                       echo '<div class="se-programm-next-btn">';
-                      echo $seLink->getLinkIcon('www.google.ch', 'zum Programm');
+                      echo $seLink->getLinkIcon( _e($toProgram), __('zum Programm', 'SimplEvent'));
                       echo '</div>';
 
                     break;

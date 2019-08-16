@@ -57,7 +57,6 @@ jQuery(document).ready(function($){
       TweenMax.to(infoBar, 0.5, {x: infoBar.width(), ease:Power1.easeOut});
       TweenMax.to(infoBarTrigger, 0.5, {x: 0, ease:Power1.easeOut});
       TweenMax.to(infoBarTrigger.find('svg'), 0.7, {rotationY:'+=180', ease:Power1.easeOut});
-
       iSbO = false;
     }
   }
@@ -446,7 +445,7 @@ jQuery(document).ready(function($){
   });
 
   function ScrolltoReview(e) {
-    var curPosTab = e.position().top;
+    var curPosTab = e.position().top - 50;
     window.scroll({
       top: curPosTab,
       behavior: 'smooth'

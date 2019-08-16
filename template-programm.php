@@ -18,7 +18,7 @@ get_header(); ?>
 <!--Programm Raster-->
 <div class="se-strip clearfix" style="padding-top:0;">
   <div class="se-content">
-    <div class="se-col-12 se-programmtabelle" >
+    <div class="se-col-12 se-programmtabelle">
       <?php 
       if( have_rows('programmraster') ):
         while ( have_rows('programmraster') ) : the_row();

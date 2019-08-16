@@ -135,6 +135,7 @@ function simplevent_custom_settings() {
   //****Settings
   register_setting( 'simplevent-live-group', 'se_livestream' );
   register_setting( 'simplevent-live-group', 'se_iframe' );
+  register_setting( 'simplevent-live-group', 'se_programm' );
 
   //****Section
   add_settings_section( 'simplevent-live-options', 'Live', 'simplevent_live_options', 'simplevent_live');
@@ -142,6 +143,7 @@ function simplevent_custom_settings() {
   //****Fields
   add_settings_field( 'se-livestream', 'Livestream Aktiv', 'simplevent_se_livestream', 'simplevent_live', 'simplevent-live-options' );
   add_settings_field( 'se-iframe', 'iFrame', 'simplevent_se_iframe', 'simplevent_live', 'simplevent-live-options' );
+  add_settings_field( 'se-programm', 'Programm Link', 'simplevent_se_programm', 'simplevent_live', 'simplevent-live-options' );
 
 
 }
@@ -312,6 +314,10 @@ function simplevent_se_iframe() {
   echo '<textarea type="textarea" rows="10" name="se_iframe"  style="width: 100%;">' . $iframe . '</textarea>';
 }
 
+function simplevent_se_programm() {
+  $se_programm = get_option( 'se_programm' );
+  echo '<input type="text" name="se_programm" value="' .$se_programm. '" placeholder="/programm"/>';
+}
 
 //---------------------------------------------TEMPLATES------------------------------------//
 function simplevent_theme_create_page() {

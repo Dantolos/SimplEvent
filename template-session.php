@@ -29,7 +29,7 @@ $firstSlot = array_shift($slotarray);
 
           <?php if(count(get_field('slots')) > 1) {?>
           <div class="se-infobox-session-selector">
-            <p id="selected-slot-item" slot="<?php echo $slot; ?>"><?php echo __( $firstSlot, 'SimplEvent' ); ?></p>
+            <p id="selected-slot-item" slot="<?php echo $slot; ?>" slotcount="1"><?php echo __( $firstSlot, 'SimplEvent' ); ?></p>
             <svg version="1.1" id="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
             	 width="50px" height="16px" viewBox="0 0 40 39" enable-background="new 0 0 40 39" xml:space="preserve">
               <g>
@@ -40,9 +40,14 @@ $firstSlot = array_shift($slotarray);
             </svg>
           </div>
           <div class="se-infobox-session-dropdown" style="position:absolute;">
-            <?php foreach ($slotarray as $slot): ?>
-                <div class="se-infobox-session-dropdown-item" slot="<?php echo $slot; ?>"> <p><?php echo __( $slot, 'SimplEvent' ); ?></p></div>
-            <?php endforeach; ?>
+            <?php
+            $slotCount = 1; 
+            foreach ($slotarray as $slot):
+              $slotCount++;
+              ?>
+                <div class="se-infobox-session-dropdown-item" slot="<?php echo $slot; ?>" slotcount="<?php echo $slotCount; ?>"> <p><?php echo __( $slot, 'SimplEvent' ); ?></p></div>
+            <?php  
+            endforeach; ?>
           </div>
         </div>
         <?php
@@ -95,9 +100,16 @@ $firstSlot = array_shift($slotarray);
     DDitems.on('click', function(){
       var page = $(this).attr('slot');
       var jahr = $('#se-session-wrapper').attr('jahr');
-      var scounter = $('#sessioncount') ? $('#sessioncount').attr('scount') : 0;
+
+      var slotcountAttr = $(this).attr('slotcount');
+      var curcountAttr = $('#selected-slot-item').attr('slotcount');
+      var scounter = 0;
+      if( $('#sessioncount') && slotcountAttr > 1 ) {
+        scounter = $('#sessioncount').attr('scount');
+      }
       
-      console.log(scounter);
+      $('#selected-slot-item').attr('slotcount', slotcountAttr)
+      $(this).attr('slotcount', curcountAttr);
       var xTxt = $(this).find('p').text();
       var yTxt = $('#selected-slot-item').text();
       $(this).find('p').html(yTxt);

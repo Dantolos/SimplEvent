@@ -141,7 +141,7 @@ class SpeakerClass {
 
         if( $columnsT === 7 ){
           $this->outputReview .= '<div class="se-col-'.$columnsV.' se-wc-txt" style="padding-right:3%;">';
-          $this->outputReview .= '<p style="border-top:2px solid ' . esc_attr( get_option( 'main_color_picker' ) ) . '; padding-top:10px;">';
+          $this->outputReview .= '<p style="border-top:2px solid ' . esc_attr( get_option( 'main_color_picker' ) ) . '; padding-top:10px;" align="justify">';
           $this->outputReview .= $revJahr['review_text'] . '</p></div>';
         }
 

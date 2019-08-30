@@ -1,9 +1,9 @@
-<?php
+<?php 
 
 class SessionsClass {
   public $output;
   public $slot;
-  public function getSlot($ID, $slots) {
+  public function getSlot($ID, $slots, $sessionCount = 0) {
     $sessions_args = array(
       'post_type' => 'sessions', 'orderby' => 'menu_order', 'order' => 'ASC',
       'tax_query' => array(
@@ -13,7 +13,8 @@ class SessionsClass {
       ),
     );
     $sessions = new WP_Query( $sessions_args );
-    $sessionCount = 0;
+    
+    
     $this->slot = $slots;
     if ( $sessions->have_posts() ) : while ( $sessions->have_posts() ) : $sessions->the_post();
 
@@ -38,7 +39,7 @@ class SessionsClass {
           $this->output .= '<div class="se-picture-session image-settings" style="background-image:url(' . get_field('session_bild') . ')"></div>';
         }
         $this->output .= '<div class="' . $sessionDir['class'] . ' se-wc-txt se-session-txt">';
-        $this->output .= '<p style="border-left: solid 1px '. esc_attr( get_option( 'main_color_picker' ) ) .'">' . ($sessionCount + 1);
+        $this->output .= '<p style="border-left: solid 1px '. esc_attr( get_option( 'main_color_picker' ) ) .'">BS ' . ($sessionCount + 1);
         $this->output .= '</p>';
 
         $lang;
@@ -73,6 +74,7 @@ class SessionsClass {
         $sessionCount++;
       }
     endwhile; endif;
+    $this->output .= '<span id="sessioncount" scount="' . $sessionCount . '" style="display:none;"></span>';
     return $this->output;
   }
 

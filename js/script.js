@@ -445,7 +445,7 @@ jQuery(document).ready(function($){
   });
 
   function ScrolltoReview(e) {
-    var curPosTab = e.position().top - 50;
+    var curPosTab = e.position().top - 120;
     window.scroll({
       top: curPosTab,
       behavior: 'smooth'

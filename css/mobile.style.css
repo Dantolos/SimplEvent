@@ -127,7 +127,7 @@
 
   }
   .se-programm-programmpunkt {  padding-bottom: 2%; border-bottom: 8px solid #fff; }
-  .se-programm-zeit { background-color: #fff; border-right: none;   border-bottom: 1px solid #b7b7b7; float:none; padding: 2% 0% 0; font-size: 14px;}
+  .se-programm-zeit { background-color: #fff; border-right: none;   border-bottom: 1px solid #b7b7b7; float:none; padding: 2% 0% 0; font-size: 14px; height:auto !important;}
   .se-programm-programmpunkt img { opacity: 0.4 !important; right: 5%; height:15px; top: 38px; bottom: unset; }
 
   /*--AWARD--*/

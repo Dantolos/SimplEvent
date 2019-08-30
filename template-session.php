@@ -95,6 +95,9 @@ $firstSlot = array_shift($slotarray);
     DDitems.on('click', function(){
       var page = $(this).attr('slot');
       var jahr = $('#se-session-wrapper').attr('jahr');
+      var scounter = $('#sessioncount') ? $('#sessioncount').attr('scount') : 0;
+      
+      console.log(scounter);
       var xTxt = $(this).find('p').text();
       var yTxt = $('#selected-slot-item').text();
       $(this).find('p').html(yTxt);
@@ -112,6 +115,7 @@ $firstSlot = array_shift($slotarray);
         data : {
           slot : page,
           year : jahr,
+          scounter : scounter,
           action : 'se_session_slots'
         },
 
@@ -143,6 +147,8 @@ $firstSlot = array_shift($slotarray);
       $('body').find('.se-lb-wrapper').remove();
       let page = sp.attr('pid');
       let rcount = sp.attr('rcount');
+      
+      
       console.log(page);
       LBclass.seOpenLB();
       $('.se-lb-con').empty();

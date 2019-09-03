@@ -93,11 +93,11 @@ $firstSlot = array_shift($slotarray);
       DDitems.slideToggle();
     }
 
-    DDtrigger.on('click', function(){
+    DDtrigger.on('click', function() {
       slotItemToggle();
     });
 
-    DDitems.on('click', function(){
+    DDitems.on('click', function() {
       var page = $(this).attr('slot');
       var jahr = $('#se-session-wrapper').attr('jahr');
 
@@ -108,7 +108,7 @@ $firstSlot = array_shift($slotarray);
         scounter = $('#sessioncount').attr('scount');
       }
       
-      $('#selected-slot-item').attr('slotcount', slotcountAttr)
+      $('#selected-slot-item').attr('slotcount', slotcountAttr);
       $(this).attr('slotcount', curcountAttr);
       var xTxt = $(this).find('p').text();
       var yTxt = $('#selected-slot-item').text();

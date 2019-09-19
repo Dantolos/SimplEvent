@@ -123,9 +123,6 @@
 
 
   /*--PROGRAMM--*/
-  .se-programm-titelzeile, .se-programm-programmpunkt  {
-
-  }
   .se-programm-programmpunkt {  padding-bottom: 2%; border-bottom: 8px solid #fff; }
   .se-programm-zeit { background-color: #fff; border-right: none;   border-bottom: 1px solid #b7b7b7; float:none; padding: 2% 0% 0; font-size: 14px; height:auto !important;}
   .se-programm-programmpunkt img { opacity: 0.4 !important; right: 5%; height:15px; top: 38px; bottom: unset; }
@@ -150,8 +147,9 @@
   .se-review-medien-container { width:100%; position:unset; bottom:5px;}
   .se-review-button { width:40%;}
   .se-review-medien-line {position: relative; border-top:none !important; }
-  .se-lb-frame div { }
+ 
   .se-review-gallery {height:35% !important; }
+  .se-speaker-review-tabs-container { min-height: 0 !important; }
 
   /*--Footer--*/
   .se-mobile-footer-placeholder {height:50px; width:100vw;}

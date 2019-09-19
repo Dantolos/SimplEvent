@@ -21,8 +21,15 @@ jQuery(document).ready(function($){
   $(document).ready(function(){
     var SEInhalt = $('#se-site-loader');
     SEInhalt.css({'opacity': 1});
+    console.log(detectIE());
     if(!detectIE()){
       TweenMax.staggerFrom(SEInhalt, .3, {autoAlpha: 0, y: '150', ease:Power1.easeOut}, .2);
+    } else {
+      var browserText = 'Internet Explorer wird nicht mehr unterstützt.';
+      var browserTextIE = 'Als Alternative können wir folgende kostenlose Browser empfehlen: Google Chrome, Opera, Mozilla Firefox';
+      $('#se-site-loader').css({'opacity': '1'});
+      $('#se-site-loader').html('<div style="height:80vh; margin:0 20%;"><h1 style="position:absolute; margin:auto;">' + browserText + '</h1><p>' + browserTextIE + '</p></div>');
+     
     }
     
   });
@@ -389,7 +396,8 @@ jQuery(document).ready(function($){
     $('.nav-layer').fadeOut();
   });
 
-  function navBGslide( e, curr = false ) {
+  var curr = false
+  function navBGslide( e, curr ) {
     if( !curr ) {
       navPos = $(e).position().left;
       navWidth = $(e).innerWidth();

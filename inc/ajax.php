@@ -156,7 +156,10 @@ function se_session_slots() {
   $slot = $_POST['slot'];
   $jahr = $_POST['year'];
   $scount = $_POST['scounter'];
-  $response = $Csession->getSlot($jahr, $slot, $scount );
+  $BSPrefix = $_POST['bsprefix'];
+  $slotNr = $_POST['slotnr'];
+  $slotNtCounter = $_POST['slotnrcounter'];
+  $response = $Csession->getSlot($jahr, $slot, $BSPrefix, $scount, $slotNr, $slotNtCounter );
  
   echo $response;
   die();

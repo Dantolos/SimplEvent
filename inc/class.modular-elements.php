@@ -95,7 +95,7 @@ class ModularElements {
 
     $this->Element .= '<div class="' . $boxstyle . ' se-element-box ' . $linkCSS . '" style="' . $borderCSS . '">';
     if($data["bild"]){
-      $this->Element .= '<div class="image-settings" style="background-image:url(' . $data['bild'] . '); width:calc (100% + 40px); min-height:200px; margin: -20px -40px 20px -40px;"></div>';
+      $this->Element .= '<div class="image-settings" style="background-image:url(' . $data['bild'] . '); width:calc (100% + 40px); min-height:' . $data['bild_hohe'] . 'px; margin: -20px -40px 20px -40px;"></div>';
     }
     if($data["titel"]){
       $this->Element .= '<h3 style="border-bottom: 1px solid ' . $bordercolor . '; margin: 0 0 20px 0; padding: 0 0 20px 0;">';

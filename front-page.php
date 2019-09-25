@@ -329,7 +329,7 @@ if( get_field('strip', $curPageID)  ) {
             slidesTC.css({'right': '-500', 'opacity': '0'}).animate({'right': offsetRight, 'opacity': '1' }, 700);
             //layer
             sliderLayer.css({'display': 'displayer', 'background-image': 'url('+SlideArray[currentSlide]['layer']+')'});
-            sliderLayer.fadeIn();
+            sliderLayer.show();
             slideZitat.css({'display': displayer});
             slideName.css({'color': SlideArray[currentSlide]['color']});
             slideFunktion.css({'color': SlideArray[currentSlide]['color']});

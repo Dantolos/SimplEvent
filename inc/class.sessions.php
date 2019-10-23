@@ -19,9 +19,9 @@ class SessionsClass {
     if ( $sessions->have_posts() ) : while ( $sessions->have_posts() ) : $sessions->the_post();
 
       $curslot = get_field('slots');
-      $tt = $curslot[0] . ' = '. $this->slot;
+      //$tt = $curslot[0] . ' = '. $this->slot;
 
-      if($this->slot == $curslot[0]){
+      if($this->slot == $curslot[0]['label']){
         $sessionDir;
         if (($sessionCount%2) == 0 || wp_is_mobile() ) {
           $sessionDir = array(
@@ -34,7 +34,7 @@ class SessionsClass {
             'class' => 'se-content-session-r'
           );
         }
-        $this->output .= '<div class="se-strip-session se-sc-bg">';
+        $this->output .= '<div class="se-strip-session se-sc-bg" seid="' . get_the_ID() . '">';
         if ($sessionDir['dir'] == 'l' ) {
           $this->output .= '<div class="se-picture-session image-settings" style="background-image:url(' . get_field('session_bild') . ')"></div>';
         }

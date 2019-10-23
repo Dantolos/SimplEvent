@@ -1,6 +1,6 @@
 <?php
 /*
-* Template Name: Speaker Template
+* Template Name: Speaker Template 
 */
 
 get_header();

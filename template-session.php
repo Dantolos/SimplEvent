@@ -9,13 +9,48 @@ $Clink = new LinkIcon;
 $Csession = new SessionsClass;
 $Loader = new loadingAnimation;
 
+$firstSlot;
 $slotarray = get_field('slots');
-$firstSlot = array_shift($slotarray);
+if (! isset($_GET['sl'])) {
+  $firstSlot = array_shift($slotarray);
+} else {
+  foreach ( $slotarray as $slot ) {
+    if( in_array($_GET['sl'], $slot) ) {
+      $firstSlot = $slot; 
+    }
+  }
+}
+
+$firstSlot = $firstSlot['label'];
+
 $scount = 0;
 $countIt = (get_field('count_it')) ? 1 : 0;
 $BSprefix = get_field('prefix');
 $slotNrCount = (get_field('slot_count')) ? 1 : 0;
 $slotNr = 1;
+
+
+//Session Jump by GET Param
+$args = array(  
+  'post_type' => 'Sessions',
+  'post_status' => 'publish',
+  'posts_per_page' => 8,
+
+);
+
+$sessionsArray = new WP_Query( $args );
+$sessionsArray = $sessionsArray->posts;
+
+$JumpSession = '';
+if (isset($_GET['se'])) {
+  $direktSpeaker = $_GET["se"];
+  foreach ( $sessionsArray as $session ) {
+    if ($direktSpeaker === $session->post_name) {
+      $sessionID = $session->ID;
+    }
+  }
+}
+
 ?>
 
 <!--Session Main Content-->
@@ -33,7 +68,7 @@ $slotNr = 1;
 
           <?php if(count(get_field('slots')) > 1) {?>
           <div class="se-infobox-session-selector">
-            <p id="selected-slot-item" slot="<?php echo $slot; ?>" slotcount="1" countprefix="<?php echo the_field('prefix'); ?>" slotnr="<?php echo $slotNrCount; ?>" countit="<?php echo $countIt;?>"><?php echo __( $firstSlot, 'SimplEvent' ); ?></p>
+            <p id="selected-slot-item" slot="<?php echo $firstSlot; ?>" slotcount="1" countprefix="<?php echo the_field('prefix'); ?>" slotnr="<?php echo $slotNrCount; ?>" countit="<?php echo $countIt;?>"><?php echo __( $firstSlot, 'SimplEvent' ); ?></p>
             <svg version="1.1" id="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
             	 width="50px" height="16px" viewBox="0 0 40 39" enable-background="new 0 0 40 39" xml:space="preserve">
               <g>
@@ -48,8 +83,9 @@ $slotNr = 1;
             $slotCount = 1; 
             foreach ($slotarray as $slot):
               $slotCount++;
+              
               ?>
-                <div class="se-infobox-session-dropdown-item" slot="<?php echo $slot; ?>" slotcount="<?php echo $slotCount; ?>"> <p><?php echo __( $slot, 'SimplEvent' ); ?></p></div>
+                <div class="se-infobox-session-dropdown-item" slot="<?php echo $slot['label']; ?>" slotcount="<?php echo $slotCount; ?>"> <p><?php echo __( $slot['label'], 'SimplEvent' ); ?></p></div>
             <?php  
             endforeach; ?>
           </div>
@@ -207,6 +243,16 @@ $slotNr = 1;
     refEle.live('click', function(){
       seSessionSpeaker($(this));
     });
+
+    //scoll by GET Param
+    let GETsessionID = '<?php echo $sessionID; ?>';
+    if(GETsessionID) {
+      $('html, body').animate({
+          scrollTop: $('.se-strip-session[seid=' + GETsessionID + ']').offset().top
+      }, 1000);
+    }
+    console.log(GETsessionID);
+
 
   });
 </script>

@@ -41,7 +41,7 @@ $args = array(
 $sessionsArray = new WP_Query( $args );
 $sessionsArray = $sessionsArray->posts;
 
-$JumpSession = '';
+$sessionID = '';
 if (isset($_GET['se'])) {
   $direktSpeaker = $_GET["se"];
   foreach ( $sessionsArray as $session ) {

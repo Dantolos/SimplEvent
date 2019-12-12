@@ -37,7 +37,11 @@
     wp_localize_script( 'lightbox-js', 'seDIR', $translation_array );
 
     //load initiative informations JS
-    wp_enqueue_script( 'iniviative-js', get_template_directory_uri() . '/js/initiative.js', array('jquery'), true );
+    if(! isset($_GET['seembed'])) { 
+      wp_enqueue_script( 'iniviative-js', get_template_directory_uri() . '/js/initiative.js', array('jquery'), true );
+    } else {
+      wp_enqueue_style( 'embed-style-css', get_template_directory_uri() . '/css/embed.style.css' );
+    }
   }
   add_action( 'wp_enqueue_scripts', 'theme_add_files' );
 
@@ -53,6 +57,7 @@
   require_once('inc/class.speaker.php');
   require_once('inc/class.sessions.php');
   require_once('inc/class.award.php');
+  require_once('inc/class.tiles.php');
 
   require_once('inc/elements/class.button.php');
 
@@ -89,6 +94,8 @@
 
   .button-border { border: solid 2px <?php echo $seMC; ?>; }
 </style>
+
+<?php if(! isset($_GET['seembed'])) { ?>
 
 <header semc="<?php echo $seMC; ?>" sesc="<?php echo $seSC; ?>" sewc="<?php echo $seWC; ?>" curlang="<?php echo $curLang ?>" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
 
@@ -205,7 +212,7 @@
         foreach ($MainSocial as $SMName => $SMLink) {
           if($SMLink) {
             $icon = $SMicon->getSMicon($SMName, '#b7b7b7', '16px');
-            echo '<a href="'.$SMLink.'" class="" target="_blank" style="padding:0 3px; float:right; ">';
+            echo '<a href="'.$SMLink.'" class="" target="_blank" style="padding:0 3px; float:right;">';
             echo '<div class="se-sm-icon-anim" style=" margin:3px 1px 0 0;"/>'.$icon;
             echo '</div></a>';
           }
@@ -479,6 +486,8 @@ if(!wp_is_mobile()){
 
   </div>
 </div>
+
+<?php } ?>
 
 <body>
   <div id="se-site-loader" style="opacity: 0;">

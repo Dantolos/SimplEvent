@@ -151,9 +151,14 @@
   .se-review-gallery {height:35% !important; }
   .se-speaker-review-tabs-container { min-height: 0 !important; }
 
+  /*--TILES--*/
+  .se-tile-strip div { display:block !important; }
+  .se-tile-container { width:100%; margin-bottom:15px;}
+
+  .se-tile-page-header div { bottom:-100px; right:20px; left: unset !important;}
+
   /*--Footer--*/
   .se-mobile-footer-placeholder {height:50px; width:100vw;}
-
 
   /*404 ERROR*/
   .se-404-container {top: 18%;}

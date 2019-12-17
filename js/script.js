@@ -644,6 +644,18 @@ jQuery(document).ready(function($){
     TweenMax.to($(this), 0.5, {  'filter': 'grayscale(60%)', '-webkit-filter': 'grayscale(60%)' });
   });
 
+  //----------------------------------------------------
+  //----Tiles-----------------------------------------
+  //----------------------------------------------------
+  var tile = $('.se-tile-container');
+
+  tile.on('mouseenter', function() {
+    TweenMax.to($(this), 0.2, {  scale: 1.03, ease:Power1.easeOut });
+    console.log('asdf')
+  });
+  tile.on('mouseleave', function() {
+    TweenMax.to($(this), 0.4, {  scale: 1.0, ease:Power1.easeOut });
+  });
 
   //----------------------------------------------------
   //----Footer-----------------------------------------

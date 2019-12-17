@@ -197,11 +197,13 @@ function se_review_gallery_load() {
 
   $gaid = $_POST['gaid'];
   $paid = $_POST['paid'];
-
-  $theReview = get_field('reviews', $paid );
-
+  $fieldName = $_POST['fieldname'];
+  
+  $theReview = get_field( $fieldName, $paid );
+ 
   $response = '<div class="clearfix" style="height:100%; width:100%; overflow-y:scroll;">';
-  foreach ( $theReview[$gaid]["gallery"] as $galIMG ) {
+  $theReview = ( $fieldName == 'reviews') ? $theReview[$gaid]["gallery"] : $theReview;
+  foreach ( $theReview as $galIMG ) {
     $response .= '<div class="image-settings se-review-gallery" imgsrc="' . $galIMG["url"] . '" style="background-image:url(' . $galIMG["url"] . '); "></div>';
     //$response .= '<img src="' . $galIMG["url"] . '" width="23%" height="auto"/>';
   }

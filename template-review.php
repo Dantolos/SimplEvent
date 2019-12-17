@@ -276,6 +276,7 @@ jQuery(document).ready(function($){
       data : {
         gaid : cont,
         paid : page,
+        fieldname : 'reviews',
         action : 'se_review_gallery_load'
       },
 

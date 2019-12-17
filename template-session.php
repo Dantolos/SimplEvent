@@ -204,11 +204,9 @@ if (isset($_GET['se'])) {
 
     function seSessionSpeaker(sp) {
 
-
       $('body').find('.se-lb-wrapper').remove();
       let page = sp.attr('pid');
       let rcount = sp.attr('rcount');
-      
       
       console.log(page);
       LBclass.seOpenLB();

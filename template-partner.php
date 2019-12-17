@@ -2,7 +2,12 @@
 /*
 * Template Name: Partner Template
 */
+
+//iFrame version
+
 get_header();
+
+
 
 $Loader = new loadingAnimation;
 
@@ -142,7 +147,7 @@ $main_partner = new WP_Query($main_partner_args);
                     <h4 style="position:absolute; margin:auto; top: 0; bottom:0;height:30px;width:100%;text-align:center; opacity:.6;"><b><?php echo the_title(); ?></b></h4>
                   </div>
                 <?php } ?>
-              </dsiv>
+              </div>
 
               </div>
 

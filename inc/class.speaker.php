@@ -59,7 +59,7 @@ class SpeakerClass {
               case 'de':
                 $programmText = 'Programm'; break;
               case 'en':
-                $programmText = 'Program'; break;
+                $programmText = 'Programme'; break;
               default:
                 $programmText = get_site_url() . '/programm'; break;
             }

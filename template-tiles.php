@@ -23,7 +23,7 @@ $Tile = new TileClass;
         </div>
     </div>
     <div class="se-strip se-tile-strip">
-        <div class="se-content" style="overflow:visible; display: flex; <?php if($fW) { echo 'width:100vw !important;'; } ?>">
+        <div class="se-content se-tile-contentbox" style="overflow:visible; <?php if($fW) { echo 'width:100vw !important;'; } ?>">
             <?php 
                 $Tile->getTile( get_field('kategorie') )
             ?>

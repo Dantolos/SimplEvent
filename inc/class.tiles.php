@@ -20,7 +20,7 @@ class TileClass {
         $this->kategorie = $kategorie;
 
         $args = array(
-            'post_type' => 'tile', 'orderby' => 'menu_order', 'order' => 'ASC',
+            'post_type' => 'tile', 'orderby' => 'menu_order', 'order' => 'DSC',
             'tax_query' => array(
                 array(
                   'taxonomy' => 'Type', 'field' => 'term_id', 'terms' => $this->kategorie,
@@ -34,6 +34,8 @@ class TileClass {
             
             
             $this->finalTileContent .= '<div class="se-tile-container">';
+            $this->finalTileContent .= '<div style="height:100%; background-color:' . $this->seSC . ';">';
+
             $this->finalTileContent .= '<a href="' . get_post_permalink( $TileID ) . '">';
 
             $this->finalTileContent .= '<div class="se-tile-bild image-settings" style="background-image: url(' . get_field( 'bild', $TileID ) . ');">';
@@ -49,8 +51,7 @@ class TileClass {
             $this->finalTileContent .= '<p>' . get_field('tile_teasertext', $TileID) . '</p>';
             $this->finalTileContent .= '</div>';
 
-            
-            $this->finalTileContent .= '</a></div>';
+            $this->finalTileContent .= '</div></a></div>';
            
         }
 

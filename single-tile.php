@@ -25,6 +25,14 @@ $mainColorSVG = esc_attr( get_option( 'main_color_picker' ) );
         <div class="se-col-8 se-tile-page-content">
             <h2><?php echo get_field('tile_titel'); ?></h2>
             <p><?php echo get_field('tile_text'); ?></p>
+            
+            <?php if( get_field('tile_facts_anmeldung') ) { ?>
+                <a href="<?php echo get_field('tile_facts_anmeldung'); ?>" target="_blank">
+                    <div class="mc-button-neg se-mc-txt button-border" style="margin:20; ">
+                        <?php echo __('Jetzt Anmelden', 'SimplEvent'); ?>
+                    </div>
+                </a>
+            <?php } ?> 
         </div>
 
         <!--FACTS-->
@@ -37,7 +45,7 @@ $mainColorSVG = esc_attr( get_option( 'main_color_picker' ) );
                 if( have_rows('tile_facts') ):
                     while( have_rows('tile_facts') ): the_row();
                         
-                        $factKeys = array_keys(get_row('tile_facts_datum'));
+                        $factKeys = array_keys( get_row('tile_facts_datum') );
                         
                         foreach($factKeys as $fact) {
                             if( get_sub_field($fact) ) {

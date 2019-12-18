@@ -71,6 +71,7 @@ $mainColorSVG = esc_attr( get_option( 'main_color_picker' ) );
 <?php 
     $video = get_field('tile_review_video'); 
     $colNR = ($video) ? 6 : 12;
+    if(get_field('tile_review_aktive')){
 ?>
 <div class="se-strip image-settings se-sc-bg se-wc-txt" style="margin-top:50px;">
 
@@ -109,6 +110,8 @@ $mainColorSVG = esc_attr( get_option( 'main_color_picker' ) );
     <?php } ?>
 
 </div>
+<?php } ?>
+
 
 <script type="text/javascript">
 jQuery(document).ready(function($){

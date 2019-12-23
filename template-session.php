@@ -10,13 +10,19 @@ $Csession = new SessionsClass;
 $Loader = new loadingAnimation;
 
 $firstSlot;
+$slotNr;
 $slotarray = get_field('slots');
 if (! isset($_GET['sl'])) {
   $firstSlot = array_shift($slotarray);
+  $slotNr = 1;
 } else {
+   
   foreach ( $slotarray as $slot ) {
     if( in_array($_GET['sl'], $slot) ) {
       $firstSlot = $slot; 
+      $slotIndex = array_search( $slot, $slotarray);
+      $slotNr = $slotIndex + 1;
+      unset( $slotarray[$slotIndex] );
     }
   }
 }
@@ -27,7 +33,7 @@ $scount = 0;
 $countIt = (get_field('count_it')) ? 1 : 0;
 $BSprefix = get_field('prefix');
 $slotNrCount = (get_field('slot_count')) ? 1 : 0;
-$slotNr = 1;
+
 
 
 //Session Jump by GET Param
@@ -35,7 +41,6 @@ $args = array(
   'post_type' => 'Sessions',
   'post_status' => 'publish',
   'posts_per_page' => 8,
-
 );
 
 $sessionsArray = new WP_Query( $args );
@@ -68,7 +73,7 @@ if (isset($_GET['se'])) {
 
           <?php if(count(get_field('slots')) > 1) {?>
           <div class="se-infobox-session-selector">
-            <p id="selected-slot-item" slot="<?php echo $firstSlot; ?>" slotcount="1" countprefix="<?php echo the_field('prefix'); ?>" slotnr="<?php echo $slotNrCount; ?>" countit="<?php echo $countIt;?>"><?php echo __( $firstSlot, 'SimplEvent' ); ?></p>
+            <p id="selected-slot-item" slot="<?php echo $firstSlot; ?>" slotcount="<?php echo $slotNr; ?>" countprefix="<?php echo the_field('prefix'); ?>" slotnr="<?php echo $slotNrCount; ?>" countit="<?php echo $countIt;?>"><?php echo __( $firstSlot, 'SimplEvent' ); ?></p>
             <svg version="1.1" id="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
             	 width="50px" height="16px" viewBox="0 0 40 39" enable-background="new 0 0 40 39" xml:space="preserve">
               <g>
@@ -82,7 +87,7 @@ if (isset($_GET['se'])) {
             <?php
             $slotCount = 1; 
             foreach ($slotarray as $slot):
-              $slotCount++;
+              $slotCount = array_search( $slotarray, $slot ) + 1;
               
               ?>
                 <div class="se-infobox-session-dropdown-item" slot="<?php echo $slot['label']; ?>" slotcount="<?php echo $slotCount; ?>"> <p><?php echo __( $slot['label'], 'SimplEvent' ); ?></p></div>

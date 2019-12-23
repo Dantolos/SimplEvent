@@ -677,7 +677,6 @@ jQuery(document).ready(function($){
       $( document ).ajaxComplete(function(){ doFooterPosition(); });
     }
     
-    
   }
 
 

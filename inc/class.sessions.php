@@ -3,7 +3,7 @@
 class SessionsClass {
   public $output;
   public $slot;
-  public function getSlot($ID, $slots, $BSprefix = 'BS ', $sessionCount = 0, $slotNr = 1, $slotCountNr = 0 ) {
+  public function getSlot($ID, $slots, $BSprefix = 'BS ', $sessionCount = 0, $slotNr, $slotCountNr = 0, $PageID, $CountIt ) {
     $sessions_args = array(
       'post_type' => 'sessions', 'orderby' => 'menu_order', 'order' => 'ASC',
       'tax_query' => array(
@@ -13,9 +13,16 @@ class SessionsClass {
       ),
     );
     $sessions = new WP_Query( $sessions_args );
+  
+    $this->slot = $slots;
+
+  
+    $sessionOutCount = 0;
+   
    
     
-    $this->slot = $slots;
+    echo '</pre>';
+    
     if ( $sessions->have_posts() ) : while ( $sessions->have_posts() ) : $sessions->the_post();
 
       $curslot = get_field('slots');
@@ -23,6 +30,10 @@ class SessionsClass {
 
       if($this->slot == $curslot[0]['label']){
         $sessionDir;
+        if( $CountIt == 1 ){
+          $sessionOutCount = array_search( get_the_ID(), array_column( $sessions->posts, 'ID') );
+        }
+
         if (($sessionCount%2) == 0 || wp_is_mobile() ) {
           $sessionDir = array(
             'dir' => 'l',
@@ -40,10 +51,10 @@ class SessionsClass {
         }
         $this->output .= '<div class="' . $sessionDir['class'] . ' se-wc-txt se-session-txt">';
         $this->output .= '<p style="border-left: solid 1px '. esc_attr( get_option( 'main_color_picker' ) ) .'">' . $BSprefix;
-        if($slotCountNr == 1){
+        if( $slotCountNr == 1 ){
           $this->output .= $slotNr . '.';
         }
-        $this->output .= ($sessionCount + 1);
+        $this->output .= ( $sessionOutCount +1 );
         $this->output .= '</p>';
 
         $lang;
@@ -76,6 +87,9 @@ class SessionsClass {
         }
         $this->output .= '</div>';
         $sessionCount++;
+        if( $CountIt == 0 ){
+          $sessionOutCount++;
+        }
       }
     endwhile; endif;
     $this->output .= '<span id="sessioncount" scount="' . $sessionCount . '" style="display:none;"></span>';

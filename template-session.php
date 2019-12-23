@@ -11,10 +11,14 @@ $Loader = new loadingAnimation;
 
 $firstSlot;
 $slotNr;
+$scount = 0;
+
+
 $slotarray = get_field('slots');
 if (! isset($_GET['sl'])) {
   $firstSlot = array_shift($slotarray);
   $slotNr = 1;
+ 
 } else {
    
   foreach ( $slotarray as $slot ) {
@@ -23,16 +27,17 @@ if (! isset($_GET['sl'])) {
       $slotIndex = array_search( $slot, $slotarray);
       $slotNr = $slotIndex + 1;
       unset( $slotarray[$slotIndex] );
+
     }
   }
 }
 
 $firstSlot = $firstSlot['label'];
 
-$scount = 0;
-$countIt = (get_field('count_it')) ? 1 : 0;
+
+$countIt = ( get_field('count_it') ) ? 1 : 0;
 $BSprefix = get_field('prefix');
-$slotNrCount = (get_field('slot_count')) ? 1 : 0;
+$slotNrCount = ( get_field('slot_count') ) ? 1 : 0;
 
 
 
@@ -59,7 +64,7 @@ if (isset($_GET['se'])) {
 ?>
 
 <!--Session Main Content-->
-<div class="se-strip" id="touch-test" >
+<div class="se-strip se-session-main-container" id="touch-test" pageid="<?php echo get_the_ID(); ?>">
   <div class="se-content" style="margin-bottom:50px;">
     <div class="se-col-8" style="padding-right: 5%;">
       <h1><?php echo the_title(); ?></h1>
@@ -120,7 +125,7 @@ if (isset($_GET['se'])) {
 <!--Separate Sessions-->
 <?php echo $Loader->getLoader(); ?>
 <div id="se-session-wrapper" jahr="<?php echo get_field('jahr'); ?>">
-  <?php echo $Csession->getSlot(get_field('jahr'), $firstSlot, $BSprefix, $scount, $slotNr, $slotNrCount ); ?>
+  <?php echo $Csession->getSlot(get_field('jahr'), $firstSlot, $BSprefix, $scount, $slotNr, $slotNrCount, get_the_ID(), $countIt ); ?>
 </div>
 
 
@@ -144,6 +149,7 @@ if (isset($_GET['se'])) {
 
     DDitems.on('click', function() {
       var page = $(this).attr('slot');
+      var pageID = $('.se-session-main-container').attr('pageid');
       var jahr = $('#se-session-wrapper').attr('jahr');
       
       var countprefix = $('#selected-slot-item').attr('countprefix');
@@ -151,10 +157,12 @@ if (isset($_GET['se'])) {
       var slotcountAttr = $(this).attr('slotcount');
       var curcountAttr = $('#selected-slot-item').attr('slotcount');
       var countit = $('#selected-slot-item').attr('countit');
-      var scounter = 0;
+      var scounter = '<?php echo $slotNr; ?>';
+      
       if(countit == 1){
         if( $('#sessioncount') && slotcountAttr > 1 ) {
           scounter = $('#sessioncount').attr('scount');
+          scounter = '<?php echo $slotNr; ?>';
         }
       }
       
@@ -182,6 +190,8 @@ if (isset($_GET['se'])) {
           bsprefix : countprefix,
           slotnr : slotcountAttr,
           slotnrcounter : slotnrCounter,
+          pageid : pageID,
+          countit : countit,
           action : 'se_session_slots'
         },
 

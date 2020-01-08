@@ -149,8 +149,6 @@ $main_partner = new WP_Query($main_partner_args);
                 <?php } ?>
               </div>
 
-              </div>
-
             </div>
 
           <?php

@@ -109,7 +109,7 @@ function se_partner_cat_load() {
   if ( $main_partner->have_posts() ) : while ( $main_partner->have_posts() ) : $main_partner->the_post();
     $Logo = $bild =
 
-    $response .= '<div data-id="' . get_the_ID() . '" class="se-col-3 se-partner-logo" style="position:relative;">';
+    $response .= '<div data-id="' . get_the_ID() . '" class="se-col-3 se-partner-logo se-partner-logo-big" style="position:relative;">';
     $response .= '<div class="se-partner-logo-inner" style=" height:95%; width:95%; margin: auto; position:absolute; margin:2.5%; background-color:#f7f7f7;">';
     if( get_field('partner-logo') ){
       $response .= '<div class="se-partner-logo-pic" style="margin:15%;height:70%; width:70%; background-image:url(';

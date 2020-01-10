@@ -547,29 +547,33 @@ jQuery(document).ready(function($){
   //----------------------------------------------------
   var pLogoBig = $('.se-partner-logo-big');
   var pLogoSmall = $('.se-partner-logo-small');
+  var pLogoHeight = $('.se-partner-logo-big').height();
 
   pLogoBig.css({'height': (pLogoBig.width() / 10 * 8.9) });
   pLogoSmall.css({'height': (pLogoSmall.width() / 10 * 9)});
+
   $(window).on('resize', function(){
     pLogoBig.css({'height': (pLogoBig.width() / 10 * 9) })
     pLogoSmall.css({'height': (pLogoSmall.width() / 10 * 9)});
   });
 
   var pLogoContainer = $('.se-partner-logo-containter');
-  PartnerContainerSize(pLogoBig, 4);
-  PartnerContainerSize(pLogoSmall, 8);
+  var partnerCount = Math.ceil( ( pLogoBig.length + ( pLogoSmall.length / 2 ) ) / 4 );
+  PartnerContainerSize(pLogoHeight, partnerCount);
 
   $( document ).ajaxComplete(function(){
-    PartnerContainerSize(pLogoBig, 4);
-    PartnerContainerSize(pLogoSmall, 4);
+    partnerCount = Math.ceil( ( pLogoBig.length + ( pLogoSmall.length / 2 ) ) / 4 );
+    PartnerContainerSize( pLogoHeight, partnerCount);
   });
 
-  function PartnerContainerSize(p, cnt){
-    let theHeight = Math.ceil(p.length / 4) * p.width();
+  function PartnerContainerSize(width, cnt){
+    
+    let theHeight = cnt * width;
     pLogoContainer.css({'height': theHeight});
+    console.log(theHeight);
   }
 
-
+  
   TweenMax.staggerFrom(pLogoBig, 0.5, {y: '30px', autoAlpha: '0', ease:Power1.easeOut}, 0.1);
   TweenMax.staggerFrom(pLogoSmall, 0.5, {y: '30px', autoAlpha: '0', ease:Power1.easeOut}, 0.1);
 
@@ -651,7 +655,6 @@ jQuery(document).ready(function($){
 
   tile.on('mouseenter', function() {
     TweenMax.to($(this), 0.2, {  scale: 1.03, ease:Power1.easeOut });
-    console.log('asdf')
   });
   tile.on('mouseleave', function() {
     TweenMax.to($(this), 0.4, {  scale: 1.0, ease:Power1.easeOut });
@@ -662,16 +665,17 @@ jQuery(document).ready(function($){
   //----------------------------------------------------
   if(!isMobile){
     function doFooterPosition() {
-
+      
       let footerPos = $('.se-footer-container').offset().top;
       let windowHeight = $(window).height();
+      let contentHeight = $(document).height();
       if(windowHeight > footerPos){
         $('.se-footer-container').css({'position': 'fixed', 'bottom':0});
-      }
+      } 
+      
     }
 
     if(!seEmbed){
-      console.log($('.se-footer-container'));
       doFooterPosition();
       // $(window).on('resize', function(){ doFooterPosition();});
       $( document ).ajaxComplete(function(){ doFooterPosition(); });

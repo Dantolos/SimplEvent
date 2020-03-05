@@ -521,7 +521,7 @@ if(!wp_is_mobile()){
     <div class="se-attention-container" style="display:<?php echo $attentionDisplay; ?>;">
       <div class="se-attention-frame">
         <h1><?php echo __(esc_attr( get_option( 'se_attentiontitle' ) ), 'SimplEvent'); ?></h1>
-        <p><?php echo __(esc_attr( get_option( 'se_attentiontext' ) ), 'SimplEvent'); ?></p>
+        <p><?php echo __( get_option( 'se_attentiontext' ), 'SimplEvent'); ?></p>
         <?php
         $donwloader = new DownloadIcon();
         if(esc_attr( get_option( 'se_attentiondownload' ) )){

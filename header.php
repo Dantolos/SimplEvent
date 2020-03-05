@@ -494,10 +494,17 @@ if(!wp_is_mobile()){
   <?php
   //attention 
   if( esc_attr( get_option( 'se_attention' ) ) ) {
+    $attentionComponents = array(
+      'buttontext' => esc_attr( get_option( 'se_attentionbuttontext' ) ),
+      'title' => esc_attr( get_option( 'se_attentiontitle' ) ),
+      'text' => get_option( 'se_attentiontext' ),
+      'downloadlink' => esc_attr( get_option( 'se_attentiondownload' ) )
+
+    )
   ?>  
     <!-- BUTTON -->
     <div class="se-attention-button se-mc-bg se-wc-txt">
-      <h4><b><?php echo __(esc_attr( get_option( 'se_attentionbuttontext' ) ), 'SimplEvent'); ?></b></h4>
+      <h4><b><?php echo __( $attentionComponents['buttontext'], 'SimplEvent'); ?></b></h4>
       <div class="se-attention-button-closer">
         <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
           viewBox="0 0 44.91 44.91" style="enable-background:new 0 0 44.91 44.91; color:white;" xml:space="preserve">
@@ -520,12 +527,12 @@ if(!wp_is_mobile()){
     ?>
     <div class="se-attention-container" style="display:<?php echo $attentionDisplay; ?>;">
       <div class="se-attention-frame">
-        <h1><?php echo __(esc_attr( get_option( 'se_attentiontitle' ) ), 'SimplEvent'); ?></h1>
-        <p><?php echo __( get_option( 'se_attentiontext' ), 'SimplEvent'); ?></p>
+        <h1><?php echo __( $attentionComponents['title'], 'SimplEvent'); ?></h1>
+        <p><?php echo __( $attentionComponents['text'], 'SimplEvent'); ?></p>
         <?php
         $donwloader = new DownloadIcon();
         if(esc_attr( get_option( 'se_attentiondownload' ) )){
-          echo $donwloader->DownloadLink('FAQ', __(esc_attr( get_option( 'se_attentiondownload' ) ), 'SimplEvent') );
+          echo $donwloader->DownloadLink('FAQ', __( $attentionComponents['downloadlink'], 'SimplEvent' ) );
         }
         
         ?>

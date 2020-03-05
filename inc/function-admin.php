@@ -71,6 +71,12 @@ function simplevent_custom_settings() {
   register_setting( 'simplevent-header-group', 'se_anmeldelink' );
   register_setting( 'simplevent-header-group', 'se_anmeldetext' );
 
+  register_setting( 'simplevent-header-group', 'se_attention' );
+  register_setting( 'simplevent-header-group', 'se_attentionbuttontext' );
+  register_setting( 'simplevent-header-group', 'se_attentiontitle' );
+  register_setting( 'simplevent-header-group', 'se_attentiontext' );
+  register_setting( 'simplevent-header-group', 'se_attentiondownload' );
+
   //****Section
   add_settings_section( 'simplevent-header-options', 'Header', 'simplevent_header_options', 'simplevent_header');
 
@@ -78,6 +84,13 @@ function simplevent_custom_settings() {
   add_settings_field( 'se-anmeldung', 'Anmeldung Aktiv', 'simplevent_se_anmeldung', 'simplevent_header', 'simplevent-header-options' );
   add_settings_field( 'se-anmeldelink', 'Anmeldung Link', 'simplevent_se_anmeldelink', 'simplevent_header', 'simplevent-header-options' );
   add_settings_field( 'se-anmeldetext', 'Anmeldung Text', 'simplevent_se_anmeldetext', 'simplevent_header', 'simplevent-header-options' );
+
+  add_settings_field( 'se-attention', 'Attention Aktiv', 'simplevent_se_attention', 'simplevent_header', 'simplevent-header-options' );
+  add_settings_field( 'se-attentionbuttontext', 'Attention Buttontext', 'simplevent_se_attentionbuttontext', 'simplevent_header', 'simplevent-header-options' );
+  add_settings_field( 'se-attentiontitle', 'Attention Title', 'simplevent_se_attentiontitle', 'simplevent_header', 'simplevent-header-options' );
+  add_settings_field( 'se-attentiontext', 'Attention Text', 'simplevent_se_attentiontext', 'simplevent_header', 'simplevent-header-options' );
+  add_settings_field( 'se-attentiondownload', 'Attention Download', 'simplevent_se_attentiondownload', 'simplevent_header', 'simplevent-header-options' );
+
 
 
   //----------------------------------SIDEBAR ---------------------------------------//
@@ -243,6 +256,30 @@ function simplevent_se_anmeldetext() {
 function simplevent_se_anmeldelink() {
   $anmeldelink = get_option( 'se_anmeldelink' );
   echo '<input type="text" name="se_anmeldelink" value="' .$anmeldelink. '" placeholder="URL"/>';
+}
+//--------Attention
+function simplevent_se_attention() {
+  $attention = get_option( 'se_attention' );
+  if($attention == 'on'){
+    $attention = 'checked';
+  }
+  echo '<input type="checkbox" name="se_attention" ' .$attention. '/>';
+}
+function simplevent_se_attentionbuttontext() {
+  $attentionbuttontext = get_option( 'se_attentionbuttontext' );
+  echo '<input type="text" name="se_attentionbuttontext" value="' .$attentionbuttontext. '" placeholder="Buttontext"/>';
+}
+function simplevent_se_attentiontitle() {
+  $attentiontitle = get_option( 'se_attentiontitle' );
+  echo '<input type="text" name="se_attentiontitle" value="' .$attentiontitle. '" placeholder="Titel"/>';
+}
+function simplevent_se_attentiontext() {
+  $attentiontext = get_option( 'se_attentiontext' );
+  echo '<textarea type="textarea" rows="10" name="se_attentiontext"  style="width: 100%;">' . $attentiontext . '</textarea>';
+}
+function simplevent_se_attentiondownload() {
+  $attentiondownload = esc_attr( get_option( 'se_attentiondownload' ) );
+  echo '<input type="button" style="width:25%;" value="Download" class="button button-secondary upload-button" data-target="se-attentiondownload"/><input type="" style="width:73%;" id="se-attentiondownload" name="se_attentiondownload" value="' .$attentiondownload. '"/>';
 }
 
 //----------------------------------SIDEBAR ---------------------------------------//

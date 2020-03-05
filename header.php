@@ -490,6 +490,59 @@ if(!wp_is_mobile()){
 <?php } ?>
 
 <body>
+  
+  <?php
+  //attention 
+  if( esc_attr( get_option( 'se_attention' ) ) ) {
+  ?>  
+    <!-- BUTTON -->
+    <div class="se-attention-button se-mc-bg se-wc-txt">
+      <h4><b><?php echo __(esc_attr( get_option( 'se_attentionbuttontext' ) ), 'SimplEvent'); ?></b></h4>
+      <div class="se-attention-button-closer">
+        <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          viewBox="0 0 44.91 44.91" style="enable-background:new 0 0 44.91 44.91; color:white;" xml:space="preserve">
+          <style>.cleser-cross{fill:white;}</style>
+          <path class="cleser-cross" d="M22.45,0C10.05,0,0,10.05,0,22.45s10.05,22.45,22.45,22.45s22.45-10.05,22.45-22.45S34.85,0,22.45,0z M37.28,31.99
+            c0.27,0.27,0.27,0.7,0,0.96l-4.33,4.33c-0.27,0.27-0.7,0.27-0.96,0l-9.53-9.53l-9.53,9.53c-0.27,0.27-0.7,0.27-0.96,0l-4.33-4.33
+            c-0.27-0.27-0.27-0.7,0-0.96l9.53-9.53l-9.53-9.53c-0.27-0.27-0.27-0.7,0-0.96l4.33-4.33c0.27-0.27,0.7-0.27,0.96,0l9.53,9.53
+            l9.53-9.53c0.27-0.27,0.7-0.27,0.96,0l4.33,4.33c0.27,0.27,0.27,0.7,0,0.96l-9.53,9.53L37.28,31.99z"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- POPUP -->
+    <?php
+    $attentionDisplay = 'none';
+
+    if( isset($_GET['attention']) ) {
+      $attentionDisplay = ($_GET['attention'] == '1') ? 'block' : 'none'; 
+    } 
+    ?>
+    <div class="se-attention-container" style="display:<?php echo $attentionDisplay; ?>;">
+      <div class="se-attention-frame">
+        <h1><?php echo __(esc_attr( get_option( 'se_attentiontitle' ) ), 'SimplEvent'); ?></h1>
+        <p><?php echo __(esc_attr( get_option( 'se_attentiontext' ) ), 'SimplEvent'); ?></p>
+        <?php
+        $donwloader = new DownloadIcon();
+        if(esc_attr( get_option( 'se_attentiondownload' ) )){
+          echo $donwloader->DownloadLink('FAQ', __(esc_attr( get_option( 'se_attentiondownload' ) ), 'SimplEvent') );
+        }
+        
+        ?>
+        <div class="se-attention-frame-closer">
+          <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            viewBox="0 0 44.91 44.91" style="enable-background:new 0 0 44.91 44.91; color:white;" xml:space="preserve">
+            <style>.closer-cross{fill:black;}</style>
+            <path class="closer-cross" d="M22.45,0C10.05,0,0,10.05,0,22.45s10.05,22.45,22.45,22.45s22.45-10.05,22.45-22.45S34.85,0,22.45,0z M37.28,31.99
+              c0.27,0.27,0.27,0.7,0,0.96l-4.33,4.33c-0.27,0.27-0.7,0.27-0.96,0l-9.53-9.53l-9.53,9.53c-0.27,0.27-0.7,0.27-0.96,0l-4.33-4.33
+              c-0.27-0.27-0.27-0.7,0-0.96l9.53-9.53l-9.53-9.53c-0.27-0.27-0.27-0.7,0-0.96l4.33-4.33c0.27-0.27,0.7-0.27,0.96,0l9.53,9.53
+              l9.53-9.53c0.27-0.27,0.7-0.27,0.96,0l4.33,4.33c0.27,0.27,0.27,0.7,0,0.96l-9.53,9.53L37.28,31.99z"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  <?php } ?>
+
   <div id="se-site-loader" style="opacity: 0;">
 
   <?php

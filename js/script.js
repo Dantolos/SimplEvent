@@ -454,13 +454,38 @@ jQuery(document).ready(function($){
   });
 
 
+  //----------------------------------------------------
+  //----attention-----------------------------------------
+  //----------------------------------------------------
+  var AttentionCloser = $('.se-attention-button-closer');
+  var AttentionButton = $('.se-attention-button');
+  var Attention = $('.se-attention-container');
+  var AttentionFrameCloser = $('.se-attention-frame-closer').find('svg');
+  AttentionCloser.on('click', function(){
+    $(this).parent().fadeOut();
+    Attention.fadeOut();
+  });
 
+  AttentionButton.find('h4').on('click', function(){
+    Attention.fadeIn();
+    
+  });
+
+  AttentionFrameCloser.on('click', function(){
+    Attention.fadeOut();
+    AttentionButton.fadeOut();
+  });
+ 
+  if(Attention) {
+    
+  }
+  
 
   //----------------------------------------------------
   //----speaker-----------------------------------------
   //----------------------------------------------------
 
-  //// REVIEW:
+  //// REVIEW: 
   //review tabber
   var ReviewTabber = $('.se-speaker-review-tabs-container');
     

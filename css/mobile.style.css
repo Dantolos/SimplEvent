@@ -84,6 +84,11 @@
   .se-info-sidebar { left: 0px; bottom:10vh; z-index: 8400; margin-top:0 !important; width:100vw; height:100vh; background-color: transparent !important; overflow-y: scroll;}
   .se-info-sidebar-content { width: 78vw; height: 65vh; top: 25%; position: absolute; left: 12vw; overflow-y: scroll; margin:0;}
 
+
+  /*-------ATTENTION-------*/
+  .se-attention-frame {  width:90vw; height:80vh; }
+
+
   /*---HEADER-SLIDER---*/
   .se-slider-header-text-container  { right:10vw; width:80vw; bottom:20vh;}
   .se-slider-header-zitat { font-size: 18px !important; }
@@ -91,6 +96,8 @@
   .se-slider-mobile-align-left { background-position: 20% center; }
   .se-slider-stream-frame { height:32vh; }
   .se-programm-next { height:40vh; }
+
+
 
 
   /*--SPEAKER--*/

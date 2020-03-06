@@ -490,67 +490,27 @@ if(!wp_is_mobile()){
 <?php } ?>
 
 <body>
-  
-  <?php
-  
-  //attention 
-  if( is_front_page() ){
-    if( esc_attr( get_option( 'se_attention' ) ) ) {
-      $attentionComponents = array(
-        'buttontext' => esc_attr( get_option( 'se_attentionbuttontext' ) ),
-        'title' => esc_attr( get_option( 'se_attentiontitle' ) ),
-        'text' => get_option( 'se_attentiontext' ),
-        'downloadlink' => esc_attr( get_option( 'se_attentiondownload' ) )
-      );
-    ?>  
-      <!-- BUTTON -->
-      <div class="se-attention-button se-mc-bg se-wc-txt">
-        <h4><b><?php echo __( $attentionComponents['buttontext'], 'SimplEvent'); ?></b></h4>
-        <div class="se-attention-button-closer">
-          <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-            viewBox="0 0 44.91 44.91" style="enable-background:new 0 0 44.91 44.91; color:white;" xml:space="preserve">
-            <style>.cleser-cross{fill:white;}</style>
-            <path class="cleser-cross" d="M22.45,0C10.05,0,0,10.05,0,22.45s10.05,22.45,22.45,22.45s22.45-10.05,22.45-22.45S34.85,0,22.45,0z M37.28,31.99
-              c0.27,0.27,0.27,0.7,0,0.96l-4.33,4.33c-0.27,0.27-0.7,0.27-0.96,0l-9.53-9.53l-9.53,9.53c-0.27,0.27-0.7,0.27-0.96,0l-4.33-4.33
-              c-0.27-0.27-0.27-0.7,0-0.96l9.53-9.53l-9.53-9.53c-0.27-0.27-0.27-0.7,0-0.96l4.33-4.33c0.27-0.27,0.7-0.27,0.96,0l9.53,9.53
-              l9.53-9.53c0.27-0.27,0.7-0.27,0.96,0l4.33,4.33c0.27,0.27,0.27,0.7,0,0.96l-9.53,9.53L37.28,31.99z"/>
-          </svg>
-        </div>
-      </div>
+    
+  <style>
+    /*-------ATTENTION-------*/
+    .se-attention-button { position: fixed; top:0;  border-radius:0 0 5px 5px ; z-index:99999; padding: 5px 20px; left:0; right:0; margin: auto; padding:5px; overflow-x: hidden; }
+    .se-attention-button h4 { margin-left:10px; cursor:pointer; }
+    .se-attention-button-closer svg { height:20px; position:absolute; right:8px; top:9px; }
 
-      <!-- POPUP -->
-      <?php
+    .se-attention-container { position:fixed; top:0; left:0; height:100vh; width:100vw; background-color:rgba(0,0,0,0.8);z-index:100000; }
+    .se-attention-frame { background-color:white; position:absolute; top:0; bottom:0; left:0; right:0; border-radius:5px; margin:auto; width:50vw; height:50vh; padding:20px; overflow-y:scroll;}
+    .se-attention-frame-closer svg { position:absolute; top:10px; right:10px; z-index: 100005; height:20px; cursor: pointer;}
+    .se-attention-frame p {margin-bottom:20px;}
+  </style>
+  <div id="attention">
+    <?php
       $attentionDisplay = 'none';
 
       if( isset($_GET['attention']) ) {
         $attentionDisplay = ($_GET['attention'] == '1') ? 'block' : 'none'; 
       } 
-      ?>
-      <div class="se-attention-container" style="display:<?php echo $attentionDisplay; ?>;">
-        <div class="se-attention-frame">
-          <h1><?php echo __( $attentionComponents['title'], 'SimplEvent'); ?></h1>
-          <p><?php echo __( $attentionComponents['text'], 'SimplEvent'); ?></p>
-          <?php
-          $donwloader = new DownloadIcon();
-          if(esc_attr( get_option( 'se_attentiondownload' ) )){
-            echo $donwloader->DownloadLink('FAQ', __( $attentionComponents['downloadlink'], 'SimplEvent' ) );
-          }
-          
-          ?>
-          <div class="se-attention-frame-closer">
-            <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-              viewBox="0 0 44.91 44.91" style="enable-background:new 0 0 44.91 44.91; color:white;" xml:space="preserve">
-              <style>.closer-cross{fill:black;}</style>
-              <path class="closer-cross" d="M22.45,0C10.05,0,0,10.05,0,22.45s10.05,22.45,22.45,22.45s22.45-10.05,22.45-22.45S34.85,0,22.45,0z M37.28,31.99
-                c0.27,0.27,0.27,0.7,0,0.96l-4.33,4.33c-0.27,0.27-0.7,0.27-0.96,0l-9.53-9.53l-9.53,9.53c-0.27,0.27-0.7,0.27-0.96,0l-4.33-4.33
-                c-0.27-0.27-0.27-0.7,0-0.96l9.53-9.53l-9.53-9.53c-0.27-0.27-0.27-0.7,0-0.96l4.33-4.33c0.27-0.27,0.7-0.27,0.96,0l9.53,9.53
-                l9.53-9.53c0.27-0.27,0.7-0.27,0.96,0l4.33,4.33c0.27,0.27,0.27,0.7,0,0.96l-9.53,9.53L37.28,31.99z"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-    <?php }
-} ?>
+    ?>
+  </div>
 
   <div id="se-site-loader" style="opacity: 0;">
 
@@ -565,3 +525,139 @@ if(!wp_is_mobile()){
   }
 
   ?>
+
+<!-- ATTENTION -->
+  <script>	
+    var getLangCode = '<?php echo ICL_LANGUAGE_CODE; ?>';
+    var attentionDisplay = '<?php echo $attentionDisplay; ?>'
+    loadAttention();
+    var attentionContainer = document.getElementById("attention");
+    function loadAttention(){
+      console.log('asdfasd');
+      var ourRequest = new XMLHttpRequest();
+      ourRequest.open('GET','https://www.nzz-konferenzen.ch/wp-json/wp/v2/posts?406');
+      ourRequest.onload = function() {
+        if (ourRequest.status >= 200 && ourRequest.status < 400) {
+          var data = JSON.parse(ourRequest.responseText);
+          console.log(data);
+          createAttention(data);
+
+        } else {
+          console.log("We connected to the server, but it returned an error.");
+        }
+      };
+
+      ourRequest.onerror = function() {
+        console.log("Connection error");
+      };
+
+      ourRequest.send();
+    }
+
+    function createAttention(d) {
+      var resultHTMLString = '';
+      var rowCount = 0;
+      console.log(d[0].acf.de);
+      
+      let atbuttontext;
+      let attitle;
+      let attext;
+      let atdownload;
+      
+      switch (getLangCode) {
+        case 'de':
+          atbuttontext = d[0].acf.de.buttontext;
+          attitle = d[0].acf.de.title;
+          attext = d[0].acf.de.text;
+          atdownload = d[0].acf.de.download;
+          break;
+        case 'en':
+          atbuttontext = d[0].acf.en.buttontext;
+          attitle = d[0].acf.en.title;
+          attext = d[0].acf.en.text;
+          atdownload = d[0].acf.en.download;
+          break;
+        case 'fr':
+          atbuttontext = d[0].acf.fr.buttontext;
+          attitle = d[0].acf.fr.title;
+          attext = d[0].acf.fr.text;
+          atdownload = d[0].acf.fr.download;
+          break;
+        default:
+          atbuttontext = d[0].acf.de.buttontext;
+          attitle = d[0].acf.de.title;
+          attext = d[0].acf.de.text;
+          atdownload = d[0].acf.de.download;
+          break;
+      }
+
+      //BUTTON
+      resultHTMLString = '<div class="se-attention-button se-mc-bg se-wc-txt">';
+      resultHTMLString += '<h4><b>' + atbuttontext + '</b></h4>';
+      resultHTMLString += '<div class="se-attention-button-closer">';
+      resultHTMLString += '<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"';
+      resultHTMLString += 'viewBox="0 0 44.91 44.91" style="enable-background:new 0 0 44.91 44.91; color:white;" xml:space="preserve">';
+      resultHTMLString += '<style>.cleser-cross{fill:white;}</style>';
+      resultHTMLString += '<path class="cleser-cross" d="M22.45,0C10.05,0,0,10.05,0,22.45s10.05,22.45,22.45,22.45s22.45-10.05,22.45-22.45S34.85,0,22.45,0z M37.28,31.99';
+      resultHTMLString += 'c0.27,0.27,0.27,0.7,0,0.96l-4.33,4.33c-0.27,0.27-0.7,0.27-0.96,0l-9.53-9.53l-9.53,9.53c-0.27,0.27-0.7,0.27-0.96,0l-4.33-4.33';
+      resultHTMLString += 'c-0.27-0.27-0.27-0.7,0-0.96l9.53-9.53l-9.53-9.53c-0.27-0.27-0.27-0.7,0-0.96l4.33-4.33c0.27-0.27,0.7-0.27,0.96,0l9.53,9.53';
+      resultHTMLString += 'l9.53-9.53c0.27-0.27,0.7-0.27,0.96,0l4.33,4.33c0.27,0.27,0.27,0.7,0,0.96l-9.53,9.53L37.28,31.99z"/>';
+      resultHTMLString += '</svg>';
+      resultHTMLString += '</div>';
+      resultHTMLString += '</div>';
+
+      
+      //POPUP
+      resultHTMLString += '<div class="se-attention-container" style="display:' + attentionDisplay + ';">';
+      resultHTMLString += '<div class="se-attention-frame">';
+      resultHTMLString += '<h1>' + attitle + '</h1>';
+      resultHTMLString += '<p>' + attext + '</p>';
+      resultHTMLString += '<a href="' + atdownload + '" target="_blank"><b class="se-mc-txt" style="font-size:2em;">FAQ</b></a>';
+      resultHTMLString += '<div class="se-attention-frame-closer">';
+      resultHTMLString += '<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"';
+      resultHTMLString += 'viewBox="0 0 44.91 44.91" style="enable-background:new 0 0 44.91 44.91; color:white;" xml:space="preserve">';
+      resultHTMLString += '<style>.closer-cross{fill:black;}</style>';
+      resultHTMLString += '<path class="closer-cross" d="M22.45,0C10.05,0,0,10.05,0,22.45s10.05,22.45,22.45,22.45s22.45-10.05,22.45-22.45S34.85,0,22.45,0z M37.28,31.99';
+      resultHTMLString += 'c0.27,0.27,0.27,0.7,0,0.96l-4.33,4.33c-0.27,0.27-0.7,0.27-0.96,0l-9.53-9.53l-9.53,9.53c-0.27,0.27-0.7,0.27-0.96,0l-4.33-4.33';
+      resultHTMLString += 'c-0.27-0.27-0.27-0.7,0-0.96l9.53-9.53l-9.53-9.53c-0.27-0.27-0.27-0.7,0-0.96l4.33-4.33c0.27-0.27,0.7-0.27,0.96,0l9.53,9.53';
+      resultHTMLString += 'l9.53-9.53c0.27-0.27,0.7-0.27,0.96,0l4.33,4.33c0.27,0.27,0.27,0.7,0,0.96l-9.53,9.53L37.28,31.99z"/>';
+      resultHTMLString += '</svg>';
+      resultHTMLString += '</div>';
+      resultHTMLString += '</div>';
+      resultHTMLString += '</div>';
+
+
+      attentionContainer.innerHTML = resultHTMLString;
+    }
+
+    //----------------------------------------------------
+    //----attention-----------------------------------------
+    //----------------------------------------------------
+    
+    jQuery(window).bind("load", function(){
+      var AttentionCloser = jQuery('.se-attention-button-closer');
+      var AttentionButton = jQuery('.se-attention-button');
+      var Attention = jQuery('.se-attention-container');
+      var AttentionFrameCloser = jQuery('.se-attention-frame-closer').find('svg');
+
+      console.log('GAGFAGAGAG');
+      AttentionCloser.on('click', function(){
+        $(this).parent().fadeOut();
+        Attention.fadeOut();
+      });
+    
+      AttentionButton.find('h4').on('click', function(){
+        Attention.fadeIn();
+        
+      });
+    
+      AttentionFrameCloser.on('click', function(){
+        Attention.fadeOut();
+        AttentionButton.fadeOut();
+      });
+    
+      if(Attention) {
+        
+      }
+    });
+  </script>

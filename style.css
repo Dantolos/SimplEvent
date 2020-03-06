@@ -3,7 +3,7 @@
  *Author: Aaron Giaimo
  *Author URI: http://aagi.ch/
  *Description: This Theme is specified for simple userfriendly Event-Communication. Its based for the Events, which organized by the Swiss Economic Forum AG.
- *Version: 1.1.83
+ *Version: 1.1.84
  *GitHub Theme URI: https://github.com/Dantolos/SimplEvent
  *GitHub Branch: master
  */
@@ -383,14 +383,7 @@ ul li {padding-bottom: .6em;}
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#00000000', GradientType=1 ); /* IE6-9 */
 }
 
-/*-------ATTENTION-------*/
-.se-attention-button { position: fixed; top:0;  border-radius:0 0 5px 5px ; z-index:99999; padding: 5px 20px; left:0; right:0; margin: auto; padding:5px; overflow-x: hidden; }
-.se-attention-button h4 { margin-left:10px; cursor:pointer; }
-.se-attention-button-closer svg { height:20px; position:absolute; right:8px; top:9px; }
 
-.se-attention-container { position:fixed; top:0; left:0; height:100vh; width:100vw; background-color:rgba(0,0,0,0.8);z-index:100000; }
-.se-attention-frame { background-color:white; position:absolute; top:0; bottom:0; left:0; right:0; border-radius:5px; margin:auto; width:50vw; height:50vh; padding:20px; overflow-y:scroll;}
-.se-attention-frame-closer svg { position:absolute; top:10px; right:10px; z-index: 100005; height:20px; cursor: pointer;}
 
 /*-----------------------------------------------------------------------*/
 /*--------------------------Header-SLIDER--------------------------------*/

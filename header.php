@@ -557,7 +557,7 @@ if(!wp_is_mobile()){
         AttentionButton = jQuery('.se-attention-button');
         Attention = jQuery('.se-attention-container');
         AttentionFrameCloser = jQuery('.se-attention-frame-closer').find('svg');
-        
+
         jQuery('.se-attention-button-closer').on('click', function(){
           jQuery(this).parent().fadeOut();
           jQuery('.se-attention-container').fadeOut();
@@ -655,10 +655,7 @@ if(!wp_is_mobile()){
 
 
       attentionContainer.innerHTML = resultHTMLString;
-      AttentionCloser = document.getElementsByClassName('se-attention-button-closer');
-      AttentionButton = document.getElementsByClassName('se-attention-button');
-      Attention = document.getElementsByClassName('se-attention-container');
-      AttentionFrameCloser = document.getElementsByClassName('se-attention-frame-closer').find('svg');
+    
     }
 
     //----------------------------------------------------

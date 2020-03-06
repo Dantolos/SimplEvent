@@ -502,7 +502,9 @@ if(!wp_is_mobile()){
     .se-attention-frame-closer svg { position:absolute; top:10px; right:10px; z-index: 100005; height:20px; cursor: pointer;}
     .se-attention-frame p {margin-bottom:20px;}
   </style>
-  <div id="attention">
+
+  <?php $displayAttenionContiainer = (is_front_page()) ? 'block' : 'none'; ?>
+  <div id="attention" style="display:<?php echo $displayAttenionContiainer; ?>;">
     <?php
       $attentionDisplay = 'none';
 
@@ -529,7 +531,12 @@ if(!wp_is_mobile()){
 <!-- ATTENTION -->
   <script>	
     var getLangCode = '<?php echo ICL_LANGUAGE_CODE; ?>';
-    var attentionDisplay = '<?php echo $attentionDisplay; ?>'
+    var attentionDisplay = '<?php echo $attentionDisplay; ?>';
+    var AttentionCloser = jQuery('.se-attention-button-closer');
+    var AttentionButton = jQuery('.se-attention-button');
+    var Attention = jQuery('.se-attention-container');
+    var AttentionFrameCloser = jQuery('.se-attention-frame-closer').find('svg');
+
     loadAttention();
     var attentionContainer = document.getElementById("attention");
     function loadAttention(){
@@ -545,6 +552,26 @@ if(!wp_is_mobile()){
         } else {
           console.log("We connected to the server, but it returned an error.");
         }
+
+        AttentionCloser = jQuery('.se-attention-button-closer');
+        AttentionButton = jQuery('.se-attention-button');
+        Attention = jQuery('.se-attention-container');
+        AttentionFrameCloser = jQuery('.se-attention-frame-closer').find('svg');
+        
+        jQuery('.se-attention-button-closer').on('click', function(){
+          jQuery(this).parent().fadeOut();
+          jQuery('.se-attention-container').fadeOut();
+        });
+
+        jQuery('.se-attention-button').find('h4').on('click', function(){
+          jQuery('.se-attention-container').fadeIn();
+
+        });
+
+        jQuery('.se-attention-frame-closer').on('click', function(){
+          jQuery('.se-attention-container').fadeOut();
+          jQuery('.se-attention-button').fadeOut();
+        });
       };
 
       ourRequest.onerror = function() {
@@ -628,6 +655,10 @@ if(!wp_is_mobile()){
 
 
       attentionContainer.innerHTML = resultHTMLString;
+      AttentionCloser = document.getElementsByClassName('se-attention-button-closer');
+      AttentionButton = document.getElementsByClassName('se-attention-button');
+      Attention = document.getElementsByClassName('se-attention-container');
+      AttentionFrameCloser = document.getElementsByClassName('se-attention-frame-closer').find('svg');
     }
 
     //----------------------------------------------------
@@ -635,10 +666,7 @@ if(!wp_is_mobile()){
     //----------------------------------------------------
     
     jQuery(window).bind("load", function(){
-      var AttentionCloser = jQuery('.se-attention-button-closer');
-      var AttentionButton = jQuery('.se-attention-button');
-      var Attention = jQuery('.se-attention-container');
-      var AttentionFrameCloser = jQuery('.se-attention-frame-closer').find('svg');
+      
 
       console.log('GAGFAGAGAG');
       AttentionCloser.on('click', function(){

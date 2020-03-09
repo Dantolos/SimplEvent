@@ -501,6 +501,11 @@ if(!wp_is_mobile()){
     .se-attention-frame { background-color:white; position:absolute; top:0; bottom:0; left:0; right:0; border-radius:5px; margin:auto; width:50vw; height:50vh; padding:20px; overflow-y:scroll;}
     .se-attention-frame-closer svg { position:absolute; top:10px; right:10px; z-index: 100005; height:20px; cursor: pointer;}
     .se-attention-frame p {margin-bottom:20px;}
+
+    /*-------ATTENTION-------*/
+    @media only screen and (max-width: 1024px) {
+      .se-attention-frame {  width:90vw; height:80vh; }
+    }
   </style>
 
   <?php $displayAttenionContiainer = (is_front_page()) ? 'block' : 'none'; ?>
@@ -591,7 +596,8 @@ if(!wp_is_mobile()){
       let attext;
       let atdownload;
       
-      switch (getLangCode) {
+      if(getLangCode) {
+        switch (getLangCode) {
         case 'de':
           atbuttontext = d[0].acf.de.buttontext;
           attitle = d[0].acf.de.title;
@@ -616,7 +622,14 @@ if(!wp_is_mobile()){
           attext = d[0].acf.de.text;
           atdownload = d[0].acf.de.download;
           break;
+        }
+      } else {
+        atbuttontext = d[0].acf.de.buttontext;
+        attitle = d[0].acf.de.title;
+        attext = d[0].acf.de.text;
+        atdownload = d[0].acf.de.download;
       }
+      
 
       //BUTTON
       resultHTMLString = '<div class="se-attention-button se-mc-bg se-wc-txt">';

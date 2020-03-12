@@ -13,25 +13,32 @@ $firstSlot;
 $slotNr;
 $scount = 0;
 
+$scountArray = array();
 
 $slotarray = get_field('slots');
+
+for ($i = 1; $i < (count($slotarray) + 1); ++$i) { 
+  array_push($scountArray, $i);
+  
+}
+
 if (! isset($_GET['sl'])) {
   $firstSlot = array_shift($slotarray);
   $slotNr = 1;
- 
+  unset($scountArray[0]);
 } else {
-   
+  $thisI = 0;
   foreach ( $slotarray as $slot ) {
     if( in_array($_GET['sl'], $slot) ) {
       $firstSlot = $slot; 
       $slotIndex = array_search( $slot, $slotarray);
       $slotNr = $slotIndex + 1;
       unset( $slotarray[$slotIndex] );
-
+      unset($scountArray[$thisI]);
     }
+    $thisI++;
   }
 }
-
 $firstSlot = $firstSlot['label'];
 
 
@@ -90,12 +97,14 @@ if (isset($_GET['se'])) {
           </div>
           <div class="se-infobox-session-dropdown" style="position:absolute;">
             <?php
-            $slotCount = 1; 
+            $slotCount = 0; 
+            $scountArray = array_merge($scountArray);
+                          
             foreach ($slotarray as $slot):
-              $slotCount = array_search( $slotarray, $slot ) + 1;
-              
+              $SlotIndex = $scountArray[$slotCount];
+              $slotCount++;
               ?>
-                <div class="se-infobox-session-dropdown-item" slot="<?php echo $slot['label']; ?>" slotcount="<?php echo $slotCount; ?>"> <p><?php echo __( $slot['label'], 'SimplEvent' ); ?></p></div>
+                <div class="se-infobox-session-dropdown-item" slot="<?php echo $slot['label']; ?>" slotcount="<?php echo $SlotIndex; ?>"> <p><?php echo __( $slot['label'], 'SimplEvent' ); ?></p></div>
             <?php  
             endforeach; ?>
           </div>
@@ -148,6 +157,7 @@ if (isset($_GET['se'])) {
     });
 
     DDitems.on('click', function() {
+      
       var page = $(this).attr('slot');
       var pageID = $('.se-session-main-container').attr('pageid');
       var jahr = $('#se-session-wrapper').attr('jahr');
@@ -179,7 +189,7 @@ if (isset($_GET['se'])) {
       $('.se-loader').css({'display': 'block', 'height': '0px'});
 
       slotItemToggle();
-
+      
       $.ajax({
         url : ajaxurl,
         type : 'post',
@@ -189,7 +199,7 @@ if (isset($_GET['se'])) {
           scounter : scounter,
           bsprefix : countprefix,
           slotnr : slotcountAttr,
-          slotnrcounter : slotnrCounter,
+          slotnrcounter : slotnrCounter, 
           pageid : pageID,
           countit : countit,
           action : 'se_session_slots'

@@ -589,8 +589,7 @@ if(!wp_is_mobile()){
     function createAttention(d) {
       var resultHTMLString = '';
       var rowCount = 0;
-      console.log(d[0].acf.de);
-      
+        
       let atbuttontext;
       let attitle;
       let attext;
@@ -677,8 +676,6 @@ if(!wp_is_mobile()){
     
     jQuery(window).bind("load", function(){
       
-
-      console.log('GAGFAGAGAG');
       AttentionCloser.on('click', function(){
         $(this).parent().fadeOut();
         Attention.fadeOut();

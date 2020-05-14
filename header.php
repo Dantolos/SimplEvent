@@ -651,7 +651,10 @@ if(!wp_is_mobile()){
       resultHTMLString += '<div class="se-attention-frame">';
       resultHTMLString += '<h1>' + attitle + '</h1>';
       resultHTMLString += '<p>' + attext + '</p>';
-      resultHTMLString += '<a href="' + atdownload + '" target="_blank"><b class="se-mc-txt" style="font-size:2em;">FAQ</b></a>';
+      if(atdownload)
+      {
+        resultHTMLString += '<a href="' + atdownload + '" target="_blank"><b class="se-mc-txt" style="font-size:2em;">FAQ</b></a>';
+      }
       resultHTMLString += '<div class="se-attention-frame-closer">';
       resultHTMLString += '<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"';
       resultHTMLString += 'viewBox="0 0 44.91 44.91" style="enable-background:new 0 0 44.91 44.91; color:white;" xml:space="preserve">';

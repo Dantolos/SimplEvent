@@ -103,7 +103,7 @@ if( have_rows('reviews') ) {
                 </div>
               </a>
               <h5><?php echo __('REFERENTEN', 'SimplEvent'); ?></h5>
-              <h6><?php echo __('Schauen Sie alle nochmals alle Referate in Ruhe durch', 'SimplEvent') ?></h6>
+              <h6><?php echo __('Schauen Sie isch alle Referate nochmals in Ruhe an', 'SimplEvent') ?></h6>
             </div>
           <?php } ?>
 

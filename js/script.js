@@ -571,7 +571,7 @@ jQuery(document).ready(function($){
   function PartnerContainerSize(width, cnt){
     
     let theHeight = cnt * width;
-    pLogoContainer.css({'height': theHeight});
+    pLogoContainer.css({'height': (theHeight + 500)});
     console.log(theHeight);
   }
 

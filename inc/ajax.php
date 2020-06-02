@@ -46,7 +46,7 @@ add_action('wp_ajax_se_partner_load', 'se_partner_load'); //nur für angemeldete
 
 function se_partner_load() {
 
-  $SMicon = new SocialMedia();
+  $SMicon = new SocialMedia(); 
   $postID = $_POST['id'];
   $catName = get_the_terms( $postID, 'Kategorie' );
   $catName = (is_array($catName)) ? $catName[0] : $catName;

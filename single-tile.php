@@ -26,13 +26,13 @@ $mainColorSVG = esc_attr( get_option( 'main_color_picker' ) );
             <h2><?php echo get_field('tile_titel'); ?></h2>
             <p><?php echo get_field('tile_text'); ?></p>
             
-            <?php if( get_field('tile_facts_anmeldung') ) { ?>
+            <?php if(false) { if( get_field('tile_facts_anmeldung') ) { ?>
                 <a href="<?php echo get_field('tile_facts_anmeldung'); ?>" target="_blank">
                     <div class="mc-button-neg se-mc-txt button-border" style="margin:20; ">
                         <?php echo __('Jetzt Anmelden', 'SimplEvent'); ?>
                     </div>
                 </a>
-            <?php } ?> 
+            <?php } } ?> 
         </div>
 
         <!--FACTS-->

@@ -132,8 +132,8 @@ if( empty( get_option( 'se_livestream' ) ) ) {  //check ob live event
         <div id="sliderLogo" style="padding:0 <?php echo $slideArray[0]['logosize']; ?>%;">
           <img src="<?php echo $slideArray[0]['logo']; ?>" alt="" width="auto" height="auto">
         </div>
-        <h2 id="sliderTitel"><?php echo $slideArray[0]['titel']; ?></h2>
-        <h4 id="sliderDatum"><?php echo $slideArray[0]['datum']; ?></h4>
+        <h2 class="slidertitel"><?php echo $slideArray[0]['titel']; ?></h2>
+        <h4 class="sliderdatum"><?php echo $slideArray[0]['datum']; ?></h4>
         <?php if($slideArray[0]['button']){ ?>
           <a id="slidebutton" href="<?php echo $slideArray[0]['buttonlink']; ?>">
             <div class="se-mc-bg mc-button se-wc-txt">
@@ -243,6 +243,7 @@ if( get_field('strip', $curPageID)  ) {
 <script>
   jQuery(function($){
     //SLIDER
+    
     //mobile detect
     var isMobile = false; //initiate as false
     // device detection
@@ -272,8 +273,8 @@ if( get_field('strip', $curPageID)  ) {
     var slideTextColor = [slideName, slideFunktion];
 
     var sliderLogo = $('#sliderLogo');
-    var sliderTitel = $('#sliderTitel');
-    var sliderDatum = $('#sliderDatum');
+    var sliderTitel = $('.slidertitel');
+    var sliderDatum = $('.sliderdatum');
 
     var SlideArray = <?php echo json_encode($slideArray); ?>;
 
@@ -283,9 +284,6 @@ if( get_field('strip', $curPageID)  ) {
       interval = setInterval(function() {
         slideCounter++;
 
-        sliderTitel = $('#sliderTitel');
-        sliderDatum = $('#sliderDatum');
-        
         ZitatSlide.fadeOut();
         TitelSlide.fadeOut();
         sliderLayer.fadeOut();

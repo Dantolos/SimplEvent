@@ -297,8 +297,8 @@ if( get_field('strip', $curPageID)  ) {
 
               sliderLogo.find('img').attr('src', '');
               sliderLogo.hide();
-              sliderTitel.empty();
-              sliderDatum.empty();
+              sliderTitel.text('');
+              sliderDatum.text('');
             }, 500);
         });
 
@@ -351,7 +351,7 @@ if( get_field('strip', $curPageID)  ) {
 
             currentSlide++;
             if (currentSlide === SlideArray.length) {
-              currentSlide = 1;
+              currentSlide = 0;
             }
         }, 800);
 

@@ -345,8 +345,8 @@ if( get_field('strip', $curPageID)  ) {
             sliderLogo.css({'padding': logosize });
             sliderLogo.find('img').attr('src', SlideArray[currentSlide]['logo']);
             sliderLogo.fadeIn();
-            sliderTitel.append(SlideArray[currentSlide]['titel']);
-            sliderDatum.append(SlideArray[currentSlide]['datum']);
+            sliderTitel.innerHTML(SlideArray[currentSlide]['titel']);
+            sliderDatum.innerHTML(SlideArray[currentSlide]['datum']);
 
 
             currentSlide++;

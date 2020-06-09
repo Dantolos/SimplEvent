@@ -345,13 +345,13 @@ if( get_field('strip', $curPageID)  ) {
             sliderLogo.css({'padding': logosize });
             sliderLogo.find('img').attr('src', SlideArray[currentSlide]['logo']);
             sliderLogo.fadeIn();
-            sliderTitel.empty().append(SlideArray[currentSlide]['titel']);
-            sliderDatum.empty().append(SlideArray[currentSlide]['datum']);
+            sliderTitel.append(SlideArray[currentSlide]['titel']);
+            sliderDatum.append(SlideArray[currentSlide]['datum']);
 
 
             currentSlide++;
             if (currentSlide === SlideArray.length) {
-              currentSlide = 0;
+              currentSlide = 1;
             }
         }, 800);
 

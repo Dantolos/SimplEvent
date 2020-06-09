@@ -297,8 +297,8 @@ if( get_field('strip', $curPageID)  ) {
 
               sliderLogo.find('img').attr('src', '');
               sliderLogo.hide();
-              sliderTitel.text('');
-              sliderDatum.text('');
+              sliderTitel.html('');
+              sliderDatum.html('');
             }, 500);
         });
 

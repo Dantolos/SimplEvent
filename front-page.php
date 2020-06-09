@@ -283,6 +283,9 @@ if( get_field('strip', $curPageID)  ) {
       interval = setInterval(function() {
         slideCounter++;
 
+        sliderTitel = $('#sliderTitel');
+        sliderDatum = $('#sliderDatum');
+        
         ZitatSlide.fadeOut();
         TitelSlide.fadeOut();
         sliderLayer.fadeOut();

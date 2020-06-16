@@ -112,7 +112,7 @@ if( empty( get_option( 'se_livestream' ) ) ) {  //check ob live event
             <p class="" style="display:<?php echo $displayer; ?>;"><strong>&laquo;</strong><?php echo $slideArray[0]['zitat']; ?><strong>&raquo;</strong></p>
           </div>
 
-          <h3 id="slidename" style="margin-top:20px; color:<?php echo $slideArray[0]['color']; ?>;"><strong><?php echo $slideArray[0]['name']; ?></strong></h3>
+          <h4 id="slidename" style="margin-top:20px; color:<?php echo $slideArray[0]['color']; ?>; font-size:1.4em;"><b><?php echo $slideArray[0]['name']; ?></b></h4>
           <p id="slidefunktion" style="color:<?php echo $slideArray[0]['color']; ?>; font-weight: 300;"><?php echo $slideArray[0]['funktion']; ?></p>
 
           <?php if($slideArray[0]['button']){ ?>

@@ -335,7 +335,7 @@ if( get_field('strip', $curPageID)  ) {
             slideName.css({'color': SlideArray[currentSlide]['color']});
             slideFunktion.css({'color': SlideArray[currentSlide]['color']});
             slideZitat.append('<p><strong>&laquo;</strong>' + SlideArray[currentSlide]['zitat'] + '<strong>&raquo;</strong></p>');
-            slideName.append('<strong>' + SlideArray[currentSlide]['name'] + '</strong>');
+            slideName.append('<strong style="font-size:1.5em;">' + SlideArray[currentSlide]['name'] + '</strong>');
             slideFunktion.append(SlideArray[currentSlide]['funktion']);
             if ( SlideArray[currentSlide]['button'] === true ) {
               slideButton.attr('href', SlideArray[currentSlide]['buttonlink']);

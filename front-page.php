@@ -112,7 +112,7 @@ if( empty( get_option( 'se_livestream' ) ) ) {  //check ob live event
             <p class="" style="display:<?php echo $displayer; ?>;"><strong>&laquo;</strong><?php echo $slideArray[0]['zitat']; ?><strong>&raquo;</strong></p>
           </div>
 
-          <p id="slidename" style="margin-top:20px; color:<?php echo $slideArray[0]['color']; ?>;"><strong><?php echo $slideArray[0]['name']; ?></strong></p>
+          <h3 id="slidename" style="margin-top:20px; color:<?php echo $slideArray[0]['color']; ?>;"><strong><?php echo $slideArray[0]['name']; ?></strong></h3>
           <p id="slidefunktion" style="color:<?php echo $slideArray[0]['color']; ?>; font-weight: 300;"><?php echo $slideArray[0]['funktion']; ?></p>
 
           <?php if($slideArray[0]['button']){ ?>
@@ -335,7 +335,7 @@ if( get_field('strip', $curPageID)  ) {
             slideName.css({'color': SlideArray[currentSlide]['color']});
             slideFunktion.css({'color': SlideArray[currentSlide]['color']});
             slideZitat.append('<p><strong>&laquo;</strong>' + SlideArray[currentSlide]['zitat'] + '<strong>&raquo;</strong></p>');
-            slideName.append('<strong style="font-size:1.5em;">' + SlideArray[currentSlide]['name'] + '</strong>');
+            slideName.append('<strong>' + SlideArray[currentSlide]['name'] + '</strong>');
             slideFunktion.append(SlideArray[currentSlide]['funktion']);
             if ( SlideArray[currentSlide]['button'] === true ) {
               slideButton.attr('href', SlideArray[currentSlide]['buttonlink']);

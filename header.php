@@ -14,8 +14,8 @@
   	wp_enqueue_script( 'moveit-js', get_template_directory_uri() . '/js/moveit.js' );
     wp_enqueue_script( 'gsap-js', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js' );
 
-  	wp_enqueue_style( 'style-css', get_template_directory_uri() . '/style.css' );
-    wp_enqueue_style( 'print-style-css', get_template_directory_uri() . '/css/print.css' );
+  	wp_enqueue_style( 'style-css', get_template_directory_uri() . '/style.css', '', '1.0.01' );
+    wp_enqueue_style( 'print-style-css', get_template_directory_uri() . '/css/print.css', '', '1.0.01' );
   	wp_enqueue_script( 'script-js', get_template_directory_uri() . '/js/script.js', array('jquery'), true );
 
     //Externan Plugins
@@ -23,7 +23,7 @@
     wp_enqueue_script( 'hammer-js', 'https://hammerjs.github.io/dist/hammer.js', true );
 
     if ( wp_is_mobile() ) {
-    	wp_enqueue_style( 'mobile-style-css', get_template_directory_uri() . '/css/mobile.style.css' );
+    	wp_enqueue_style( 'mobile-style-css', get_template_directory_uri() . '/css/mobile.style.css', '', '1.0.01' );
       wp_enqueue_script( 'mobile-script-js', get_template_directory_uri() . '/js/mobile.script.js', array('jquery'), true );
     } else {
     	/* Include/display resources targeted to laptops/desktops here */

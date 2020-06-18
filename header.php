@@ -508,11 +508,13 @@ if(!wp_is_mobile()){
     }
   </style>
 
-  <?php $displayAttenionContiainer = (is_front_page()) ? 'block' : 'none'; ?>
+  <?php
+    $attentionAcitavtion = esc_attr( get_option( 'se_attention' ) );
+    $displayAttenionContiainer = (is_front_page() && $attentionAcitavtion) ? 'block' : 'none'; ?>
   <div id="attention" style="display:<?php echo $displayAttenionContiainer; ?>;">
     <?php
       $attentionDisplay = 'none';
-
+      
       if( isset($_GET['attention']) ) {
         $attentionDisplay = ($_GET['attention'] == '1') ? 'block' : 'none'; 
       } 

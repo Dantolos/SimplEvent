@@ -152,7 +152,7 @@ else if( get_option( 'se_videoslider_activ' ) )  //videoSlider
 {
   
   ?>
-  <div id="" class="se-slider-header-container se-slider-mobile-align-left se-slider-stream-frame">
+  <div id="" class="se-slider-header-container se-slider-mobile-align-left se-slider-stream-frame se-video-slider-container">
   <video autoplay muted loop id="myVideo">
     <source src="<?php echo get_option( 'se_source' ); ?>" type="video/mp4">
         Your browser does not support HTML5 video.

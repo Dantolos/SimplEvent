@@ -96,6 +96,8 @@
   .se-slider-stream-frame { height:32vh; }
   .se-programm-next { height:40vh; }
 
+  .se-video-slider-container { height: 50vh !important; }
+  .se-video-slider-container .mc-button { margin-top: 32vh !important; }
 
 
 

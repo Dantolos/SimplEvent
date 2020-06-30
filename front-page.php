@@ -77,7 +77,7 @@ endif;
 
 <!--Header-Slider-->
 <?php
-if( empty( get_option( 'se_livestream' ) ) ) {  //check ob live event
+if( empty( get_option( 'se_livestream' ) ) && !get_option( 'se_videoslider_activ' ) ) {  //check ob live event
   if($sliderQuery) {
 
   ?>

@@ -119,7 +119,7 @@ if (isset($_GET['se'])) {
             break;
           case 'en':
             $programmLink = get_site_url() . '/en/program';
-            $programmText = 'Program';
+            $programmText = 'Programme';
             break;
           default:
             $programmLink = get_site_url() . '/programm';

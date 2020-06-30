@@ -147,7 +147,29 @@ if( empty( get_option( 'se_livestream' ) ) ) {  //check ob live event
   </div>
 <?php
   }
-} else { //live version mit livestream
+} 
+else if( get_option( 'se_videoslider_activ' ) )  //videoSlider
+{
+  
+  ?>
+  <div id="" class="se-slider-header-container se-slider-mobile-align-left se-slider-stream-frame">
+  <video autoplay muted loop id="myVideo">
+    <source src="<?php echo get_option( 'se_source' ); ?>" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+    <?php if(get_option( 'se_videosliderbuttonlink' )){ ?>
+      <a id="slidebutton" href="<?php echo __( get_option( 'se_videosliderbuttonlink' ) ); ?>">
+        <div class="se-mc-bg mc-button se-wc-txt">
+          <?php echo get_option( 'se_videosliderbuttontext' ); ?>
+        </div>
+      </a>
+    <?php } ?>
+  </div>
+  <?php
+  
+} 
+else 
+{ //live version mit livestream
 ?>
   <!-- Livestream Frame -->
   <div id="" class="se-slider-header-container se-slider-mobile-align-left se-slider-stream-frame">

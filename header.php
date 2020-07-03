@@ -16,7 +16,16 @@
 
   	wp_enqueue_style( 'style-css', get_template_directory_uri() . '/style.css', '', '1.0.03' );
     wp_enqueue_style( 'print-style-css', get_template_directory_uri() . '/css/print.css', '', '1.0.01' );
+
+    /* LOAD JS */
   	wp_enqueue_script( 'script-js', get_template_directory_uri() . '/js/script.js', array('jquery'), true );
+    $JsIncList = array(
+      array('restapi-js', 'restapi.js'),
+    );
+    foreach ($JsIncList as $JsInc) 
+    {
+          wp_enqueue_script( $JsInc[0], get_template_directory_uri() . '/js/inc/' . $JsInc[1], array('jquery'), '1.0.4', false );
+    }
 
     //Externan Plugins
     wp_enqueue_script( 'particles', 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js', true );

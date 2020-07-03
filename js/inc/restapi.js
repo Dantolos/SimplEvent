@@ -69,9 +69,7 @@ var seREST = function(restAPIURL)
                } 
           }
            
-          
-          output = '<div class="se-col-2"></div>';
-          output += '<div class="se-col-10">';
+          output = '<div style="margin-bottom:120px;">';
           output += '<h1 style="margin-bottom:20px;">' + title + '</h1>';
           output += text;
           output += '</div>';

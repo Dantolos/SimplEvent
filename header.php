@@ -18,7 +18,7 @@
     wp_enqueue_style( 'print-style-css', get_template_directory_uri() . '/css/print.css', '', '1.0.01' );
 
     /* LOAD JS */
-  	wp_enqueue_script( 'script-js', get_template_directory_uri() . '/js/script.js', array('jquery'), '1.0.1', true );
+  	wp_enqueue_script( 'script-js', get_template_directory_uri() . '/js/script.js', array('jquery'), '1.0.2', true );
     $JsIncList = array(
       array('restapi-js', 'restapi.js'),
     );

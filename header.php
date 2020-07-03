@@ -53,6 +53,7 @@
     }
 
     /*------------------------------Send Global Variables---------------------------*/
+    $language = (ICL_LANGUAGE_CODE) ? ICL_LANGUAGE_CODE : 'de';
     $wnm_custom = array( 'templateUrl' => get_template_directory_uri(), 'lang' => ICL_LANGUAGE_CODE );
     $scriptToAdGlobal = array('script-js', 'restapi-js',  );
     foreach( $scriptToAdGlobal as $script ){

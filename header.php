@@ -109,7 +109,7 @@
   .se-wc-bg { background-color: <?php echo $seWC; ?>; } /*light*/
   .se-wc-txt { color: <?php echo $seWC; ?>; }
 
-  .button-border { border: solid 2px <?php echo $seMC; ?>; }
+  .button-border { border: solid 2px <?php echo $seMC; ?> !important; }
 </style>
 
 <?php if(! isset($_GET['seembed'])) { ?>

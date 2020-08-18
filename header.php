@@ -14,11 +14,11 @@
   	wp_enqueue_script( 'moveit-js', get_template_directory_uri() . '/js/moveit.js' );
     wp_enqueue_script( 'gsap-js', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js' );
 
-  	wp_enqueue_style( 'style-css', get_template_directory_uri() . '/style.css', '', '1.0.08' );
+  	wp_enqueue_style( 'style-css', get_template_directory_uri() . '/style.css', '', '1.0.10' );
     wp_enqueue_style( 'print-style-css', get_template_directory_uri() . '/css/print.css', '', '1.0.01' );
 
     /* LOAD JS */
-  	wp_enqueue_script( 'script-js', get_template_directory_uri() . '/js/script.js', array('jquery'), '1.0.2', true );
+  	wp_enqueue_script( 'script-js', get_template_directory_uri() . '/js/script.js', array('jquery'), '1.0.3', true );
     $JsIncList = array(
       array('restapi-js', 'restapi.js'),
     );

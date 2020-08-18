@@ -62,14 +62,17 @@ function se_partner_load() {
   $i = 0;
   if($social){
     $response .= '<div class="se-partner-socialmedia clearfix">';
-    while( $i < count($social["speaker_social_media"]) ){
-      $smType = $social["speaker_social_media"][$i]['speaker_social_media_typ'];
-      $icon = $SMicon->getSMicon($smType, '#d7d7d7', '25px');
-
-      $response .= '<a href="' . $social["speaker_social_media"][$i]['speaker_social_media_link'] . '"  target="_blank" class="se-partner-sm-icon" style="margin:0px 5px 0 0;">';
-      $response .= '<div class="se-sm-icon-anim" style="margin:8px 8px 0 0; height:18px; width:18px;">'.$icon.'</div>';
-      $response .= '</a>';
-      $i++;
+    if( is_array($social["speaker_social_media"]) )
+    {
+      while( $i < count($social["speaker_social_media"]) ){
+        $smType = $social["speaker_social_media"][$i]['speaker_social_media_typ'];
+        $icon = $SMicon->getSMicon($smType, '#d7d7d7', '25px');
+  
+        $response .= '<a href="' . $social["speaker_social_media"][$i]['speaker_social_media_link'] . '"  target="_blank" class="se-partner-sm-icon" style="margin:0px 5px 0 0;">';
+        $response .= '<div class="se-sm-icon-anim" style="margin:8px 8px 0 0; height:18px; width:18px;">'.$icon.'</div>';
+        $response .= '</a>';
+        $i++;
+      }
     }
     $response .= '</div>';
   }

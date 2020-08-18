@@ -14,17 +14,17 @@
   	wp_enqueue_script( 'moveit-js', get_template_directory_uri() . '/js/moveit.js' );
     wp_enqueue_script( 'gsap-js', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js' );
 
-  	wp_enqueue_style( 'style-css', get_template_directory_uri() . '/style.css', '', '1.0.10' );
+  	wp_enqueue_style( 'style-css', get_template_directory_uri() . '/style.css', '', '1.0.11' );
     wp_enqueue_style( 'print-style-css', get_template_directory_uri() . '/css/print.css', '', '1.0.01' );
 
     /* LOAD JS */
-  	wp_enqueue_script( 'script-js', get_template_directory_uri() . '/js/script.js', array('jquery'), '1.0.3', true );
+  	wp_enqueue_script( 'script-js', get_template_directory_uri() . '/js/script.js', array('jquery'), '1.0.4', true );
     $JsIncList = array(
       array('restapi-js', 'restapi.js'),
     );
     foreach ($JsIncList as $JsInc) 
     {
-          wp_enqueue_script( $JsInc[0], get_template_directory_uri() . '/js/inc/' . $JsInc[1], array('jquery'), '1.0.5', false );
+          wp_enqueue_script( $JsInc[0], get_template_directory_uri() . '/js/inc/' . $JsInc[1], array('jquery'), '1.0.6', false );
     }
 
     //Externan Plugins
@@ -53,7 +53,13 @@
     }
 
     /*------------------------------Send Global Variables---------------------------*/
-    $language = ( ICL_LANGUAGE_CODE ) ? ICL_LANGUAGE_CODE : 'de';
+    $language;
+    if( defined(ICL_LANGUAGE_CODE) )
+    {
+      $language = ICL_LANGUAGE_CODE;
+    } else { 
+      $language = 'de';
+    };
     $wnm_custom = array( 'templateUrl' => get_template_directory_uri(), 'lang' => $language );
     $scriptToAdGlobal = array('script-js', 'restapi-js',  );
     foreach( $scriptToAdGlobal as $script ){

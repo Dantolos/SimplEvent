@@ -74,16 +74,20 @@ class SpeakerClass {
       $this->outputSpeaker .= '<div class="se_speaker_social-media">';
 
       $social = get_field('speaker_social_media', $Pid);
-      while( $i < count($social) ) {
-        $smType = $social[$i]['speaker_social_media_typ'];
-        $icon = $SMicon->getSMicon($smType, '#fff', '25px');
-
-        $smLink = $social[$i]['speaker_social_media_link'];
-        $this->outputSpeaker .= '<a href="' . $smLink . '"  target="_blank" class="se-sm-icon" style="margin:0px 5px 0 0;">';
-        $this->outputSpeaker .= '<div class="se-sm-icon-anim" style="margin:8px 8px 0 0; height:18px; width:18px;">'.$icon.'</div>';
-        $this->outputSpeaker .= '</a>';
-        $i++;
+      if( is_array($social) )
+      {
+        while( $i < count($social) ) {
+          $smType = $social[$i]['speaker_social_media_typ'];
+          $icon = $SMicon->getSMicon($smType, '#fff', '25px');
+  
+          $smLink = $social[$i]['speaker_social_media_link'];
+          $this->outputSpeaker .= '<a href="' . $smLink . '"  target="_blank" class="se-sm-icon" style="margin:0px 5px 0 0;">';
+          $this->outputSpeaker .= '<div class="se-sm-icon-anim" style="margin:8px 8px 0 0; height:18px; width:18px;">'.$icon.'</div>';
+          $this->outputSpeaker .= '</a>';
+          $i++;
+        }
       }
+      
 
       $webseite = get_field('speaker_webseite', $Pid );
       if($webseite) {

@@ -163,7 +163,7 @@ jQuery(document).ready(function($){
   let DLicon = $('.se-dnl');
   DLicon.find('path').css({'fill': seMC});
   DLicon.find('polygon').css({'fill': seMC});
-  $( document ).live(function(){
+  $( document ).ajaxComplete(function(){
     DLicon.find('path').css({'fill': seMC});
     DLicon.find('polygon').css({'fill': seMC});
   });
@@ -466,7 +466,7 @@ jQuery(document).ready(function($){
   //review tabber
   var ReviewTabber = $('.se-speaker-review-tabs-container');
     
-  ReviewTabber.live('click', function(){
+  ReviewTabber.parent().on('click', '.se-speaker-review-tabs-container', function(){
     ScrolltoReview($(this));
   });
 

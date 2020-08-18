@@ -290,9 +290,9 @@ jQuery(document).ready(function($){
   });
 
   function LogoHover(e) {
-    e.live('mouseenter', function(){
+    e.parent().on('mouseenter', e, function(){
       TweenMax.to($(this).find('.se-partner-logo-pic'), 0.5, { scale: 1.1, ease:Power1.easeOut });
-    }).on('mouseleave', function() {
+    }).on('mouseleave', e, function() {
       TweenMax.to($(this).find('.se-partner-logo-pic'), 0.5, { scale: 1, ease:Power1.easeOut });
     });
 

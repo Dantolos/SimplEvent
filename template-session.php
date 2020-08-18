@@ -258,12 +258,12 @@ if (isset($_GET['se'])) {
     }
 
 
-    $('.closer').live('click', function(){
+    $('.closer').parent().on('click', '.closer', function(){
       $('.se-lb-wrapper').remove();
     });
 
 
-    refEle.live('click', function(){
+    refEle.parent().on('click', '.se-session-referent', function(){
       seSessionSpeaker($(this));
     });
 

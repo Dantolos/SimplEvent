@@ -33,7 +33,7 @@
 
     if ( wp_is_mobile() ) {
     	wp_enqueue_style( 'mobile-style-css', get_template_directory_uri() . '/css/mobile.style.css', '', '1.0.02' );
-      wp_enqueue_script( 'mobile-script-js', get_template_directory_uri() . '/js/mobile.script.js', array('jquery'), true );
+      wp_enqueue_script( 'mobile-script-js', get_template_directory_uri() . '/js/mobile.script.js', array('jquery'), '1.0.1', true );
     } else {
     	/* Include/display resources targeted to laptops/desktops here */
     }

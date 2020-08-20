@@ -102,14 +102,14 @@ jQuery(document).ready(function($){
 
   });
 
-  $('.closer').live('click', function(){
+  $('.closer').parent().on('click', '.closer', function(){
     $('body').find('.se-lb-img-wrapper').remove();
     $(this).remove();
     console.log('close');
   });
 
   $(document).ajaxComplete(function(){
-    $('.closer').live('click', function(){
+    $('.closer').parent().on('click', '.closer', function(){
       $('body').find('.se-lb-img-wrapper').remove();
       $(this).remove();
       console.log('close');

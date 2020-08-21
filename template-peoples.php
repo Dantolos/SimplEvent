@@ -69,15 +69,19 @@ $titelAnzeigen = get_field('titel', get_the_ID());
             $SMicon = new SocialMedia();
             $social = get_field('speaker_social_media');
             $i = 0;
-            while( $i < count($social) ){
-              $smType = $social[$i]['speaker_social_media_typ'];
-              $icon = $SMicon->getSMicon($smType, '#b6b6b6', '20px');
-
-              echo '<a href="' . $social[$i]['speaker_social_media_link'] . '"  target="_blank" class="se-sm-icon" style="margin:0;">';
-              echo '<div class="se-sm-icon-anim" style="margin:2px 2px 0 2px; ">'.$icon.'</div>';
-              echo '</a>';
-              $i++;
+            if( is_array($social) )
+            {
+              while( $i < count($social) ){
+                $smType = $social[$i]['speaker_social_media_typ'];
+                $icon = $SMicon->getSMicon($smType, '#b6b6b6', '20px');
+  
+                echo '<a href="' . $social[$i]['speaker_social_media_link'] . '"  target="_blank" class="se-sm-icon" style="margin:0;">';
+                echo '<div class="se-sm-icon-anim" style="margin:2px 2px 0 2px; ">'.$icon.'</div>';
+                echo '</a>';
+                $i++;
+              }
             }
+            
             ?>
           </div>
         </div>

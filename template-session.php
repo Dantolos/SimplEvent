@@ -258,9 +258,12 @@ if (isset($_GET['se'])) {
     }
 
 
-    $('.closer').parent().on('click', '.closer', function(){
-      $('.se-lb-wrapper').remove();
+    $( document ).ajaxComplete(function(){
+      $('.closer').on('click', function(){
+        $('body').find('.se-lb-wrapper').remove();
+      });
     });
+
 
 
     refEle.parent().on('click', '.se-session-referent', function(){

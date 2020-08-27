@@ -158,9 +158,9 @@ else if( get_option( 'se_videoslider_activ' ) )  //videoSlider
         Your browser does not support HTML5 video.
     </video>
     <?php if(get_option( 'se_videosliderbuttonlink' )){ ?>
-      <a id="slidebutton" href="<?php echo __( get_option( 'se_videosliderbuttonlink' ) ); ?>">
+      <a id="slidebutton" href="<?php echo get_option( 'se_videosliderbuttonlink' ); ?>">
         <div class="se-mc-bg mc-button se-wc-txt">
-          <?php echo get_option( 'se_videosliderbuttontext' ); ?>
+          <?php echo __( get_option( 'se_videosliderbuttontext' ), 'SimplEvent' ); ?>
         </div>
       </a>
     <?php } ?>

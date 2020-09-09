@@ -14,7 +14,7 @@
   	wp_enqueue_script( 'moveit-js', get_template_directory_uri() . '/js/moveit.js' );
     wp_enqueue_script( 'gsap-js', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js' );
 
-  	wp_enqueue_style( 'style-css', get_template_directory_uri() . '/style.css', '', '1.0.12' );
+  	wp_enqueue_style( 'style-css', get_template_directory_uri() . '/style.css', '', '1.0.13' );
     wp_enqueue_style( 'print-style-css', get_template_directory_uri() . '/css/print.css', '', '1.0.01' );
 
     /* LOAD JS */
@@ -391,7 +391,7 @@ if(!wp_is_mobile()){
     //echo '<pre>'; var_dump(); echo '</pre>';
     $smArr = $m['children'];
     if ($smArr) { ?>
-      <div subnav="<?php echo $m['ID']; ?>" class="se-subnav-container se-sc-bg se-wc-txt" style="opacity:0; width: 100vw;"> <?php
+      <div subnav="<?php echo $m['ID']; ?>" class="se-subnav-container se-sc-txt" style="opacity:0; width: 100vw;"> <?php
 
       foreach(array_reverse($smArr) as $sm){ ?>
         <a href="<?php echo $sm['url']; ?>" class="aagi-w-txt"  id="<?php echo $sm['ID']; ?>" parent="<?php echo $m['ID']; ?>">

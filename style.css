@@ -3,7 +3,7 @@
  *Author: Aaron Giaimo
  *Author URI: http://aagi.ch/
  *Description: This Theme is specified for simple userfriendly Event-Communication. Its based for the Events, which organized by the Swiss Economic Forum AG.
- *Version: 1.2.39
+ *Version: 1.2.40
  *GitHub Theme URI: https://github.com/Dantolos/SimplEvent
  *GitHub Branch: master
  */
@@ -298,20 +298,20 @@ ul li {padding-bottom: .6em;}
 }
 .se-more-events-button { margin-top:50px; cursor: pointer;height:10px;   }
 .se-more-events-button img { margin-right:5px; margin-top:2px;  height: 20px;}
-.se-more-events-button span { vertical-align: top; color:#b7b7b7; }
+.se-more-events-button span { vertical-align: top; color:#b7b7b7; font-size: 0.9rem; }
 
 .se-header-placeholder { height:80px; width:100vw; } /*----PLACEHOLDER----*/
 
 /*--MENU----*/
 .se-main-navi { z-index:300; float:left; position: relative;}
-.se-navbar-mainmenu { position: absolute; right:0; bottom: -2px; }
-.se-navbar-mainmenu a { padding: 10px 30px; float:left; }
-.se_navbar_anmeldebutton { padding: 10px 30px; float:left; cursor: pointer;}
+.se-navbar-mainmenu { position: absolute; right:0; bottom: -2px; font-size: 0.9rem; }
+.se-navbar-mainmenu a { padding: 10px 20px; float:left; }
+.se_navbar_anmeldebutton { padding: 10px 30px; float:left; cursor: pointer; font-size: 0.9rem; }
 .se_navbar_anmeldebutton:hover { opacity:0.9; }
 .se_navbar_infobutton { margin: 8px 30px; float:left; height:24px; cursor:pointer;}
 
 /*--Submenu--*/
-.se-subnav-container { position: fixed; top:120px;  padding:5px; padding-bottom:8px; z-index: 10; padding-right:40px;}
+.se-subnav-container { position: fixed; top:120px;  padding:5px; padding-bottom:8px; z-index: 10; padding-right:40px; font-size: 0.9rem;}
 .se-subnav-container a { padding:0 20px; float:right;}
 .se-subnav-container { font-size: 14px !important;}
 
@@ -335,7 +335,7 @@ ul li {padding-bottom: .6em;}
 .se-arrow-pre-event svg { -moz-transform: scale(-1, 1); -webkit-transform: scale(-1, 1); -o-transform: scale(-1, 1); -ms-transform: scale(-1, 1); transform: scale(-1, 1);}
 .se-more-event-content { width: 70vw; }
 .se-more-event-content-inner { height:100%; }
-.se-more-event-content p { font-size: 14px; margin: 0 0 10px 0;}
+.se-more-event-content p { font-size: 0.8rem; margin: 0 0 10px 0;}
 .se-more-event-content h5 { line-height: 1; }
 .se-more-event-content-text {float:left; width:75%; padding-top: 20px; position: relative; height:100%;}
 .se-more-event-content-logo {float:left; width:25%; position:relative; padding-top: 25px; height:100%;}
@@ -525,7 +525,7 @@ ul li {padding-bottom: .6em;}
 .se-programm-titelzeile, .se-programm-programmpunkt  {
   display: table; vertical-align: middle; border-bottom: 2px solid #fff;
 }
-.se-programm-titel { width:88%; }
+.se-programm-titel { width:85%; }
 .se-programm-zeit, .se-programm-titel { float:left; height:100%; padding: 2%;  }
 .se-programm-zeit { border-right: 3px solid #fff;}
 .se-programm-titelzeile { text-transform: uppercase; width:99.8%; padding: 1.3% 2%; }

@@ -33,6 +33,25 @@ $mainColorSVG = esc_attr( get_option( 'main_color_picker' ) );
                     </div>
                 </a>
             <?php } } ?> 
+
+            <!-- REFERENTEN -->
+            <?php
+            if( get_field('tile_speaker') )
+            {
+              foreach(get_field('tile_speaker') as $tileSpeaker )
+              {
+                echo '<div class="tile-speaker-container" style="display:flex; flex-wrap: wrap; margin-top:50px;">';
+                echo '<img src="' . $tileSpeaker['tile_speaker_bild'] . '" alt="' . $tileSpeaker['tile_speaker_name'] . '" width="30%"/>';
+                echo '<div class="tile-speaker-container" style="width:60%; margin-left:5%;">';
+                echo '<h2>' . $tileSpeaker['tile_speaker_name'] . '</h2>';
+                echo '<p class="se-mc-txt">' . $tileSpeaker['tile_speaker_funktion'] . '</p>';
+                echo '<p>' . $tileSpeaker['tile_speaker_cv'] . '</p>';
+                echo '</div>';
+                echo '</div>';
+              }
+            }
+            ?>
+            
         </div>
 
         <!--FACTS-->

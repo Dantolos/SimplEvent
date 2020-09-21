@@ -134,7 +134,7 @@
   dl, dt, dd, ol, ul, li,
   fieldset, form, label, legend,
   table, caption, tbody, tfoot, thead, tr, th, td { 
-    <?php echo esc_attr( get_option( 'se_font_css' ) );  ?>
+    <?php echo get_option( 'se_font_css' );  ?>
   }
   </style>
 <?php endif; ?>

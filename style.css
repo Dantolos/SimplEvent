@@ -3,7 +3,7 @@
  *Author: Aaron Giaimo
  *Author URI: http://aagi.ch/
  *Description: This Theme is specified for simple userfriendly Event-Communication. Its based for the Events, which organized by the Swiss Economic Forum AG.
- *Version: 1.2.46
+ *Version: 1.2.48
  *GitHub Theme URI: https://github.com/Dantolos/SimplEvent
  *GitHub Branch: master
  */
@@ -94,7 +94,7 @@ ul li {padding-bottom: .6em;}
 
 /*--LAYOUT--*/
 .se-strip { padding-top:50px; padding-bottom:20px; }
-.se-content { width:75vw; overflow:auto; overflow-y:hidden; margin-left: auto;margin-right: auto;}
+.se-content { width:75vw; overflow:auto; overflow-y:hidden; margin-left: auto;margin-right: auto; display: flex; flex-direction: row; flex-wrap: wrap; align-items: stretch; }
 .se-col-1 { width: 8.33%; }
 .se-col-2 { width: 16.66%; }
 .se-col-3 { width: 25%; }
@@ -109,7 +109,7 @@ ul li {padding-bottom: .6em;}
 .se-col-12 { width: 100%; }
 .se-col-1, .se-col-2, .se-col-3, .se-col-4, .se-col-5, .se-col-6,
 .se-col-7, .se-col-8, .se-col-9, .se-col-10, .se-col-11, .se-col-12 {
-  padding:0; float:left;
+  padding:0; 
 }
 
 /*-----------------------------------------------------------------------*/
@@ -117,7 +117,7 @@ ul li {padding-bottom: .6em;}
 /*-----------------------------------------------------------------------*/
 
 /*--Box-Element--*/
-.se-element-box { padding: 20px 40px 40px; position: relative; }
+.se-element-box { padding: 20px 40px 40px; position: relative; height:100%; }
 .se-element-box-link { cursor: pointer; }
 .se-element-box-link:hover { cursor: pointer; }
 

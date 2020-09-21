@@ -11,13 +11,9 @@
 </style>
 
 <?php settings_errors(); ?>
-<div class="se-settings-container">
+<form action="options.php" method="post" class="simplevent-general-form">
+  <?php settings_fields( 'simplevent-fonts-group' ); ?>
+  <?php do_settings_sections('simplevent_fonts'); ?>
+  <?php submit_button(); ?>
+</form>
 
-  <form action="options.php" method="post" class="simplevent-general-form">
-    <?php settings_fields( 'simplevent-settings-group' ); ?>
-    <?php do_settings_sections('aagi_simplevent'); ?>
-    <?php submit_button(); ?>
-  </form>
-
-
-</div>

@@ -20,7 +20,5 @@
     <?php submit_button(); ?>
   </form>
 
-  <!--VORSCHAU-->
-  <iframe src="<?php echo get_site_url(); ?>" class="simplevent_option_preview" ></iframe>
 
 </div>

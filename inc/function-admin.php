@@ -19,6 +19,7 @@ function SimplEvent_add_admin_page() {
   add_submenu_page( 'aagi_simplevent', 'SimplEvent Sidebar Options', 'Sidebar', 'manage_options', 'simplevent_sidebar', 'simplevent_theme_sidebar_page' );
   add_submenu_page( 'aagi_simplevent', 'SimplEvent Footer Options', 'Footer', 'manage_options', 'simplevent_footer', 'simplevent_theme_footer_page' );
   add_submenu_page( 'aagi_simplevent', 'SimplEvent Live Options', 'Live', 'manage_options', 'simplevent_live', 'simplevent_theme_live_page' );
+  add_submenu_page( 'aagi_simplevent', 'SimplEvent Fonts Options', 'Fonts', 'manage_options', 'simplevent_fonts', 'simplevent_theme_fonts_page' );
 
   //activieren custom settings
   add_action( 'admin_init', 'simplevent_custom_settings' );
@@ -169,6 +170,21 @@ function simplevent_custom_settings() {
   add_settings_field( 'se-iframe', 'iFrame', 'simplevent_se_iframe', 'simplevent_live', 'simplevent-live-options' );
   add_settings_field( 'se-programm', 'Programm Link', 'simplevent_se_programm', 'simplevent_live', 'simplevent-live-options' );
 
+  //----------------------------------Fonts ---------------------------------------//
+
+  //****Settings
+  register_setting( 'simplevent-fonts-group', 'se_googlefont_link' );
+  register_setting( 'simplevent-fonts-group', 'se_font_css' );
+
+
+  //****Section
+  add_settings_section( 'simplevent-fonts-options', 'Fonts', 'simplevent_fonts_options', 'simplevent_fonts');
+
+  //****Fields
+  add_settings_field( 'se-googlefont_link', 'Google Fonts Embed', 'simplevent_se_googlefont_link', 'simplevent_fonts', 'simplevent-fonts-options' );
+  add_settings_field( 'se-font_css', 'Font CSS', 'simplevent_se_font_css', 'fonts', 'simplevent-fonts-options' );
+ 
+
 
 }
 
@@ -203,6 +219,9 @@ function simplevent_live_options() {
   echo 'Livestream De/aktivieren';
 }
 
+function simplevent_fonts_options() {
+  echo 'Einstellungen zu den Schriften';
+}
 
 //---------------------------------------------OUTPUTS------------------------------------//
 
@@ -393,6 +412,20 @@ function simplevent_se_programm() {
   echo '<input type="text" name="se_programm" value="' .$se_programm. '" placeholder="/programm"/>';
 }
 
+//----------------------------------FONTS ---------------------------------------//
+
+
+function simplevent_se_googlefont_link() {
+  $se_googlefont_link = get_option( 'se_googlefont_link' );
+  echo '<textarea type="textarea" rows="4" name="se_googlefont_link"  style="width: 100%;">' . $se_googlefont_link . '</textarea>';
+}
+
+function simplevent_se_font_css() {
+  $se_font_css = get_option( 'se_font_css' );
+  echo '<textarea type="textarea" rows="4" cols="50" name="se_font_css">' . $se_font_css . '</textarea>';
+}
+
+
 //---------------------------------------------TEMPLATES------------------------------------//
 function simplevent_theme_create_page() {
   require_once( get_template_directory() . '/inc/templates/simplevent-admin.php' );
@@ -412,4 +445,8 @@ function simplevent_theme_footer_page(){
 
 function simplevent_theme_live_page(){
   require_once( get_template_directory() . '/inc/templates/simplevent-live.php' );
+}
+
+function simplevent_theme_fonts_page(){
+  require_once( get_template_directory() . '/inc/templates/simplevent-fonts.php' );
 }

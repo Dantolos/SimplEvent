@@ -123,9 +123,10 @@ class ModularElements {
     if ($Type) {
       foreach($Type as $element){
         $padding = $element['style']['padding'];
+        $stretch = $element['stretch'] ? '100%' : 'auto';
         $paddingR = (wp_is_mobile()) ? 0 : $padding['padding-right'];
         $paddingL = (wp_is_mobile()) ? 0 : $padding['padding-left'];
-        $this->Element .= '<div class="se-mod-ele-wrapper" style="padding:'.$padding['padding-top'].'% '.$paddingR.'% '.$padding['padding-bottom'].'% '.$paddingL.'%;">';
+        $this->Element .= '<div class="se-mod-ele-wrapper" style="padding:'.$padding['padding-top'].'% '.$paddingR.'% '.$padding['padding-bottom'].'% '.$paddingL.'%; height:'.$stretch.';">';
         $curType = $element["acf_fc_layout"];
 
         switch ($curType) {

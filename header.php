@@ -5,7 +5,12 @@
   <meta name="viewport" content="width=device-width">
   <title><?php bloginfo('name'); ?></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+
+  <?php if(esc_attr( get_option( 'se_googlefont_link' ) )) {
+    echo esc_attr( get_option( 'se_googlefont_link' ) );
+  } else { ?>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+  <?php }  ?>
   <link rel="shortcut icon" href="/favicon.ico" />
 
 <?php //import Files
@@ -116,7 +121,23 @@
   .se-wc-txt { color: <?php echo $seWC; ?>; }
 
   .button-border { border: solid 2px <?php echo $seMC; ?> !important; }
-</style>
+ </style>
+
+
+<?php if(esc_attr( get_option( 'se_googlefont_link' ) )) : ?>
+  <style>
+  html, body, div, span, applet, object, iframe,
+  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+  a, abbr, acronym, address, big, cite, code,
+  del, dfn, em, font, img, ins, kbd, q, s, samp,
+  small, strike, strong, sub, sup, tt, var,
+  dl, dt, dd, ol, ul, li,
+  fieldset, form, label, legend,
+  table, caption, tbody, tfoot, thead, tr, th, td { 
+    <?php echo esc_attr( get_option( 'se_font_css' ) );  ?>
+  }
+  </style>
+<?php endif; ?>
 
 <?php if(! isset($_GET['seembed'])) { ?>
 

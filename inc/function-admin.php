@@ -182,7 +182,7 @@ function simplevent_custom_settings() {
 
   //****Fields
   add_settings_field( 'se-googlefont_link', 'Google Fonts Embed', 'simplevent_se_googlefont_link', 'simplevent_fonts', 'simplevent-fonts-options' );
-  add_settings_field( 'se-font_css', 'Font CSS', 'simplevent_se_font_css', 'fonts', 'simplevent-fonts-options' );
+  add_settings_field( 'se-font_css', 'Font CSS', 'simplevent_se_font_css', 'simplevent_fonts', 'simplevent-fonts-options' );
  
 
 
@@ -417,7 +417,7 @@ function simplevent_se_programm() {
 
 function simplevent_se_googlefont_link() {
   $se_googlefont_link = get_option( 'se_googlefont_link' );
-  echo '<textarea type="textarea" rows="4" name="se_googlefont_link"  style="width: 100%;">' . $se_googlefont_link . '</textarea>';
+  echo '<textarea type="textarea" rows="2" name="se_googlefont_link"  style="width: 100%;">' . $se_googlefont_link . '</textarea>';
 }
 
 function simplevent_se_font_css() {

@@ -58,7 +58,7 @@ $main_partner = new WP_Query($main_partner_args);
 
 <!--Main Partner-->
 <div class="se-strip se-partner-strip" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
-  <div class="se-content" style="position:relative; overflow: visible;">
+  <div class="se-content" style="position: relative; overflow: visible; display:block !important; ">
 
     <div class="se-partner-kategorie" style="min-height: 50px; border-bottom: solid 2px <?php echo esc_attr( get_option( 'main_color_picker' ) ) ; ?>; margin-bottom:10px;">
       <h3>
@@ -97,7 +97,7 @@ $main_partner = new WP_Query($main_partner_args);
 
     <?php echo $Loader->getLoader(); ?>
 
-    <div class="se-partner-logo-containter">
+    <div class="se-partner-logo-containter" style="width:100%;">
       <?php  if ( $main_partner->have_posts() ) : while ( $main_partner->have_posts() ) : $main_partner->the_post();
         $Logo = esc_url( get_field('partner-logo') ); ?>
 

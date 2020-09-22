@@ -25,7 +25,7 @@ echo $Loader->getLoader();
   <div class="se-content" style="position:relative;  overflow: visible;">
 
     <!--Titlebar-->
-    <div class="se-partner-kategorie" style="border-bottom: solid 2px <?php echo esc_attr( get_option( 'main_color_picker' ) ) ; ?>; margin-bottom:10px;">
+    <div class="se-partner-kategorie" style="width:100%; border-bottom: solid 2px <?php echo esc_attr( get_option( 'main_color_picker' ) ) ; ?>; margin-bottom:10px;">
       <h3>
         <?php
         $taxonomy = 'Jahrgang';
@@ -65,7 +65,6 @@ echo $Loader->getLoader();
             echo '<input class="se-curr-categorie-radio" type="radio" name="categorie" value="'.$categorie->slug.'">' . $categorie->name;
             echo '<span class="checkmark"></span>';
             echo '</label>';
-
           }
         ?>
       </form>
@@ -84,7 +83,7 @@ echo $Loader->getLoader();
     </div>
 
     <!--former winners-->
-    <div id="formerWinners" class="se-partner-kategorie" style="position:relative; border-bottom: solid 2px <?php echo esc_attr( get_option( 'main_color_picker' ) ) ; ?>; margin-bottom:10px;">
+    <div id="formerWinners" class="se-partner-kategorie" style="position:relative; width:100%; border-bottom: solid 2px <?php echo esc_attr( get_option( 'main_color_picker' ) ) ; ?>; margin-bottom:10px;">
       <h3>
         <?php
         end($terms);

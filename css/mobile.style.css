@@ -16,9 +16,9 @@
   h1 { font-size: 36px; font-weight: 700; margin-bottom:20px; text-transform: uppercase; }
   h2 { font-size: 32px; }
   h3 { font-size: 24px; text-transform: uppercase; }
-  h4 { font-size: 20px; font-weight: 300;}
-  h5 { font-size: 24px; font-weight: 700;}
-  h6 { font-size: 12px; font-weight: 300;}
+  h4 { font-size: 20px; font-weight: 300; }
+  h5 { font-size: 24px; font-weight: 700; }
+  h6 { font-size: 12px; font-weight: 300; }
 
   .se-loader { width:70%; position: fixed; top:45vh;}
 

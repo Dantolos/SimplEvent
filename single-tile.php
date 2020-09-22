@@ -65,12 +65,20 @@ $mainColorSVG = esc_attr( get_option( 'main_color_picker' ) );
                     while( have_rows('tile_facts') ): the_row();
                         
                         $factKeys = array_keys( get_row('tile_facts_datum') );
-                        
-                        foreach($factKeys as $fact) {
+                        $frLabels = array( 
+                          'Date', 'Heure', 'Lieu', 'Participants', 'Coût', 'Inscription'
+                        )
+                        foreach($factKeys as $key -> $fact) {
                             if( get_sub_field($fact) ) {
+                              if(get_field('sprache'))
+                              {
+                                $label = $frLabels[$key];
+                              } else {
                                 $label = get_sub_field_object($fact)['label'];
-                            
-                                echo '<tr><td>' . __( $label, 'SimplEvent') . '</td>';
+                              }
+                                
+                              
+                                echo '<tr><td>' . $label . '</td>';
                                 echo '<td style="line-break: auto;">' . get_sub_field($fact) . '</td></tr>';
                             }   
                         }

@@ -71,7 +71,7 @@ $mainColorSVG = esc_attr( get_option( 'main_color_picker' ) );
      
                         foreach ($factKeys as $key => $fact) {
                           if( get_sub_field($fact) ) {
-                            if(get_field('sprache'))
+                            if(get_field('sprache') == 'fr')
                             {
                               $label = $frLabels[$key];
                             } else {

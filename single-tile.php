@@ -73,7 +73,7 @@ $mainColorSVG = esc_attr( get_option( 'main_color_picker' ) );
                           if( get_sub_field($fact) ) {
                             if(get_field('sprache'))
                             {
-                              $label = $frLabels[$k];
+                              $label = $frLabels[$key];
                             } else {
                               $label = get_sub_field_object($fact)['label'];
                             }

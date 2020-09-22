@@ -41,7 +41,7 @@ $mainColorSVG = esc_attr( get_option( 'main_color_picker' ) );
               foreach(get_field('tile_speaker') as $tileSpeaker )
               {
                 echo '<div class="tile-speaker-container" style="display:flex; flex-wrap: wrap; margin-top:50px;">';
-                echo '<img src="' . $tileSpeaker['tile_speaker_bild'] . '" alt="' . $tileSpeaker['tile_speaker_name'] . '" width="30%"/>';
+                echo '<div class="tile-speaker-image image-settings " style="background-image:url(' . $tileSpeaker['tile_speaker_bild'] . ');"></div>';
                 echo '<div class="tile-speaker-container" style="width:60%; margin-left:5%;">';
                 echo '<h2>' . $tileSpeaker['tile_speaker_name'] . '</h2>';
                 echo '<p class="se-mc-txt">' . $tileSpeaker['tile_speaker_funktion'] . '</p>';
@@ -67,20 +67,21 @@ $mainColorSVG = esc_attr( get_option( 'main_color_picker' ) );
                         $factKeys = array_keys( get_row('tile_facts_datum') );
                         $frLabels = array( 
                           'Date', 'Heure', 'Lieu', 'Participants', 'Coût', 'Inscription'
-                        )
-                        foreach($factKeys as $key -> $fact) {
-                            if( get_sub_field($fact) ) {
-                              if(get_field('sprache'))
-                              {
-                                $label = $frLabels[$key];
-                              } else {
-                                $label = get_sub_field_object($fact)['label'];
-                              }
-                                
+                        );
+     
+                        foreach ($factKeys as $key => $fact) {
+                          if( get_sub_field($fact) ) {
+                            if(get_field('sprache'))
+                            {
+                              $label = $frLabels[$k];
+                            } else {
+                              $label = get_sub_field_object($fact)['label'];
+                            }
                               
-                                echo '<tr><td>' . $label . '</td>';
-                                echo '<td style="line-break: auto;">' . get_sub_field($fact) . '</td></tr>';
-                            }   
+                            
+                              echo '<tr><td>' . $label . '</td>';
+                              echo '<td style="line-break: auto;">' . get_sub_field($fact) . '</td></tr>';
+                          }   
                         }
 
                     endwhile;

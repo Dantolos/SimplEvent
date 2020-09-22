@@ -125,7 +125,7 @@ class ModularElements {
         $padding = $element['style']['padding'];
         $stretch = 'auto';
         if(isset($element['stretch'] )){
-          $stretch = $element['stretch'] ? '100%' : 'auto';
+          $stretch = $element['stretch'] ? '100%' : 'fit-content';
         }
         
         $paddingR = (wp_is_mobile()) ? 0 : $padding['padding-right'];

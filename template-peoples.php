@@ -32,7 +32,7 @@ $titelAnzeigen = get_field('titel', get_the_ID());
 
     if ($titelAnzeigen) {
       $term = get_term_by('id', $PplTaxID, 'Gruppe');
-      echo '<h3 style="margin-bottom:50px;">'.$term->name.'</h3>';
+      echo '<h3 style="margin-bottom:50px; width:100%;">'.$term->name.'</h3>';
     }
 
 

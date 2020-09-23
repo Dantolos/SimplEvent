@@ -84,7 +84,7 @@ if( empty( get_option( 'se_livestream' ) ) && !get_option( 'se_videoslider_activ
   <div id="slider" class="se-slider-header-container image-settings se-slider-mobile-align-left" style="background-image:url('<?php  echo $slideArray[0]['image']; ?>');">
 
 
-      <div id="sliderlayer" class="image-settings" style="background-image:url(<?php if(!empty( $slideArray[0]['layer'] )) { echo $slideArray[0]['layer']; } ?>); height:100%; width:100%; background-size:160%; background-position:50% -200px;"> </div>
+      <div id="sliderlayer" class="image-settings" style="background-image:url(<?php if(!empty( $slideArray[0]['layer'] )) { echo $slideArray[0]['layer']; } ?>); height:100%; width:100%; background-size:160%; background-position:50%;"> </div>
 
       <?php
       $typeOrder;

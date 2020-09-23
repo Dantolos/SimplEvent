@@ -45,10 +45,11 @@
   .header-placeholder { height:50px !important;  }
 
   #se-slider-type-titel { bottom:25vh; left:0; right:0; margin: auto; width:90vw; text-align: center;}
-  .se-slider-type-titel h1 { font-size:4rem !important; }
-  .se-slider-type-titel h1 { font-size:4rem !important; }
-  .se-slider-type-titel h1 span { font-size:4rem !important; }
+  .se-slider-type-titel h1 { font-size:3rem !important; }
+  .se-slider-type-titel h1 { font-size:3rem !important; }
+  .se-slider-type-titel h1 span { font-size:3rem !important; }
   #sliderLogo img { width:100% !important; }
+  #sliderlayer { background-size: unset !important; }
 
 
   /*--MENU--*/

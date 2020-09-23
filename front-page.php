@@ -128,11 +128,11 @@ if( empty( get_option( 'se_livestream' ) ) && !get_option( 'se_videoslider_activ
       <!-- zitat END-->
 
       <!-- titel -->
-      <div id="se-slider-type-titel" class="" style="display:<?php echo $typeOrder[1]; ?>; color: <?php echo $slideArray[0]['textcolor']; ?>;">
+      <div id="se-slider-type-titel" class="se-slider-type-titel" style="display:<?php echo $typeOrder[1]; ?>; color: <?php echo $slideArray[0]['textcolor']; ?>;">
         <div id="sliderLogo" style="padding:0 <?php echo $slideArray[0]['logosize']; ?>%;">
           <img src="<?php echo $slideArray[0]['logo']; ?>" alt="" width="auto" height="auto">
         </div>
-        <h2 class="slidertitel"><?php echo $slideArray[0]['titel']; ?></h2>
+        <h1 class="slidertitel"><?php echo $slideArray[0]['titel']; ?></h1>
         <h4 class="sliderdatum"><?php echo $slideArray[0]['datum']; ?></h4>
         <?php if($slideArray[0]['button']){ ?>
           <a id="slidebutton" href="<?php echo $slideArray[0]['buttonlink']; ?>">

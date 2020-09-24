@@ -92,12 +92,14 @@ function my_acf_admin_head() {
     <style type="text/css">
 
       /* .se_ACF_modular { color: #dedede !important; background-color: #23282d; } */
-      .acf-field {border-left: 0px !important;}
-
+      .acf-fields { padding: 4px !important; }
+      .acf-field { border-left: 0px !important; padding:6px 0 !important; margin-bottom:5px !important; }
+      
       .acf-flexible-content .layout .acf-fc-layout-handle {
-          /*background-color: #00B8E4;*/
-          background-color: #202428;
-          color: #eee;
+           
+            background-color: #CDCDCD;
+            border-top: 4px white solid;
+            color: #000;
       }
 
       .acf-repeater.-row > table > tbody > tr > td,

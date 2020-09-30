@@ -63,6 +63,7 @@ class ModularElements {
   protected function boxElement($data) {
     $bordercolor = '';
     $borderCSS = '';
+    $borderradius = '';
     $boxstyle = '';
 
 
@@ -86,6 +87,9 @@ class ModularElements {
         $borderCSS .= 'border-' . $borderPos . ':4px solid ' . $this->seMC . ';';
       }
     }
+    if($data['borderradius']) {
+      $borderradius .= 'border-radius: ' . $data['borderradius'] . 'px;';
+    }
 
     $linkCSS = '';
     if($data['verlinkung']) {
@@ -93,7 +97,7 @@ class ModularElements {
          $linkCSS = 'se-element-box-link';
     }
 
-    $this->Element .= '<div class="' . $boxstyle . ' se-element-box ' . $linkCSS . '" style="' . $borderCSS . '">';
+    $this->Element .= '<div class="' . $boxstyle . ' se-element-box ' . $linkCSS . '" style="' . $borderCSS . ' ' . $borderradius . '">';
     if($data["bild"]){
       $this->Element .= '<div class="image-settings" style="background-image:url(' . $data['bild'] . '); width:calc (100% + 40px); min-height:' . $data['bild_hohe'] . 'px; margin: -20px -40px 20px -40px;"></div>';
     }

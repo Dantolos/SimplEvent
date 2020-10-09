@@ -230,11 +230,11 @@ jQuery(document).ready(function($){
       }
     });
 
-    $('.closer').live('click', function(){
+    $('.closer')parent().on('click', '.closer', function(){
       $('.se-lb-wrapper').remove();
     });
 
-    $('.se-review-gallery').live('click', function(){
+    $('.se-review-gallery')parent().on('click', '.se-review-gallery', function(){
       $('.se-review-gallery-img').remove();
       var actSRC = $(this).attr('imgsrc');
       var appendation = '<div class="se-review-gallery-img image-settings" style="background-image:url('+actSRC+');"></div>';
@@ -243,7 +243,7 @@ jQuery(document).ready(function($){
       TweenMax.from($('.se-review-gallery-img'), 0.3, { autoAlpha: 0, scale: 0.8, ease:Power1.easeOut} );
     });
 
-    $('.se-review-gallery-img').live('click', function(){
+    $('.se-review-gallery-img')parent().on('click', '.se-review-gallery-img', function(){
       TweenMax.to($('.se-review-gallery-img'), 0.3, { autoAlpha: 0, scale: 0.8, ease:Power1.easeOut} );
     });
 

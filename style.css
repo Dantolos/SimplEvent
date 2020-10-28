@@ -3,7 +3,7 @@
  *Author: Aaron Giaimo
  *Author URI: http://aagi.ch/
  *Description: This Theme is specified for simple userfriendly Event-Communication. Its based for the Events, which organized by the Swiss Economic Forum AG.
- *Version: 1.2.67
+ *Version: 1.2.68
  *GitHub Theme URI: https://github.com/Dantolos/SimplEvent
  *GitHub Branch: master
  */
@@ -113,6 +113,10 @@ ul li {padding-bottom: .6em;}
 .se-col-7, .se-col-8, .se-col-9, .se-col-10, .se-col-11, .se-col-12 {
   padding:0; 
 }
+
+/*hide scrollbar*/
+.hide-scroll { overflow-y:scroll; overflow-x: hidden; scrollbar-width: none; -ms-overflow-style: none;  }
+.hide-scroll::-webkit-scrollbar { display:none; }
 
 /*-----------------------------------------------------------------------*/
 /*---------------------------------ELEMENTS------------------------------*/

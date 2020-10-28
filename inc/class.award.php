@@ -43,9 +43,11 @@ class AwardClass {
       $this->outputCandidate .= '</div>';
       $this->outputCandidate .= '<div class="se-candidate-content">';
 
+      $this->outputCandidate .= '<div class="hide-scroll" style="max-height:210px; overflow-y:scroll; padding:10px 0;">';
       $this->outputCandidate .= '<h4><b>' . $winner . '</b> | ' . $kategorie[0]->name . '</h4>';
       $this->outputCandidate .= '<h3><b>' . get_the_title($candID) . '</b></h3>';
       $this->outputCandidate .= '<p>' . get_field('award_text', $candID) . '</p>';
+      $this->outputCandidate .= '</div>';
       if( get_field('award_webseite', $candID )){
         $this->outputCandidate .= '<a href="' . get_field('award_webseite', $candID) . '" target="_blank" style="position:absolute; right:20px; bottom:25px;">';
         $this->outputCandidate .= '<div class="mc-button-neg se-mc-txt" style="margin:0px; border: solid 2px' . esc_attr( get_option( 'main_color_picker' ) ) . '; ">';

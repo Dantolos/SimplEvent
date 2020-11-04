@@ -16,7 +16,7 @@ class Programm {
                          $this->result .= '<div class="se-programm-titelzeile se-sc-bg se-wc-txt se-programm-row se-programm-line">';
                          $titelText = '';
                          if($pP['programmpunkt_zeit']){
-                              $titelText = the_sub_field('programmpunkt_zeit');
+                              $titelText = $pP['programmpunkt_zeit'];
                               $this->result .= ' | ';
                          }
                          $this->result .= $pP['titel']; 

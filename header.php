@@ -531,7 +531,9 @@ if(!wp_is_mobile()){
   </div>
 </div>
 
-<?php } ?>
+<?php } else {
+  print 'embed';
+} ?>
 
 <body>
     

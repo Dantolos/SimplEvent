@@ -2,13 +2,16 @@
 
 class Programm {
 
+     public $result = '';
 
      public function castProgramm( $programmElement )
      {
-          echo '<pre style="color:green;">';
-          var_dump($programmElement);
-          echo '</pre>';
-          
+          $this->result .= '<pre style="color:green;">';
+          $this->result .= var_dump($programmElement);
+          $this->result .= '</pre>';
+
+
+          return $this->result;
      }
 
 

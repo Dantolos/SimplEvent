@@ -121,8 +121,9 @@ class ModularElements {
 
   }
 
-  protected function programmElement(){
+  protected function programmElement($data){
     $programm = new Programm;
+    $this->Element .= $programm->castProgramm($data);
   }
 
   //create $OutPut
@@ -171,9 +172,9 @@ class ModularElements {
           case 'box':
             $this->boxElement($element);
             break;
-            case 'programm':
-              $this->programmElement($element);
-              break;
+          case 'programm':
+            $this->programmElement($element);
+            break;
 
           default:
             // code...

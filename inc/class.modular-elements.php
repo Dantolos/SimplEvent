@@ -3,6 +3,7 @@
 $dlicon = new DownloadIcon;
 $Clink = new LinkIcon;
 
+
 class ModularElements {
 
   public $Element;
@@ -120,6 +121,9 @@ class ModularElements {
 
   }
 
+  protected function programmElement(){
+    $programm = new Programm;
+  }
 
   //create $OutPut
   public function getModularElement( $Type ) {
@@ -167,6 +171,9 @@ class ModularElements {
           case 'box':
             $this->boxElement($element);
             break;
+            case 'programm':
+              $this->programmElement($element);
+              break;
 
           default:
             // code...

@@ -86,6 +86,7 @@
   require_once('inc/class.sessions.php');
   require_once('inc/class.award.php');
   require_once('inc/class.tiles.php');
+  require_once('inc/class.programm.php');
 
   require_once('inc/elements/class.button.php');
 

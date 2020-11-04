@@ -8,7 +8,7 @@ class Programm {
      {
           $this->result .= '<div class="se-col-12 se-programmtabelle">';
 
-          foreach( $programmElement as $pP )
+          foreach( $programmElement['programmraster'] as $pP )
           {
                switch ($pP['acf_fc_layout']) {
 

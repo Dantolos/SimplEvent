@@ -65,7 +65,7 @@ class Programm {
           $this->result .= '</div>';
 
           if( $programmElement['moderation'] ){
-               
+               $this->result .= '<div class="se-col-12 se-programm-moderation">';
                $this->result .= '<h3><b>' . __('Moderation', 'SimplEvent') . '</b></h3>';
              
                foreach( $programmElement['moderation'] as $mod ) {
@@ -80,6 +80,7 @@ class Programm {
                  $this->result .= '</div>';
                  $this->result .= '</div>';
                }
+               $this->result .= '</div>';
           }
 
           return $this->result;

@@ -125,7 +125,12 @@ if (isset($_GET['se'])) {
             $programmLink = get_site_url() . '/programm';
             break;
         }
-        echo $Clink->getLinkIcon($programmLink, $programmText); ?>
+
+        if( get_field('show_programm') ){
+          echo $Clink->getLinkIcon($programmLink, $programmText); 
+        }
+        ?>
+        
       </div>
     </div>
   </div>

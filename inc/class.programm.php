@@ -63,6 +63,25 @@ class Programm {
           }
 
           $this->result .= '</div>';
+
+          if( $programmElement['moderation'] ){
+               
+               $this->result .= '<h3><b>' . __('Moderation', 'SimplEvent') . '</b></h3>';
+             
+               foreach( $programmElement['moderation'] as $mod ) {
+             
+                 $moderator = $mod['moderator'];
+                 
+                 $this->result .= '<div class="se-programm-moderator-container clearfix">';
+                 $this->result .= '<div class="se-programm-moderator-bild image-settings" style="background-image:url(' . $moderator['foto'] . ');"></div>';
+                 $this->result .= '<div class="se-programm-moderator-text">';
+                 $this->result .= '<h4><b>' . $moderator['name'] . '</b></h4>';
+                 $this->result .= '<p>'.  $moderator['funktion'] . '</p>';
+                 $this->result .= '</div>';
+                 $this->result .= '</div>';
+               }
+          }
+
           return $this->result;
      }
 

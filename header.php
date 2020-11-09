@@ -533,7 +533,7 @@ if(!wp_is_mobile()){
 </div>
 
 <?php } else {
-  print 'embed';
+  //embed special content
 } ?>
 
 <body>

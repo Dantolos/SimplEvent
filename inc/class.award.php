@@ -49,9 +49,16 @@ class AwardClass {
       $this->outputCandidate .= '<p>' . get_field('award_text', $candID) . '</p>';
       $this->outputCandidate .= '</div>';
       if( get_field('award_webseite', $candID )){
-        $this->outputCandidate .= '<a href="' . get_field('award_webseite', $candID) . '" target="_blank" style="position:absolute; right:20px; bottom:25px;">';
+        $this->outputCandidate .= '<a href="' . get_field('award_webseite', $candID) . '" target="_blank" style="position:absolute; left:10px; bottom:25px;">';
         $this->outputCandidate .= '<div class="mc-button-neg se-mc-txt" style="margin:0px; border: solid 2px' . esc_attr( get_option( 'main_color_picker' ) ) . '; ">';
         $this->outputCandidate .= __( 'WEBSEITE', 'SimplEvent' );
+        $this->outputCandidate .= '</div>';
+        $this->outputCandidate .= '</a>';
+      }
+      if( get_field('award_video', $candID )){
+        $this->outputCandidate .= '<a href="' . get_field('award_video', $candID) . '" target="_blank" style="position:absolute; right:20px; bottom:25px;">';
+        $this->outputCandidate .= '<div class="mc-button-neg se-mc-txt" style="margin:0px; border: solid 2px' . esc_attr( get_option( 'main_color_picker' ) ) . '; ">';
+        $this->outputCandidate .= __( 'VIDEO', 'SimplEvent' );
         $this->outputCandidate .= '</div>';
         $this->outputCandidate .= '</a>';
       }

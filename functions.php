@@ -160,3 +160,13 @@ function array_insert(&$array, $position, $insert)
 
 /*------------------------------DISABLE BlockEditor---------------------------*/
 add_filter('use_block_editor_for_post', '__return_false');
+
+
+/*------------------------------COOKIE NOTICE---------------------------*/
+function custom_cn_cookie_notice_output($output) {
+	if (!is_front_page()) { // or is_home() if your home page displays blog posts, not static page
+		$output = '';
+	}
+	return $output;
+}
+add_filter('cn_cookie_notice_output', 'custom_cn_cookie_notice_output');

@@ -33,6 +33,7 @@ class AwardClass {
 
     foreach ($this->candIDs as $candID) {
       $winner = get_field('award_gewinner', $candID) ? __('Gewinner', 'SimplEvent') : __('Finalist', 'SimplEvent');
+      $winnerstyle = get_field('award_gewinner', $candID) ? 'style="border-radius:8px; padding:2px 8px;" class="se-mc-bg se-wc-txt"' : '';
       $kategorie = get_the_terms( $candID, 'Awardkategorie' );
 
       $this->outputCandidate .= '<div class="se-candidate-container">';
@@ -44,7 +45,7 @@ class AwardClass {
       $this->outputCandidate .= '<div class="se-candidate-content">';
 
       $this->outputCandidate .= '<div class="hide-scroll" style="max-height:210px; overflow-y:scroll; padding:10px 0;">';
-      $this->outputCandidate .= '<h4><b>' . $winner . '</b> | ' . $kategorie[0]->name . '</h4>';
+      $this->outputCandidate .= '<h4><b '. $winnerstyle  .'>' . $winner . '</b> | ' . $kategorie[0]->name . '</h4>';
       $this->outputCandidate .= '<h3><b>' . get_the_title($candID) . '</b></h3>';
       $this->outputCandidate .= '<p>' . get_field('award_text', $candID) . '</p>';
       $this->outputCandidate .= '</div>';
